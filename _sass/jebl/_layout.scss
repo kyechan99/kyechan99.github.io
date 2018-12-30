@@ -1,0 +1,117 @@
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: $background;
+}
+
+@mixin media($queryString){
+    @media #{$queryString} {
+      @content;
+    }
+}
+
+.navbar {
+    height: $navbar-height;
+    background-color: white;
+    box-shadow: 0px 0px 3px $gray-black;
+    font-weight: $notosans-bold;
+    font-size: 18px;
+}
+
+.page-content {
+    padding-top: $navbar-height + 40px;
+    padding-bottom: $navbar-height + 40px;
+
+    ul {
+        list-style:none;
+        padding-left: 0px;
+    }
+    li {
+        margin-bottom: $layout-space;
+    }
+}
+
+.card-list {
+    padding: 40px;
+    .card-date {
+        color: $highlight;
+    }
+    .card-title {
+        font-size: 30px;
+        font-weight: $notosans-bold;
+        color: $black;
+        
+        @include media("(max-width: 992px)") {
+            font-size: 20px;
+        }
+    }
+    .card-subtitle {
+        color: $gray-black;
+    }
+    @include media("(max-width: 992px)") {
+        padding: 20px;
+    }
+}
+.card-tags {
+    padding: 40px;
+}
+.post {
+    .post-header {
+        padding-top: 50px;
+        // padding-bottom: 50px;
+    }
+    .post-title {
+        padding-bottom: 30px;
+        font-size: 40px;
+        font-weight: $notosans-bold;
+        color: $black;
+    }
+}
+.card-post {
+    padding: 100px;
+    @include media("(max-width: 992px)") {
+        padding: 20px 10px 20px 10px;
+    }
+    h1 {
+        margin-top: 50px;
+        border-left: $striking 8px solid;
+        padding-left: 10px;     
+    }
+    p {
+        font-size: 20px;
+    }
+    a {
+        font-weight: $notosans-medium;
+        color: $text-highlight;
+    }
+    img {
+        max-height: 550px;
+        max-width: 100%;
+        height: auto;
+    }
+    .highlighter-rouge {
+        padding: 0px 7px 0px 7px;
+        font-family: 'Noto Sans KR', sans-serif;
+        color: $highlight;
+        background-color: $font-background;
+        pre {
+            padding: 10px;
+            font-size: 20px;
+        }
+    }
+}
+
+.footer {
+  bottom: 0;
+  width: 100%;
+  border-color: #c2c2c2;
+  border-style: solid;
+  border-width: 1px 0px 0px 0px;
+  padding: 50px 0px 50px 0px;
+
+  .footer-block {
+    margin: 20px 0;
+  }
+  a {
+      color: $gray-black;
+  }
+}

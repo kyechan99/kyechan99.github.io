@@ -1,0 +1,44 @@
+---
+layout: default
+---
+
+<div class="home">
+  {%- if page.title -%}
+    <h1 class="page-heading">{{ page.title }}</h1>
+  {%- endif -%}
+
+  {{ content }}
+
+  <div class="row">
+    <div class="col-md-8">
+      {%- if site.posts.size > 0 -%}
+        <!-- <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2> -->
+        <ul class="post-list">
+          {%- for post in site.posts -%}
+          <li>
+            <div class="card card-list">
+              {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+              <span class="post-meta card-date">{{ post.date | date: date_format }}</span>
+              <a class="post-link card-title" href="{{ post.url | relative_url }}">
+                {{ post.title | escape }}
+              </a>
+              <span class="post-meta card-subtitle">{{ post.description }}</span>
+              {%- if site.show_excerpts -%}
+                {{ post.excerpt }}
+              {%- endif -%}
+            </div>
+          </li>
+          {%- endfor -%}
+        </ul>
+        <!-- <p class="feed-subscribe"><svg class="svg-icon orange"><use xlink:href="{{ '/assets/minima-social-icons.svg#rss' | relative_url }}"></use></svg><a href="{{ "/feed.xml" | relative_url }}">Subscribe</a></p> -->
+      {%- endif -%}
+    </div>
+
+    <div class="col-md-4">
+      <div class="card card-tags">
+        <h3>Tags</h3>
+      </div>
+    </div>
+
+  </div>
+</div>
