@@ -1,0 +1,77 @@
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: $background;
+}
+
+
+h1 {
+    margin-top: 50px;
+    border-left: $striking 8px solid;
+    padding-left: 10px;     
+}
+
+h2 {
+    margin-top: 45px;
+}
+
+h3 {
+    font-size: 23px;
+    margin-top: 30px;
+}
+
+p {
+    font-size: $p-size;
+}
+code {
+    color: $code;
+    font-size: $p-size;
+    font-weight: $notosans-medium;
+    // font-family: 'Noto Sans KR', sans-serif;
+    // font-family: 'Nanum Gothic Coding', monospace;
+}
+a {
+    font-weight: $notosans-medium;
+    color: $text-highlight;
+}
+ol {
+    font-size: $p-size;
+    li {
+        margin-bottom: 5px;
+    }
+}
+ul {
+    font-size: $p-size;
+    padding-left: 20px;
+    li {
+        margin-bottom: 5px;
+    }
+}
+
+blockquote {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: $blockquote;
+    border-left: $blockquote-strike 4px solid;
+    padding-left: 14px;
+    p {
+        margin-bottom: 4px;
+        font-size: $p-size - 2px;
+    }
+}
+
+img {
+    max-height: 550px;
+    max-width: 100%;
+    height: auto;
+}
+
+.highlighter-rouge {
+    padding: 0px 7px 0px 7px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: $highlight;
+    background-color: $font-background;
+    pre {
+        padding: 10px;
+        font-size: $p-size;
+    }
+}

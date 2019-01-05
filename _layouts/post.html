@@ -5,6 +5,7 @@ layout: default
 
   <header class="post-header">
     <p class="post-title p-name text-center" itemprop="name headline">{{ page.title | escape }}</p>
+    <p class="post-subtitle p-name text-center" itemprop="name headline">{{ page.description }}</p>
     <p class="post-meta text-right">
       <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}

@@ -32,7 +32,7 @@ $ mkdir jebl
 $ cd mkdir
 ```
 
-이후 gem을 통해 [minima]()와 기타 github 블로그에 필요한 플러그인들을 설치한다.
+이후 gem을 통해 [minima](https://github.com/jekyll/minima)와 기타 github 블로그에 필요한 플러그인들을 설치한다.
 ```
 $ gem install minima
 $ gem install bundler
@@ -50,9 +50,6 @@ jekyll 블로그의 실행 명령어는 다음과 같다.
 ```
 $ jekyll serve
 ```
-
-
-<br/>
 
 # 환경 구성
 
@@ -87,9 +84,6 @@ $ jekyll serve
 추가로 `_site` 폴더의 내용은 수정하지 않도록 한다. 이 폴더는 `jekyll serve` 을 통해 변환 작업이 일어나고 생성된 사이트가 저장되는 폴더인데, 때문에 안의 내용을 변경하였다고 해도 변환 작업을 통해 변경한 내용이 사라진다. 한마디로 전체적인 내용을 컴파일하고 생성된 사이트가 저장되는 폴더이니 신경쓸 필요가 없다.
 
 
-<br/>
-
-
 # 이해
 
 [Jekyll 공식사이트 - 테마](https://jekyllrb-ko.github.io/docs/themes/)를 읽어보면, 현재의 레이아웃이나 조각파일을 변경하려면 `_layouts` 나 `_includes` 디렉토리를 복사하여 그안의 원하는 파일을 수정 및 덮어 쓰라고 설명하고 있다.
@@ -107,7 +101,6 @@ $ jekyll serve
 즉, 원하는 기능의 폴더안에 파일을 덮어씌우거나 수정하면 블로그가 커스터마이징 가능하다는 것이 확인된 셈이다.
 
 
-<br/>
 
 # 정리
 
@@ -123,4 +116,5 @@ $ jekyll serve
 ![6](/assets/img/2018-12-28-jekyll-custom/6.png)
 
 
+# 다음글
 [Jekyll custom 블로그 만들기 - 2](http://localhost:4000/dev/2018/12/29/jekyll-custom-2.html)
