@@ -117,4 +117,4 @@ $ jekyll serve
 
 
 # 다음글
-[Jekyll custom 블로그 만들기 - 2](http://localhost:4000/dev/2018/12/29/jekyll-custom-2.html)
+[Jekyll custom 블로그 만들기 - 2](/dev/2018/12/29/jekyll-custom-2.html)
