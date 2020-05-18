@@ -1,0 +1,21 @@
+---
+layout: page
+title: 개발노트
+permalink: /DevNote/
+---
+
+<h3>{{ post.title }}</h3>
+
+<h4>Lib</h4>
+<ul>
+    {% for post in site.categories.Lib %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>
+
+<h4>Dev</h4>
+<ul>
+    {% for post in site.categories.Dev %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,28 @@
+---
+layout: page
+title: 프로젝트
+permalink: /Project/
+---
+
+<h3>{{ post.title }}</h3>
+
+<h4>Games</h4>
+<ul>
+    {% for post in site.categories.Games %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>
+
+<h4>Web</h4>
+<ul>
+    {% for post in site.categories.Web %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>
+
+<h4>App</h4>
+<ul>
+    {% for post in site.categories.App %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>
