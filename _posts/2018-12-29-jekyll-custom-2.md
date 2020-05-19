@@ -87,3 +87,6 @@ keywords: Jekyll, Blog
 ```
 
 이를 통해서 fontawesome 이나 bootstrap 등이 필요하다면 `_includes/head.html` 에 link 해주면 된다는 것을 알 수 있다.
+
+# 다음글
+[Jekyll custom 블로그 만들기 - 3](/dev/2020/5/29/jekyll-custom-3.html)

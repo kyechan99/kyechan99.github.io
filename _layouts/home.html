@@ -48,6 +48,14 @@ layout: default
       </div>
       <div class="card card-tags">
         <h3>Tags</h3>
+        {% for tags in site.tags %}
+          <h3>{{ tags[0] }}</h3>
+          <ul>
+            <!-- {% for post in category[1] %}
+              <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+            {% endfor %} -->
+          </ul>
+        {% endfor %}
       </div>
     </div>
 
