@@ -53,6 +53,15 @@
     }
 }
 
+.card-comment {
+    margin-top: 100px;
+    padding: 100px;
+    @include media("(max-width: 992px)") {
+        margin-top: 5px;
+        padding: 20px 10px 20px 10px;
+    }
+}
+
 .card-category {
     padding: 0px 40px 0px 40px;
 }
