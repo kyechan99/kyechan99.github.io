@@ -30,7 +30,10 @@ plugins:
 
 sass:  
   sass_dir: _sass 
-
+  
+plugins:
+  - jekyll-octicons
+  
 comments:
   provider: disqus
   

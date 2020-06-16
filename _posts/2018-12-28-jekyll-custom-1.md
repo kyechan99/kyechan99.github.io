@@ -8,7 +8,6 @@ tags: [Dev, Web, Jekyll]
 keywords: Jekyll, Blog
 ---
 
-# Jekyll Custom 블로그 만들기
 공부하면서 새로 알게된 내용이나 나중에 다시 찾아보게 될 것들을 메모하기 위해 [TIL](https://github.com/kyechan99/TIL)을 사용해 왔었다.
 다만 하나씩 파일을 만들어 메모하는 TIL의 컨셉때문에 프로젝트를 진행하면서 배우게 되는 내용을 모두 TIL에 담기에는 다소 번거로움이 있었다.
 따라서 [우아한 형제들 기술 블로그](http://woowabros.github.io/)처럼 나도 개발 노트용 블로그를 만들기로 결정했다.
@@ -17,7 +16,7 @@ keywords: Jekyll, Blog
 `jekyll custom` 블로그는 이렇게 시작하였고 앞으로 이를 jekyll blog 이름을 따와 `jebl`이라고 하겠다.
 
 
-# 설치
+## 설치
 jekyll을 설치하기 위해선 먼저 Ruby 부터 설치가 되어있어야 한다. 
 
 윈도우 환경이라면 [RubyInstaller for Windows](https://rubyinstaller.org/downloads/) 에서 자신에게 맞는 Ruby를 다운받는다.
@@ -51,7 +50,7 @@ jekyll 블로그의 실행 명령어는 다음과 같다.
 $ jekyll serve
 ```
 
-# 환경 구성
+## 환경 구성
 
 정상적으로 작동된 디렉토리 구조는 다음과 같다.
 
@@ -84,7 +83,7 @@ $ jekyll serve
 추가로 `_site` 폴더의 내용은 수정하지 않도록 한다. 이 폴더는 `jekyll serve` 을 통해 변환 작업이 일어나고 생성된 사이트가 저장되는 폴더인데, 때문에 안의 내용을 변경하였다고 해도 변환 작업을 통해 변경한 내용이 사라진다. 한마디로 전체적인 내용을 컴파일하고 생성된 사이트가 저장되는 폴더이니 신경쓸 필요가 없다.
 
 
-# 이해
+## 이해
 
 [Jekyll 공식사이트 - 테마](https://jekyllrb-ko.github.io/docs/themes/)를 읽어보면, 현재의 레이아웃이나 조각파일을 변경하려면 `_layouts` 나 `_includes` 디렉토리를 복사하여 그안의 원하는 파일을 수정 및 덮어 쓰라고 설명하고 있다.
 
@@ -102,7 +101,7 @@ $ jekyll serve
 
 
 
-# 정리
+## 정리
 
 정리해보면 Jekyll 블로그의 구조는 이렇다.
 
@@ -116,5 +115,5 @@ $ jekyll serve
 ![6](/assets/img/2018-12-28-jekyll-custom/6.png)
 
 
-# 다음글
+## 다음글
 [Jekyll custom 블로그 만들기 - 2](/dev/2018/12/29/jekyll-custom-2.html)

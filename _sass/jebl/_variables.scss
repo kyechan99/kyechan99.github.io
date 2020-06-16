@@ -1,26 +1,39 @@
-// Colors
-$background: #dddfe6;
-// $highlight: #f1404b;
-$highlight: #d4333e;
-$black: #252c41;
-$gray-black: #384058;
-$font-background: #f8f8f8;
-// $text-highlight: #d4333e;
-$text-highlight: #f1404b;
-$striking: #cf646b;
-$blockquote: #fcf7f8;
-$blockquote-strike: #eec5c6;
-$code: #636363;
-// $striking: #A593E0;
 
+// 테마색
+$background: #ffffff;
+$themeColor: #10AF85;
+$themeColorOpa: #6BC59C;
+
+// Colors
+$bold-black: #212529;
+$black: #404640;
+$gray-black: #6f667a;
+
+// a 태그
+$striking: #59D6B5;
+// pre 배경 색
+$pre-bg-color: #E5F7F0;
+// code 색
+$code: #636363;
+$code-bg-color: #E5F7F0;
+// blockquote 색
+$blockquote-bg: #F8FDFB;
+$blockquote-strike: #B6F0D9;
+
+
+// 100 300 400 500 700 900
+$notosans-thin: 300;
 $notosans-regular: 400;
 $notosans-medium: 500;
 $notosans-bold: 700;
 
+// text size
 $p-size: 18px;
+$code-size: 17px;
 
 // bootstrap size
 
-// Size
+
+// div size
 $navbar-height: 90px;
 $layout-space: 20px;

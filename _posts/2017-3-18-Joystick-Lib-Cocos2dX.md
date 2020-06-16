@@ -8,9 +8,6 @@ tags: [Lib,Joystick, Cocos2d-X]
 keywords: Joystick, cocos2d
 ---
 
-
-# Joystick Lib - Cocos2d-X
-
 - Joystick Lib 다운로드 [링크](https://github.com/kyechan99/Joystick_Lib)
 
 

@@ -1,41 +1,106 @@
----
-layout: default
-comments: true
----
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <header class="post-header">
-    <p class="post-title p-name text-center" itemprop="name headline">{{ page.title | escape }}</p>
-    <p class="post-subtitle p-name text-center" itemprop="name headline">{{ page.description }}</p>
-    <p class="post-meta text-right">
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {{ page.date | date: date_format }}
-      </time>
-      {%- if page.author -%}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author | escape }}</span></span>
-      {%- endif -%}</p>
-  </header>
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
-  <div class="card card-post">
-    <div class="post-content e-content" itemprop="articleBody">
-      {{ content }}
-    </div>
-  </div>
+  {%- include head.html -%}
 
-  <div class="card card-comment">
-    {%- if site.disqus.shortname -%}
-      {%- include disqus_comments.html -%}
-    {%- endif -%}
+  <body>
+
+    {%- include header.html -%}
+
+    <main class="page-content" aria-label="Content">
+		<div class="container-fluid post-container-fluid">
+			<div class="post-img" style="background-image: url(https://lh3.googleusercontent.com/3jE1kmDp90i0zD4n_LGg5fVPSk3oHUaub_W1mWrTtlQCqcY8u0VBjUUhMmzV8dT28ps2=h900-rw)"></div>
+		</div>
+      <div class="container">
+		<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+			<div class="quick-bar hide" id="quick-bar">
+				<button class="quick-btn linkBtn">
+					{% octicon link height:24 %}
+				</button>
+				<button class="quick-btn asdfBtn">
+					aaa
+				</button>	
+			</div>
+		  <header class="post-header">
+
+			<div class="post-info">
+				<p class="post-category p-name" itemprop="name headline">
+					{%- if page.categories[0] == 'Lib' or page.categories[0] == 'Dev' -%}
+						개발노트 / {{ page.categories[0] }}
+					{%- elsif page.categories[0] == 'Games' or page.categories[0] == 'Web' -%}
+						프로젝트 / {{ page.categories[0] }}
+					{%- else -%}
+						/ {{ page.categories[0] }}
+					{%- endif -%}
+				</p>
+				<p class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</p>
+				<p class="post-subtitle p-name" itemprop="name headline">{{ page.description }}</p>
+				<div class="post-tags-box">
+					{%- for tag in page.tags -%}
+						<span class="post-tag">{{ tag }}</span>
+					{%- endfor -%}
+				</div>
+				<!-- <p class="post-meta">
+				  <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+					{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+					{{ page.date | date: date_format }}
+				  </time>
+				  {%- if page.author -%}
+					• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author | escape }}</span></span>
+				  {%- endif -%}</p> -->
+			</div>
+		  </header>
+
+		  <div class="card card-post">
+			<div class="post-content e-content" itemprop="articleBody">
+			  {{ content }}
+			</div>
+		  </div>
+
+		  <div class="card card-comment">
+			{%- if site.disqus.shortname -%}
+			  {%- include disqus_comments.html -%}
+			{%- endif -%}
+
+			<div id="disqus_thread"></div>  
+		  </div>                         
+
+		  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+		</article>
+      </div>
+    </main>
+
+    {%- include footer.html -%}
+
+  </body>
   
-    <div id="disqus_thread"></div>  
-  </div>                         
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
-</article>
+  <script type="text/javascript">
+	$(document).ready(function() {
+		var myID = document.getElementById("quick-bar");
+
+		$(document).scroll(function() {
+		  var y = $(this).scrollTop();
+		  if (y >= 500) {
+			myID.className = "quick-bar show";
+		  } else {
+			myID.className = "quick-bar hide";
+		  }
+		});
+
+	});
+  </script>
+</html>
+
+
 
 <script>
-
+	
+	
 /**
 *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/

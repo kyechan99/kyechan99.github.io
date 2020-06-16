@@ -27,7 +27,7 @@ comments: false
 ## 2. GET STARTED
 ![2](/assets/img/2020-5-22-jekyll-custom-4/2.png)
 
-[GET STARTED](https://disqus.com/profile/signup/intent/) 에서 두 번째 `I want to install Disqus on my site  ` 버튼을 누른다.
+[GET STARTED](https://disqus.com/profile/signup/intent/) 에서 두 번째 `I want to install Disqus on my site` 버튼을 누른다.
 
 ## 3. Create a new site
 ![3](/assets/img/2020-5-22-jekyll-custom-4/3.png)

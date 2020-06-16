@@ -1,3 +1,4 @@
+
 body{
     font-family: 'Noto Sans KR', sans-serif;
     background-color: $background;
@@ -6,32 +7,44 @@ body{
 
 h1 {
     margin-top: 50px;
+    padding-left: 10px;  
     border-left: $striking 8px solid;
-    padding-left: 10px;     
+	color: $bold-black;
 }
 
 h2 {
     margin-top: 45px;
+	margin-bottom: 10px;
+	font-size: 25px;
+	font-weight: 600;
+	color: $bold-black;
 }
 
 h3 {
     font-size: 23px;
     margin-top: 30px;
+	color: $bold-black;
 }
 
 p {
+	font-weight: $notosans-thin;
     font-size: $p-size;
+	color: $black;
 }
 code {
+	margin-left: 3px;
+	margin-right: 3px;
+	padding: 1px 5px 1px 5px;
     color: $code;
-    font-size: $p-size;
+    font-size: $code-size;
     font-weight: $notosans-medium;
-    // font-family: 'Noto Sans KR', sans-serif;
-    // font-family: 'Nanum Gothic Coding', monospace;
+	background-color: $code-bg-color;
+	border-radius: 5px;
+	white-space: pre;
 }
 a {
-    font-weight: $notosans-medium;
-    color: $text-highlight;
+    font-weight: $notosans-regular;
+    color: $striking;
 }
 ol {
     font-size: $p-size;
@@ -49,8 +62,8 @@ ul {
 
 blockquote {
     padding-top: 5px;
-    padding-bottom: 5px;
-    background-color: $blockquote;
+    padding-bottom: 2px;
+    background-color: $blockquote-bg;
     border-left: $blockquote-strike 4px solid;
     padding-left: 14px;
     p {
@@ -65,13 +78,18 @@ img {
     height: auto;
 }
 
-.highlighter-rouge {
-    padding: 0px 7px 0px 7px;
-    font-family: 'Noto Sans KR', sans-serif;
-    color: $highlight;
-    background-color: $font-background;
-    pre {
-        padding: 10px;
-        font-size: $p-size;
+// 큰 하이라이터는 div 박스에 그려짐 - 작은 하이라이터와 분리하기 위함
+div.highlighter-rouge {
+	margin-bottom: 16px;
+	padding: 10px 15px 10px 15px;
+	background-color: $pre-bg-color;
+	border-radius: 5px;
+	font-size: $p-size;
+	pre {
+		margin-bottom: 0px;
+	}
+	code {
+        padding: 0px;
+		color: $black;
     }
 }
