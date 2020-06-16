@@ -2,14 +2,12 @@
 layout: post
 title: JNI Helper Cocos2d-X ver.
 date: 2017-03-22
-categories: [Edu]
+categories: [Dev]
 description: JNI Helper
-tags: [Edu,JNI, Cocos2d-X]
+tags: [Dev,JNI, Cocos2d-X]
 keywords: JNI, cocos2d
 ---
 
-
-# JNI Helper - Cocos2d-X
 
 ## 참고
 - 이 글에선 Cocos2d-X 내부의 JNI Helper 를 이야기 합니다.

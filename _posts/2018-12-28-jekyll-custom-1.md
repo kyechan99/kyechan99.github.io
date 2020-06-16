@@ -6,6 +6,8 @@ categories: Dev
 description: jekyll 블로그 생성하기
 tags: [Dev, Web, Jekyll]
 keywords: Jekyll, Blog
+haveImg: true
+headerImg: 2020-5-22-jekyll-custom-4.jpg
 ---
 
 공부하면서 새로 알게된 내용이나 나중에 다시 찾아보게 될 것들을 메모하기 위해 [TIL](https://github.com/kyechan99/TIL)을 사용해 왔었다.

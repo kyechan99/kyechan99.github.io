@@ -7,9 +7,10 @@ description: 퍼즐쿠
 tags: [Games,Unity3D]
 keywords: Games, 퍼즐쿠
 icon: icon-playframework-alt
+haveImg: true
+headerImg: 2017-3-25-PuzzleKu.jpg
 ---
 
-# 퍼즐쿠
 
 ## 특징
 - 퍼즐 게임

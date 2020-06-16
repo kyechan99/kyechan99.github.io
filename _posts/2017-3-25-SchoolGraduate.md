@@ -7,9 +7,9 @@ description: School Graduate
 tags: [Games,Cocos2d-X]
 keywords: Games, School-Graduate
 icon: icon-playframework-alt
+haveImg: true
+headerImg: 2017-3-25-SchoolGraduate.png
 ---
-
-# School Graduate
 
 ## 특징
 - 보드 게임 & 기능성 게임
@@ -29,7 +29,7 @@ icon: icon-playframework-alt
 - 없음
 
 ## 다운로드
-- 구글 플레이 : [링크](https://www.dropbox.com/s/l12mrymt5uci4df/SchoolGraduate.apk?dl=0)
+- 현재 삭제함
 
 ## 인게임 캡처
 > ![1](http://postfiles13.naver.net/20150701_172/kyechan99_1435758572796F63et_PNG/1.PNG?type=w1)

@@ -7,9 +7,9 @@ description: Bing Bong
 tags: [Games,Unity3D]
 keywords: Games, Bing-Bong
 icon: icon-playframework-alt
+haveImg: true
+headerImg: 2017-3-25-BingBong.png
 ---
-
-# Bing Bong
 
 ## 특징
 - 퍼즐 게임

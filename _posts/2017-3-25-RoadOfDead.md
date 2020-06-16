@@ -7,9 +7,9 @@ description: Road Of Dead
 tags: [Games,Unity3D]
 keywords: Games, Road-Of-Dead
 icon: icon-playframework-alt
+haveImg: true
+headerImg: 2017-3-25-RoadOfDead.png
 ---
-
-# Road Of Dead
 
 ## 특징
 - 액션 & 슈팅 게임

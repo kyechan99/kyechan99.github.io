@@ -7,9 +7,10 @@ description: Long Time No See
 tags: [Games,Unity3D]
 keywords: Games, Long-Time-No-See
 icon: icon-playframework-alt
+haveImg: true
+headerImg: 2017-3-25-LongTimeNoSee.png
 ---
 
-# Long Time No See
 
 ## 특징
 - 액션 잠입 게임

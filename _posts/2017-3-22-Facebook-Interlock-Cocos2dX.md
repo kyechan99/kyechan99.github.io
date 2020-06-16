@@ -2,14 +2,12 @@
 layout: post
 title: Facebook Interlock Cocos2d-X ver.
 date: 2017-03-22
-categories: [Edu]
+categories: [Dev]
 description: 페이스북 연동 Cocos2d-X
-tags: [Edu,Facebook,Interlock, Cocos2d-X]
+tags: [Dev,Facebook,Interlock, Cocos2d-X]
 keywords: Facebook, Interlock, cocos2d
 ---
 
-
-# Facebook Interlock - Cocos2d-X
 
 - Facebook Interlock github [링크](https://github.com/kyechan99/Facebook_Interlock)
 - Facebook 개발자 사이트 [링크](https://developers.facebook.com)

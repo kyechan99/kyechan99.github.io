@@ -7,9 +7,9 @@ description: God Wants Victim
 tags: [Games,Cocos2d-X]
 keywords: Games, God-Wants-Victim
 icon: icon-playframework-alt
+haveImg: true
+headerImg: 2017-3-25-GodWantsVictim.jpg
 ---
-
-# God Wants Victim
 
 ## 특징
 - 어드벤처 게임

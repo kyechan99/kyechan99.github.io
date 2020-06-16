@@ -6,6 +6,8 @@ categories: [Lib]
 description: 조이스틱 라이브러리 적용법
 tags: [Lib,Joystick, Cocos2d-X]
 keywords: Joystick, cocos2d
+haveImg: true
+headerImg: 2017-3-18-Joystick-Lib-Cocos2dX.jpg
 ---
 
 - Joystick Lib 다운로드 [링크](https://github.com/kyechan99/Joystick_Lib)

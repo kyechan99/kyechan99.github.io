@@ -2,13 +2,11 @@
 layout: post
 title: Unity Plugin - 02. 안드로이드 스튜디오 설정
 date: 2017-03-23
-categories: [Edu]
+categories: [Dev]
 description: Unity Plugin
-tags: [Edu,Unity3D,Plugin]
+tags: [Dev,Unity3D,Plugin]
 keywords: Unity, Plugin, C#, Android
 ---
-
-# Unity Plugin - 02. 안드로이드 스튜디오 설정
 
 - 유니티 플러그인 사용법을 적습니다.
 - CHAPER 01 : [링크](https://kyechan99.github.io/2017/03/23/Unity-Plugin-01.%EC%9C%A0%EB%8B%88%ED%8B%B0%EC%84%A4%EC%A0%95/)

@@ -10,7 +10,11 @@
 
     <main class="page-content" aria-label="Content">
 		<div class="container-fluid post-container-fluid">
-			<div class="post-img" style="background-image: url(https://lh3.googleusercontent.com/3jE1kmDp90i0zD4n_LGg5fVPSk3oHUaub_W1mWrTtlQCqcY8u0VBjUUhMmzV8dT28ps2=h900-rw)"></div>
+			{% if page.haveImg == true %}
+				<div class="post-img" style="background-image: url(/assets/img/head-img/{{ page.headerImg }})"></div>
+			{%- else -%}
+				<div class="post-img" style="background-image: url(https://images.pexels.com/photos/262488/pexels-photo-262488.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)"></div>
+			{% endif %}
 		</div>
       <div class="container">
 		<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">

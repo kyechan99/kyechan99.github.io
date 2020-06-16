@@ -2,13 +2,12 @@
 layout: post
 title: Unity AR - Vuforia 사용
 date: 2017-03-24
-categories: [Edu]
+categories: [Dev]
 description: Unity AR
-tags: [Edu,AR,Unity3D,Vuforia]
+tags: [Dev,AR,Unity3D,Vuforia]
 keywords: Unity, AR, Vuforia
 ---
 
-# Unity AR - Vuforia 사용
 
 - 유니티 AR 의 기능이 담긴 Vuforia 를 얘기합니다.
 

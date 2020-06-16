@@ -6,12 +6,13 @@ categories: Dev
 description: bootstrap 과 custom sass 넣기
 tags: [Dev, Web, Jekyll]
 keywords: Jekyll, Blog
+haveImg: true
+headerImg: 2020-5-22-jekyll-custom-4.jpg
 ---
 
-# Jekyll Custom 블로그 만들기
 - [Jekyl Custom 블로그 만들기 - 1](/dev/2018/12/28/jekyll-custom-1)
 
-# 설정
+## 설정
 
 현재까지 디렉토리 구조는 다음과 같다.
 
@@ -38,7 +39,7 @@ keywords: Jekyll, Blog
 
 이제부터 `minima` 의 원본 파일에서 디자인을 수정할 것이기 때문에 만일 내 프로젝트에 없는 파일들이 위에 있다면 [minima repository](https://github.com/jekyll/minima) 에서 가져오도록 한다.
 
-# Sass
+## Sass
 
 이제 블로그에 디자인을 입히고 변경할 차례가 왔다.
 
@@ -51,7 +52,7 @@ keywords: Jekyll, Blog
 
 `sass_dir` : `_sass` 는 sass를 저장한 경로라고 이해하면 된다. 즉, 현재 프로젝트의 디렉토리중 하나인 `_sass` 폴더에 sass 파일을 작성하면 된다는 뜻이다.
 
-# 구조
+## 구조
 ```
 .
 ├── assets
@@ -72,7 +73,7 @@ keywords: Jekyll, Blog
 이후 `assets/css/styles.scss`에 
 ```
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
+## Only the main Sass file needs front matter (the dashes are enough)
 ---
 
 @import 'jebl';
@@ -88,5 +89,5 @@ keywords: Jekyll, Blog
 
 이를 통해서 fontawesome 이나 bootstrap 등이 필요하다면 `_includes/head.html` 에 link 해주면 된다는 것을 알 수 있다.
 
-# 다음글
+## 다음글
 [Jekyll custom 블로그 만들기 - 3](/dev/2020/05/19/jekyll-custom-3.html)

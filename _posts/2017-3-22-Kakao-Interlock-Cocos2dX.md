@@ -2,13 +2,11 @@
 layout: post
 title: Kakao Interlock Cocos2d-X ver.
 date: 2017-03-22
-categories: [Edu]
+categories: [Dev]
 description: 카카오 연동 Cocos2d-X
-tags: [Edu,Kakao,Interlock, Cocos2d-X]
+tags: [Dev,Kakao,Interlock, Cocos2d-X]
 keywords: Kakao, Interlock, cocos2d
 ---
-
-# Kakao Interlock - Cocos2d-X
 
 - Kakao Interlock github [링크](https://github.com/kyechan99/Kakao_Interlock)
 - Kakao 개발자 사이트 [링크](https://developers.kakao.com/)

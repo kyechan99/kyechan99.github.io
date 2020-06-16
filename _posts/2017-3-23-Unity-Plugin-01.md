@@ -2,13 +2,11 @@
 layout: post
 title: Unity Plugin - 01. 유니티 설정
 date: 2017-03-23
-categories: [Edu]
+categories: [Dev]
 description: Unity Plugin
-tags: [Edu,Unity3D,Plugin]
+tags: [Dev,Unity3D,Plugin]
 keywords: Unity, Plugin, C#, Android
 ---
-
-# Unity Plugin - 01. 유니티 설정
 
 - 유니티 플러그인 사용법을 적습니다.
 

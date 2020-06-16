@@ -7,9 +7,10 @@ description: Color Shift
 tags: [Games,Unity3D]
 keywords: Games, Color-Shift
 icon: icon-playframework-alt
+haveImg: true
+headerImg: 2017-3-25-ColorShift.png
 ---
 
-# Color Shift
 
 ## 특징
 - 퍼즐 & 기능성 게임

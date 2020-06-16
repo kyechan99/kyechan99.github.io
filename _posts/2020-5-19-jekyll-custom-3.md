@@ -6,9 +6,9 @@ categories: Dev
 description: 카테고리 기능 넣기
 tags: [Dev, Web, Jekyll]
 keywords: Jekyll, Blog
+haveImg: true
+headerImg: 2020-5-22-jekyll-custom-4.jpg
 ---
-
-# Jekyll Custom 블로그 만들기
 
 앞 단계에서는 대표적인 프론트엔드 프레임워크인 bootstrap이나 앞으로 직접 커스텀 해서 꾸밀 파일들을 세팅하는 방법에 대해 알아봤다.
 
@@ -18,7 +18,7 @@ keywords: Jekyll, Blog
 - [Jekyl Custom 블로그 만들기 - 2](/dev/2018/12/29/jekyll-custom-2)
 
 
-# 시작에 앞서
+## 시작에 앞서
 이후 작업할 카테고리 기능을 위해서는 `_post` 폴더에 들어가 있는 포스트들에 `categories` 라는 값을 입력해 주어야 합니다.
 ```
 ---
@@ -28,7 +28,7 @@ categories: 포스트에 해당하는 카테고리 명을 입력해주세요
 ---
 ```
 
-# Minima 는
+## Minima 는
 ![1](/assets/img/2020-5-19-jekyll-custom-3/1.png)
 
 앞서 본 블로그의 초기 세팅의 모티브가 된 [Minima](https://jekyll.github.io/minima/)를 보면 
@@ -44,7 +44,7 @@ categories: 포스트에 해당하는 카테고리 명을 입력해주세요
 그렇다면 이를 이용해 위에 for문이 작동되도록 걸맞는 행동을 취해주면 된다.
 
 
-# Jekyll 문서에서 해당 변수 찾기
+## Jekyll 문서에서 해당 변수 찾기
 [Jekyll 변수 문서](https://jekyllrb-ko.github.io/docs/variables/) 를 찾아보면 
 
 ![3](/assets/img/2020-5-19-jekyll-custom-3/3.png)
@@ -84,7 +84,7 @@ categories: 포스트에 해당하는 카테고리 명을 입력해주세요
 
 여기까지 카테고리와 관련된 변수들과 사용방법에 대해 알아봤다.
 
-# 우측 상단에 카테고리 메뉴 넣기
+## 우측 상단에 카테고리 메뉴 넣기
 카테고리와 관련된 변수들은 모두 찾았으니 이제 카테고리 메뉴 넣기로 되돌아 본다.
 
 처음 봤던 찾아본 `_includes/header.html`의 `nav-item`을 생성하는 for문은 이미 About 이라는 페이지를 넣고 있었다.

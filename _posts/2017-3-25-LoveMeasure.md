@@ -7,9 +7,10 @@ description: 사랑 측정기
 tags: [App,Android]
 keywords: App, 사랑측정기
 icon: icon-mobile-device
+haveImg: true
+headerImg: 2017-3-25-LoveMeasure.jpg
 ---
 
-# 사랑 측정기
 
 ## 특징
 - 안드로이드

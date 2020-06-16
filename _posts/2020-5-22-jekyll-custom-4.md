@@ -7,9 +7,9 @@ description: Disqus 를 사용한 댓글 기능 넣기
 tags: [Dev, Web, Jekyll]
 keywords: Jekyll, Blog
 comments: false
+haveImg: true
+headerImg: 2020-5-22-jekyll-custom-4.jpg
 ---
-
-# Jekyll Custom 블로그 만들기
 
 아무리 개인 블로그라 해도 새로운 피드백을 얻을수 있는 기회는 중요하기에 댓글 기능은 중요할 수 밖에 없었다.
 

@@ -7,9 +7,9 @@ description: Shape-Of-You
 tags: [Games,Unity3D]
 keywords: Games, Shape-Of-You
 icon: icon-playframework-alt
+haveImg: true
+headerImg: 2017-7-27-Shape-Of-You.jpg
 ---
-
-# Shape-Of-You
 
 ## 특징
 - 온라인 게임
@@ -22,10 +22,10 @@ icon: icon-playframework-alt
 경찰을 피해 맵에 숨는 게임
 도둑이 경찰이랑 색이 같이 때 부딪치면 죽음
 
-### 룰
+## 룰
 ![1](/assets/img/2017-7-27-Shape-Of-You/Rule.png)
 
-### 스킬설명
+## 스킬설명
 ![1](/assets/img/2017-7-27-Shape-Of-You/Police.png)
 
 ![1](/assets/img/2017-7-27-Shape-Of-You/Thief.png)
