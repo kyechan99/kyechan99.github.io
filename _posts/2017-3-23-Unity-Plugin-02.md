@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Unity Plugin - 02. 안드로이드 스튜디오 설정
-date: 2017-03-23
+date: 2017-03-24
 categories: [Dev]
 description: Unity Plugin
 tags: [Dev,Unity3D,Plugin]

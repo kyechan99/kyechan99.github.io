@@ -19,7 +19,7 @@
       <div class="container">
 		<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 			<div class="quick-bar hide" id="quick-bar">
-				<button class="quick-btn linkBtn">
+				<button class="quick-btn linkBtn" OnClick="javascript:copyUrlToClipboard()">
 					{% octicon link height:24 %}
 				</button>
 				<button class="quick-btn asdfBtn">
@@ -27,13 +27,12 @@
 				</button>	
 			</div>
 		  <header class="post-header">
-
 			<div class="post-info">
 				<p class="post-category p-name" itemprop="name headline">
 					{%- if page.categories[0] == 'Lib' or page.categories[0] == 'Dev' -%}
-						개발노트 / {{ page.categories[0] }}
+						<a href="/DevNote">개발노트</a> / {{ page.categories[0] }}
 					{%- elsif page.categories[0] == 'Games' or page.categories[0] == 'Web' -%}
-						프로젝트 / {{ page.categories[0] }}
+						<a href="/DevNote">프로젝트</a> / {{ page.categories[0] }}
 					{%- else -%}
 						/ {{ page.categories[0] }}
 					{%- endif -%}
@@ -45,14 +44,6 @@
 						<span class="post-tag">{{ tag }}</span>
 					{%- endfor -%}
 				</div>
-				<!-- <p class="post-meta">
-				  <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-					{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-					{{ page.date | date: date_format }}
-				  </time>
-				  {%- if page.author -%}
-					• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author | escape }}</span></span>
-				  {%- endif -%}</p> -->
 			</div>
 		  </header>
 
@@ -89,7 +80,7 @@
 
 		$(document).scroll(function() {
 		  var y = $(this).scrollTop();
-		  if (y >= 500) {
+		  if (y >= 280) {
 			myID.className = "quick-bar show";
 		  } else {
 			myID.className = "quick-bar hide";
@@ -97,6 +88,16 @@
 		});
 
 	});
+	function copyUrlToClipboard() {
+		var dummy = document.createElement('input'),
+		text = window.location.href;
+
+		document.body.appendChild(dummy);
+		dummy.value = text;
+		dummy.select();
+		document.execCommand('copy');
+		document.body.removeChild(dummy);
+	}
   </script>
 </html>
 

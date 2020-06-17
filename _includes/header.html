@@ -1,35 +1,30 @@
 <header class="site-header">
-
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-            {%- assign default_paths = site.pages | map: "path" -%}
-            {%- assign page_paths = site.header_pages | default: default_paths -%}
-            {%- assign titles_size = site.pages | map: 'title' | join: '' | size -%}
-            <!-- <a class="navbar-brand" rel="author" href="{{ "/" | relative_url }}">
-                <img src="/assets/title.png" width="60%" height="60%" class="d-inline-block align-top" alt="">
-            </a> -->
-            <!-- <a class="navbar-brand" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a> -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            {%- if titles_size > 0 -%}
-                <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav ml-auto">
-						<li class="nav-item">
-                        	<a class="nav-link" href="/">홈 <span class="sr-only">(current)</span></a>
-                        </li>
-                        {%- for path in page_paths -%}
-                            {%- assign my_page = site.pages | where: "path", path | first -%}
-                            {%- if my_page.title -%}
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }} <span class="sr-only">(current)</span></a>
-                            </li>
-                            {%- endif -%}
-                        {%- endfor -%}
-                    </ul>
-                </div>
-            {%- endif -%}
-        </div>
-    </nav>
-
+	<div class="container">
+		{%- assign default_paths = site.pages | map: "path" -%}
+		{%- assign page_paths = site.header_pages | default: default_paths -%}
+		{%- assign titles_size = site.pages | map: 'title' | join: '' | size -%}
+		{% assign curPage = page.url | split: '/' %}
+		<nav class="nav-menu d-flex justify-content-end">
+			<a href="{{ '' | prepend: site.baseurl }}/" 
+			   {% if curPage.size == 0 %} 
+			   class="nav-link align-self-center active" 
+			   {% endif %} 
+			   class="nav-link align-self-center">홈</a>
+			<a href="{{ '/DevNote' | prepend: site.baseurl }}/" 
+			   {% if curPage[1] == "DevNote" or curPage[1] == "lib" or curPage[1] == "dev"%} 
+			   class="nav-link align-self-center active" 
+			   {% endif %} 
+			   class="nav-link align-self-center">개발노트</a>
+			<a href="{{ '/Project' | prepend: site.baseurl }}/" 
+			   {% if curPage[1] == "Project" or curPage[1] == "games" or curPage[1] == "web" or curPage[1] == "app" %} 
+			   class="nav-link align-self-center active" 
+			   {% endif %} 
+			   class="nav-link align-self-center">프로젝트</a>
+			<a href="{{ '/about' | prepend: site.baseurl }}/" 
+			   {% if curPage[1] == "about" %} 
+			   class="nav-link align-self-center active" 
+			   {% endif %} 
+			   class="nav-link align-self-center">소개</a>
+		</nav>
+	</div>
   </header>

@@ -89,7 +89,16 @@ div.highlighter-rouge {
 		margin-bottom: 0px;
 	}
 	code {
+		margin-left: 0px;
         padding: 0px;
 		color: $black;
     }
+}
+
+button {
+	&:active,
+	&:focus {
+		outline: none !important;
+		box-shadow: none !important;
+	}
 }

@@ -4,22 +4,59 @@
     }
 }
 
-.navbar {
+.nav-menu {
 	height: 180px;
     // background-color: white;
     // box-shadow: 0px 0px 3px $gray-black;
     font-weight: $notosans-bold;
     font-size: $p-size;
+	align-item: center;
     @include media("(max-width: 992px)") {
-		height: auto;
-		.navbar-collapse {
-			padding-left: 0px;
-			padding-right: 0px;
-		}
+		height: 100px;
     }
-	.navbar-collapse {
-		padding-left: 100px;
-		padding-right: 100px;
+    @include media("(max-width: 768px)") {
+		height: 50px;
+    }
+	.nav-link {
+		margin-left: 10px;
+		font-size: 20px;
+		color: rgba(0,0,0,0.5);
+		transition: color .3s ease-out;
+		-moz-transition: color .3s ease-out;
+		-webkit-transition: color .3s ease-out;
+		-o-transition: color .3s ease-out;
+		@include media("(max-width: 768px)") {
+			margin-left: 5px;
+			font-size: 16px;
+		}
+		@include media("(max-width: 576px)") {
+			margin-left: 0px;
+			font-size: 14px;
+		}
+		&:hover {
+			color: $black;
+		}
+		&.active {
+			font-weight: 600;
+			color: $black;
+			&:before {
+				margin-top: 0px;
+				margin-left: -10px;
+				position: absolute;
+				width: 16px;
+				height: 16px;
+				border-radius: 8px;
+				content: " ";
+				white-space: pre;
+				background-color: $nav-item-active-content;
+				z-index: -1;
+				@include media("(max-width: 576px)") {
+					width: 10px;
+					height: 10px;
+					border-radius: 5px;
+				}
+			}
+		}
 	}
 }
 
@@ -144,8 +181,9 @@
 	}
 	.quick-bar {
 		position: fixed;
-		margin-top: 100px;
-		margin-left: -50px;
+		// margin-top: 100px;
+		top: 250px;
+		margin-left: -200px;
 		z-index: 101;
 		&.hide {
 			opacity: 0%;
@@ -161,55 +199,114 @@
 			border: 0px;
 			border-radius: 35px;
 			color: $themeColor;
-background: linear-gradient(145deg, #ffffff, #e6e6e6);
-box-shadow:  7px 7px 10px #e6e6e6, 
-             -7px -7px 10px #ffffff;
+			background: linear-gradient(145deg, #ffffff, #e6e6e6);
+			// box-shadow:  7px 7px 10px #e6e6e6, 
+			//              -7px -7px 10px #ffffff;
 		}
 	}
-    .post-header {
-        // padding-top: 50px;
-        // padding-bottom: 50px;
-    }
-	.post-info {
-		@include media("(max-width: 992px)") {
-			padding: 20px 10px 20px 10px;
-		}
-		@include media("(max-width: 768px)") {
-			padding-left: 0px;
-			padding-right: 0px;
-		}
-		.post-category {
-			margin-bottom: 5px;
-			font-size: 15px;
-			font-weight: $notosans-medium;
+}
+// li 를 이용해 post-info를 사용하려 한다면 li 태그 클래스에 붙여주기
+.post-part {
+	margin-top: 80px;
+	margin-bottom: 80px;
+	@include media("(max-width: 768px)") {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+}
+.post-info {
+	transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-webkit-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	@include media("(max-width: 992px)") {
+		padding: 20px 10px 20px 10px;
+	}
+	@include media("(max-width: 768px)") {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	.post-category {
+		margin-bottom: 5px;
+		font-size: 15px;
+		font-weight: $notosans-medium;
+		color: $themeColor;
+		a {
 			color: $themeColor;
+			&:hover {
+				 text-decoration: none; 
+			}
+		}
+	}
+	.post-title {
+		margin-bottom: 5px;
+		font-size: 40px;
+		font-weight: $notosans-bold;
+		color: $bold-black;
+		@include media("(max-width: 768px)") {
+			font-size: 30px;
+		}
+	}
+	.post-subtitle {
+		font-size: 22px;
+		font-weight: $notosans-medium;
+		color: $gray-black;
+		@include media("(max-width: 768px)") {
+			font-size: 20px;
+		}
+	}
+	.post-sample {
+		font-size: 16px;
+	}
+	.post-tags-box {
+		.post-tag {
+			margin-right: 5px;
+			padding: 3px 7px 3px 7px;
+			display: inline-block;
+			border-radius: 3px;
+			color: #FFFFFF;
+			background-color: $themeColor;
+			opacity: 0.8;
+			// cursor: pointer;
+		}
+	}
+	//	게시판에 나열되는 포스트 카드
+	&.post-card {
+		@include media("(min-width: 768px)") {
+			cursor: pointer;
+			opacity: 0.7;
+			&:hover {
+				margin-left: 10px;
+				opacity: 1;
+			}
 		}
 		.post-title {
-			margin-bottom: 5px;
-			font-size: 40px;
-			font-weight: $notosans-bold;
-			color: $bold-black;
+			margin-bottom: 0px;
+			@include media("(max-width: 768px)") {
+				font-size: 26px;
+			}
 		}
 		.post-subtitle {
-			font-size: 22px;
-			font-weight: $notosans-medium;
-			color: $gray-black;
+			margin-bottom: 5px;
+			@include media("(max-width: 768px)") {
+				font-size: 16px;
+			}
 		}
-		.post-tags-box {
-			.post-tag {
-				margin-right: 5px;
-				padding: 3px 7px 3px 7px;
-				display: inline-block;
-				border-radius: 3px;
-				color: #FFFFFF;
-				background-color: $themeColor;
-				opacity: 0.8;
-				// cursor: pointer;
+		.post-sample {
+			margin-bottom: 20px;
+			@include media("(max-width: 768px)") {
+				margin-bottom: 10px;
+				font-size: 15px;
+				opacity: 0.5;
+			}
+		}
+		.post-tag {
+			@include media("(max-width: 768px)") {
+				font-size: 12px;
 			}
 		}
 	}
 }
-
 
 .footer {
   bottom: 0;
