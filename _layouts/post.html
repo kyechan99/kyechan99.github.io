@@ -53,6 +53,19 @@
 			</div>
 		  </div>
 
+		  <hr class="post-end"/>
+			
+		  <div class="card card-recommendation">
+			<div class="row">
+				<div class="col">
+					<button class="btn" onclick='document.location.href="{{ page.previous.url }}"'>{% octicon chevron-left height:24 %} 이전글</button>
+				</div>
+				<div class="col">
+					<button class="btn" onclick='document.location.href="{{ page.next.url }}"'>다음글 {% octicon chevron-right height:24 %}</button>
+				</div>
+			</div>
+		  </div>
+			
 		  <div class="card card-comment">
 			{%- if site.disqus.shortname -%}
 			  {%- include disqus_comments.html -%}

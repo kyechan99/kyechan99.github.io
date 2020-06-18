@@ -3,7 +3,32 @@
       @content;
     }
 }
-
+.parallax {
+	position: absolute;
+	margin-bottom: 350px;
+	left: 0px;
+	top : 180px;
+	width:100%;
+	height: 350px;
+	// background-image: url("/assets/img/project-header-img.png");
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	@include media("(max-width: 992px)") {
+		top : 100px;
+	}
+	@include media("(max-width: 768px)") {
+		top : 50px;
+	}
+}
+.post.project,
+.post.devnote {
+	margin-top: 430px;
+    @include media("(max-width: 768px)") {
+		margin-top: 390px;
+    }
+}
 .nav-menu {
 	height: 180px;
     // background-color: white;
@@ -73,6 +98,17 @@
     }
 }
 
+.pages-header {
+	background-color: skyblue;
+	height: 300px;
+	position: relative;
+	.header-img {
+		position: absolute;
+		right: 0px;
+		height: 500px;
+	}
+}
+
 .card-list {
     padding: 40px;
     .card-date {
@@ -95,17 +131,49 @@
     }
 }
 
+.post-end { 
+	// margin-top: 50px;
+	// margin-bottom: 50px;
+	border-top: 1px solid #bbb;
+	text-align: center;
+	&:after {
+		content: '</>';
+		display: inline-block;
+		position: relative; 
+		top:-14px;
+		padding: 0 10px;
+		background: #fFFFFF;
+		color: #bbb;
+		font-size: 18px;
+	}
+}
+
 .card {
 	border: none;
 	&.card-post {
 		margin-top: 50px;
+		padding-bottom: 150px;
 		@include media("(max-width: 992px)") {
 			margin-top: 10px;
 		}
 	}
-
+	
+	&.card-recommendation {
+		.btn {
+			width: 100%;
+			text-align: center;
+			color: $black;
+			&:hover {
+				background-color: #f7f7f7;
+			}
+			.octicon {
+				opacity: 0.5;
+			}
+		}
+	}
+	
 	&.card-comment {
-		margin-top: 100px;
+		margin-top: 150px;
 		@include media("(max-width: 992px)") {
 			margin-top: 5px;
 			padding: 20px 10px 20px 10px;
@@ -199,9 +267,9 @@
 			border: 0px;
 			border-radius: 35px;
 			color: $themeColor;
-			background: linear-gradient(145deg, #ffffff, #e6e6e6);
-			// box-shadow:  7px 7px 10px #e6e6e6, 
-			//              -7px -7px 10px #ffffff;
+			background: #FFFFFF;
+			box-shadow:  5px 5px 8px #e6e6e6, 
+			             -5px -5px 8px #ffffff;
 		}
 	}
 }

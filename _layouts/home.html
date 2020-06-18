@@ -1,63 +1,32 @@
 ---
 layout: default
 ---
-
-<div class="home">
-  <div class="row">
-    <div class="col-md-12">
-      {%- if site.posts.size > 0 -%}
-        <ul class="post-list">
-          {%- for post in site.posts -%}
-		  <li class="post-part">
-			<div class="post-info post-card" onclick='document.location.href="{{ post.url | relative_url }}"'>
-				<p class="post-category p-name" itemprop="name headline">
-					{%- if post.categories[0] == 'Lib' or post.categories[0] == 'Dev' -%}
-						<a href="/DevNote">개발노트</a> / {{ post.categories[0] }}
-					{%- elsif post.categories[0] == 'Games' or post.categories[0] == 'Web' -%}
-						<a href="/DevNote">프로젝트</a> / {{ post.categories[0] }}
-					{%- else -%}
-						/ {{ post.categories[0] }}
-					{%- endif -%}
-				</p>
-				<p class="post-title p-name" itemprop="name headline">{{ post.title | escape }}</p>
-				<p class="post-subtitle p-name" itemprop="name headline">{{ post.description }}</p>
-				<p class="post-sample">{{ post.content | truncatewords: 30, '...' | strip_html | strip_newlines }}</p>
-				<div class="post-tags-box">
-					{%- for tag in post.tags -%}
-						<span class="post-tag">{{ tag }}</span>
-					{%- endfor -%}
-				</div>
+<div class="home post">
+  {%- if site.posts.size > 0 -%}
+	<ul class="post-list">
+	  {%- for post in site.posts limit:10 -%}
+	  <li class="post-part">
+		<div class="post-info post-card" onclick='document.location.href="{{ post.url | relative_url }}"'>
+			<p class="post-category p-name" itemprop="name headline">
+				{%- if post.categories[0] == 'Lib' or post.categories[0] == 'Dev' -%}
+					<a href="/DevNote">개발노트</a> / {{ post.categories[0] }}
+				{%- elsif post.categories[0] == 'Games' or post.categories[0] == 'Web' -%}
+					<a href="/DevNote">프로젝트</a> / {{ post.categories[0] }}
+				{%- else -%}
+					/ {{ post.categories[0] }}
+				{%- endif -%}
+			</p>
+			<p class="post-title p-name" itemprop="name headline">{{ post.title | escape }}</p>
+			<p class="post-subtitle p-name" itemprop="name headline">{{ post.description }}</p>
+			<p class="post-sample">{{ post.content | truncatewords: 30, '...' | strip_html | strip_newlines }}</p>
+			<div class="post-tags-box">
+				{%- for tag in post.tags -%}
+					<span class="post-tag">{{ tag }}</span>
+				{%- endfor -%}
 			</div>
-          </li>
-          {%- endfor -%}
-        </ul>
-      {%- endif -%}
-    </div>
-
-    <!-- <div class="col-md-4">
-      <div class="card card-category">
-        <h3>Category</h3>
-        {% for category in site.categories %}
-          <h3>{{ category[0] }}</h3>
-          <ul>
-            {% for post in category[1] %}
-              <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-            {% endfor %}
-          </ul>
-        {% endfor %}
-      </div>
-      <div class="card card-tags">
-        <h3>Tags</h3>
-        {% for tags in site.tags %}
-          <h3>{{ tags[0] }}</h3>
-          <ul>
-            {% for post in category[1] %}
-              <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-            {% endfor %}
-          </ul>
-        {% endfor %}
-      </div>
-    </div> -->
-
-  </div>
+		</div>
+	  </li>
+	  {%- endfor -%}
+	</ul>
+  {%- endif -%}
 </div>

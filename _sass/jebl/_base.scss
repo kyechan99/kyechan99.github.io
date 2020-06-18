@@ -31,21 +31,24 @@ p {
     font-size: $p-size;
 	color: $black;
 }
+
 code {
 	margin-left: 3px;
 	margin-right: 3px;
 	padding: 1px 5px 1px 5px;
     color: $code;
     font-size: $code-size;
-    font-weight: $notosans-medium;
+    font-weight: $notosans-thin;
 	background-color: $code-bg-color;
 	border-radius: 5px;
 	white-space: pre;
 }
+
 a {
     font-weight: $notosans-regular;
     color: $striking;
 }
+
 ol {
     font-size: $p-size;
     li {
