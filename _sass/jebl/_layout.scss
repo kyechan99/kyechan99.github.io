@@ -376,6 +376,159 @@
 	}
 }
 
+/* ABOUT 영역 */
+.about {
+	.introduce {
+		margin-bottom: 50px;
+		.profile-img {
+			height: 250px;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.chat {
+			padding: 15px;
+			background-color: $code-bg-color;
+			border-radius: 0px 25px 25px 25px;
+		}
+		.info-box {
+			.info-title {
+				.octicon {
+					// fill: 
+					margin-right: 10px;
+				}
+			}
+			.info-log {
+				margin-bottom: 0px;
+				position: relative;
+				padding-left: 34px;
+				&:before {
+					position: absolute;
+					left: 10px;
+					content: " ";
+					white-space: pre-line;
+					background-color: $black;
+					width: 1px;
+					height: 100%;
+					opacity: 0.5;
+				}
+				.info-detail {
+					font-size: 12px;
+					opacity: 0.5;
+					&.left {
+						margin-left: 10px;
+					}
+					&.right {
+						margin-right: 10px;
+					}
+				}
+			}
+		}
+	}
+	.history-log {
+		@include media("(max-width: 768px)") {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		.history-content {
+			position: relative;
+			padding-bottom: 30px;
+			@include media("(max-width: 768px)") {
+				padding-bottom: 0px;
+			}
+			&.content-year {
+				@include media("(max-width: 768px)") {
+					order: 0;
+				}
+			}
+			&.content-log {
+				padding-top: 0px;
+				@include media("(max-width: 768px)") {
+					order: 1;
+				}
+			}
+			&.left {
+				text-align: right;
+				@include media("(max-width: 768px)") {
+					text-align: left;
+				}
+			}
+			&.right {
+				text-align: left;
+			}
+			.history-year {
+				margin-top: 5px;
+				@include media("(max-width: 768px)") {
+					margin-top: 40px;
+					margin-bottom: 0px;
+					font-size: 20px;
+					opacity: 0.5;
+				}
+			}
+			.history-title {
+				@extend h2;
+				&:hover {
+					text-decoration: none;
+				}
+			}
+			.history-desc {
+				white-space: pre-line
+			}
+			.history-head-img {
+				position: absolute;
+				top: 0px;
+				right: 0px;
+				height: 150px;
+				opacity: 0.3;
+				@include media("(max-width: 768px)") {
+					right: 15px !important;
+					height: 100px;
+					left: auto !important;
+				}
+				&.symmetry {
+					right: auto;
+					left: 0px;
+				} 
+			}
+			.history-buttons {
+				margin-top: 16px;
+				.repo-btn {
+					margin-left: 5px;
+					margin-right: 5px;
+					margin-bottom: 8px;
+					font-size: 14px;
+					border-radius: 15px;
+					box-shadow:  5px 5px 8px #e6e6e6, 
+								 -5px -5px 8px #ffffff;
+					&:hover {
+						background-color: #e6e6e6;
+					}
+				}
+			}
+			p {
+				margin-bottom: 0px;
+				@include media("(max-width: 768px)") {
+					opacity: 0.8;
+					font-size: 16px;
+				}
+			}
+		}
+		.history-chart {
+			flex-basis: 40px;
+			@include media("(max-width: 768px)") {
+				display: none;
+			}
+			.chart-box {
+				width: 10px;
+				height: 100%;
+				background-color: $themeColorOpa;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+	}
+}
+
 .footer {
 	bottom: 0;
 	width: 100%;

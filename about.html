@@ -1,0 +1,55 @@
+---
+layout: about
+title: 소개
+permalink: /about/
+---
+
+<div class="about" id="app">
+	<div class="introduce">
+		<div class="row">
+			<div class="col-md-5">
+				<img class="profile-img" src="https://avatars3.githubusercontent.com/u/2614303?s=460&v=4">
+			</div>
+			<div class="col-md-7">
+				<h2>Ye-Chan Kang</h2>
+				<div class="chat-box">
+					<div class="chat">
+						<p>으아아아어ㅏㅇ으아그악아ㅏ아응으ㅏㅇ그ㅏㄱㄱ</p>
+					</div>
+				</div>
+				<div class="info-box">
+					<h2 class="info-title">{% octicon smiley height:24 %}Info</h2>
+					<p class="info-log"><span class="info-detail right">+82</span>010-5236-7457</p>
+					<p class="info-log">kyechan99@gmail.com</p>
+				</div>
+				<div class="info-box">
+					<h2 class="info-title">{% octicon mortar-board height:24 %}Education</h2>
+					<p class="info-log">한국게임과학고<span class="info-detail">2016.03 - 2018.02</span></p>
+					<p class="info-log">국민대학교 소프트웨어학과<span class="info-detail">2018.03 - 휴학</span></p>
+				</div>
+				<div class="info-box">
+					<h2 class="info-title">{% octicon organization height:24 %}Experience</h2>
+					<p class="info-log"><span class="info-detail right">nullptr</span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="history">
+		<div class="history-log row" v-for="(log,idx) in logs" :key="idx">
+			<div class="history-content content-year col-md" :class="positionCheckLeft(log.position)">
+				<h2 class="history-year" v-if="log.year">${log.year}</h2>
+			</div>
+			<div class="history-chart">
+				<div class="chart-box"></div>
+			</div>
+			<div class="history-content content-log col-md" :class="positionCheckRight(log.position)">
+				<a class="history-title" :href="log.orgLink">${log.title}</a>
+				<p class="history-desc">${log.content}</p>
+				<img class="history-head-img" :src="log.img" :class="{'symmetry' : log.position=='LEFT'}">
+				<div class="history-buttons">
+					<button class="btn repo-btn" v-for="(repo, idx) in log.repos" :key="idx" v-on:click="openNewPage(repo.url)">${repo.name}</button>
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>

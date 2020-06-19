@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  <body>
+
+    {%- include header.html -%}
+
+    <main class="page-content" aria-label="Content">
+      <div class="container">
+            {{ content }}
+      </div>
+    </main>
+
+    {%- include footer.html -%}
+
+  </body>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script>
+var app = new Vue({
+	el: '#app',
+	delimiters: ['${', '}'],
+	data: {
+		msg: 'ddd',
+		logs: [
+			{
+				position: 'RIGHT',
+				year: 2020,
+				title: 'DailyGreen',
+				content: '오늘도 개발합니다.\n매일 공부하자는 취지로 결성된 코딩 그룹입니다.  ',
+				orgLink: 'https://github.com/DailyGreen',
+				img: 'https://avatars0.githubusercontent.com/u/40048911?s=200&v=4',
+				repos: [
+					{
+						name: 'GAPA',
+						url: 'https://github.com/DailyGreen/GAPA'
+					},
+							{
+						name: 'TILER',
+						url: ''
+					}
+				]
+			},
+			{
+				position: 'LEFT',
+				year: 2017,
+				title: 'KGSHC',
+				content: '어쩌구 저쩌구 프로젝트',
+				img: 'https://github.com/kyechan99/KGSHC/blob/master/images/logo.png?raw=true',
+				repos: [
+					{
+						name: 'LINK',
+						url: ''
+					}
+				]
+			},
+			{
+				position: 'RIGHT',
+				title: 'LEMONADE API',
+				content: '어쩌구 저쩌구 프로젝트',
+				img: 'https://avatars0.githubusercontent.com/u/27432458?s=200&v=4',
+				repos: [
+					{
+						name: 'API',
+						url: ''
+					}
+				]
+			},
+			{
+				position: 'LEFT',
+				title: 'SHAPE-OF-YOU',
+				content: '어쩌구 저쩌구 프로젝트',
+				img: 'https://github.com/Lazyevilsquid/Shape-Of-You-Client/blob/master/Assets/Sprites/UI/thief.png?raw=true',
+				repos: [
+					{
+						name: 'SHAPE-OF-YOU-CLIENT',
+						url: 'https://github.com/Lazyevilsquid/Shape-Of-You-Client/releases'
+					}
+				]
+			},
+			{
+				position: 'RIGHT',
+				year: 2016,
+				title: 'GANZINAM',
+				content: '간지 철철, 간지 나는 남자들로 구성된 게임 제작팀입니다.\n기획1명, 개발자3명, 디자이너2명으로 이루어진 팀으로 교내 및 교외 공모전에 여러 참여했습니다. 퍼즐, 리듬, 스토리 게임 등 여러 게임 장르에 도전하며 모두 5개의 게임을 만들었습니다. (2016.7 ~ 2017.3)',
+				orgLink: 'https://github.com/GanZinam',
+				img: 'https://avatars2.githubusercontent.com/u/20042469?s=200&v=4',
+				repos: [
+					{
+						name: 'Bing-Bong',
+						url: '/games/2017/03/25/BingBong.html'
+					},
+							{
+						name: 'Rock-U',
+						url: '/games/2017/03/25/RockU.html'
+					},
+					{
+						name: 'LongTimeNoSee',
+						url: '/games/2017/03/25/LongTimeNoSee.html'
+					},
+							{
+						name: 'D-O',
+						url: '/games/2016/11/07/DO.html'
+					},
+					{
+						name: 'RoadOfDead',
+						url: '/games/2017/03/25/RoadOfDead.html'
+					}
+				]
+			},
+		]
+	},
+	methods: {
+	  positionCheckLeft: function (pos) {
+		return { 
+			'left order-first': pos=='RIGHT',
+			'right order-last': pos=='LEFT'
+		}
+	  },
+	  positionCheckRight: function (pos) {
+		return { 
+			'left order-first': pos=='LEFT',
+			'right order-last': pos=='RIGHT'
+		}
+	  },
+	  openNewPage: function (url) {
+			window.open(url, "_blank");
+	  }
+	}
+})
+</script>
+</html>
