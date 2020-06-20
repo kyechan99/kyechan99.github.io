@@ -10,7 +10,7 @@ keywords: JNI, cocos2d
 
 
 ## 참고
-- 이 글에선 Cocos2d-X 내부의 JNI Helper 를 이야기 합니다.
+이 글에선 Cocos2d-X 내부의 JNI Helper 를 이야기 합니다.
 
 ### JNIHelper Include
 ```

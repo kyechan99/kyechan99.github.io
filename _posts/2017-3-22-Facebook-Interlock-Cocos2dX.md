@@ -14,7 +14,7 @@ keywords: Facebook, Interlock, cocos2d
 - JNI 사용법 [링크](http://blog.naver.com/kyechan99/220552861010)
 
 ## 참고
-- Facebook 의 [README](https://github.com/kyechan99/Facebook_Interlock/blob/master/README.md) 를 참고
+Facebook 의 [README](https://github.com/kyechan99/Facebook_Interlock/blob/master/README.md) 를 참고
 
 
 ## 개요

@@ -1,14 +1,14 @@
 ---
 layout: post
 title: School Graduate
-date: 2017-03-25
+date: 2015-7-1
 categories: [Games]
 description: School Graduate
 tags: [Games,Cocos2d-X]
 keywords: Games, School-Graduate
 icon: icon-playframework-alt
 haveImg: true
-headerImg: 2017-3-25-SchoolGraduate.png
+headerImg: 2015-7-1-SchoolGraduate.png
 ---
 
 ## 특징

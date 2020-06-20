@@ -52,15 +52,19 @@ a {
 
 ol {
     font-size: $p-size;
+    padding-left: 20px;
     li {
         margin-bottom: 5px;
+		font-weight: $notosans-thin;
     }
 }
 ul {
     font-size: $p-size;
     padding-left: 20px;
+	list-style: none;
     li {
         margin-bottom: 5px;
+		font-weight: $notosans-thin;
     }
 }
 

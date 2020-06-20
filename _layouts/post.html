@@ -19,12 +19,12 @@
       <div class="container">
 		<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 			<div class="quick-bar hide" id="quick-bar">
+				<button class="quick-btn" id="up-btn">
+					{% octicon triangle-up height:24 %}
+				</button>	
 				<button class="quick-btn linkBtn" OnClick="javascript:copyUrlToClipboard(); showAlertBox();">
 					{% octicon link height:24 %}
 				</button>
-				<button class="quick-btn asdfBtn">
-					aaa
-				</button>	
 			</div>
 		  <header class="post-header">
 			<div class="post-info">
@@ -83,11 +83,20 @@
 
   </body>
   
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
   <script type="text/javascript">
+	jQuery(function ($) {
+		$('#up-btn').click(function() {
+			$('html, body').animate({
+				scrollTop: $('html, body').offset().top
+			}, 500);
+		})
+	})
+	  
 	$(document).ready(function() {
 		var myID = document.getElementById("quick-bar");
 

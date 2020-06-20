@@ -1,14 +1,14 @@
 ---
 layout: post
 title: God Wants Victim
-date: 2017-03-25
+date: 2016-1-31
 categories: [Games]
 description: God Wants Victim
 tags: [Games,Cocos2d-X]
 keywords: Games, God-Wants-Victim
 icon: icon-playframework-alt
 haveImg: true
-headerImg: 2017-3-25-GodWantsVictim.jpg
+headerImg: 2016-1-31-GodWantsVictim.jpg
 ---
 
 ## 특징

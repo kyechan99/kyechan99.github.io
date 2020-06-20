@@ -88,14 +88,6 @@
 .page-content {
     // padding-top: $navbar-height + 40px;
     padding-bottom: $navbar-height + 40px;
-
-    ul {
-        list-style:none;
-        padding-left: 0px;
-    }
-    li {
-        margin-bottom: $layout-space;
-    }
 }
 
 .pages-header {
@@ -155,6 +147,18 @@
 		padding-bottom: 150px;
 		@include media("(max-width: 992px)") {
 			margin-top: 10px;
+		}
+		ul {
+			li {
+				&:before {
+					content: "\2022";
+					color: $gray-black;
+					font-weight: bold;
+					display: inline-block; 
+					width: 1em;
+					margin-left: -1em;
+				}
+			}
 		}
 	}
 	
