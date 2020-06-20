@@ -7,7 +7,7 @@
   <body>
 
     {%- include header.html -%}
-
+	<div class="alertBox text-center">주소가 복사되었습니다.</div>
     <main class="page-content" aria-label="Content">
 		<div class="container-fluid post-container-fluid">
 			{% if page.haveImg == true %}
@@ -19,7 +19,7 @@
       <div class="container">
 		<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 			<div class="quick-bar hide" id="quick-bar">
-				<button class="quick-btn linkBtn" OnClick="javascript:copyUrlToClipboard()">
+				<button class="quick-btn linkBtn" OnClick="javascript:copyUrlToClipboard(); showAlertBox();">
 					{% octicon link height:24 %}
 				</button>
 				<button class="quick-btn asdfBtn">
@@ -117,7 +117,11 @@
 
 
 <script>
-	
+var alertBox = document.querySelector(".alertBox");
+function showAlertBox() {
+  alertBox.classList.add("alertBoxShow");
+  setTimeout(function(){alertBox.classList.remove("alertBoxShow");}, 4000);
+}
 	
 /**
 *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.

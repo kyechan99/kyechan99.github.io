@@ -18,21 +18,23 @@
   </body>
   
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script>
+	
 var app = new Vue({
 	el: '#app',
 	delimiters: ['${', '}'],
 	data: {
-		msg: 'ddd',
+		alertMsg: '알림 메시지 !',
 		logs: [
 			{
 				position: 'RIGHT',
 				year: 2020,
 				title: 'DailyGreen',
-				content: '오늘도 개발합니다.\n매일 공부하자는 취지로 결성된 코딩 그룹입니다.  ',
+				content: '매일 공부하자는 취지로 결성된 코딩 그룹입니다.\n',
 				orgLink: 'https://github.com/DailyGreen',
 				img: 'https://avatars0.githubusercontent.com/u/40048911?s=200&v=4',
 				repos: [
@@ -49,37 +51,39 @@ var app = new Vue({
 			{
 				position: 'LEFT',
 				year: 2017,
-				title: 'KGSHC',
-				content: '어쩌구 저쩌구 프로젝트',
-				img: 'https://github.com/kyechan99/KGSHC/blob/master/images/logo.png?raw=true',
+				title: 'SHAPE-OF-YOU',
+				content: '멀티 게임',
+				img: 'https://github.com/Lazyevilsquid/Shape-Of-You-Client/blob/master/Assets/Sprites/UI/thief.png?raw=true',
 				repos: [
 					{
-						name: 'LINK',
-						url: ''
+						name: 'SHAPE-OF-YOU-CLIENT',
+						url: 'https://github.com/Lazyevilsquid/Shape-Of-You-Client/releases'
 					}
 				]
 			},
 			{
 				position: 'RIGHT',
+				title: 'KGSHC',
+				content: '한국게임과학고등학교 커뮤니티 사이트입니다.\n',
+				img: 'https://github.com/kyechan99/KGSHC/blob/master/images/logo.png?raw=true',
+				repos: [
+					{
+						name: 'LINK',
+						url: '',
+						msg: '현재는 서버를 닫았습니다.'
+					}
+				]
+			},
+			{
+				position: 'LEFT',
 				title: 'LEMONADE API',
 				content: '어쩌구 저쩌구 프로젝트',
 				img: 'https://avatars0.githubusercontent.com/u/27432458?s=200&v=4',
 				repos: [
 					{
 						name: 'API',
-						url: ''
-					}
-				]
-			},
-			{
-				position: 'LEFT',
-				title: 'SHAPE-OF-YOU',
-				content: '어쩌구 저쩌구 프로젝트',
-				img: 'https://github.com/Lazyevilsquid/Shape-Of-You-Client/blob/master/Assets/Sprites/UI/thief.png?raw=true',
-				repos: [
-					{
-						name: 'SHAPE-OF-YOU-CLIENT',
-						url: 'https://github.com/Lazyevilsquid/Shape-Of-You-Client/releases'
+						url: '',
+						msg: '현재 개발중입니다.'
 					}
 				]
 			},
@@ -116,22 +120,41 @@ var app = new Vue({
 		]
 	},
 	methods: {
-	  positionCheckLeft: function (pos) {
+	  positionCheckLeft: function(pos) {
 		return { 
 			'left order-first': pos=='RIGHT',
 			'right order-last': pos=='LEFT'
 		}
 	  },
-	  positionCheckRight: function (pos) {
+	  positionCheckRight: function(pos) {
 		return { 
 			'left order-first': pos=='LEFT',
 			'right order-last': pos=='RIGHT'
 		}
 	  },
-	  openNewPage: function (url) {
+	  openNewPage: function(url, msg) {
+		if (url == '') {
+			this.alertMsg = msg;
+			showAlertBox();
+		}
+	    else
 			window.open(url, "_blank");
 	  }
 	}
 })
+</script>
+<script type="text/javascript">
+jQuery(function ($) {
+	$('#next-page-btn').click(function() {
+		$('html, body').animate({
+			scrollTop: $('.history-main').offset().top
+		}, 500);
+	})
+})
+var alertBox = document.querySelector(".alertBox");
+function showAlertBox() {
+  alertBox.classList.add("alertBoxShow");
+  setTimeout(function(){alertBox.classList.remove("alertBoxShow");}, 4000);
+}
 </script>
 </html>
