@@ -277,15 +277,21 @@
 		}
 	}
 }
-// li 를 이용해 post-info를 사용하려 한다면 li 태그 클래스에 붙여주기
-.post-part {
-	margin-top: 80px;
-	margin-bottom: 80px;
+// li 를 이용해 post-info를 사용하려 한다면 li 태그 클래스에 붙여주기	
+.post-list {
 	@include media("(max-width: 768px)") {
-		margin-top: 20px;
-		margin-bottom: 20px;
+		padding-left: 0px;
+	}
+	.post-part {
+		margin-top: 80px;
+		margin-bottom: 80px;
+		@include media("(max-width: 768px)") {
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
 	}
 }
+
 .post-info {
 	transition: all .3s ease-out;
 	-moz-transition: all .3s ease-out;
@@ -477,7 +483,9 @@
 		width: 80%;
 	}
 	@include media("(max-width: 576px)") {
+		// 	알림 상자 삼성폰에서 그냥 뜨는 경우가 있음. 해당 버그때문에 일시적으로 막아둠
 		width: 90%;
+		display: none;
 	}
 }
 .alertBoxShow {
