@@ -463,6 +463,38 @@
 	}
 }
 
+/* 404 - page */
+.none-page {
+	padding-top: 80px;
+	
+	@include media("(max-width: 576px)") {
+		padding-top: 85px;
+	}
+	.octicon {
+		margin-right: 20px;
+		@include media("(max-width: 768px)") {
+			margin-right: 10px;
+			height: 45px;
+			width: 45px;
+		}
+		@include media("(max-width: 576px)") {
+			height: 30px;
+			width: 30px;
+			display: block;
+		}
+	}
+	.responsive {
+		@include media("(max-width: 576px)") {
+			display: block;
+		}
+	}
+	img {
+		@include media("(max-width: 768px)") {
+			margin-top: 80px;
+		}
+	}
+}
+
 /* Alert - Box */
 .alertBox{
 	position: fixed;
