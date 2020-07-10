@@ -2,7 +2,7 @@
 layout: post
 title: Kakao Interlock Cocos2d-X ver.
 date: 2017-03-22
-categories: [Dev]
+categories: [Lib]
 description: 카카오 연동 Cocos2d-X
 tags: [Dev,Kakao,Interlock, Cocos2d-X]
 keywords: Kakao, Interlock, cocos2d

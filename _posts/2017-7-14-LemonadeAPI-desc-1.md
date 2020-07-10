@@ -2,7 +2,7 @@
 layout: post
 title: Lemonade API 사용하기 - 1
 date: 2017-07-14
-categories: [Edu]
+categories: [Tech]
 description: Lemonade API 사용하기 - 1
 tags: [Edu,Lemonade,Lemonade-API]
 keywords: Lemonade, Lemonade-API

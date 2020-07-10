@@ -2,7 +2,7 @@
 layout: post
 title: Jekyll custom 블로그 만들기 - 3
 date: 2020-5-19
-categories: Dev
+categories: [Lib]
 description: 카테고리 기능 넣기
 tags: [Dev, Web, Jekyll]
 keywords: Jekyll, Blog
@@ -63,11 +63,20 @@ categories: 포스트에 해당하는 카테고리 명을 입력해주세요
 
 
 간단하게 확인해 보기 위에 `default.html`의 아무 부분에 
-<iframe
-  src="https://carbon.now.sh/embed?bg=rgba(255%2C255%2C255%2C1)&t=seti&wt=none&l=auto&ds=false&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=11px&ph=100px&ln=false&fl=1&fm=Hack&fs=18px&lh=133%25&si=false&es=2x&wm=false&code=%253Ch3%253ECategory%253C%252Fh3%253E%250A%257B%2525%2520for%2520category%2520in%2520site.categories%2520%2525%257D%250A%2520%2520%2520%2520%253Ch3%253E%257B%257B%2520category%255B0%255D%2520%257D%257D%253C%252Fh3%253E%250A%2520%2520%2520%2520%253Cul%253E%250A%2520%2520%2520%2520%257B%2525%2520for%2520post%2520in%2520category%255B1%255D%2520%2525%257D%250A%2520%2520%2520%2520%2520%2520%2520%2520%253Cli%253E%253Ca%2520href%253D%2522%257B%257B%2520post.url%2520%257D%257D%2522%253E%257B%257B%2520post.title%2520%257D%257D%253C%252Fa%253E%253C%252Fli%253E%250A%2520%2520%2520%2520%257B%2525%2520endfor%2520%2525%257D%250A%2520%2520%2520%2520%253C%252Ful%253E%250A%257B%2525%2520endfor%2520%2525%257D"
-  style="transform:scale(0.7); width:100%; height:353px; border:0; overflow:hidden;"
-  sandbox="allow-scripts allow-same-origin">
-</iframe>
+
+```
+<h3>Category</h3>
+{.% for category in site.categories %}
+    <h3>{{ category[0] }}</h3>
+    <ul>
+    {.% for post in category[1] %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {.% endfor %}
+    </ul>
+{.% endfor %}
+```
+> {.% 에서 .을 지워야 작동됩니다.
+
 를 입력하여 실행시켜 보면
 
 ![4](/assets/img/2020-5-19-jekyll-custom-3/4.png)
@@ -75,11 +84,14 @@ categories: 포스트에 해당하는 카테고리 명을 입력해주세요
 이와 같이 카테고리별로 나뉘어져서, 카테고리명과 그 게시글들을 보여주는 기능이 만들어졌다.
 
 다시한번 처음 찾은 변수 `site.categories.CATEGORY`를 보면 내가 원하는 카테고리 명만 찾아서 그 게시글들을 보여줄수도 있다.
-<iframe
-  src="https://carbon.now.sh/embed?bg=rgba(255%2C255%2C255%2C1)&t=seti&wt=none&l=auto&ds=false&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=11px&ph=100px&ln=false&fl=1&fm=Hack&fs=18px&lh=133%25&si=false&es=2x&wm=false&code=%253Ch4%253EGames%253C%252Fh4%253E%250A%253Cul%253E%250A%2520%2520%2520%2520%2560%257B%2525%2520for%2520post%2520in%2520site.categories.Games%2520%2525%257D%2560%250A%2520%2520%2520%2520%253Cli%253E%253Ca%2520href%253D%2522%257B%257B%2520post.url%2520%257D%257D%2522%253E%257B%257B%2520post.title%2520%257D%257D%253C%252Fa%253E%253C%252Fli%253E%250A%2520%2520%2520%2520%257B%2525%2520endfor%2520%2525%257D%250A%253C%252Ful%253E"
-  style="transform:scale(0.7); width:100%; height:253px; border:0; overflow:hidden;"
-  sandbox="allow-scripts allow-same-origin">
-</iframe>
+```
+<h4>Games</h4>
+<ul>
+    `{.% for post in site.categories.Games %}`
+    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {.% endfor %}
+</ul>
+```
 `Games`라는 카테고리가 있다면 위와 같이 작성해주면 된다.
 
 여기까지 카테고리와 관련된 변수들과 사용방법에 대해 알아봤다.

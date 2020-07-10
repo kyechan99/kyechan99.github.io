@@ -2,7 +2,7 @@
 layout: post
 title: Jekyll custom 블로그 만들기 - 1
 date: 2018-12-28
-categories: Dev
+categories: [Lib]
 description: jekyll 블로그 생성하기
 tags: [Dev, Web, Jekyll]
 keywords: Jekyll, Blog
@@ -51,6 +51,22 @@ jekyll 블로그의 실행 명령어는 다음과 같다.
 ```
 $ jekyll serve
 ```
+
+만약 `Run 'bundle install' to install missing gems` 과 같은 에러가 생긴다면
+다음과 같이 조치해 준다.
+
+```
+$ bundle install
+```
+
+추가로, Goorm IDE 같은 환경에서 로컬 호스트의 주소가 변경되어야만 실행되는 경우가 있다.
+
+이는 jekyll serve 명령어에서 호스트 주소를 바꿔주는 란을 추가하면 된다.
+
+```
+$ bundle exec jekyll serve --port 4000 --host 0.0.0.0
+```
+
 
 ## 환경 구성
 

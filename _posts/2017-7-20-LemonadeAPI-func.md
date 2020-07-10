@@ -2,7 +2,7 @@
 layout: post
 title: Lemonade API 함수
 date: 2017-07-20
-categories: [Edu]
+categories: [Tech]
 description: Lemonade API 함수
 tags: [Edu,Lemonade,Lemonade-API]
 keywords: Lemonade, Lemonade-API

@@ -2,7 +2,7 @@
 layout: post
 title: Unity Plugin - 01. 유니티 설정
 date: 2017-03-23
-categories: [Dev]
+categories: [Lib]
 description: Unity Plugin
 tags: [Dev,Unity3D,Plugin]
 keywords: Unity, Plugin, C#, Android

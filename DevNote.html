@@ -4,7 +4,7 @@ title: 개발노트
 permalink: /DevNote/
 ---
 
-{% assign postArray = site.categories.Lib | concat: site.categories.Dev  | sort: 'date' | reverse %}
+{% assign postArray = site.categories.Lib | concat: site.categories.Tech  | sort: 'date' | reverse %}
 <div class="parallax" style="background-image:url('/assets/img/devnote-header-img.png')"></div>
 <div class="post devnote">
   {%- if postArray.size > 0 -%}
@@ -13,10 +13,10 @@ permalink: /DevNote/
 	  <li class="post-part">
 		<div class="post-info post-card" onclick='document.location.href="{{ post.url | relative_url }}"'>
 			<p class="post-category p-name" itemprop="name headline">
-				{%- if post.categories[0] == 'Lib' or post.categories[0] == 'Dev' -%}
-					<a href="/DevNote">개발노트</a> / {{ post.categories[0] }}
-				{%- elsif post.categories[0] == 'Games' or post.categories[0] == 'Web' -%}
-					<a href="/DevNote">프로젝트</a> / {{ post.categories[0] }}
+				{%- if post.categories[0] == 'Lib' -%}
+					<a href="/DevNote">개발노트 / 연구</a>
+				{%- else if post.categories[0] == 'Tech' -%}
+					<a href="/DevNote">개발노트 / 기술</a>
 				{%- else -%}
 					/ {{ post.categories[0] }}
 				{%- endif -%}

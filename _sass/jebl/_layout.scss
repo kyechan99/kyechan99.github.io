@@ -3,6 +3,16 @@
       @content;
     }
 }
+
+::-moz-selection {
+   background: $striking;
+   color: #fff;
+}
+::selection {
+   background: $striking;
+   color: #fff;
+}
+
 .parallax {
 	position: absolute;
 	margin-bottom: 350px;
@@ -352,9 +362,9 @@
 	&.post-card {
 		@include media("(min-width: 768px)") {
 			cursor: pointer;
-			opacity: 0.7;
+			opacity: 0.8;
 			&:hover {
-				margin-left: 10px;
+				// margin-left: 10px;
 				opacity: 1;
 			}
 		}

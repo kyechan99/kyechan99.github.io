@@ -2,7 +2,7 @@
 layout: post
 title: Joystick Lib Cocos2d-X ver.
 date: 2017-03-18
-categories: [Lib]
+categories: [Tech]
 description: 조이스틱 라이브러리 적용법
 tags: [Lib,Joystick, Cocos2d-X]
 keywords: Joystick, cocos2d

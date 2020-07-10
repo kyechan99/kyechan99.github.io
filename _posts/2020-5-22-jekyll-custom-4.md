@@ -2,7 +2,7 @@
 layout: post
 title: Jekyll custom 블로그 만들기 - 4
 date: 2020-5-22
-categories: Dev
+categories: [Lib]
 description: Disqus 를 사용한 댓글 기능 넣기
 tags: [Dev, Web, Jekyll]
 keywords: Jekyll, Blog

@@ -2,7 +2,7 @@
 layout: post
 title: JNI Helper Cocos2d-X ver.
 date: 2017-03-22
-categories: [Dev]
+categories: [Tech]
 description: JNI Helper
 tags: [Dev,JNI, Cocos2d-X]
 keywords: JNI, cocos2d

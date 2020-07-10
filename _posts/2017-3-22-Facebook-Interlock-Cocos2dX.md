@@ -2,7 +2,7 @@
 layout: post
 title: Facebook Interlock Cocos2d-X ver.
 date: 2017-03-22
-categories: [Dev]
+categories: [Lib]
 description: 페이스북 연동 Cocos2d-X
 tags: [Dev,Facebook,Interlock, Cocos2d-X]
 keywords: Facebook, Interlock, cocos2d

@@ -29,10 +29,14 @@
 		  <header class="post-header">
 			<div class="post-info">
 				<p class="post-category p-name" itemprop="name headline">
-					{%- if page.categories[0] == 'Lib' or page.categories[0] == 'Dev' -%}
-						<a href="/DevNote">개발노트</a> / {{ page.categories[0] }}
-					{%- elsif page.categories[0] == 'Games' or page.categories[0] == 'Web' -%}
-						<a href="/DevNote">프로젝트</a> / {{ page.categories[0] }}
+					{%- if page.categories[0] == 'Lib'-%}
+						<a href="/DevNote">개발노트 / 연구</a>
+					{%- else if page.categories[0] == 'Dev' -%}
+						<a href="/DevNote">개발노트 / 기술</a>
+					{%- else if post.categories[0] == 'Games' -%}
+						<a href="/Project">프로젝트 / 게임</a>
+					{%- else if post.categories[0] == 'App' -%}
+						<a href="/Project">프로젝트 / 앱</a>
 					{%- else -%}
 						/ {{ page.categories[0] }}
 					{%- endif -%}

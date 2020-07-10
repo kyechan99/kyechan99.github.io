@@ -2,7 +2,7 @@
 layout: post
 title: Jekyll custom 블로그 만들기 - 2
 date: 2018-12-29
-categories: Dev
+categories: [Lib]
 description: bootstrap 과 custom sass 넣기
 tags: [Dev, Web, Jekyll]
 keywords: Jekyll, Blog
