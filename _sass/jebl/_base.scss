@@ -21,9 +21,10 @@ h2 {
 }
 
 h3 {
-    font-size: 23px;
-    margin-top: 30px;
-	color: $bold-black;
+    font-size: 22px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+	color: rgba($bold-black, 0.8);
 }
 
 p {
@@ -95,6 +96,9 @@ div.highlighter-rouge {
 	font-size: $p-size;
 	pre {
 		margin-bottom: 0px;
+		&.highlight {
+			background-color: $pre-bg-color;
+		}
 	}
 	code {
 		margin-left: 0px;
