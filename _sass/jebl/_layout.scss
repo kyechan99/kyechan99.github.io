@@ -282,6 +282,10 @@
 			border-radius: 35px;
 			color: $themeColor;
 			background: #FFFFFF;
+			-webkit-box-shadow: 5px 5px 8px #e6e6e6, 
+			             -5px -5px 8px #ffffff;
+			-moz-box-shadow: 5px 5px 8px #e6e6e6, 
+			             -5px -5px 8px #ffffff;
 			box-shadow:  5px 5px 8px #e6e6e6, 
 			             -5px -5px 8px #ffffff;
 		}
@@ -532,7 +536,7 @@
 }
 .alertBoxShow {
     background: #ffffff;
-	animation: fadeInOut 5s linear forwards;
+	animation: fadeInOut 4s linear forwards;
 }
 @keyframes fadeInOut {
  0% { opacity: 0; }
