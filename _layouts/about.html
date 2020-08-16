@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
 
   {%- include head.html -%}
 
@@ -29,6 +29,14 @@ var app = new Vue({
 	delimiters: ['${', '}'],
 	data: {
 		alertMsg: '알림 메시지 !',
+		themes: [
+			'#B897FF',
+			'#C5A4D8',
+			'#EDE7F6',
+			'#FDF9FD',
+			// '#6f667a',
+			'#212529'
+		],
 		logs: [
 			{
 				position: 'RIGHT',
@@ -113,29 +121,57 @@ var app = new Vue({
 					}
 				]
 			},
-		]
+		],
+		alertTimer: ''
+	},
+	created() {
 	},
 	methods: {
-	  positionCheckLeft: function(pos) {
-		return { 
-			'left order-first': pos=='RIGHT',
-			'right order-last': pos=='LEFT'
+		positionCheckLeft: function(pos) {
+			return { 
+				'left order-first': pos=='RIGHT',
+				'right order-last': pos=='LEFT'
+			}
+		},
+		positionCheckRight: function(pos) {
+			return { 
+				'left order-first': pos=='LEFT',
+				'right order-last': pos=='RIGHT'
+			}
+		},
+		showAlertBox: function() {
+			var alertBox = document.querySelector('.alertBox');
+			if (alertBox.classList.contains('alertBoxShow')) {
+				// alertBox 실행 중이면 삭제
+				alertBox.classList.remove('alertBoxShow');
+				clearTimeout(this.alertTimer);
+			}
+			
+			// remove 와 add 사이에 alertBox를 한번 호출해 주어야 됨
+			alertBox.offsetWidth;
+			alertBox.classList.add('alertBoxShow');
+			
+			this.alertTimer = setTimeout( function() {
+				// 4초를 변경하려면 _sass/jebl/_layout/.alertBoxShow 의 애니메이션 시간도 변경해줘야함
+				alertBox.classList.remove('alertBoxShow');
+			}, 4000);
+		},
+		openNewPage: function(url, msg) {
+			if (url == '') {
+				this.alertMsg = msg;
+				this.showAlertBox();
+			}
+			else
+				window.open(url, "_blank");
+		},
+		copyThemeColorToClipboard: function(cc) {
+			var dummy = document.createElement('input');
+			document.body.appendChild(dummy);
+			dummy.value = cc;
+			dummy.select();
+			document.execCommand('copy');
+			document.body.removeChild(dummy);
 		}
-	  },
-	  positionCheckRight: function(pos) {
-		return { 
-			'left order-first': pos=='LEFT',
-			'right order-last': pos=='RIGHT'
-		}
-	  },
-	  openNewPage: function(url, msg) {
-		if (url == '') {
-			this.alertMsg = msg;
-			showAlertBox();
-		}
-	    else
-			window.open(url, "_blank");
-	  }
 	}
 })
 </script>
@@ -147,10 +183,5 @@ jQuery(function ($) {
 		}, 500);
 	})
 })
-var alertBox = document.querySelector(".alertBox");
-function showAlertBox() {
-  alertBox.classList.add("alertBoxShow");
-  setTimeout(function(){alertBox.classList.remove("alertBoxShow");}, 4000);
-}
 </script>
 </html>

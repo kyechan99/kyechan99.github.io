@@ -520,7 +520,7 @@
 	right: 0;
 	bottom: 100px;
     background: #ffffff;
-    opacity: 0%;
+    opacity: 0;
 	border-radius: 25px;
 	box-shadow:  11px 11px 22px #919191, 
 				 -11px -11px 22px #ffffff;
@@ -535,7 +535,6 @@
 	}
 }
 .alertBoxShow {
-    background: #ffffff;
 	animation: fadeInOut 4s linear forwards;
 }
 @keyframes fadeInOut {
