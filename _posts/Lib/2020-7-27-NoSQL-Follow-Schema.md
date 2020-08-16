@@ -1,14 +1,14 @@
 ---
 layout: post
 title: Mongoose Following/Follower Schema에 대해서
-date: 2020-7-10
+date: 2020-7-27
 categories: [Lib]
 description: NoSQL-MongoDB에서 팔로우, 팔로윙 설계에 대해
 tags: [NoSQL, MongoDB, Mongoose]
 keywords: Mongoose, NoSQL, MongoDB
 comments: false
 haveImg: true
-headerImg: 2020-5-22-jekyll-custom-4.jpg
+headerImg: 2020-7-27-nosql.jpg
 ---
 
 근래 진행하던 프로젝트에서 팔로우기능을 구현할일이 생겼는데요.
@@ -19,7 +19,6 @@ SQL이였다면 팔로우-팔로윙 관계를 기록하는 테이블을 만들�
 기존 SQL 처럼 팔로우 관계를 기록하는 컬렉션을 만드는게 옳은지 고민하다 이 글을 쓰게됐습니다.
 
 > 이 글은 어떤 방법이나 방식을 제안하는 글이 아닌 연구용임을 알립니다.
-
 
 ## 여러 방법
 일단 프로젝트에서는 유저-유저 팔로우 관계와 유저-게임 팔로우 관계를 필요로 합니다.
@@ -36,10 +35,9 @@ SQL이였다면 팔로우-팔로윙 관계를 기록하는 테이블을 만들�
 
 유저-게임사이의 팔로우관계를 각자의 스키마에서 담아 관리한다고 할때 둘의 스키마는 아래와 유사하게 설계될겁니다.
 
-![1](/assets/img/2020-7-10-Follow/1.jpg)
+![1](/assets/img/2020-7-27-Follow/1.jpg)
 
 > 위 이미지는 참고용 이미지로, User.games와 Game.users는 서로의 ObjectId가 저장될 배열입니다.
-
 <br/>
 
 ### 유저-게임 스키마 설계
@@ -87,7 +85,6 @@ const gameSchema = new Schema({
 router.patch('/follow', function (req, res, next) {
   let userID = req.body.userID;
   let gameID = req.body.gameID;
-
   User.findByIdAndUpdate( userID,
 		{ $push: { 'games': { game: gameID } } },
 		{ safe: true, upsert: true, new : true })
@@ -119,7 +116,6 @@ router.patch('/follow', function (req, res, next) {
 router.patch('/unfollow', function (req, res, next) {
   let userID = req.body.userID;
   let gameID = req.body.gameID;
-
   User.findByIdAndUpdate( userID,
     	{ $pull: { 'games': { game: gameID } } },
     	{ safe: true, upsert: true, new : true })
@@ -176,13 +172,13 @@ router.get('/', function (req, res, next) {
 
 결과적으로 각가의 관계를 모두 기록하고 불러올 수 있게 됐습니다.
 
-![4](/assets/img/2020-7-10-Follow/4.jpg)
+![4](/assets/img/2020-7-27-Follow/4.jpg)
 아무런 팔로우 관계도 없을때 입니다. User 와 Game에 각각 스키마에 기반한 두개의 임시 데이터를 넣은 상황인데요.
 
-![5](/assets/img/2020-7-10-Follow/5.jpg)
+![5](/assets/img/2020-7-27-Follow/5.jpg)
 팔로우 관계 넣었을때, 즉 User와 Game내에 각각의 ObjectID를 저장하는 배열 크기가 1 증가 했을때 43Byte가 증가했습니다.
 
-![6](/assets/img/2020-7-10-Follow/6.jpg)
+![6](/assets/img/2020-7-27-Follow/6.jpg)
 다시한번 팔로우 관계를 추가로 넣었을때도 43Byte가 증가합니다. (이후에도 계속해서 데이터를 추가해 보아도 43Byte)
 
 결과적으로 팔로우시 User와 Game에 `_id` 값을 배열에 각각 추가할때는 86Byte 정도 추가된다고 볼수있겠네요.
@@ -192,7 +188,7 @@ router.get('/', function (req, res, next) {
 
 ## 유저와 게임사이 팔로우 관계를 기록하는 컬렉션에 각각의 ObjectID를 담는 방법
 
-![2](/assets/img/2020-7-10-Follow/2.jpg)
+![2](/assets/img/2020-7-27-Follow/2.jpg)
 
 이번에는 기존 SQL 처럼 관계를 기록하는 새 컬렉션을 만드는 방법입니다.
 
@@ -217,7 +213,6 @@ router.post('/follow', function (req, res, next) {
 router.delete('/follow', function (req, res, next) {
   const user = req.body.userID;
   const game = req.body.gameID;
-
   Follow.findOne({ user: user, game: game }, '_id')
     .then((follow) => {
       return Follow.findByIdAndDelete(follow._id);
@@ -277,7 +272,7 @@ router.get('/', function (req, res, next) {
 
 이 코드 방식이 **유저와 게임에게 팔로우한 각각의 ObjectID를 서로 담는 방법** 과 **유저와 게임사이 팔로우 관계를 기록하는 컬렉션에 각각의 ObjectID를 담는 방법** 의 가장 큰 차이점이라고 생각됩니다.
 
-![9](/assets/img/2020-7-10-Follow/9.jpg)
+![9](/assets/img/2020-7-27-Follow/9.jpg)
 
 서로 데이터를 담는 방법일때 단순히 `ObjectID`가 담긴 배열 크기만 호출 하면 되겠지만
 
@@ -285,8 +280,8 @@ router.get('/', function (req, res, next) {
 
 
 
-![7](/assets/img/2020-7-10-Follow/7.jpg)
-![8](/assets/img/2020-7-10-Follow/8.jpg)
+![7](/assets/img/2020-7-27-Follow/7.jpg)
+![8](/assets/img/2020-7-27-Follow/8.jpg)
 
 배열에 추가하는 방식보다 적은 67Byte가 나왔습니다. 
 
