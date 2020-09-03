@@ -87,12 +87,28 @@
 
   </body>
   
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
+  {%- include script.html -%}
   <script type="text/javascript">
+	  // AlertBox
+	var alertBox = document.querySelector(".alertBox");
+	var alertTimer;
+	function showAlertBox() {
+		if (alertBox.classList.contains('alertBoxShow')) {
+			// alertBox 실행 중이면 삭제
+			alertBox.classList.remove('alertBoxShow');
+			clearTimeout(alertTimer);
+		}
+
+		// remove 와 add 사이에 alertBox를 한번 호출해 주어야 됨
+		alertBox.offsetWidth;
+		alertBox.classList.add('alertBoxShow');
+
+		alertTimer = setTimeout(function() {
+			// 4초를 변경하려면 _sass/jebl/_layout/.alertBoxShow 의 애니메이션 시간도 변경해줘야함
+			alertBox.classList.remove('alertBoxShow');
+		}, 4000);
+	}
+	 
 	jQuery(function ($) {
 		$('#up-btn').click(function() {
 			$('html, body').animate({
@@ -127,24 +143,8 @@
   </script>
 </html>
 
-
-
 <script>
-var alertBox = document.querySelector(".alertBox");
-function showAlertBox() {
-  alertBox.classList.add("alertBoxShow");
-  setTimeout(function(){alertBox.classList.remove("alertBoxShow");}, 4000);
-}
-	
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-
-// var disqus_config = function () {
-// this.page.url = {{ page.url | absolute_url }};  // Replace PAGE_URL with your page's canonical URL variable
-// this.page.identifier = {{ site.disqus.shortname }}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-// };
-
+// Disqus
 (function() { // DON'T EDIT BELOW THIS LINE
 var d = document, s = d.createElement('script');
 s.src = 'https://kyechan99-github-io.disqus.com/embed.js';
