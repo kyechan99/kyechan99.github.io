@@ -268,10 +268,10 @@
 		margin-left: -200px;
 		z-index: 101;
 		&.hide {
-			opacity: 0%;
+			opacity: 0;
 		}
 		&.show {
-			opacity: 100%;
+			opacity: 1;
 		}
 		.quick-btn {
 			margin-bottom: 15px;
@@ -291,7 +291,7 @@
 		}
 	}
 }
-// li 를 이용해 post-info를 사용하려 한다면 li 태그 클래스에 붙여주기	
+
 .post-list {
 	@include media("(max-width: 768px)") {
 		padding-left: 0px;
@@ -362,7 +362,7 @@
 			// cursor: pointer;
 		}
 	}
-	//	게시판에 나열되는 포스트 카드
+	
 	&.post-card {
 		@include media("(min-width: 768px)") {
 			cursor: pointer;
@@ -529,9 +529,7 @@
 		width: 80%;
 	}
 	@include media("(max-width: 576px)") {
-		// 	알림 상자 삼성폰에서 그냥 뜨는 경우가 있음. 해당 버그때문에 일시적으로 막아둠
 		width: 90%;
-		display: none;
 	}
 }
 .alertBoxShow {
