@@ -71,11 +71,15 @@
 		  </div>
 			
 		  <div class="card card-comment">
-			{%- if site.disqus.shortname -%}
-			  {%- include disqus_comments.html -%}
-			{%- endif -%}
-
-			<div id="disqus_thread"></div>  
+			<!-- 	utteranc.es		 -->
+			<script src="https://utteranc.es/client.js"
+					repo="kyechan99/kyechan99.github.io"
+					issue-term="title"
+					label="comment"
+					theme="github-light"
+					crossorigin="anonymous"
+					async>
+			</script>
 		  </div>                         
 
 		  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
@@ -142,14 +146,3 @@
 	}
   </script>
 </html>
-
-<script>
-// Disqus
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://kyechan99-github-io.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>

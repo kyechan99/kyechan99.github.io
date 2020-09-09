@@ -34,12 +34,6 @@ sass:
   
 plugins:
   - jekyll-octicons
-  
-comments:
-  provider: disqus
-  
-disqus:
-  shortname: kyechan99-github-io
  
 highlighter: rouge
 # Exclude from processing.
