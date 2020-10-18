@@ -15,9 +15,9 @@ headerImg: 2020-5-22-jekyll-custom-4.jpg
 
 유명한 댓글 서비스 Disqus를 사용해 Jekyll Custom 블로그에 댓글 기능을 구현해 본다.
 
-- [Jekyl Custom 블로그 만들기 - 1](/dev/2018/12/28/jekyll-custom-1)
-- [Jekyl Custom 블로그 만들기 - 2](/dev/2018/12/29/jekyll-custom-2)
-- [Jekyl Custom 블로그 만들기 - 3](/dev/2020/05/22/jekyll-custom-3)
+- [Jekyll Custom 블로그 만들기 - 1](/lib/2018/12/28/jekyll-custom-1)
+- [Jekyll Custom 블로그 만들기 - 2](/lib/2018/12/29/jekyll-custom-2)
+- [Jekyll Custom 블로그 만들기 - 3](/lib/2020/05/22/jekyll-custom-3)
 
 ## 1. Disqus 회원가입
 ![1](/assets/img/2020-5-22-jekyll-custom-4/1.png)

@@ -16,8 +16,8 @@ Lemonade 의 기능에 대해 알고 사용법을 익힙니다.
 ## 참고
 - API 적용한 유니티 샘플 : [링크](https://github.com/LemonClub/lemonade-android-api-unity-example)
 - Lemonade 개발자 [사이트](http://lemontree.dothome.co.kr/lemonade/)
-- [Lemonade API 사용하기 - 1](/edu/2017/07/14/LemonadeAPI-desc-1)
-- [Lemonade API 사용하기 - 2](/edu/2017/07/18/LemonadeAPI-desc-2)
+- [Lemonade API 사용하기 - 1](/tech/2017/07/14/LemonadeAPI-desc-1)
+- [Lemonade API 사용하기 - 2](/tech/2017/07/18/LemonadeAPI-desc-2)
 
 
 ## 1. Lemonade 초기화

@@ -17,7 +17,7 @@ keywords: Lemonade, Lemonade-API
 ## 참고
 - API 적용한 유니티 샘플 : [링크](https://github.com/LemonClub/lemonade-android-api-unity-example)
 - Lemonade 개발자 [사이트](http://lemontree.dothome.co.kr/lemonade/)
-- [Lemonade API 사용하기 - 1](/edu/2017/07/14/LemonadeAPI-desc-1)
+- [Lemonade API 사용하기 - 1](/tech/2017/07/14/LemonadeAPI-desc-1)
 
 
 ## 1. 안드로이드 스튜디오 새 프로젝트 만들기
@@ -31,7 +31,7 @@ keywords: Lemonade, Lemonade-API
 ### 1-2. APP 이름
 ![1](/assets/img/2017-7-20-LemonadeAPI-func/11.PNG)
 
-처음 [1장](https://kyechan99.github.io/edu/2017/07/14/LemonadeAPI-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-1.html) 떄 설정했던 package name 으로 설정합니다.
+처음 [1장](/tech/2017/07/14/LemonadeAPI-desc-1.html) 떄 설정했던 package name 으로 설정합니다.
 
 > 이 외의 것은 작동하지 않으므로 조심해야 합니다.
 
