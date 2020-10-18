@@ -34,7 +34,7 @@ keywords: Lemonade, Lemonade-API
 
 
 ## 3. AndroidManifest 생성하기
-> 참고 :  [Unity-Plugin-01.유니티설정](https://kyechan99.github.io/edu/2017/03/23/Unity-Plugin-01.%EC%9C%A0%EB%8B%88%ED%8B%B0%EC%84%A4%EC%A0%95.html)
+> 참고 :  [Unity-Plugin-01.유니티설정](/lib/2017/03/23/Unity-Plugin-01)
 
 <br/>
 
@@ -78,5 +78,5 @@ apk 를 빌드하셨다면 프로젝트/Temp/StagingArea/ 부분에 AndroidManif
 
 <br/>
 
-다음장 - [LemonadeAPI-사용하기-2](/edu/2017/07/18/LemonadeAPI-desc-2)
+다음장 - [LemonadeAPI-사용하기-2](/tech/2017/07/18/LemonadeAPI-desc-2)
 

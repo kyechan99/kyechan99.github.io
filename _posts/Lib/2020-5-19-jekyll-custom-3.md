@@ -14,8 +14,8 @@ headerImg: 2020-5-22-jekyll-custom-4.jpg
 
 이번 단계에서는 카테고리 기능을 넣어 작성한 포스트들을 분리하여 보여줄 수 있도록 해본다.
 
-- [Jekyl Custom 블로그 만들기 - 1](/dev/2018/12/28/jekyll-custom-1)
-- [Jekyl Custom 블로그 만들기 - 2](/dev/2018/12/29/jekyll-custom-2)
+- [Jekyll Custom 블로그 만들기 - 1](/lib/2018/12/28/jekyll-custom-1)
+- [Jekyll Custom 블로그 만들기 - 2](/lib/2018/12/29/jekyll-custom-2)
 
 
 ## 시작에 앞서
@@ -34,7 +34,7 @@ categories: 포스트에 해당하는 카테고리 명을 입력해주세요
 앞서 본 블로그의 초기 세팅의 모티브가 된 [Minima](https://jekyll.github.io/minima/)를 보면 
 우측 상단에 메뉴가 모여져 있다.
 
-이는 [Jekyll Custom 블로그 만들기 - 1](/dev/2018/12/28/jekyll-custom-1) 에서 진행했던 `header` , `body`, `footer` 분리 작업에서 `header`에 해당되는 부분이다.
+이는 [Jekyll Custom 블로그 만들기 - 1](/lib/2018/12/28/jekyll-custom-1) 에서 진행했던 `header` , `body`, `footer` 분리 작업에서 `header`에 해당되는 부분이다.
 
 
 ![2](/assets/img/2020-5-19-jekyll-custom-3/2.png)

@@ -10,7 +10,7 @@ haveImg: true
 headerImg: 2020-5-22-jekyll-custom-4.jpg
 ---
 
-- [Jekyl Custom 블로그 만들기 - 1](/dev/2018/12/28/jekyll-custom-1)
+- [Jekyll Custom 블로그 만들기 - 1](/lib/2018/12/28/jekyll-custom-1)
 
 ## 설정
 
@@ -90,4 +90,4 @@ headerImg: 2020-5-22-jekyll-custom-4.jpg
 이를 통해서 fontawesome 이나 bootstrap 등이 필요하다면 `_includes/head.html` 에 link 해주면 된다는 것을 알 수 있다.
 
 ## 다음글
-[Jekyll custom 블로그 만들기 - 3](/dev/2020/05/19/jekyll-custom-3.html)
+[Jekyll custom 블로그 만들기 - 3](/lib/2020/05/19/jekyll-custom-3.html)
