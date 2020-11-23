@@ -1,19 +1,19 @@
 <footer class="footer">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4 my-info d-flex flex-column">
+			<div class="col-md-4 my-info dsp-flex f-column">
 				<p class="info-desc my-name">{{ site.name }}</p>
 				<p class="info-desc my-email"><span class="desc-icon">{% octicon mail height:14 %}</span>{{ site.email }}</p>
 				<p class="info-desc my-kakao"><span class="desc-icon">{% octicon comment height:16 %}</span>{{ site.kakao_id }}</p>
 			</div>
-			<div class="col-md-4 my-link d-flex justify-content-center">
+			<div class="col-md-4 my-link dsp-flex justify-center">
 				<button class="btn icons" onclick='document.location.href="https://github.com/{{ site.github_username }}"'>
 					{% octicon mark-github height:32 %}
 				</button>
 			</div>
-			<div class="col-md-4 my-menu d-flex justify-content-end" style="align-items:center;">
+			<div class="col-md-4 my-menu dsp-flex justify-end align-items-center">
 				<a class="quick-menu" href="/">홈</a>
-				<a class="quick-menu" href="/DevNot">개발노트</a>
+				<a class="quick-menu" href="/DevNote">개발노트</a>
 				<a class="quick-menu" href="/Project">프로젝트</a>
 				<a class="quick-menu" href="/about">소개</a>
 			</div>

@@ -4,7 +4,7 @@
 		{%- assign page_paths = site.header_pages | default: default_paths -%}
 		{%- assign titles_size = site.pages | map: 'title' | join: '' | size -%}
 		{% assign curPage = page.url | split: '/' %}
-		<nav class="nav-menu d-flex justify-content-end">
+		<nav class="nav-menu dsp-flex justify-end">
 			<a href="{{ '' | prepend: site.baseurl }}/" 
 			   {% if curPage.size == 0 %} 
 			   class="nav-link align-self-center active" 

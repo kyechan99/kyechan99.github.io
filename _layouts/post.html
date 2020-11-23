@@ -45,7 +45,7 @@
 				<p class="post-subtitle p-name" itemprop="name headline">{{ page.description }}</p>
 				<div class="post-tags-box">
 					{%- for tag in page.tags -%}
-						<span class="post-tag">{{ tag }}</span>
+						<span class="badge badge-primary post-tag">{{ tag }}</span>
 					{%- endfor -%}
 				</div>
 			</div>
@@ -57,7 +57,8 @@
 			</div>
 		  </div>
 
-		  <hr class="post-end"/>
+			<hr class="hr-style center" style="--content:'</>';"> </hr>
+		  <!-- <hr class="post-end"/> -->
 			
 		  <div class="card card-recommendation">
 			<div class="row">

@@ -3,7 +3,6 @@
       @content;
     }
 }
-
 ::-moz-selection {
    background: $striking;
    color: #fff;
@@ -355,10 +354,12 @@
 			margin-right: 5px;
 			padding: 3px 7px 3px 7px;
 			display: inline-block;
-			border-radius: 3px;
-			color: #FFFFFF;
+			// border-radius: 3px;
+			// color: #FFFFFF;
 			background-color: $themeColor;
 			opacity: 0.8;
+			font-size: 100%;
+			font-weight: normal;
 			// cursor: pointer;
 		}
 	}
