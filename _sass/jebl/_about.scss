@@ -81,7 +81,7 @@
 			margin-right: auto;
 			border-radius: .5rem;
 			justify-content: space-around;
-			box-shadow: 5px 5px 8px #e6e6e6, -5px -5px 8px #ffffff;
+			box-shadow: var(--quickBtnShadow);
 			.theme-btn {
 				width: 3rem;
 				height: 3rem;
@@ -183,11 +183,10 @@
 					margin-bottom: 8px;
 					font-size: 14px;
 					border-radius: 15px;
-					box-shadow:  5px 5px 8px #e6e6e6, 
-								 -5px -5px 8px #ffffff;
-					&:hover {
-						background-color: #e6e6e6;
-					}
+					box-shadow: var(--quickBtnShadow);
+					// &:hover {
+					// 	background-color: #e6e6e6;
+					// }
 				}
 			}
 			p {

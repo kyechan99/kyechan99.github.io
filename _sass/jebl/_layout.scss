@@ -54,7 +54,8 @@
 	.nav-link {
 		margin-left: 10px;
 		font-size: 20px;
-		color: rgba(0,0,0,0.5);
+		// color: rgba(0,0,0,0.5);
+		opacity: .5;
 		transition: color .3s ease-out;
 		-moz-transition: color .3s ease-out;
 		-webkit-transition: color .3s ease-out;
@@ -68,11 +69,13 @@
 			font-size: 14px;
 		}
 		&:hover {
-			color: $black;
+			// color: $black;
+			opacity: 1;
 		}
 		&.active {
 			font-weight: 600;
-			color: $black;
+			// color: $black;
+			opacity: 1;
 			&:before {
 				margin-top: 0px;
 				margin-left: -10px;
@@ -175,7 +178,7 @@
 		.btn {
 			width: 100%;
 			text-align: center;
-			color: $black;
+			// color: $black;
 			&:hover {
 				background-color: #f7f7f7;
 			}
@@ -235,8 +238,7 @@
 		border-radius: 150px;
 		// background: #fffef5;
 		background-color: linear-gradient(145deg, #ffffff, #e1e1e1);
-		box-shadow:  11px 11px 22px #919191, 
-					 -11px -11px 22px #ffffff;
+		box-shadow:  var(--postImgShadow);
 		@include media("(max-width: 768px)") {
 			margin-bottom: 20px;
 			border-radius: 0px;
@@ -280,13 +282,10 @@
 			border: 0px;
 			border-radius: 35px;
 			color: $themeColor;
-			background: #FFFFFF;
-			-webkit-box-shadow: 5px 5px 8px #e6e6e6, 
-			             -5px -5px 8px #ffffff;
-			-moz-box-shadow: 5px 5px 8px #e6e6e6, 
-			             -5px -5px 8px #ffffff;
-			box-shadow:  5px 5px 8px #e6e6e6, 
-			             -5px -5px 8px #ffffff;
+			background: var(--backgroundColor);
+			-webkit-box-shadow: var(--quickBtnShadow);
+			-moz-box-shadow: var(--quickBtnShadow);
+			box-shadow: var(--quickBtnShadow);
 		}
 	}
 }
@@ -333,7 +332,7 @@
 		margin-bottom: 5px;
 		font-size: 40px;
 		font-weight: $notosans-bold;
-		color: $bold-black;
+		// color: $bold-black;
 		@include media("(max-width: 768px)") {
 			font-size: 30px;
 		}
@@ -409,7 +408,7 @@
 	border-style: solid;
 	border-width: 1px 0px 0px 0px;
 	padding: 50px 0px 50px 0px;
-	background-color: #f5f7f2;
+	background-color: var(--footerBg);
 	.my-info {
 		color: #a2a3a0;
 		@include media("(max-width: 576px)") {
@@ -523,8 +522,7 @@
     background: #ffffff;
     opacity: 0;
 	border-radius: 25px;
-	box-shadow:  11px 11px 22px #919191, 
-				 -11px -11px 22px #ffffff;
+	box-shadow: var(--postImgShadow);
 	z-index: 101;
 	@include media("(max-width: 768px)") {
 		width: 80%;

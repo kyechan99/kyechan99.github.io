@@ -4,27 +4,33 @@
 		{%- assign page_paths = site.header_pages | default: default_paths -%}
 		{%- assign titles_size = site.pages | map: 'title' | join: '' | size -%}
 		{% assign curPage = page.url | split: '/' %}
-		<nav class="nav-menu dsp-flex justify-end">
-			<a href="{{ '' | prepend: site.baseurl }}/" 
-			   {% if curPage.size == 0 %} 
-			   class="nav-link align-self-center active" 
-			   {% endif %} 
-			   class="nav-link align-self-center">홈</a>
-			<a href="{{ '/DevNote' | prepend: site.baseurl }}/" 
-			   {% if curPage[1] == "DevNote" or curPage[1] == "lib" or curPage[1] == "dev"%} 
-			   class="nav-link align-self-center active" 
-			   {% endif %} 
-			   class="nav-link align-self-center">개발노트</a>
-			<a href="{{ '/Project' | prepend: site.baseurl }}/" 
-			   {% if curPage[1] == "Project" or curPage[1] == "games" or curPage[1] == "web" or curPage[1] == "app" %} 
-			   class="nav-link align-self-center active" 
-			   {% endif %} 
-			   class="nav-link align-self-center">프로젝트</a>
-			<a href="{{ '/about' | prepend: site.baseurl }}/" 
-			   {% if curPage[1] == "about" %} 
-			   class="nav-link align-self-center active" 
-			   {% endif %} 
-			   class="nav-link align-self-center">소개</a>
+		<nav class="nav-menu dsp-flex justify-between">
+			<div class="form-check dsp-flex align-items-center">
+				<input class="container_toggle form-switch-input" type="checkbox" id="switch" name="mode">
+				<label class="form-switch-label size-md dark" for="switch"></label>
+			</div>
+			<div class="dsp-flex justify-end">
+				<a href="{{ '' | prepend: site.baseurl }}/" 
+				   {% if curPage.size == 0 %} 
+				   class="nav-link align-self-center active" 
+				   {% endif %} 
+				   class="nav-link align-self-center">홈</a>
+				<a href="{{ '/DevNote' | prepend: site.baseurl }}/" 
+				   {% if curPage[1] == "DevNote" or curPage[1] == "lib" or curPage[1] == "dev"%} 
+				   class="nav-link align-self-center active" 
+				   {% endif %} 
+				   class="nav-link align-self-center">개발노트</a>
+				<a href="{{ '/Project' | prepend: site.baseurl }}/" 
+				   {% if curPage[1] == "Project" or curPage[1] == "games" or curPage[1] == "web" or curPage[1] == "app" %} 
+				   class="nav-link align-self-center active" 
+				   {% endif %} 
+				   class="nav-link align-self-center">프로젝트</a>
+				<a href="{{ '/about' | prepend: site.baseurl }}/" 
+				   {% if curPage[1] == "about" %} 
+				   class="nav-link align-self-center active" 
+				   {% endif %} 
+				   class="nav-link align-self-center">소개</a>
+			</div>
 		</nav>
 	</div>
 </header>
