@@ -68,6 +68,10 @@
 			margin-left: 0px;
 			font-size: 14px;
 		}
+		@include media("(max-width: 576px)") {
+			padding-left: .5rem;
+			padding-right: .5rem;
+		}
 		&:hover {
 			// color: $black;
 			opacity: 1;
