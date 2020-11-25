@@ -5,7 +5,7 @@ permalink: /Project/
 ---
 
 <!-- Web 카테고리에 아무것도 없어서 아직 추가 안함 -->
-{% assign postArray = site.categories.Games | concat: site.categories.App  | sort: 'date' | reverse %}
+{% assign postArray = site.categories.Games | concat: site.categories.App | concat: site.categories.Web  | sort: 'date' | reverse %}
 
 <div class="parallax" style="background-image:url('/assets/img/project-header-img.png')"></div>
 <div class="post project">
@@ -17,6 +17,8 @@ permalink: /Project/
 			<p class="post-category p-name" itemprop="name headline">
 				{%- if post.categories[0] == 'Games' -%}
 					<a href="/DevNote">프로젝트 / 게임</a>
+				{%- else if post.categories[0] == 'Web' -%}
+					<a href="/DevNote">프로젝트 / 웹</a>
 				{%- else if post.categories[0] == 'App' -%}
 					<a href="/DevNote">프로젝트 / 앱</a>
 				{%- else -%}

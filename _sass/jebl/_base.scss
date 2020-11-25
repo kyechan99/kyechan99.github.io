@@ -113,6 +113,7 @@ div.highlighter-rouge {
 	border-radius: 5px;
 	font-size: $p-size;
 	pre {
+		margin-top: 0px;
 		margin-bottom: 0px;
 		&.highlight {
 			background-color: $pre-bg-color;
