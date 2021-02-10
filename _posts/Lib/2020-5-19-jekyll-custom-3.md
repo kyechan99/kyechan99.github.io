@@ -70,7 +70,7 @@ categories: 포스트에 해당하는 카테고리 명을 입력해주세요
     <h3>{{ category[0] }}</h3>
     <ul>
     {.% for post in category[1] %}
-        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        <li><a href="{.{ post.url }}">{.{ post.title }}</a></li>
     {.% endfor %}
     </ul>
 {.% endfor %}
@@ -88,7 +88,7 @@ categories: 포스트에 해당하는 카테고리 명을 입력해주세요
 <h4>Games</h4>
 <ul>
     `{.% for post in site.categories.Games %}`
-    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    <li><a href="{.{ post.url }}">{.{ post.title }}</a></li>
     {.% endfor %}
 </ul>
 ```
