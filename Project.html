@@ -16,11 +16,11 @@ permalink: /Project/
 		<div class="post-info post-card" onclick='document.location.href="{{ post.url | relative_url }}"'>
 			<p class="post-category p-name" itemprop="name headline">
 				{%- if post.categories[0] == 'Games' -%}
-					<a href="/DevNote">프로젝트 / 게임</a>
+					<a href="/Project">프로젝트 / 게임</a>
 				{%- else if post.categories[0] == 'Web' -%}
-					<a href="/DevNote">프로젝트 / 웹</a>
+					<a href="/Project">프로젝트 / 웹</a>
 				{%- else if post.categories[0] == 'App' -%}
-					<a href="/DevNote">프로젝트 / 앱</a>
+					<a href="/Project">프로젝트 / 앱</a>
 				{%- else -%}
 					/ {{ post.categories[0] }}
 				{%- endif -%}
