@@ -8,8 +8,6 @@ tags: [Edu,Lemonade,Lemonade-API]
 keywords: Lemonade, Lemonade-API
 ---
 
-# Lemonade API 사용하기 - 1
-
 ## 서론
 1장은 Lemonade를 적용하기 전에 유니티에서 기본적으로 세팅해야 할 부분 입니다.
 

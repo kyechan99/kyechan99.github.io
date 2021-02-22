@@ -8,10 +8,10 @@ layout: default
 	  <li class="post-part">
 		<div class="post-info post-card" onclick='document.location.href="{{ post.url | relative_url }}"'>
 			<p class="post-category p-name" itemprop="name headline">
-				{%- if post.categories[0] == 'Lib' or post.categories[0] == 'Dev' -%}
+				{%- if post.categories[0] == 'Lib' or post.categories[0] == 'Dev' or post.categories[0] == 'Tech' -%}
 					<a href="/DevNote">개발노트</a> / {{ post.categories[0] }}
 				{%- elsif post.categories[0] == 'Games' or post.categories[0] == 'Web' -%}
-					<a href="/DevNote">프로젝트</a> / {{ post.categories[0] }}
+					<a href="/Project">프로젝트</a> / {{ post.categories[0] }}
 				{%- else -%}
 					/ {{ post.categories[0] }}
 				{%- endif -%}

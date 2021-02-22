@@ -8,8 +8,6 @@ tags: [Edu,Lemonade,Lemonade-API]
 keywords: Lemonade, Lemonade-API
 ---
 
-# Lemonade API 사용하기 - 2
-
 ## 서론
 2장은 Lemonade를 적용하기 전에 안드로이드 스튜디오에서 기본적으로 세팅해야 할 부분 입니다.
 

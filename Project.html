@@ -15,15 +15,7 @@ permalink: /Project/
 	  <li class="post-part">
 		<div class="post-info post-card" onclick='document.location.href="{{ post.url | relative_url }}"'>
 			<p class="post-category p-name" itemprop="name headline">
-				{%- if post.categories[0] == 'Games' -%}
-					<a href="/Project">프로젝트 / 게임</a>
-				{%- else if post.categories[0] == 'Web' -%}
-					<a href="/Project">프로젝트 / 웹</a>
-				{%- else if post.categories[0] == 'App' -%}
-					<a href="/Project">프로젝트 / 앱</a>
-				{%- else -%}
-					/ {{ post.categories[0] }}
-				{%- endif -%}
+				<a href="/Project">프로젝트 / {{ post.categories[0] }}</a>
 			</p>
 			<p class="post-title p-name" itemprop="name headline">{{ post.title | escape }}</p>
 			<p class="post-subtitle p-name" itemprop="name headline">{{ post.description }}</p>

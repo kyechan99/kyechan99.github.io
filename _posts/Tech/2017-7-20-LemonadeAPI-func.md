@@ -8,7 +8,6 @@ tags: [Edu,Lemonade,Lemonade-API]
 keywords: Lemonade, Lemonade-API
 ---
 
-# Lemonade API 함수
 ## 서론
 Lemonade 의 기능에 대해 알고 사용법을 익힙니다.
 

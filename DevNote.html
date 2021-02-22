@@ -13,13 +13,7 @@ permalink: /DevNote/
 	  <li class="post-part">
 		<div class="post-info post-card" onclick='document.location.href="{{ post.url | relative_url }}"'>
 			<p class="post-category p-name" itemprop="name headline">
-				{%- if post.categories[0] == 'Lib' -%}
-					<a href="/DevNote">개발노트 / 연구</a>
-				{%- else if post.categories[0] == 'Tech' -%}
-					<a href="/DevNote">개발노트 / 기술</a>
-				{%- else -%}
-					/ {{ post.categories[0] }}
-				{%- endif -%}
+				<a href="/DevNote">개발노트 / {{ post.categories[0] }}</a>
 			</p>
 			<p class="post-title p-name" itemprop="name headline">{{ post.title | escape }}</p>
 			<p class="post-subtitle p-name" itemprop="name headline">{{ post.description }}</p>
