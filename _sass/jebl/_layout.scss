@@ -523,7 +523,7 @@
 	left: 0;
 	right: 0;
 	bottom: 100px;
-    background: #ffffff;
+    background: var(--backgroundColor);
     opacity: 0;
 	border-radius: 25px;
 	box-shadow: var(--postImgShadow);

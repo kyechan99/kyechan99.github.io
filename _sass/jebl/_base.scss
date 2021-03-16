@@ -1,6 +1,9 @@
 body{
     font-family: 'Noto Sans KR', sans-serif;
     // background-color: $background;
+	.alertBox {
+		background-color: #ffffff;
+	}
 }
 
 :root {
@@ -19,6 +22,12 @@ html[data-theme='dark'] {
 	--footerBg: var(--backgroundColor);
 	.octicon {
 		fill: #fff;
+	}
+	.repo-btn:hover {
+		background-color: #3e3b42 !important;
+	}
+	.alertBox {
+		background-color: var(--backgroundColor);
 	}
 }
 
