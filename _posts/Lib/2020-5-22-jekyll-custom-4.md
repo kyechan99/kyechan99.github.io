@@ -11,9 +11,10 @@ haveImg: true
 headerImg: 2020-5-22-jekyll-custom-4.jpg
 ---
 
-아무리 개인 블로그라 해도 새로운 피드백을 얻을수 있는 기회는 중요하기에 댓글 기능은 중요할 수 밖에 없었다.
+## 개요
+아무리 개인 블로그라 해도 새로운 피드백을 얻을수 있는 기회는 중요하기에 댓글 기능은 중요할 수 밖에 없죠.
 
-유명한 댓글 서비스 Disqus를 사용해 Jekyll Custom 블로그에 댓글 기능을 구현해 본다.
+대표적인 댓글 서비스 Disqus를 사용해 Jekyll Custom 블로그에 댓글 기능을 넣어보는 방법에 대해 알아보겠습니다.
 
 - [Jekyll Custom 블로그 만들기 - 1](/lib/2018/12/28/jekyll-custom-1)
 - [Jekyll Custom 블로그 만들기 - 2](/lib/2018/12/29/jekyll-custom-2)
@@ -97,4 +98,7 @@ disqus:
 ## 마무리
 ![11](/assets/img/2020-5-22-jekyll-custom-4/11.png)
 
-성공적으로 작동하는 모습을 볼 수 있다.
+성공적으로 작동하는 모습을 볼 수 있습니다.
+
+번외로 [https://utteranc.es/](https://utteranc.es/) 라는 댓글 기능도 있습니다. Disqus 는 댓글에 대한 정보가 Disqus 내에 저장된다는 점이 장점이기도 단점이기도 한데요.
+utteranc 는 깃허브 레포, 즉 `{githubid}.github.io` 라는 레포에 대한 issue 를 남기는 걸로 댓글에 대한 정보가 남습니다. 매일 깃헙을 들어가는 사람에게는 오히려 편한 편이기도 하고 사용법도 사이트 사진만 따라해도 적용될 정도이니 한번 사용해보는것도 좋을것 같습니다. (현 블로그도 utteranc를 사용하고 있습니다)

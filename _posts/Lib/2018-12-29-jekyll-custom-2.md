@@ -10,6 +10,10 @@ haveImg: true
 headerImg: 2020-5-22-jekyll-custom-4.jpg
 ---
 
+## 개요
+`Jekyll`을 사용할 `github` 블로그를 만들기 위한 포스팅입니다. 이번편에서는 bootstrap과 같은 프레임워크를 적용하거나 커스텀 sass 를 작성 및 적용 하는 방법에 대한 내용입니다.
+
+## 이전글
 - [Jekyll Custom 블로그 만들기 - 1](/lib/2018/12/28/jekyll-custom-1)
 
 ## 설정
