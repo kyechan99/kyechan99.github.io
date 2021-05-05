@@ -30,7 +30,7 @@ permalink: /about/
 				<div class="info-box">
 					<h2 class="info-title">{% octicon mortar-board height:24 %}Education</h2>
 					<p class="info-log">한국게임과학고<span class="info-detail left">2015.03 - 2018.02</span></p>
-					<p class="info-log">국민대학교 소프트웨어학과<span class="info-detail left">2018.03 - 휴학</span></p>
+					<p class="info-log">국민대학교 소프트웨어학과<span class="info-detail left">2018.03 - 재학중</span></p>
 				</div>
 				<div class="info-box">
 					<h2 class="info-title">{% octicon organization height:24 %}Experience</h2>
@@ -51,8 +51,8 @@ permalink: /about/
 			</div>
 			<div class="history-content content-log col-md" :class="positionCheckRight(log.position)">
 				<a class="history-title" :href="log.orgLink">${log.title}</a>
-				<p class="history-desc">${log.content}</p>
 				<img class="history-head-img" :src="log.img" :class="{'symmetry' : log.position=='LEFT'}">
+				<p class="history-desc">${log.content}</p>
 				<div class="history-buttons">
 					<button class="btn repo-btn" v-for="(repo, idx) in log.repos" :key="idx" v-on:click="openNewPage(repo.url, repo.msg)">${repo.name}</button>
 				</div>
