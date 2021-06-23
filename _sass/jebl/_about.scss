@@ -105,10 +105,23 @@
 	.history-main {
 		font-size: 48px;
 		padding-top: 50px;
-		margin-bottom: 50px;
 		@include media("(max-width: 768px)") {
 			margin-top: 0px;
+		}
+	}
+	.history-part {
+		margin-bottom: 50px;
+		text-align: center;
+		opacity: .5;
+		p {
+			font-size: 1rem;
 			margin-bottom: 0px;
+		}
+		@include media("(max-width: 768px)") {
+			margin-bottom: 0px;
+			p {
+				display: inline;
+			}
 		}
 	}
 	.history-log {
@@ -158,6 +171,7 @@
 				}
 			}
 			.history-desc {
+				position: relative;
 				white-space: pre-line
 			}
 			.history-head-img {
@@ -165,7 +179,7 @@
 				top: 0px;
 				right: 0px;
 				height: 150px;
-				opacity: 0.3;
+				opacity: 0.15;
 				@include media("(max-width: 768px)") {
 					right: 15px !important;
 					height: 100px;

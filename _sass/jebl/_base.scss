@@ -63,6 +63,9 @@ h4 {
 p {
 	font-weight: $notosans-thin;
     font-size: $p-size;
+	@include media("(max-width: 768px)") {
+		font-size: $p-mobile-size;
+	}
 	// color: $black;
 }
 
