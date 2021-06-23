@@ -29,7 +29,7 @@ headerImg: 2016-1-30-PuzzleKu.jpg
 - 공모전 특성상 공유 불가
 
 ## 인게임 캡처
-> ![1](http://postfiles12.naver.net/MjAxNzAzMjVfMTY1/MDAxNDkwMzcyOTg2MDcx.qZsFpK8Z565EEOHQepNsKZBOUrcbq7UMYKlywewIt8Mg.jEjEFALfBCOXW4pRf7PH-tIt9R02fc9yazy8XnrE4sAg.JPEG.kyechan99/%EA%B7%B8%EB%A6%BC1.jpg?type=w1)
+![1](/assets/img/2016-1-30-PuzzleKu/1.png)
 
 ## 인게임 영상
  - 없음

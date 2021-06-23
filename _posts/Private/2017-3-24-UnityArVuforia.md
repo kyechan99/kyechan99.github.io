@@ -2,7 +2,7 @@
 layout: post
 title: Unity AR - Vuforia 사용
 date: 2017-03-24
-categories: [Dev]
+categories: [Hide]
 description: Unity AR
 tags: [Dev,AR,Unity3D,Vuforia]
 keywords: Unity, AR, Vuforia

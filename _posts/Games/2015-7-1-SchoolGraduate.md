@@ -32,9 +32,9 @@ headerImg: 2015-7-1-SchoolGraduate.png
 - 현재 삭제함
 
 ## 인게임 캡처
-> ![1](http://postfiles13.naver.net/20150701_172/kyechan99_1435758572796F63et_PNG/1.PNG?type=w1)
-> ![1](http://postfiles3.naver.net/20150701_130/kyechan99_14357585737166NKvM_PNG/2.PNG?type=w1)
-> ![1](http://postfiles11.naver.net/20150701_106/kyechan99_1435758574242lqnoa_PNG/3.PNG?type=w1)
+![1](/assets/img/2015-7-1-SchoolGraduate/1.png)
+![1](/assets/img/2015-7-1-SchoolGraduate/2.png)
+![1](/assets/img/2015-7-1-SchoolGraduate/3.png)
 
 ## 인게임 영상
  - 없음

@@ -32,8 +32,8 @@ headerImg: 2017-3-25-BingBong.png
 - 없음
 
 ## 인게임 캡처
-> ![1](http://postfiles14.naver.net/MjAxNzAzMjVfMjgx/MDAxNDkwMzc0NjQyMTQ2.4hbgdam_DPSs_0D1RZaE0iOpzAsFmvZ29Knd9y3JGE8g.6460TS3l9xi_CrrFcjwTaVj8lg9KKc4DLzDkDlZXt3og.PNG.kyechan99/%EA%B7%B8%EB%A6%BC8.png?type=w1)
-> ![1](http://postfiles13.naver.net/MjAxNzAzMjVfMjAx/MDAxNDkwMzc0NjQyNDQ5.hhI9WUco2XmFmUgvEoQ6rwE8YoSWumxOObBZxdiKmo4g.wwofTt3OBxcFnOKGQAqCgso5kvv_NKtp07LiybUS14kg.PNG.kyechan99/%EA%B7%B8%EB%A6%BC9.png?type=w1)
+![1](/assets/img/2017-3-25-BingBong/1.png)
+![1](/assets/img/2017-3-25-BingBong/2.png)
 
 ## 인게임 동영상
 - 없음

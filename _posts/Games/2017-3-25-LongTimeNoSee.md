@@ -35,10 +35,11 @@ headerImg: 2017-3-25-LongTimeNoSee.png
 - 없음
 
 ## 인게임 캡처
-> ![1](http://postfiles11.naver.net/MjAxNzAzMjVfMjU1/MDAxNDkwMzc0NjQyNzI1.6o4Wyl9weJSFXwG9yV_zfTK6huiLlhv_PMWNL6o6Rxgg.kFA4ARDh0IbTdzQgHbIAqap9uvXVHtLtE5sLmXVd_8Eg.PNG.kyechan99/%EA%B7%B8%EB%A6%BC10.png?type=w1)
-> ![1](http://postfiles12.naver.net/MjAxNzAzMjVfMjQ4/MDAxNDkwMzc0NjQzOTM4.-VNW-XGKVOY58qISXIWdwNnmlj8OuDhHekKOr10cH7wg.4W5Ruwt7rO24_THq_59hpCq4XrZuhg38lbg8wiALcr0g.PNG.kyechan99/%EA%B7%B8%EB%A6%BC12.png?type=w1)
-> ![1](http://postfiles3.naver.net/MjAxNzAzMjVfMTc2/MDAxNDkwMzc0NjQ0NjMz.TlLa4QQvwuxYwXHjHtiWWW-pclyBmMg8MOF1rSiwX4Yg.al3_2GKUlKegwxb9413GvemnLvp6vYVVOW8qQuf_Yicg.PNG.kyechan99/%EA%B7%B8%EB%A6%BC13.png?type=w1)
-> ![1](http://postfiles5.naver.net/MjAxNzAzMjVfMjI1/MDAxNDkwMzc0NjQzNDE4.hHx23lwwZRQ0FMfdplBt6b2x8KzlIeMi7dTIMaOBk70g.CCrfC_r0RyyRiV8ndepDj3pByvu3r6slMvTB_fDZqc4g.PNG.kyechan99/%EA%B7%B8%EB%A6%BC11.png?type=w1)
+![1](/assets/img/2017-3-25-LongTimeNoSee/1.png)
+![2](/assets/img/2017-3-25-LongTimeNoSee/2.png)
+![3](/assets/img/2017-3-25-LongTimeNoSee/3.png)
+![4](/assets/img/2017-3-25-LongTimeNoSee/4.png)
+
 
 ## 인게임 동영상
 - 없음

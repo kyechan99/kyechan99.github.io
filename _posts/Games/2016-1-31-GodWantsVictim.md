@@ -30,7 +30,7 @@ headerImg: 2016-1-31-GodWantsVictim.jpg
 - 구글 플레이 : [링크](https://www.dropbox.com/s/ktubgeq51kc46or/ritual.apk?dl=0)
 
 ## 인게임 캡처
-> ![1](http://postfiles6.naver.net/MjAxNzAzMjVfMTc5/MDAxNDkwMzczNDUyNjQw.TBYDiyYi1luvkH2D2TMCcPEiRDo_XkDtbgXHA-V21AIg.40_yxG6Q4ElKwADFPfKDpULL1nhmegHAbYxpO--v5YEg.JPEG.kyechan99/%EA%B7%B8%EB%A6%BC2.jpg?type=w1)
+![1](/assets/img/2016-1-31-GodWantsVictim/1.png)
 
 
 ## 인게임 동영상

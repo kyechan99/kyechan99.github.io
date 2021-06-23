@@ -24,40 +24,40 @@ keywords: Unity, Plugin, C#, Android
 
   
 ## 프로젝트 생성
-![1](http://postfiles1.naver.net/MjAxNzAzMjNfNjcg/MDAxNDkwMjI4MjM0MjQz.Rh_v7QJZcDkVuUoVA_kpJT39b1xaJ4PTEPxKt3t4fsog.a9jdiFwZXm4OE561q9AGiUVjJV-VT1S-u5VyKT0Smhgg.PNG.kyechan99/0.PNG?type=w1)
+![1](/assets/img/2017-3-23-Unity-Plugin-01/0.png)
 
 먼저 프로젝트를 생성해 준다.
 
 ## 폴더 생성
-![2](http://postfiles1.naver.net/MjAxNzAzMjNfMTEx/MDAxNDkwMjI4MzMyNDQ2.B3VA8MkKaetsqFFMD4fo3pXl49R7m6C8QqOyCghWdGsg.a4402Gn53cGqB0-7nbT9ROGgtqSOamg6fnQSMrtOLQUg.PNG.kyechan99/001.PNG?type=w1)
+![1](/assets/img/2017-3-23-Unity-Plugin-01/1.png)
 
 Assets / Plugins / Android 폴더를 만들어 준다.
 
 ## Player Setting
-![2.5](http://postfiles1.naver.net/MjAxNzAzMjNfMTk5/MDAxNDkwMjI4MDAzNjEw.zNIC-n_MMaQkVsrJsfVuaaVUcqLk3noxgeqycjSU9rYg.kbhDUYuxgIuwwnyivGLOpQ3klhcd6ce659m9r2U_TWEg.PNG.kyechan99/1.5.PNG?type=w1)
+![1](/assets/img/2017-3-23-Unity-Plugin-01/2.png)
 
 Bundle Identifier 를 수정해 준다.
 
 ## 빌드
-![3](http://postfiles5.naver.net/MjAxNzAzMjNfNDEg/MDAxNDkwMjI4MjM0MDQ4.T0FoUL9ykNtzXxDVwQCAIPWnQhuMaFhW8NIFywIhgAIg.B5gN1c69MRkOwPmqWxASWrLHOq3Q_qWGl2MylLEo1pwg.PNG.kyechan99/0.5.PNG?type=w1)
+![1](/assets/img/2017-3-23-Unity-Plugin-01/3.png)
 
 Android 로 설정하고 빌드를 실행한다.
 
-![4](http://postfiles7.naver.net/MjAxNzAzMjNfMTA3/MDAxNDkwMjI4MDA0MTM4.cSHKAZoHmXEDznQ9uul_cwNXUVq2HUUnryLB5t-XNhcg.CQ4i9X4JOLcShQD7mY0m4hwXQ97_nMG4Gb1aErl78UUg.PNG.kyechan99/2.PNG?type=w1)
+![1](/assets/img/2017-3-23-Unity-Plugin-01/4.png)
 
 ## AndroidManifest.xml 찾기
-![5](http://postfiles4.naver.net/MjAxNzAzMjNfMyAg/MDAxNDkwMjI4MDA0Mzc1.hhrJsGPfh49e1GQcJWdZ05ojGtVzzQOxQ0IPYbr9GlEg.v5o5LOk9WTixauKMREKuyCLZ0vZF7-zGckP2_9xnwtYg.PNG.kyechan99/3.PNG?type=w1)
+![1](/assets/img/2017-3-23-Unity-Plugin-01/5.png)
 
 빌드가 끝나면 ** *프로젝트 경로 / Temp / StagingArea* ** 에 **AndroidManifest.xml** 이 있다.
 
 ## AndroidManifest.xml 추가
-![6](http://postfiles10.naver.net/MjAxNzAzMjNfNTYg/MDAxNDkwMjI4MDA0NTAz.cnexSySDMlmTpD6sbQFoA7a7GwxTaDZbTYZW9kevI2sg.MNT4V3t0A5Y4wnMEbmGmAHSsu0bMIJud8C8DMo2ilt8g.PNG.kyechan99/4.PNG?type=w1)
+![1](/assets/img/2017-3-23-Unity-Plugin-01/6.png)
 
 찾은 **AndroidManifest.xml** 을 이전에 만든 경로 ** *Assets / Plugins / Android* ** 폴더에 추가해 준다.
 
 
 ## AndroidManifest.xml 수정
-![7](http://postfiles11.naver.net/MjAxNzAzMjNfMTYg/MDAxNDkwMjI4MDA1MDgw.mlgnNqqO1rKVWdZPbdd0DCPf-fpsB-wq-2yZ1g82Av8g.hdDqXlSDvcqy8zDZqPpKsKkosuZj783NaTwliEZbe8sg.PNG.kyechan99/6.PNG?type=w1)
+![1](/assets/img/2017-3-23-Unity-Plugin-01/7.png)
 
 위와 같이 android:name 을 빌드하면서 수정한 *Bundle Identifier.UnityPlayerActivity* 로 변경해 준다.
 
