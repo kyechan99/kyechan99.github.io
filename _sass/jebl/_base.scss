@@ -23,8 +23,20 @@ html[data-theme='dark'] {
 	.octicon {
 		fill: #fff;
 	}
-	.repo-btn:hover {
+	.repo-btn {
 		background-color: #3e3b42 !important;
+		&:hover {
+			background-color: darken(#3e3b42, 10%) !important;
+		}
+	}
+	.btn {
+		background: none;
+		&.icons,
+		&.next-page-btn {
+			&:hover {
+				background: none !important;
+			}
+		}
 	}
 	.alertBox {
 		background-color: var(--backgroundColor);
