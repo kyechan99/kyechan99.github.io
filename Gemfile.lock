@@ -76,6 +76,7 @@ GEM
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2021.1)
       tzinfo (>= 1.0.0)
+    wdm (0.1.1)
 
 PLATFORMS
   ruby
@@ -87,6 +88,7 @@ DEPENDENCIES
   jekyll-octicons
   minima (~> 2.0)
   tzinfo-data
+  wdm (~> 0.1.0)
 
 BUNDLED WITH
    1.17.2

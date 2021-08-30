@@ -7,8 +7,10 @@
   <body>
 
     {%- include header.html -%}
-	<div class="alertBox text-center">주소가 복사되었습니다.</div>
+
     <main class="page-content" aria-label="Content">
+		<div class="notice-box" id="copyNoticeBox" data-speed="4000">주소가 복사되었습니다.</div>
+		
 		<div class="container-fluid post-container-fluid">
 			{% if page.haveImg == true %}
 				<div class="post-img" style="background-image: url(/assets/img/head-img/{{ page.headerImg }})"></div>
@@ -16,72 +18,76 @@
 				<div class="post-img" style="background-image: url(https://images.pexels.com/photos/262488/pexels-photo-262488.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)"></div>
 			{% endif %}
 		</div>
-      <div class="container">
-		<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-			<div class="quick-bar hide" id="quick-bar">
-				<button class="quick-btn" id="up-btn">
-					{% octicon triangle-up height:24 %}
-				</button>	
-				<button class="quick-btn linkBtn" OnClick="javascript:copyUrlToClipboard(); showAlertBox();">
-					{% octicon link height:24 %}
-				</button>
-			</div>
-		  <header class="post-header">
-			<div class="post-info">
-				<p class="post-category p-name" itemprop="name headline">
-					{%- if page.categories[0] == 'Lib' or page.categories[0] == 'Dev' or page.categories[0] == 'Tech' -%}
-						<a href="/DevNote">개발노트</a> / {{ page.categories[0] }}
-					{%- elsif page.categories[0] == 'Games' or page.categories[0] == 'Web' or page.categories[0] == 'App' -%}
-						<a href="/Project">프로젝트</a> / {{ page.categories[0] }}
-					{%- else -%}
-						/ {{ page.categories[0] }}
-					{%- endif -%}
-				</p>
-				<p class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</p>
-				<p class="post-subtitle p-name" itemprop="name headline">{{ page.description }}</p>
-				<div class="post-tags-box">
-					{%- for tag in page.tags -%}
-						<span class="badge badge-primary post-tag">{{ tag }}</span>
-					{%- endfor -%}
-				</div>
-			</div>
-		  </header>
 
-		  <div class="card card-post">
-			<div class="post-content e-content" itemprop="articleBody">
-			  {{ content }}
-			</div>
-		  </div>
-
-			<hr class="hr-style center" style="--content:'</>';"> </hr>
-		  <!-- <hr class="post-end"/> -->
-			
-		  <div class="card card-recommendation">
-			<div class="row">
-				<div class="col">
-					<button class="btn" onclick='document.location.href="{{ page.previous.url }}"'>{% octicon chevron-left height:24 %} 이전글</button>
+		<div class="container">
+			<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+				<div class="quick-bar hide" id="quick-bar">
+					<button class="quick-btn" id="up-btn">
+						{% octicon triangle-up height:24 %}
+					</button>
+					<button class="quick-btn linkBtn" OnClick="javascript:copyUrlToClipboard();" data-toggle="notice" data-target="#copyNoticeBox">
+						{% octicon link height:24 %}
+					</button>
 				</div>
-				<div class="col">
-					<button class="btn" onclick='document.location.href="{{ page.next.url }}"'>다음글 {% octicon chevron-right height:24 %}</button>
-				</div>
-			</div>
-		  </div>
-			
-		  <div class="card card-comment">
-			<!-- 	utteranc.es		 -->
-			<script src="https://utteranc.es/client.js"
-					repo="kyechan99/kyechan99.github.io"
-					issue-term="title"
-					label="comment"
-					theme="github-light"
-					crossorigin="anonymous"
-					async>
-			</script>
-		  </div>                         
 
-		  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
-		</article>
-      </div>
+				<header class="post-header">
+					<div class="post-info">
+						<p class="post-category p-name" itemprop="name headline">
+							{%- if page.categories[0] == 'Lib' or page.categories[0] == 'Dev' or page.categories[0] == 'Tech' -%}
+								<a href="/DevNote">개발노트</a> / {{ page.categories[0] }}
+							{%- elsif page.categories[0] == 'Games' or page.categories[0] == 'Web' or page.categories[0] == 'App' -%}
+								<a href="/Project">프로젝트</a> / {{ page.categories[0] }}
+							{%- else -%}
+								/ {{ page.categories[0] }}
+							{%- endif -%}
+						</p>
+
+						<p class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</p>
+
+						<p class="post-subtitle p-name" itemprop="name headline">{{ page.description }}</p>
+
+						<div class="post-tags-box">
+							{%- for tag in page.tags -%}
+								<span class="badge badge-primary post-tag">{{ tag }}</span>
+							{%- endfor -%}
+						</div>
+					</div>
+				</header>
+
+				<div class="card card-post">
+					<div class="post-content e-content" itemprop="articleBody">
+					{{ content }}
+					</div>
+				</div>
+
+				<hr class="hr-style center" style="--content:'</>';"> </hr>
+					
+				<div class="card card-recommendation">
+					<div class="row">
+						<div class="col">
+							<button class="btn btn-transparent" onclick='document.location.href="{{ page.previous.url }}"'>{% octicon chevron-left height:24 %} 이전글</button>
+						</div>
+						<div class="col">
+							<button class="btn btn-transparent" onclick='document.location.href="{{ page.next.url }}"'>다음글 {% octicon chevron-right height:24 %}</button>
+						</div>
+					</div>
+				</div>
+					
+				<div class="card card-comment">
+					<!-- 	utteranc.es		 -->
+					<script src="https://utteranc.es/client.js"
+							repo="kyechan99/kyechan99.github.io"
+							issue-term="title"
+							label="comment"
+							theme="github-light"
+							crossorigin="anonymous"
+							async>
+					</script>
+				</div>
+
+				<a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+			</article>
+		</div>
     </main>
 
     {%- include footer.html -%}
@@ -90,26 +96,6 @@
   
   {%- include script.html -%}
   <script type="text/javascript">
-	  // AlertBox
-	var alertBox = document.querySelector(".alertBox");
-	var alertTimer;
-	function showAlertBox() {
-		if (alertBox.classList.contains('alertBoxShow')) {
-			// alertBox 실행 중이면 삭제
-			alertBox.classList.remove('alertBoxShow');
-			clearTimeout(alertTimer);
-		}
-
-		// remove 와 add 사이에 alertBox를 한번 호출해 주어야 됨
-		alertBox.offsetWidth;
-		alertBox.classList.add('alertBoxShow');
-
-		alertTimer = setTimeout(function() {
-			// 4초를 변경하려면 _sass/jebl/_layout/.alertBoxShow 의 애니메이션 시간도 변경해줘야함
-			alertBox.classList.remove('alertBoxShow');
-		}, 4000);
-	}
-	 
 	jQuery(function ($) {
 		$('#up-btn').click(function() {
 			$('html, body').animate({

@@ -9,7 +9,7 @@ body{
 :root {
 	--boldColor: #{$bold-black};
 	--postImgShadow: 11px 11px 22px #d0d0d0, -11px -11px 22px #ffffff;
-	--quickBtnShadow: 5px 5px 8px #e6e6e6, -5px -5px 8px #ffffff;
+	--quickBtnShadow: 5px 5px 8px #e6e6e675, -5px -5px 8px #ffffff;
 	--blockquoteBG: #{$blockquote-bg};
 }
 
