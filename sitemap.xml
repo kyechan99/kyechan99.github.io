@@ -9,7 +9,7 @@
 >
     {% for post in site.posts %}
     <url>
-        <loc>https://your_site_url{{ post.url }}</loc>
+        <loc>https://kyechan99.github.io/{{ post.url }}</loc>
 
         {% if post.lastmod == null %}
         <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
