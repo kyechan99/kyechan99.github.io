@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 크롬 확장프로그램 만들기
+title: 크롬 확장프로그램 만들기 - 1
 date: 2021-8-16
 categories: [Lib]
-description: 크롬 확장프로그램 만들기
+description: 프로젝트 생성과 설정
 tags: [React, Typescript, Chrome, Extension]
 keywords: React, Typescript, Chrome, Extension
 comments: false
@@ -11,6 +11,13 @@ haveImg: true
 headerImg: 2020-7-27-nosql.jpg
 ---
 
+<p style="display:none;">
+개발자 블로그 사이트 Velog extension 을 만들면서, React와 typescript 를 이용해 크롬 확장프로그램을 개발하는 방법에 대해서 적습니다.
+제가 velog 에 포스팅을 하지는 않는데요.
+재밌는 프로젝트나 개발 글들을 쉽게 읽어 볼 수 있어 종종 들려서 사용하곤 합니다.
+특히 본인의 철학을 가지고 개발에 대한 글을 작성하시는 분이 상당히 재밌고 생각도 하게되어 그 분 글을 꾸준히 읽곤 하는데,
+아무래도 velog 에는 팔로우 기능이 (아직까지)없어서 이런 기능을 도와줄 크롬 확장 프로그램을 생각하게 되었습니다.
+</p>
 
 
 
