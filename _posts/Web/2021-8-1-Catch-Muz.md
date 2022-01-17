@@ -2,7 +2,7 @@
 layout: post
 title: 캐치 뮤즈 (Catch Muz)
 date: 2021-8-1
-categories: [Web, Program]
+categories: [Web]
 description: 🎵 노래 맞추기 게임, CatchMuz!
 tags: [Games, Web, React, Electron, Typescript, SocketIO]
 keywords: Games, Web, React, Electron, Typescript, SocketIO, CatchMuz, 캐치뮤즈
