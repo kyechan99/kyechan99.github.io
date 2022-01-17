@@ -172,7 +172,7 @@ function getMousePosition(event) {
 
     // plane 이용해서 마우스 위치를 3d 에서 얻어오기
     planeNormal.copy(camera.position).normalize();
-    plane.setFromNormalAndCoplanarPoint(planeNormal, scene.position);
+    plane.setFromNormalAndCoplanarPoint(camera.getWorldDirection(plane.normal), scenePosition);
 
     // raycaster
     raycaster.setFromCamera(mouse, camera);
