@@ -120,3 +120,7 @@ private:
 
 
 
+
+<p style="display:none;">
+cocos2dx joystick
+</p>

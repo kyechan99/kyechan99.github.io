@@ -18,6 +18,9 @@ headerImg: 2020-7-27-nosql.jpg
 특히 본인의 철학을 가지고 개발에 대한 글을 작성하시는 분이 상당히 재밌고 생각도 하게되어 그 분 글을 꾸준히 읽곤 하는데,
 아무래도 velog 에는 팔로우 기능이 (아직까지)없어서 이런 기능을 도와줄 크롬 확장 프로그램을 생각하게 되었습니다.
 </p>
+<p style="display:none;">
+chrome extension, react chrome extension, react typescript extension
+</p>
 
 
 

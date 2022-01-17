@@ -134,3 +134,7 @@ permalink: /Project/
 ![5](/assets/img/2020-5-19-jekyll-custom-3/5.png)
 ( Project 메뉴와 해당 페이지에서 관련된 게시글들을 보여주는 모습 )
 
+
+<p style="display:none;">
+github jekyll blog, make custom jekyll blog
+</p>

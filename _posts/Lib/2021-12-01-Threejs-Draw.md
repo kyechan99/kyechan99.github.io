@@ -18,6 +18,9 @@ headerImg: 2021-12-01-Threejs-Draw.jpg
 이번 글은 프로젝트에 사용될 기능 중 하나인 그림 그리기에 대해 공부하고 서핑한 것들에 대해 정리한 내용을 담고 있습니다.
 THREE.js 의 상세한 내용은 담지 않았습니다.
 </p>
+<p style="display:none;">
+threejs draw line,  drawing line, THREE.Line, threejs get 3d mouse position, threejs LineBasicMaterial
+</p>
 
 ## 개요
 요즘 한번도 배운적 없던 THREE.js 를 사용해 프로젝트를 진행해 보게 되어 배울것도 이해해야 될 것도 많아져 정신 없긴한데요.

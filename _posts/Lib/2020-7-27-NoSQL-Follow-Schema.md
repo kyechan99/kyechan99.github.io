@@ -299,3 +299,7 @@ router.get('/', function (req, res, next) {
 확실히 코드량도 늘어나 코드 복잡도가 증가하고 단순히 팔로워 수를 측정하는 데에 있어도 유연성이 떨어집니다.
 
 잘못된 부분이 있다면 언제든 지적 주시고 가르침을 주시면 감사하겠습니다.
+
+<p style="display:none;">
+nosql schema, mongodb schema, mongoose schema, follow schema, nosql vs sql
+</p>

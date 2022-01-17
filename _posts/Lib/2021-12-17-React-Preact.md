@@ -16,6 +16,9 @@ THREE.js 를 사용해 프로젝트를 진행하려고 하는 와중, React가 �
 처음 들어보는 Preact에 대해 검색해보니 React보다 가볍지만 사용법은 React와 같다고 하더군요.
 여기서 의문점이 생깁니다.
 </p>
+<p style="display:none;">
+React vs Preact, what is preact
+</p>
 
 ## 개요
 THREE.js 를 사용해 프로젝트를 진행하려고 하는 와중, React가 아닌 Preact 를 사용해야 좋다는 글을 보았습니다.

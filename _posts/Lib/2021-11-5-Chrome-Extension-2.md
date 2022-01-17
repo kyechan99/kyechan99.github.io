@@ -17,6 +17,9 @@ headerImg: 2020-7-27-nosql.jpg
 핵심 요소 3가지에 대해서만 알맞게 구조를 짜면 일반적인 웹 사이트같이 크게 다르지 않기 떄문입니다.
 </p>
 
+<p style="display:none;">
+chrome extension, react chrome extension, react typescript extension
+</p>
 
 
 ## 개요
