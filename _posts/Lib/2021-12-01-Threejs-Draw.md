@@ -36,7 +36,7 @@ THREE.js 의 상세한 내용은 담지 않았습니다.
 
 ## 코드 결과
 
-![1](/assets/img/2021-12-01-Threejs-Draw/2.png)
+![1](https://user-images.githubusercontent.com/14146566/168096520-1d04b7ba-41e7-4253-bb2f-72d8517fbd51.gif)
 
 
 ## 기본 설정
@@ -149,7 +149,7 @@ const MAX_POS_LENGTH = 100000;
 앞서 `OrbitControls` 을 사용하지 않고 고정 화면에서 그림을 그리고자 한다면 마우스 위치를 받아오는 방법은 간단합니다.
 
 아래와 같이 마우스 이동에 따른 event 를 받아와 위치를 받고,
-`unproject`를 이용해 카메라의 정규화된 좌표 공간에서 월드(표준) 공간으로 변경시키면 되기 떄문입니다.
+`unproject`를 이용해 카메라의 정규화된 좌표 공간에서 월드(표준) 공간으로 변경시키면 되기 때문입니다.
 
 ```js
 function getMousePosition(event) {
@@ -165,7 +165,7 @@ function getMousePosition(event) {
 
 하지만 카메라를 움직이고 바라보는 방향에 따른 그림을 그리고 싶다면 위 방법만으로는 조금 부족합니다.
 
-`OrbitControls`로 카메라의 위치와 앵글을 변환 시켰을때 원하는 좌표값을 얻어올 수 없기 떄문입니다.
+`OrbitControls`로 카메라의 위치와 앵글을 변환 시켰을때 원하는 좌표값을 얻어올 수 없기 때문입니다.
 
 ```js
 function getMousePosition(event) {
@@ -179,7 +179,7 @@ function getMousePosition(event) {
 
     // raycaster
     raycaster.setFromCamera(mouse, camera);
-    raycaster.ray.intersectPlane(plane, point);
+    raycaster.ray.intersectPlane(plane, saveHere);      // saveHere에 실제 좌표가 저장됩니다.
 }
 ```
 
@@ -272,7 +272,7 @@ document.addEventListener("keydown", event => {
 		
 		var geometry = new THREE.BufferGeometry();
 
-		var positions = new Float32Array( MAX_POS_LENGTH * 3 ); // (x,y,z 총 3개가 담기기 떄문에 * 3)
+		var positions = new Float32Array( MAX_POS_LENGTH * 3 ); // (x,y,z 총 3개가 담기기 때문에 * 3)
 		geometry.setAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
 		geometry.setDrawRange( 0, drawCount );
 
@@ -324,7 +324,7 @@ document.addEventListener("keyup", event => {
 
 ## 마치며
 여러모로 삽질이 조금 많았습니다.
-마우스 위치를 제대로 받지 못하는 문제부터 좌표를 계속해서 못바아 오면서 선이 끊어 지는 등,
+마우스 위치를 제대로 받지 못하는 문제부터 좌표를 계속해서 못받아 오면서 선이 끊어 지는 등,
 [MeshLine](https://github.com/spite/THREE.MeshLine) 같은 것도 추가해서 사용해보았지만 위 방법과 같이 마우스 좌표를 계속해서 추가해 주는 것이 제일 깔끔했습니다.
 
 물론 위 방법도 최고의 방법이라고 하기에는 조금 부족함이 있습니다. 
@@ -332,9 +332,24 @@ document.addEventListener("keyup", event => {
 너무 큰 값으로 설정하자니 짧게 그린 선들에게는 쓸데없이 배열의 크기가 커지는 점이 걸립니다.
 
 일단 가장 간단해 보이는 방법으로는 배열의 크기가 꽉 찼을때 새 선을 생성해주는 점이 좋아보입니다만 
-뒤로가긱 기능에서 나뉘어 지워진다는 점이 조금 아쉽습니다.
+뒤로가기 기능에서 나뉘어 지워진다는 점이 조금 아쉽습니다.
 
 만약 동적으로 배열 크기를 조절하는 방법을 찾게 되면 업데이트 하겠습니다.
 
 
 
+## 추가 +
+본문에서 추가합니다.
+
+**THREE.JS 에서 일반적으로 사용하는 Line 을 사용하기보다 THREE.JS/examples에서 제공하는 line2를 사용한다면
+환경에 따라 선 굵기가 변하지 않던 문제를 해결할 수 있습니다.**
+
+본문에서의 선 길이가 길어짐에 따라 동적으로 설정해주고 싶다는 문제 역시 해결했는데요.
+
+아래 코드들은 최대한 재사용 가능하게 정리해 놓았으니 필요하다면 참고하시면 좋을것같습니다.
+
+> [scribubble/drawline](https://github.com/scribubble/scribubble/blob/develop/src/util/drawLine.js) 
+
+본문과 크게 다른 내용은 `Line`이 아닌 `Line2`를 사용했다는 점이며,
+Line2의 geometry 속성의 `_maxInstanceCount` 값을 수동으로 직접 바꿈으로서
+배열 크기를 좌표가 커질때마다 동적으로 늘리는 점입니다.
