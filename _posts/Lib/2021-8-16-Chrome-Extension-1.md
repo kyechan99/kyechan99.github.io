@@ -296,7 +296,7 @@ npx create-react-app 이름 --template typescript
 - `"cookies"` : 크롬 쿠키에 접근하고자 할때 필요합니다.
 - `"history"` : 주소 히스토리를 사용할때 필요합니다. 
 - `"storage"` : 스토리지에 접근할때 사용합니다. 특정 데이터를 로컬에 저장할때 필요합니다.
-- `"webNavigation"` : 페이지가 변경되었을떄와 같은 네비게이션 이벤트를 사용할때 필요합니다.
+- `"webNavigation"` : 페이지가 변경되었을때와 같은 네비게이션 이벤트를 사용할때 필요합니다.
 
 > [기타 권한 문서들](https://developer.chrome.com/docs/extensions/mv3/declare_permissions/)
 

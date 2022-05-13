@@ -14,7 +14,7 @@ headerImg: 2020-7-27-nosql.jpg
 <p style="display:none;">
 크롬 확장프로그램을 생성하고 초기 환경을 구축하였다면 이제 개발만 하면 됩니다!
 확장프로그램이라 해서 복잡한 구현을 요구하는 것도, 별도의 컴파일을 요구하지도 않습니다.
-핵심 요소 3가지에 대해서만 알맞게 구조를 짜면 일반적인 웹 사이트같이 크게 다르지 않기 떄문입니다.
+핵심 요소 3가지에 대해서만 알맞게 구조를 짜면 일반적인 웹 사이트같이 크게 다르지 않기 때문입니다.
 </p>
 
 <p style="display:none;">
@@ -25,7 +25,7 @@ chrome extension, react chrome extension, react typescript extension
 ## 개요
 크롬 확장프로그램을 생성하고 초기 환경을 구축하였다면 이제 개발만 하면 됩니다!
 확장프로그램이라 해서 복잡한 구현을 요구하는 것도, 별도의 컴파일을 요구하지도 않습니다.
-핵심 요소 3가지에 대해서만 알맞게 구조를 짜면 일반적인 웹 사이트같이 크게 다르지 않기 떄문입니다.
+핵심 요소 3가지에 대해서만 알맞게 구조를 짜면 일반적인 웹 사이트같이 크게 다르지 않기 때문입니다.
 
 
 ## 이전글
@@ -183,7 +183,7 @@ chrome.runtime.onMessage.addListener((message: MESSAGE_TYPE, sender) => {
 ```
 popup 과 background 간에 데이터를 주고 받고자 할 때 `chrome.runtime.onMessage`를 이용합니다.
 
-위의 코드에서는 typescript 를 사용하기 떄문에 `MESSAGE_TYPE`과 같은 타입을 만들어서 사용했지만 만약 ts 를 사용하지 않는다면 순수 object 처럼 사용해도 무관합니다.
+위의 코드에서는 typescript 를 사용하기 때문에 `MESSAGE_TYPE`과 같은 타입을 만들어서 사용했지만 만약 ts 를 사용하지 않는다면 순수 object 처럼 사용해도 무관합니다.
 
 ```js
 // App.tsx 나 popup에서 사용할 컴포넌트 파일
@@ -194,7 +194,7 @@ chrome.runtime.sendMessage({ type: "SEND_DATA", data: "데이터입니다" });
 
 위에서는 popup에서 메세지를 송신, background에서 메세지를 수신하는 것을 예로 들었지만 반대로도 사용이 가능하니 이를 두고 프로그램을 개발하시면 될 것 같습니다.
 
-종종 웹페이지 개발할 떄 localstorage 를 이용해 데이터를 저장할때가 있죠. 크롬 확장프로그램 역시 이를 지원합니다.
+종종 웹페이지 개발할 때 localstorage 를 이용해 데이터를 저장할때가 있죠. 크롬 확장프로그램 역시 이를 지원합니다.
 
 ```js
 // 가져오기

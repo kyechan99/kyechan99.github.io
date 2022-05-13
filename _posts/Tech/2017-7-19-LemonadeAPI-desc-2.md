@@ -29,7 +29,7 @@ keywords: Lemonade, Lemonade-API
 ### 1-2. APP 이름
 ![1](/assets/img/2017-7-20-LemonadeAPI-func/11.PNG)
 
-처음 [1장](/tech/2017/07/14/LemonadeAPI-desc-1.html) 떄 설정했던 package name 으로 설정합니다.
+처음 [1장](/tech/2017/07/14/LemonadeAPI-desc-1.html) 때 설정했던 package name 으로 설정합니다.
 
 > 이 외의 것은 작동하지 않으므로 조심해야 합니다.
 
