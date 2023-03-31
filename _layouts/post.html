@@ -19,6 +19,10 @@
 			{% endif %}
 		</div>
 
+		<div class="post-nav-header hide" id="post-nav-header">
+			<p class="post-nav-title">{{ page.title | escape }}</p>
+		</div>
+
 		<div class="container">
 			<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 				<div class="quick-bar hide" id="quick-bar">
@@ -46,11 +50,14 @@
 
 						<p class="post-subtitle p-name" itemprop="name headline">{{ page.description }}</p>
 
+						<p class="post-date p-name">Posted on  {{ page.date | date: "%Y년 %m월 %d일" }}</p>
+
 						<div class="post-tags-box">
 							{%- for tag in page.tags -%}
 								<span class="badge badge-primary post-tag">{{ tag }}</span>
 							{%- endfor -%}
 						</div>
+						
 					</div>
 				</header>
 
@@ -106,13 +113,16 @@
 	  
 	$(document).ready(function() {
 		var myID = document.getElementById("quick-bar");
+		var postNavHeader = document.getElementById("post-nav-header");
 
 		$(document).scroll(function() {
 		  var y = $(this).scrollTop();
-		  if (y >= 280) {
+		  if (y >= 700) {
 			myID.className = "quick-bar show";
+			postNavHeader.className = "post-nav-header show";
 		  } else {
 			myID.className = "quick-bar hide";
+			postNavHeader.className = "post-nav-header hide";
 		  }
 		});
 

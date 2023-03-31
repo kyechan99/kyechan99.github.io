@@ -1,32 +1,86 @@
 ---
 layout: default
 ---
-<div class="home post">
-  {%- if site.posts.size > 0 -%}
+
+{% assign recentPostArray = site.categories.Lib | concat: site.categories.Tech  | sort: 'date' | reverse %}
+{% assign projectPostArray = site.categories.Games | concat: site.categories.App | concat: site.categories.Web  | sort: 'date' | reverse %}
+
+<div class="home">
+	<h2 class="home-subtitle">👀 최근 포스트</h2>
+	{%- if recentPostArray.size > 0 -%}
 	<ul class="post-list">
-	  {%- for post in site.posts limit:10 -%}
-	  <li class="post-part">
-		<div class="post-info post-card" onclick='document.location.href="{{ post.url | relative_url }}"'>
-			<p class="post-category p-name" itemprop="name headline">
-				{%- if post.categories[0] == 'Lib' or post.categories[0] == 'Dev' or post.categories[0] == 'Tech' -%}
-					<a href="/DevNote">개발노트</a> / {{ post.categories[0] }}
-				{%- elsif post.categories[0] == 'Games' or post.categories[0] == 'Web' -%}
-					<a href="/Project">프로젝트</a> / {{ post.categories[0] }}
-				{%- else -%}
-					/ {{ post.categories[0] }}
-				{%- endif -%}
-			</p>
-			<p class="post-title p-name" itemprop="name headline">{{ post.title | escape }}</p>
-			<p class="post-subtitle p-name" itemprop="name headline">{{ post.description }}</p>
-			<p class="post-sample">{{ post.content | truncatewords: 30, '...' | strip_html | strip_newlines }}</p>
-			<div class="post-tags-box">
-				{%- for tag in post.tags -%}
-					<span class="badge badge-primary post-tag">{{ tag }}</span>
-				{%- endfor -%}
-			</div>
+
+		<div class="row">
+			{%- for post in recentPostArray limit:6 -%}
+			<li class="post-part col-lg-6">
+				<div class="post-info post-card" onclick='document.location.href="{{ post.url | relative_url }}"'>
+					<div class="card">
+						<div class="card-img-top">
+							<img class="card-img-top card-img" src="/assets/img/head-img/{{ post.headerImg }}"/>
+						</div>
+						<div class="card-body">
+							<p class="post-category p-name" itemprop="name headline">
+								{%- if post.categories[0] == 'Lib' or post.categories[0] == 'Dev' or post.categories[0] == 'Tech' -%}
+									<a href="/DevNote">개발노트</a> / {{ post.categories[0] }}
+								{%- elsif post.categories[0] == 'Games' or post.categories[0] == 'Web' -%}
+									<a href="/Project">프로젝트</a> / {{ post.categories[0] }}
+								{%- else -%}
+									/ {{ post.categories[0] }}
+								{%- endif -%}
+							</p>
+							<p class="post-title p-name" itemprop="name headline">{{ post.title | escape }}</p>
+							<p class="post-subtitle p-name" itemprop="name headline">{{ post.description }}</p>
+							<p class="post-sample">{{ post.content | truncatewords: 30, '...' | strip_html | strip_newlines }}</p>
+							<div class="post-tags-box">
+								{%- for tag in post.tags -%}
+									<span class="badge badge-primary post-tag">{{ tag }}</span>
+								{%- endfor -%}
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			{%- endfor -%}
 		</div>
-	  </li>
-	  {%- endfor -%}
 	</ul>
-  {%- endif -%}
+	{%- endif -%}
+
+	<h2 class="home-subtitle">🚀 최근 프로젝트</h2>
+	{%- if projectPostArray.size > 0 -%}
+	<ul class="post-list">
+
+		<div class="row">
+			{%- for post in projectPostArray limit:6 -%}
+			<li class="post-part col-lg-6">
+				<div class="post-info post-card" onclick='document.location.href="{{ post.url | relative_url }}"'>
+					<div class="card">
+						<div class="card-img-top">
+							<img class="card-img-top card-img" src="/assets/img/head-img/{{ post.headerImg }}"/>
+						</div>
+						<div class="card-body">
+							<p class="post-category p-name" itemprop="name headline">
+								{%- if post.categories[0] == 'Lib' or post.categories[0] == 'Dev' or post.categories[0] == 'Tech' -%}
+									<a href="/DevNote">개발노트</a> / {{ post.categories[0] }}
+								{%- elsif post.categories[0] == 'Games' or post.categories[0] == 'Web' -%}
+									<a href="/Project">프로젝트</a> / {{ post.categories[0] }}
+								{%- else -%}
+									/ {{ post.categories[0] }}
+								{%- endif -%}
+							</p>
+							<p class="post-title p-name" itemprop="name headline">{{ post.title | escape }}</p>
+							<p class="post-subtitle p-name" itemprop="name headline">{{ post.description }}</p>
+							<p class="post-sample">{{ post.content | truncatewords: 30, '...' | strip_html | strip_newlines }}</p>
+							<div class="post-tags-box">
+								{%- for tag in post.tags -%}
+									<span class="badge badge-primary post-tag">{{ tag }}</span>
+								{%- endfor -%}
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			{%- endfor -%}
+		</div>
+	</ul>
+	{%- endif -%}
 </div>

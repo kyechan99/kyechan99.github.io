@@ -117,6 +117,21 @@
 	}
 }
 
+.card {
+	.card-img-top {
+		height: 250px;
+		border-radius: 0.5rem;
+		object-fit: cover;
+		overflow: hidden;
+		.card-img {
+			transition: scale ease .25s;
+		}
+	}
+	.card-body {
+		padding: 1rem 0rem;
+	}
+}
+	
 .card-list {
     padding: 40px;
     .card-date {
@@ -137,6 +152,23 @@
     @include media("(max-width: 992px)") {
         padding: 20px;
     }
+}
+
+.home {
+	.post-part {
+		.post-title {
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+		.post-sample {
+			display: -webkit-box;
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
 }
 
 .post-end { 
@@ -301,16 +333,44 @@
 }
 
 .post-list {
-	@include media("(max-width: 768px)") {
-		padding-left: 0px;
-	}
+	padding-left: 0px;
 	.post-part {
-		margin-top: 80px;
-		margin-bottom: 80px;
+		// margin-top: 40px;
+		margin-bottom: 60px;
 		@include media("(max-width: 768px)") {
-			margin-top: 20px;
+			// margin-top: 20px;
 			margin-bottom: 20px;
 		}
+	}
+}
+
+.post-nav-header {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	box-shadow: -1px 3px 4px 0px rgba(0,0,0,0.1);
+	-webkit-box-shadow: -1px 3px 4px 0px rgba(0,0,0,0.1);
+	-moz-box-shadow: -1px 3px 4px 0px rgba(0,0,0,0.1);
+	background-color: var(--backgroundColor);
+	z-index: 1;
+	&.hide {
+		opacity: 0;
+		pointer-events: none;
+	}
+	.post-nav-title {
+		text-align: center;
+		font-weight: bold;
+		font-size: 0.875rem;
+		margin-top: 1.125rem;
+		margin-bottom: 1.125rem;
+		opacity: .8;
+	}
+	.post-nav-subtitle {
+		font-size: .75rem;
+		text-align: center;
+		margin-top: 0px;
+		margin-bottom: 1rem;
 	}
 }
 
@@ -327,7 +387,7 @@
 		padding-right: 0px;
 	}
 	.post-category {
-		margin-bottom: 5px;
+		margin-bottom: 0px;
 		font-size: 15px;
 		font-weight: $notosans-medium;
 		color: $themeColor;
@@ -355,6 +415,11 @@
 			font-size: 20px;
 		}
 	}
+	.post-date {
+		font-size: 0.8rem;
+		color: #6f667a;
+		opacity: .7;
+	}
 	.post-sample {
 		font-size: 16px;
 	}
@@ -376,10 +441,13 @@
 	&.post-card {
 		@include media("(min-width: 768px)") {
 			cursor: pointer;
-			opacity: 0.8;
+			opacity: 0.7;
 			&:hover {
 				// margin-left: 10px;
 				opacity: 1;
+				.card-img {
+					scale: 1.125;
+				}
 			}
 		}
 		.post-title {
@@ -393,6 +461,9 @@
 			@include media("(max-width: 768px)") {
 				font-size: 16px;
 			}
+		}
+		.post-date {
+			margin-bottom: 0px;
 		}
 		.post-sample {
 			margin-bottom: 20px;

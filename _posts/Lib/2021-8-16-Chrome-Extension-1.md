@@ -8,7 +8,7 @@ tags: [React, Typescript, Chrome, Extension]
 keywords: React, Typescript, Chrome, Extension
 comments: false
 haveImg: true
-headerImg: 2020-7-27-nosql.jpg
+headerImg: 2021-11-5-chrome-extension.png
 ---
 
 <p style="display:none;">
