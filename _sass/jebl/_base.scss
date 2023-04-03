@@ -27,7 +27,7 @@ html[data-theme='dark'] {
 			background-color: darken(#3e3b42, 10%) !important;
 		}
 	}
-	.btn {
+	.btn.btn-transparent {
 		background: none;
 		&.icons,
 		&.next-page-btn {

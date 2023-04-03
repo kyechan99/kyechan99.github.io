@@ -386,6 +386,22 @@
 	}
 }
 
+.post-tag {
+	.tag-link {
+		color: #f3f2f5;
+	}
+}
+
+.btn-tag {
+	margin: 0.25rem;
+    opacity: .8;
+	.tag-badge {
+		margin-left: 0.25rem;
+		font-size: 40%;
+		color: #b897ff;
+	}
+}
+
 .post-info {
 	transition: all .3s ease-out;
 	-moz-transition: all .3s ease-out;
@@ -659,6 +675,8 @@ $repoBGList: #EA816E, #F6CC5C, #659BF3, #BDD98E, #F08BDB, #AA7DFE;
 .repo-col {
 	overflow: hidden;
 	.repo-card{
+		position: relative;
+		overflow: hidden;
 		height: 180px;
 		padding: 1rem 1.5rem;
 		border-radius: 1.5rem;
@@ -666,6 +684,10 @@ $repoBGList: #EA816E, #F6CC5C, #659BF3, #BDD98E, #F08BDB, #AA7DFE;
 		// background: #ffd6c0;
 		color: white;
 		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		opacity: .9;
 		.repo-name {
 			font-size: 1.5rem;
 			font-weight: bold;
@@ -674,6 +696,7 @@ $repoBGList: #EA816E, #F6CC5C, #659BF3, #BDD98E, #F08BDB, #AA7DFE;
 		.repo-desc {
 			font-size: 1rem;
 			margin-bottom: 0px;
+			flex: 1 0 auto;
 		}
 		.repo-star {
 			display: flex;
@@ -698,7 +721,7 @@ $repoBGList: #EA816E, #F6CC5C, #659BF3, #BDD98E, #F08BDB, #AA7DFE;
 		&::before {
 			content: ' ';
 			top: -1.5rem;
-			right: -1.5rem;
+			right: -3rem;
 			width: 7rem;
 			height: 7rem;
 			display: inline-block;
@@ -712,7 +735,7 @@ $repoBGList: #EA816E, #F6CC5C, #659BF3, #BDD98E, #F08BDB, #AA7DFE;
 		&::after {
 			content: ' ';
 			bottom: -3rem;
-			right: 0;
+			right: -1.5rem;
 			width: 10rem;
 			height: 10rem;
 			display: inline-block;
@@ -724,6 +747,7 @@ $repoBGList: #EA816E, #F6CC5C, #659BF3, #BDD98E, #F08BDB, #AA7DFE;
 			transition: all ease .5s;
 		}
 		&:hover {
+			opacity: 1;
 			&::before {
 				width: 8rem;
 				height: 8rem;
