@@ -29,6 +29,9 @@
 	li,  p {
 		font-weight: 400;
 		color: $resumeText;
+		@include media("(max-width: 768px)") {
+			font-size: 16px;
+		}
 	}
 
 	
@@ -113,25 +116,31 @@
 	.project-title {
 		font-size: 1.5rem;
 		position: relative;
-		border-bottom: 3px solid #acbaee;
+		border-bottom: 3px double #acbaee;
 		display: inline;
+		font-weight: 600;
 		a {
 			color: $bold-black;
-			font-weight: 500;
+			font-weight: 600;
+			&:hover {
+				color: $resumeColor;
+			}
 		}
 		&::after {
-			content: '.';
+			// content: '.';
 			font-size: 1.5rem;
 			color: #acbaee;
 			position: absolute;
-			bottom: -0.525rem;
+			// bottom: -0.525rem;
+			bottom: -0.125rem;
 			margin-left: 0.125rem;
 		}
 	}
 
 	.semi-title {
 		font-size: 14px;
-		color: #777777;
+		font-weight: 600;
+		color: #8797d1;
 		margin-bottom: 0.25rem;
 	}
 
@@ -141,10 +150,19 @@
 	}
 
 	.desc {
+		@include media("(max-width: 768px)") {
+			margin-top: 1.5rem;
+		}
 		p {
 			margin-bottom: 1.5rem;
 		}
 	}
+}
+
+.tags {
+	
+    margin-top: 1rem;
+    font-size: 14px;
 }
 
 .resume-profile {	
@@ -189,3 +207,16 @@
 	}
 }
 
+
+.stress {
+	font-weight: 500;
+	text-decoration: underline;
+	// text-decoration-style: wavy;
+	text-decoration-color: $resumeColor;
+	text-decoration-thickness: 1px;
+}
+
+.tag-badge {
+    font-size: 14px;
+	font-weight: 400;
+}
