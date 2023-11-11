@@ -1,0 +1,191 @@
+@mixin media($queryString){
+    @media #{$queryString} {
+      @content;
+    }
+}
+
+.container-resume {
+    width: 100%;
+    max-width: 56rem;
+    margin: auto;
+	
+	::-moz-selection {
+	   background: #a4b4ec;
+	   color: #fff;
+	}
+	::selection {
+	   background: #a4b4ec;
+	   color: #fff;
+	}
+
+}
+/* RESUME */
+.resume {
+	padding-top: 10rem;
+    font-size: 1.25rem;
+	font-weight: 400;
+	color: $resumeText;
+
+	li,  p {
+		font-weight: 400;
+		color: $resumeText;
+	}
+
+	
+
+	@include media("(max-width: 768px)") { 
+		padding-top: 2rem;
+	}
+	.introduce {
+		height: auto;
+		padding-bottom: 100px;
+		position: relative;
+		@include media("(max-width: 768px)") {
+			padding-bottom: 40px;
+			height: auto;
+		}
+		.resume-block {
+			margin-bottom: 5rem;
+		}
+	}
+
+	
+	.name {
+		margin-top: 0px;
+		border-left: none;
+		padding-left: 0px;
+		font-weight: bold;
+		position: relative;  
+		&::after {
+			content: '.';
+			font-size: 2rem;
+			color: $resumeColor;
+			position: absolute; 
+			bottom: -0.125rem;
+		}
+		&::before {
+			margin-top: 0px;
+			margin-left: -10px;
+			position: absolute;
+			width: 24px;
+			height: 24px;
+			border-radius: 8px;
+			content: " ";
+			white-space: pre;
+			background-color: $resumeColor;
+			z-index: -1;
+			transform: rotate(-12deg);
+		}
+	}
+
+	.title {
+		margin-top: 0px;
+		position: relative; 
+		font-size: 2rem;
+		
+		// background: linear-gradient(to right, rgb(219, 225, 248), rgba(219, 225, 248, 0.2) 90%); 
+		&::before {
+			margin-top: 0px;
+			margin-left: -10px;
+			position: absolute;
+			width: 24px;
+			height: 24px;
+			border-radius: 8px;
+			content: " ";
+			white-space: pre;
+			background-color: $resumeColor; 
+			z-index: -1;
+			transform: rotate(-12deg);
+		}
+	}
+
+	.project-row {
+		// margin-bottom: 2rem;
+	}
+
+	hr.divider {
+		background: #d9d9d9;
+		height: 1px;
+		border: 0;
+		margin-bottom: 2rem;
+	}
+
+	.project-title {
+		font-size: 1.5rem;
+		position: relative;
+		border-bottom: 3px solid #acbaee;
+		display: inline;
+		a {
+			color: $bold-black;
+			font-weight: 500;
+		}
+		&::after {
+			content: '.';
+			font-size: 1.5rem;
+			color: #acbaee;
+			position: absolute;
+			bottom: -0.525rem;
+			margin-left: 0.125rem;
+		}
+	}
+
+	.semi-title {
+		font-size: 14px;
+		color: #777777;
+		margin-bottom: 0.25rem;
+	}
+
+	.semi-list {
+		padding-left: 0px;
+		margin-top: 0px;
+	}
+
+	.desc {
+		p {
+			margin-bottom: 1.5rem;
+		}
+	}
+}
+
+.resume-profile {	
+	.profile-img {
+		height: 250px;
+		border-radius: .5rem;
+		@include media("(max-width: 768px)") { 
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 3rem;
+		}
+	}
+
+	.info-list {
+		margin-top: 2rem;
+		padding-left: 0.5rem;
+		.info {
+			display: flex;
+			align-items: center;
+			margin-bottom: 0.75rem;
+			.info-icon {
+				margin-right: 1.25rem;
+			}
+			a {
+				font-weight: 400;
+				color: $resumeText;
+			}
+		}
+	}
+}
+
+.resume-opensource {
+
+}
+
+.resume-education {
+	.info-detail {
+		margin-left: 0.5rem;
+		font-size: 14px;
+		opacity: 0.6;
+	}
+}
+
