@@ -4,17 +4,23 @@
     }
 }
 
+// Resume
+$resumeColor: #acbaee;
+$resumeText: #313539;
+$semiColor: #8797d1;
+$border: #acbaee;
+
 .container-resume {
     width: 100%;
-    max-width: 56rem;
+    max-width: 58rem;
     margin: auto;
 	
 	::-moz-selection {
-	   background: #a4b4ec;
+	   background: $resumeColor;
 	   color: #fff;
 	}
 	::selection {
-	   background: #a4b4ec;
+	   background: $resumeColor;
 	   color: #fff;
 	}
 
@@ -102,8 +108,13 @@
 		}
 	}
 
-	.project-row {
+	.project-row .desc {
 		// margin-bottom: 2rem;
+		a {
+			color: $semiColor;
+			/* font-weight: 500; */
+			text-decoration: underline;
+		}
 	}
 
 	hr.divider {
@@ -116,7 +127,7 @@
 	.project-title {
 		font-size: 1.5rem;
 		position: relative;
-		border-bottom: 3px double #acbaee;
+		border-bottom: 3px double $border;
 		display: inline;
 		font-weight: 600;
 		a {
@@ -129,7 +140,7 @@
 		&::after {
 			// content: '.';
 			font-size: 1.5rem;
-			color: #acbaee;
+			color: $border;
 			position: absolute;
 			// bottom: -0.525rem;
 			bottom: -0.125rem;
@@ -140,7 +151,7 @@
 	.semi-title {
 		font-size: 14px;
 		font-weight: 600;
-		color: #8797d1;
+		color: $semiColor;
 		margin-bottom: 0.25rem;
 	}
 
