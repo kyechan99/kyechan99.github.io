@@ -24,7 +24,7 @@
 		</div>
 
 		<div class="container">
-			<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+			<article class="post post-pd h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 				<div class="quick-bar hide" id="quick-bar">
 					<button class="quick-btn" id="up-btn">
 						{% octicon triangle-up height:24 %}
@@ -37,7 +37,7 @@
 				<header class="post-header">
 					<div class="post-info">
 						<p class="post-category p-name" itemprop="name headline">
-							{%- if page.categories[0] == 'Lib' or page.categories[0] == 'Dev' or page.categories[0] == 'Tech' -%}
+							{%- if page.categories[0] == 'Lib' or page.categories[0] == 'Dev' or page.categories[0] == 'Tech' or page.categories[0] == 'Memo' -%}
 								<a href="/DevNote">개발노트</a> / {{ page.categories[0] }}
 							{%- elsif page.categories[0] == 'Games' or page.categories[0] == 'Web' or page.categories[0] == 'App' -%}
 								<a href="/Project">프로젝트</a> / {{ page.categories[0] }}

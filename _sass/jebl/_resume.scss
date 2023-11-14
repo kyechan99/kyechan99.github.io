@@ -27,7 +27,7 @@ $border: #acbaee;
 }
 /* RESUME */
 .resume {
-	padding-top: 10rem;
+	padding-top: 9rem;
     font-size: 1.25rem;
 	font-weight: 400;
 	color: $resumeText;
@@ -54,7 +54,10 @@ $border: #acbaee;
 			height: auto;
 		}
 		.resume-block {
-			margin-bottom: 5rem;
+			margin-bottom: 7.5rem;
+			@include media("(max-width: 768px)") { 
+				margin-bottom: 6rem;
+			}
 		}
 	}
 
@@ -84,6 +87,13 @@ $border: #acbaee;
 			background-color: $resumeColor;
 			z-index: -1;
 			transform: rotate(-12deg);
+		}
+		.name-en {
+			font-size: 1.5rem;
+			margin-left: 0.5rem;
+			@include media("(max-width: 768px)") {
+				font-size: 1.25rem;
+			}
 		}
 	}
 

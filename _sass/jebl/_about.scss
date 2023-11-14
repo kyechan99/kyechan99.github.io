@@ -227,4 +227,25 @@
 			}
 		}
 	}
+	.card.card-link {
+		margin-top: 2rem;
+		padding: 1rem;
+		color: black;
+		border: 1px solid #cbcbcb;
+		animation: card-link-kf 2s infinite alternate; 
+		h2 {
+			margin-top: 0px;
+		}
+		p {
+			margin-bottom: 0px;
+		}
+		&:hover {
+			background: #C5A4D8;
+		}
+	}
 }
+
+@keyframes card-link-kf {
+	0%   { background: #ede7f6; } 
+	100% { background: #dcd3e9; }
+  }
