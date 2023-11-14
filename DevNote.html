@@ -4,7 +4,7 @@ title: 개발노트
 permalink: /DevNote/
 ---
 
-{% assign postArray = site.categories.Lib | concat: site.categories.Tech  | sort: 'date' | reverse %}
+{% assign postArray = site.categories.Lib | concat: site.categories.Tech | concat: site.categories.Memo   | sort: 'date' | reverse %}
 <div class="parallax" style="background-image:url('/assets/img/devnote-header-img.png')"></div>
 <div class="post devnote">
   {%- if postArray.size > 0 -%}

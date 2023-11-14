@@ -5,7 +5,7 @@
 layout: home
 ---
 
-{% assign recentPostArray = site.categories.Lib | concat: site.categories.Tech  | sort: 'date' | reverse %}
+{% assign recentPostArray = site.categories.Lib | concat: site.categories.Tech | concat: site.categories.Memo | sort: 'date' | reverse %}
 {% assign projectPostArray = site.categories.Games | concat: site.categories.App | concat: site.categories.Web  | sort: 'date' | reverse %}
 
 <div class="home" id="app">
