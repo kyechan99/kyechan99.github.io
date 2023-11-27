@@ -5,14 +5,15 @@
 }
 
 // Resume
-$resumeColor: #acbaee;
+$resumeColor: #a296ff;
 $resumeText: #313539;
-$semiColor: #8797d1;
+$semiColor: #a296ff;
+$resumeHighlightColor: #c7ceff;
 $border: #acbaee;
 
 .container-resume {
     width: 100%;
-    max-width: 58rem;
+    max-width: 55rem;
     margin: auto;
 	
 	::-moz-selection {
@@ -27,10 +28,27 @@ $border: #acbaee;
 }
 /* RESUME */
 .resume {
-	padding-top: 9rem;
+	padding-top: 10rem;
     font-size: 1.25rem;
 	font-weight: 400;
 	color: $resumeText;
+
+
+	/* PRINT */
+	@media print {
+		margin-top: 1rem;
+		.col-md-4 {
+			flex: 0 0 33.33333%;
+			max-width: 33.33333%;
+		}
+		.col-md-8 {
+			flex: 0 0 66.66667%;
+			max-width: 66.66667%;
+		}
+	}
+
+
+
 
 	li,  p {
 		font-weight: 400;
@@ -53,11 +71,14 @@ $border: #acbaee;
 			padding-bottom: 40px;
 			height: auto;
 		}
-		.resume-block {
-			margin-bottom: 7.5rem;
-			@include media("(max-width: 768px)") { 
-				margin-bottom: 6rem;
-			}
+	}
+	.resume-block {
+		margin-bottom: 7.5rem;
+		@include media("(max-width: 768px)") { 
+			margin-bottom: 6rem;
+		}
+		@media print {
+			margin-bottom: 3.5rem;
 		}
 	}
 
@@ -84,7 +105,7 @@ $border: #acbaee;
 			border-radius: 8px;
 			content: " ";
 			white-space: pre;
-			background-color: $resumeColor;
+			background-color: $resumeHighlightColor;
 			z-index: -1;
 			transform: rotate(-12deg);
 		}
@@ -112,7 +133,7 @@ $border: #acbaee;
 			border-radius: 8px;
 			content: " ";
 			white-space: pre;
-			background-color: $resumeColor; 
+			background-color: $resumeHighlightColor; 
 			z-index: -1;
 			transform: rotate(-12deg);
 		}
@@ -137,7 +158,7 @@ $border: #acbaee;
 	.project-title {
 		font-size: 1.5rem;
 		position: relative;
-		border-bottom: 3px double $border;
+		// border-bottom: 3px double $border;
 		display: inline;
 		font-weight: 600;
 		a {
@@ -149,13 +170,50 @@ $border: #acbaee;
 		}
 		&::after {
 			// content: '.';
-			font-size: 1.5rem;
-			color: $border;
-			position: absolute;
-			// bottom: -0.525rem;
-			bottom: -0.125rem;
-			margin-left: 0.125rem;
+			// font-size: 1.5rem;
+			// color: $border;
+			// position: absolute;
+			// // bottom: -0.525rem;
+			// bottom: -0.125rem;
+			// margin-left: 0.125rem;
 		}
+	}
+
+	.url-block {
+		border: 1px solid #d9d9d9;
+		border-radius: 0.5rem;
+		width: 100%;
+		padding: 1rem;
+		line-height: 1.25rem;
+		margin: 1rem 0rem;
+		position: relative;
+		&::before { 
+			position: absolute;
+			top: -0.75rem;
+			left: 0.5rem;
+			font-size: 0.675rem;
+			background: white;
+			padding: 0rem 0.5rem;
+		}
+		&.github {
+			&::before {
+				content: 'GitHub';
+			}
+		}
+		&.service {
+			&::before {
+				content: 'Service';
+			}
+		}
+		a {
+			font-size: 0.875rem;
+			word-break: break-all;
+			color: $resumeColor;
+		}
+	}
+
+	.project-description {
+		margin: 0.75rem 0rem;
 	}
 
 	.semi-title {
@@ -167,23 +225,50 @@ $border: #acbaee;
 
 	.semi-list {
 		padding-left: 0px;
-		margin-top: 0px;
+		margin: 0.25rem 0rem 1rem 0rem;
+		&.origin-ul {
+			padding-left: 1.5rem;
+			// list-style: disc;
+			// & + & {
+			// 	list-style: circle;
+			// }
+		}
+		li {
+			
+			margin: 0.25rem 0rem;
+		}
 	}
 
 	.desc {
 		@include media("(max-width: 768px)") {
 			margin-top: 1.5rem;
 		}
+		@media print {
+			margin-top: 0rem;
+		}
 		p {
 			margin-bottom: 1.5rem;
 		}
 	}
+
+	h4 {
+		margin-top: 0.5rem;
+	}
 }
 
 .tags {
-	
-    margin-top: 1rem;
+    line-height: 2rem;
+    margin: 0.75rem 0rem 1.5rem 0rem;
     font-size: 14px;
+}
+
+.resume-introduce {
+	.intro-block {
+		margin-bottom: 2rem;
+		p {
+			margin-bottom: 0.25rem;
+		}
+	}
 }
 
 .resume-profile {	
@@ -195,6 +280,9 @@ $border: #acbaee;
 			margin-left: auto;
 			margin-right: auto;
 			margin-bottom: 3rem;
+		}
+		@media print {
+			margin-bottom: 0rem;
 		}
 	}
 
@@ -210,6 +298,7 @@ $border: #acbaee;
 			}
 			a {
 				font-weight: 400;
+				text-decoration: underline;
 				color: $resumeText;
 			}
 		}
@@ -240,4 +329,19 @@ $border: #acbaee;
 .tag-badge {
     font-size: 14px;
 	font-weight: 400;
+}
+
+.out-link { 
+    color: #acbaee;
+    font-size: 1rem;
+}
+
+.print-empty-yuristrap {
+	@media print {
+		width: 100%;
+		margin-top: 14rem;
+	}
+}
+.info-log {
+	margin-bottom: 0.675rem;
 }
