@@ -35,7 +35,7 @@ export const getBaseMetadata = ({ title, path }: { title: string; path?: string 
       type: "website",
       images: [
         {
-          url: "/profile.png",
+          url: siteConfig.profile,
           alt: title,
         },
       ],
@@ -67,7 +67,7 @@ export const getArticleMetadata = (post: PostType): Metadata => {
       tags: post.tags,
       images: [
         {
-          url: headerImgPath(post.headerImg),
+          url: `${siteConfig.url}${headerImgPath(post.headerImg)}`,
           alt: post.title,
         },
       ],
@@ -98,35 +98,8 @@ export const JSONLD = (post: PostType) => {
     title: post.title,
     headline: post.title,
     datePublished: new Date(post.date).toISOString(),
-    inLanguage: 'ko',
+    inLanguage: "ko",
     mainEntityOfPage: { "@type": "WebPage", "@id": getRelativeUrl(post.url) },
   };
   return JSON.stringify(jsonLD);
-};
-
-const aa = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  datePublished: "2022-11-11T00:00:01.000Z",
-  description: "블로그를 만들 때 어떤 것들을 고려해야 할까? 🤔",
-  mainEntityOfPage: { "@type": "WebPage", "@id": "https://bepyan.github.io/blog/nextjs-blog/1-boilerplate" },
-  headline: "기술 블로그를 만들 때 고려해야 할 점",
-  image: ["https://bepyan.github.io/images/base.jpg"],
-  dateModified: "2022-11-11T00:00:01.000Z",
-  author: { "@type": "Person", name: "Edward Kim" },
-  publisher: {
-    "@type": "Organization",
-    name: "Edward Kim",
-    logo: { "@type": "ImageObject", url: "https://bepyan.github.io/favicon.ico" },
-  },
-};
-
-const bb = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  name: "kyechan99",
-  image: "https://kyechan99.github.io/profile.png",
-  description: "데스크 셋업 플랫폼, Desk-It",
-  title: "Desk-It",
-  datePublished: "2023-05-31T15:00:00.000Z",
 };

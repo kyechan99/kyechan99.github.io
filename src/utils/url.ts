@@ -13,7 +13,7 @@ export const isExternalLink = (url: string) => {
  * @returns 
  */
 export const headerImgPath = (file?: string) => {
-  if (!file) file = `default.png`;
+  if (!file) file = `/default.png`;
   return `/img/head-img/${file}`;
 };
 
