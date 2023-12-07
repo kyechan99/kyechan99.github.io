@@ -5,8 +5,9 @@ export function rootThemeSetting() {
   try {
     var root = document.documentElement;
     var themeStorage = localStorage.getItem("theme");
+    console.log(themeStorage);
     if (themeStorage) {
       root.setAttribute("data-theme", themeStorage);
     }
-  } catch (e) {}
+  } catch (e) { console.log(e); }
 }

@@ -98,9 +98,14 @@ export const NavBrand = styled(Link)`
   display: flex;
   align-items: center;
   color: var(--black);
-  background-color: ${({ theme }) => theme.colors.white};
+  /* background-color: ${({ theme }) => theme.colors.white}; */
   border-radius: 0.25rem;
+  padding: 0.125rem;
   ${maxMedia.mobile} {
+    padding: 0rem;
     margin-right: 0.5rem;
+  }
+  &:hover {
+    background-color: var(--grey);
   }
 `;

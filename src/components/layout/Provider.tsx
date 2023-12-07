@@ -7,7 +7,7 @@ import { rootThemeSetting } from "@/utils/dom";
 import GlobalStyle from "@/styles/GlobalStyle";
 import baseTheme from "@/styles/theme";
 
-const ScriptDom = () => {
+export const ScriptDom = () => {
   const stringifyFn = String(rootThemeSetting);
   const fnToRunOnClient = `(${stringifyFn})()`;
 
@@ -16,12 +16,10 @@ const ScriptDom = () => {
 
 export default function Provider(props: React.PropsWithChildren) {
   return (
-    <RecoilRoot>
-      <ThemeProvider theme={baseTheme}>
-        <Global styles={GlobalStyle(baseTheme)} />
-        <ScriptDom />
-        {props.children}
-      </ThemeProvider>
-    </RecoilRoot>
+    <ThemeProvider theme={baseTheme}>
+      <Global styles={GlobalStyle(baseTheme)} />
+      <ScriptDom />
+      <RecoilRoot>{props.children}</RecoilRoot>
+    </ThemeProvider>
   );
 }
