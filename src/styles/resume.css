@@ -1,0 +1,303 @@
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+
+.container-resume {
+    width: 100%;
+    max-width: 57rem;
+    margin: auto;
+  }
+  /* RESUME */
+  .resume {
+    padding-top: 10rem;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--black);
+    /* PRINT */
+  }
+  @media print {
+    .resume {
+      margin-top: 1rem;
+    }
+    .resume .col-md-4 {
+      flex: 0 0 33.33333%;
+      max-width: 33.33333%;
+    }
+    .resume .col-md-8 {
+      flex: 0 0 66.66667%;
+      max-width: 66.66667%;
+    }
+  }
+  .resume li, .resume p {
+    font-weight: 400;
+    color: var(--black);
+  }
+  @media (max-width: 768px) {
+    .resume li, .resume p {
+      font-size: 16px;
+    }
+  }
+  @media (max-width: 768px) {
+    .resume {
+      padding-top: 2rem;
+    }
+  }
+  .resume .introduce {
+    height: auto;
+    padding-bottom: 100px;
+    position: relative;
+  }
+  @media (max-width: 768px) {
+    .resume .introduce {
+      padding-bottom: 40px;
+      height: auto;
+    }
+  }
+  .resume .resume-block {
+    margin-bottom: 7.5rem;
+  }
+  @media (max-width: 768px) {
+    .resume .resume-block {
+      margin-bottom: 6rem;
+    }
+  }
+  @media print {
+    .resume .resume-block {
+      margin-bottom: 3.5rem;
+    }
+  }
+  .resume .name {
+    margin-top: 0px;
+    border-left: none;
+    padding-left: 0px;
+    font-weight: bold;
+    position: relative;
+  }
+  .resume .name::after {
+    content: ".";
+    font-size: 2rem;
+    color: #a296ff;
+    position: absolute;
+    bottom: -0.125rem;
+  }
+  .resume .name::before {
+    margin-top: 0px;
+    margin-left: -10px;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 8px;
+    content: " ";
+    white-space: pre;
+    background-color: var(--primary);
+    z-index: -1;
+    transform: rotate(-12deg);
+  }
+  .resume .name .name-en {
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+  }
+  @media (max-width: 768px) {
+    .resume .name .name-en {
+      font-size: 1.25rem;
+    }
+  }
+  .resume .title {
+    margin-top: 0px;
+    position: relative;
+    font-size: 2rem;
+  }
+  .resume .title::before {
+    margin-top: 0px;
+    margin-left: -10px;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 8px;
+    content: " ";
+    white-space: pre;
+    background-color: var(--primary);
+    z-index: -1;
+    transform: rotate(-12deg);
+  }
+  .resume .project-row .desc a {
+    color: #a296ff;
+    /* font-weight: 500; */
+    text-decoration: underline;
+  }
+  .resume hr.divider {
+    background: #d9d9d9;
+    height: 1px;
+    border: 0;
+    margin-bottom: 2rem;
+  }
+  .resume .project-title {
+    font-size: 1.5rem;
+    position: relative;
+    display: inline;
+    font-weight: 600;
+  }
+  .resume .project-title a {
+    color: var(--black);
+    font-weight: 600;
+  }
+  .resume .project-title a:hover {
+    color: #a296ff;
+  }
+  .resume .url-block {
+    border: 1px solid #d9d9d9;
+    border-radius: 0.5rem;
+    width: 100%;
+    padding: 1rem;
+    line-height: 1.25rem;
+    margin: 1rem 0rem;
+    position: relative;
+  }
+  .resume .url-block::before {
+    position: absolute;
+    top: -0.75rem;
+    left: 0.5rem;
+    font-size: 0.675rem;
+    background: var(--white);
+    padding: 0rem 0.5rem;
+  }
+  .resume .url-block.github::before {
+    content: "GitHub";
+  }
+  .resume .url-block.service::before {
+    content: "Service";
+  }
+  .resume .url-block a {
+    font-size: 0.875rem;
+    word-break: break-all;
+    color: #a296ff;
+  }
+  .resume .project-description {
+    margin: 0.75rem 0rem;
+  }
+  .resume .semi-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #a296ff;
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+  }
+  .resume .semi-list {
+    padding-left: 0px;
+    margin: 0.25rem 0rem 1rem 0rem;
+  }
+  .resume .semi-list.origin-ul {
+    padding-left: 1.5rem;
+  }
+  .resume .semi-list li {
+    margin: 0.25rem 0rem;
+  }
+  @media (max-width: 768px) {
+    .resume .desc {
+      margin-top: 1.5rem;
+    }
+  }
+  @media print {
+    .resume .desc {
+      margin-top: 0rem;
+    }
+  }
+  .resume .desc p {
+    margin-bottom: 1.5rem;
+  }
+  .resume h4 {
+    margin-top: 0.5rem;
+  }
+  
+  .tags {
+    margin: 0.75rem 0rem 1.5rem 0rem;
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.125rem;
+  }
+  
+  .resume-introduce .intro-block {
+    margin-bottom: 2rem;
+  }
+  .resume-introduce .intro-block p {
+    margin-bottom: 0.25rem;
+  }
+  
+  .resume-profile .profile-img {
+    height: 250px;
+    border-radius: 0.5rem;
+  }
+  @media (max-width: 768px) {
+    .resume-profile .profile-img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 3rem;
+    }
+  }
+  @media print {
+    .resume-profile .profile-img {
+      margin-bottom: 0rem;
+    }
+  }
+  .resume-profile .info-list {
+    margin-top: 2rem;
+    padding-left: 0.5rem;
+  }
+  .resume-profile .info-list .info {
+    display: flex;
+    margin-bottom: 0.75rem;
+  }
+  .resume-profile .info-list .info .info-icon {
+    margin-right: 1.25rem;
+  }
+  .resume-profile .info-list .info a {
+    font-weight: 400;
+    text-decoration: underline;
+    color: var(--black);
+  }
+  
+  .resume-education .info-detail {
+    margin-left: 0.5rem;
+    font-size: 14px;
+    opacity: 0.6;
+  }
+  
+  .resume-education hr.divider {
+    margin-bottom: 1rem;
+  }
+  
+  .stress {
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: #acbaee75;
+    text-decoration-thickness: 1px;
+  }
+  
+  .tag-badge {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  .out-link {
+    color: #acbaee;
+    font-size: 1rem;
+  }
+  
+  @media print {
+    .print-empty-yuristrap {
+      width: 100%;
+      margin-top: 14rem;
+    }
+  }
+  
+  @media print {
+    .print-empty-voicehub {
+      width: 100%;
+      margin-top: 4rem;
+    }
+  }
+  
+  .info-log {
+    margin-top: 6px;
+    margin-bottom: 0.675rem;
+  }

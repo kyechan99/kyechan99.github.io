@@ -1,0 +1,277 @@
+---
+layout: post
+title: React vs Preact
+date: 2021-12-17
+category: Lib
+description: Preact란 무엇이고 React와의 차이점에 대해 정리합니다.
+tags: [Web, Preact, React]
+keywords: Web, React, Preact
+comments: false
+haveImg: true
+headerImg: 2021-12-17-React-Preact.png
+---
+
+## 개요
+THREE.js 를 사용해 프로젝트를 진행하려고 하는 와중, React가 아닌 Preact 를 사용해야 좋다는 글을 보았습니다.
+처음 들어보는 Preact에 대해 검색해보니 React보다 가볍지만 사용법은 React와 같다고 하더군요.
+여기서 의문점이 생깁니다.
+React보다 가볍고 빠르다는건 알겠는데 왜 Preact에 대해 이제야 처음 들어봤고
+왜 모든 사람들이 Preact를 사용하지 않는걸까?
+
+... 해서 찾아본 Preact에 대한 설명과 React와의 차이점에 대해 정리하는 글입니다.
+
+## 참고
+- [Preact 사용해 성능 향상한 Treebo](https://kyu.io/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EC%8B%9C%EB%B8%8C-%EC%9B%B9%EC%95%B1-%EC%84%B1%EB%8A%A5%EC%97%90-%EB%8C%80%ED%95%9C-%EC%BC%80%EC%9D%B4%EC%8A%A4-%EC%8A%A4%ED%84%B0%EB%94%94-treebo/)
+- [Preact vs React: A lightweight alternative](https://daily.dev/blog/preact-a-lightweight-alternative-to-react)
+- [왜 Preact가 React를 대체하지 않았는지에 대한 토론](https://dev.to/jfbrennan/why-didn-t-preact-replace-react-i4i)
+- [19년과 이후 JS 동향](https://d2.naver.com/helloworld/2108442)
+
+## Preact 란
+Preact 의 [공식문서](https://preactjs.com/)에선 `Preact는 React의 최신 API와 동일하면서 3KB 정도로 빠르다` 라고 설명합니다.
+React 가 상당수의 프로젝트에 사용되고 있고 관련된 문서나 모듈들이 활발하게 성장하고 있는 것은 확실합니다.
+반면에 React 를 사용하면서 번들 크기가 커진다는 우려의 소리가 있다고 합니다. 
+
+번들 크기를 확인할 수 있는 [Bundlephobia](https://bundlephobia.com/) 를 통해 확인해 보면 React + React-Dom 의 번들 크기는 128KB 에 해당합니다.
+
+![1](/img/2021-12-17-React-Preact/1.png)
+
+즉, 애플리케이션을 생성한 초기부터 128KB 의 환경에서 개발된다는 이야기입니다.
+
+![2](/img/2021-12-17-React-Preact/2.png)
+
+반면에 Preact는 10KB에 해당됩니다.
+
+React와 Preact 만을 비교하자면 Preact자체의 번들 사이즈가 더 커보이지만, create-reate-app 등으로 React 앱을 만들때 react-dom 등이 같이 추가됨을 인지해야합니다.
+
+<br/>
+
+## 왜 번들 크기가 중요한지
+번들 크기가 문제가 되는 이유는 다음과 같습니다.
+
+1. 브라우저는 초기에 네트워크를 통해 **번들을 다운받아야 합니다**. 인터넷 속도가 빨라진 지금 128KB 정도에 대해 큰 무리가 없지만 프로젝트 진행에 따라 번들 크기가 증가하는 것도, 모든 사용자의 인터넷 속도가 같지 않다는 점까지 고려해야 됩니다.
+2. 스크립트가 클수록 구문을 **분석해야할 코드 역시 많아집니다**.
+3. 브라우저가 코드를 실행할때 그 실행해야하는 **코드가 많을 수록 역시 시간이 걸립니다**.
+4. 번들의 크기가 많다는건 **메모리의 소비 역시 많아짐**을 의미합니다. 분석된 코드와 런타임 변수들이 메모리에 저장되기 때문입니다.
+
+<br/>
+
+
+## 그럼 왜 Preact의 유저가 적은지
+Preact 가 가볍다는 것을 알겠고 또 그렇기 떄문에 빠르다는 것도 알겠습니다.
+그렇다면 왜 Preact를 사용하지 않는걸까요?
+
+관련된 토론에서는 가장 큰 이유를  Preact가 **React에 비해 커뮤니티 활성화의 부족**하기 때문이라고 말합니다.
+
+Preact를 React처럼 사용해도 된다 해도 완전히 같다는 아니죠.
+기본적으로 hooks 를 사용할때도 `preact/hooks` 를 import 해서 사용해야 한다는 점부터 조금 다릅니다.
+때문에 웹 서핑이 필요로 할 때 React에 비해서는 아직 자료가 부족하다는 이야기입니다.
+
+더해서 Preact는 Meta같은 **회사에서 관리하고 있지 않는 점**입니다.
+
+React의 LICENSE 를 확인해보면 Facebook 으로 명시되어 있지만 Preact의 LICENSE 는 개인으로 명시되어 있습니다. (Preact 개발자 : Google의 Jason Miller) 
+아무래도 기업이 관리한다는 점은 한 개인보다 더 많은 테스트 및 실 적용에 대해서 훨씬 안전하고 지속적인 업데이트 면에서도 좋아 보입니다.
+물론 Preact의 라이센스가 개인이라고 해서 혼자 관리한다는 것은 아닙니다.
+오픈소스 형태라 많은 개발자 분들이 도움주고 있으니 이는 어디까지나 예시입니다.
+
+개인적인 프로젝트를 진행하는 것이라면 모르겠지만, 상용화라거나 안정적인 개발을 원할때는 아무래도 앞의 문제가 중요한 것은 확실합니다.
+아무래도 강의나 학원에서 보면 대체로 React를 수업하는 경우가 많은 이유도 그런 탓같습니다.
+후에 Preact가 유명세를 타게 된다면 역시 바뀔수도 있는거겠죠.
+
+음... 
+
+솔직히 Preact 유저가 적은지에 대해서는 수긍은 가지만 정말 사이다 같은 명쾌한 이유는 아닙니다.
+Preact 와 React 의 사용법에 대해 좀 더 알아보고 정말 괜찮다 싶으면 사용하면 되며 우리가 사용하고 또 공유할 수록 Preact의 커뮤니티가 성자하는 것이 아닐까 싶습니다.
+
+
+<br/>
+
+
+## Preact 의 노력
+Preact 역시 이를 인지하고 있기 때문에 `preact/compat`을 제공하는 것 같습니다.
+compat은 React로 제작한 프로젝트를 Preact로 마이그레이션 해줍니다.
+
+```js
+const config = { 
+   //...snip
+  "resolve": { 
+    "alias": { 
+      "react": "preact/compat",
+      "react-dom/test-utils": "preact/test-utils",
+      "react-dom": "preact/compat",     // Must be below test-utils
+      "react/jsx-runtime": "preact/jsx-runtime"
+    },
+  }
+}
+```
+
+> [preactjs - aliasing in webpack 문서](https://preactjs.com/guide/v10/getting-started/#aliasing-react-to-preact) 
+
+webpack 환경에서 위와 같은 설정으로 마이그레이션을 도와주는 듯 합니다.
+변환 방법에 대해서는 다루는 포스트가 아니니 공식 문서를 참고해주세요.
+
+
+<br/>
+
+## 합성 이벤트 삭제
+
+공식 문서에 따르면 preact는 크기와 성능을 향상시키기 위해 [합성 이벤트](https://ko.reactjs.org/docs/events.html)(SyntheticEvent) 를 지원하지 않습니다.
+
+리액트에서 이벤트 발생시 이 합성 이벤트를 사용하게 되는데요.
+이 합성 이벤트는 순수(native) 이벤트가 아니라 래핑된, 가공된 이벤트이기 때문에 쉽게 사용할 수 있을뿐 Preact 입장에선 불필요한 작업이라 생각하는 것 같습니다.
+
+Preact 에서는 브라우저의 표준인 `addEventListener` 를 이용해 이벤트 핸들러를 생성합니다.
+
+때문에 합성 이벤트의 `onInput` 이나 `onChange` 등을 사용했을때 앞의 마이그레이션 `preact/compat` 을 사용해도 변환되지 않는다고 합니다.
+
+<br/>
+
+## Render 시 변수 호출
+```js
+// Works in both Preact and React
+class Foo extends Component {
+  state = { age: 1 };
+
+  render() {
+    return <div>Name: {this.props.name}, Age: {this.state.age}</div>;
+  }
+}
+```
+위 코드는 props와 state 안의 변수들을 render()에서 사용할때의 방법입니다. 
+React에서는 위처럼 `this.***.`가 강제되는 반면 Preact 에서는 강제가 아닙니다.
+
+```js
+// Only works in Preact
+class Foo extends Component {
+  state = { age: 1 };
+
+  render({ name }, { age }) {
+    return <div>Name: {name}, Age: {age}</div>;
+  }
+}
+```
+
+위처럼 render() 함수에 props 혹은 state 안의 변수들을 넣어주면서 `this.***.` 구문이 삭제됩니다.
+
+인자로 props, state 순으로 작성합니다.
+
+> [참고 - preactjs / render](https://preactjs.com/guide/v10/api-reference/#render)
+
+
+<br/>
+
+
+## className 의 강제성
+```js
+// This:
+<div class="foo" />
+
+// ...is the same as:
+<div className="foo" />
+```
+React 에서 실수로 className을 class 로 썼을때 콘솔창이 매우 더러워지죠. 
+Preact 에서는 짧은 코드 작성을 위해 class를 지원합니다.
+
+
+<br/>
+
+
+## JSX 안의 SVG
+```html
+// React
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <circle fill="none" strokeWidth="2" strokeLinejoin="round" cx="24" cy="24" r="20" />
+</svg>
+// Preact (note stroke-width and stroke-linejoin)
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <circle fill="none" stroke-width="2" stroke-linejoin="round" cx="24" cy="24" r="20" />
+</svg>
+```
+
+큰 차의라기 보다 `strokeWidth`나 `strokeLinejoin` 등의 속성을 `stroke-width` 나 `stroke-linejoin`으로 바꾸어 사용합니다.
+
+Preact는 React 처럼 속성명이 바뀌는 것보다 일반적으로 사용하는 방식을 지향하는 듯 싶습니다.
+
+
+<br/>
+
+## onInput 사용하기
+```html
+// React
+<input onChange={e => console.log(e.target.value)} />
+
+// Preact
+<input onInput={e => console.log(e.target.value)} />
+```
+
+기존의 HTML 에서는
+- onChange() : input focus 벗어났을때 값이  변경되었다면 이벤트 발생
+- onInput() : input 값이 변경 될때마다 이벤트 발생
+
+이였지만 React 에서는 onChnage()가  onInput()가 똑같게 사용된다.
+
+
+<br/>
+
+## JSX 생성자
+Preact 에서의 `h` 는 React의 `createElement` 와 같습니다.
+
+```html
+<a href="/">
+  <span>Home</span>
+</a>
+```
+때문에 JSX 에서 위와 같이 작성하였을때
+
+```js
+// Preact:
+h(
+  'a',
+  { href:'/' },
+  h('span', null, 'Home')
+);
+
+// React:
+React.createElement(
+  'a',
+  { href:'/' },
+  React.createElement('span', null, 'Home')
+);
+```
+위 와 같이 export 됩니다.
+
+꼭 export 때만이 아니라 createElement 를 h로 대신하기 때문에 코드 자체가 가벼워져 보입니다.
+
+
+<br/>
+
+## Children API
+```js
+// React:
+function App(props) {
+  return <Modal content={Children.only(props.children)} />
+}
+
+// Preact: use props.children directly:
+function App(props) {
+  return <Modal content={props.children} />
+}
+```
+
+Preact 에서는 props.children 을 바로 사용할 수 있습니다.
+
+> 이 부분은 아직 크게 와닿지 않아서 사용해봐야 자세히 적을 수 있을것 같습니다..
+
+
+
+<br/>
+
+
+## 마치며
+Forem 및 Dev.to 사이트나, Uber 에서는 preact를 사용한다고 합니다. 
+인도의 호텔 체인 서비스 Treebo 가 preact 를 사용하면서 성능 향상 시킨 내용에 대한 [포스팅](https://kyu.io/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EC%8B%9C%EB%B8%8C-%EC%9B%B9%EC%95%B1-%EC%84%B1%EB%8A%A5%EC%97%90-%EB%8C%80%ED%95%9C-%EC%BC%80%EC%9D%B4%EC%8A%A4-%EC%8A%A4%ED%84%B0%EB%94%94-treebo/)이 있는데요.
+확실히 내용을 보면 Preact 가 성능향상에 큰 도움을 주는 듯 싶습니다.
+좀 더 성장해서 React와 명확히 구분되는 일이 생기는 날이 올까 기대가 되네요.
+
+글에서는 이제 Preact 공식 문서에서 밝히는 React와의 차이점에 대해 설명했습니다.
+React와 다르지 않다며 접근성을 낮추기 위해 많이 노력하는 듯 싶은데요.
+하지만 실제로 Router나 Hooks 를 사용할때는 조금 다르게 사용하는 듯 하니 앞으로 공부하면서 다른 점이 있다면 계속 추가해 보도록 하겠습니다.

@@ -1,47 +1,36 @@
-#  kyechan99.github.io
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-![](/assets/favicon.ico)  <a href="https://github.com/kyechan99/kyechan99.github.io/labels/theme/">
- 	<img src="https://img.shields.io/badge/ISSUE-THEME-%239dd665?style=for-the-badge"/>
- </a>
- <img src="https://img.shields.io/github/license/kyechan99/kyechan99.github.io?style=for-the-badge"/>
- <a href="https://kyechan99.github.io/">
- 	<img src="https://img.shields.io/badge/BLOG-SITE-%235f5fff?style=for-the-badge"/>
- </a>
- 
-## EXAMPLE
-### Main
-![1](README/1.png)
+## Getting Started
 
-### Darkmode
-![2](README/2.png)
+First, run the development server:
 
-### Post
-![4](README/4.png)
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-### Responsive
-![3](README/3.png)
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## How to customize?
-### Customize color
-Move to [_variables](https://github.com/kyechan99/kyechan99.github.io/blob/master/_sass/jebl/_variables.scss), and change colors what you want to use.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-> Some good to use example themes [THEME](https://github.com/kyechan99/kyechan99.github.io/labels/theme/)
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-### Customize base (reboot)
-Move to [_base](https://github.com/kyechan99/kyechan99.github.io/blob/master/_sass/jebl/_base.scss). Customize what you want. 
+## Learn More
 
-### Change about page data
-The app in [about.html](https://github.com/kyechan99/kyechan99.github.io/blob/master/_layouts/about.html).
+To learn more about Next.js, take a look at the following resources:
 
-The page data is determined by the data in Vue.js.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Logic
-### Post head-img
-Post head-img was point to `/assets/head-img`. ([/head-img](https://github.com/kyechan99/kyechan99.github.io/tree/master/assets/img/head-img))
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-So you should saved the image here, what you want to show post head image.
+## Deploy on Vercel
 
-## Yuristrap
-This project was created using [yuristrap](https://github.com/yuristrap/yuristrap).
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-<a href="https://github.com/yuristrap/yuristrap"><img src="https://avatars1.githubusercontent.com/u/68942934?s=200&v=4" width='100'/></a>
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
