@@ -12,6 +12,7 @@ headerImg: 2021-12-01-Threejs-Draw.jpg
 ---
 
 ## 개요
+
 요즘 한번도 배운적 없던 THREE.js 를 사용해 프로젝트를 진행해 보게 되어 배울것도 이해해야 될 것도 많아져 정신 없긴한데요.
 또 그만큼 새로운 기술에 대해 공부한다는 생각에 재밌기도 합니다.
 무엇보다 3D 환경에 동적인 면이 신기하기도, VR 기기 같은 여러 인풋에 대한 상황이 흥미롭습니다.
@@ -22,19 +23,18 @@ THREE.js 의 상세한 내용은 담지 않았습니다.
 몇 달전 내용이 최신 버전에서는 꽤나 다르거나 사라진 함수/객체가 많더군요.
 아래 코드는 `r135` 버전에서 작동됩니다.
 
-
 ## 코드 결과
 
 ![1](https://user-images.githubusercontent.com/14146566/168096520-1d04b7ba-41e7-4253-bb2f-72d8517fbd51.gif)
 
-
 ## 기본 설정
+
 제일 처음으로 씬과 카메라, 렌더러를 생성합니다.
 
 ```js
-import * as THREE from 'three';
+import * as THREE from "three";
 
-var scene = new THREE.Scene(); 
+var scene = new THREE.Scene();
 
 var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
 camera.position.set(0, 0, 10);
@@ -45,6 +45,7 @@ document.body.appendChild(renderer.domElement);
 ```
 
 ## OrbitControls 추가
+
 마우스를 이용해 화면을 이동시키기 위해 OrbitControls 을 추가합니다.
 
 ```js
@@ -54,6 +55,7 @@ var controls = new OrbitControls(camera, renderer.domElement);
 ```
 
 ## Raycaster 추가
+
 카메라가 바라보는 화면으로 raycast를 발사하여 3d 상에 마우스 위치를 받아옵니다.
 
 Raycaster 를 사용하는 이유는 뒤에서 언급하겠습니다.
@@ -67,6 +69,7 @@ var point = new THREE.Vector3();
 ```
 
 ## plane 생성
+
 마우스 위치를 그대로 받아와 3d 에서 사용하기 힘듭니다.
 
 카메라의 위치, 시야각, 각도 등의 환경에 따라 변경되기 때문인데요.
@@ -81,6 +84,7 @@ var planeNormal = new THREE.Vector3();
 ```
 
 ## 이벤트 리스너 생성
+
 마우스 이동과 키보드 이벤트를 받을 리스너를 추가합니다.
 
 일반적으로 그림을 그릴때 마우스 클릭 + 이동으로 입력을 받지만, 앞에서 `OrbitControls` 를 사용해 마우스 클릭은 카메라 이동으로 작동하게 만들었습니다.
@@ -91,21 +95,22 @@ var planeNormal = new THREE.Vector3();
 
 ```js
 document.addEventListener("mousemove", event => {
-    // 마우스 이동
-    //- 그림 그릴때 이동하고 있는 마우스의 현재 좌표를 받아옵니다.
+  // 마우스 이동
+  //- 그림 그릴때 이동하고 있는 마우스의 현재 좌표를 받아옵니다.
 });
 document.addEventListener("keydown", event => {
-    // 키보드 누르기
-    //- 마우스 위치를 따라 그림을 그리고자 할때 스페이스바를 누릅니다.
-    //- 그린 그림을 취소하고 싶을때 Ctrl+Z 를 입력 받습니다.
+  // 키보드 누르기
+  //- 마우스 위치를 따라 그림을 그리고자 할때 스페이스바를 누릅니다.
+  //- 그린 그림을 취소하고 싶을때 Ctrl+Z 를 입력 받습니다.
 });
 document.addEventListener("keyup", event => {
-    // 키보드 떼기
-    //- 스페이스바에서 손을 떼었을때 그림 그리기를 해제합니다.
+  // 키보드 떼기
+  //- 스페이스바에서 손을 떼었을때 그림 그리기를 해제합니다.
 });
 ```
 
 ## render
+
 렌더링 합니다.
 
 ```js
@@ -116,14 +121,15 @@ function render() {
 render();
 ```
 
-
 ## 그림 그리기를 위한 변수
+
 그림 그리기를 위해 필요한 변수들을 생성합니다.
+
 ```js
 let isDrawing = false;
 let myLines = [];
 let drawCount = 0;
-const MAX_POS_LENGTH = 100000; 
+const MAX_POS_LENGTH = 100000;
 ```
 
 - `isDrawing` : 그림 그리는 중임을 확인합니다. **스페이스바**를 누르고 있을때 true가 됩니다.
@@ -131,8 +137,8 @@ const MAX_POS_LENGTH = 100000;
 - `drawCount` : 0부터 N 번째 좌표까지 그림을 그린다는 의미로 변수를 저장합니다.
 - `MAX_POS_LENGTH` : 최대 N 개의 좌표를 저장할지를 의미합니다. 수가 적을수록 그림을 오래 그릴 수 없습니다.
 
-
 ## 마우스 좌표 위치 받아오는 함수
+
 현재 마우스가 바라보고 있는 위치가 3D 상에서 어떤 좌표에 해당하는지를 받아오는 함수를 생성합니다.
 
 앞서 `OrbitControls` 을 사용하지 않고 고정 화면에서 그림을 그리고자 한다면 마우스 위치를 받아오는 방법은 간단합니다.
@@ -142,13 +148,13 @@ const MAX_POS_LENGTH = 100000;
 
 ```js
 function getMousePosition(event) {
-    // 화면에서 마우스 위치 받아오기
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+  // 화면에서 마우스 위치 받아오기
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-    // ! 항상 z 좌표라는 문제와 카메라 앵글이 변하면 x와 y좌표가 정확하지 않음
-    var point = new THREE.Vector3(mouse.x, mouse.y, 0);
-    point.unproject(camera);
+  // ! 항상 z 좌표라는 문제와 카메라 앵글이 변하면 x와 y좌표가 정확하지 않음
+  var point = new THREE.Vector3(mouse.x, mouse.y, 0);
+  point.unproject(camera);
 }
 ```
 
@@ -158,17 +164,17 @@ function getMousePosition(event) {
 
 ```js
 function getMousePosition(event) {
-    // 화면에서 마우스 위치 받아오기
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+  // 화면에서 마우스 위치 받아오기
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-    // plane 이용해서 마우스 위치를 3d 에서 얻어오기
-    planeNormal.copy(camera.position).normalize();
-    plane.setFromNormalAndCoplanarPoint(camera.getWorldDirection(plane.normal), scenePosition);
+  // plane 이용해서 마우스 위치를 3d 에서 얻어오기
+  planeNormal.copy(camera.position).normalize();
+  plane.setFromNormalAndCoplanarPoint(camera.getWorldDirection(plane.normal), scenePosition);
 
-    // raycaster
-    raycaster.setFromCamera(mouse, camera);
-    raycaster.ray.intersectPlane(plane, saveHere);      // saveHere에 실제 좌표가 저장됩니다.
+  // raycaster
+  raycaster.setFromCamera(mouse, camera);
+  raycaster.ray.intersectPlane(plane, saveHere); // saveHere에 실제 좌표가 저장됩니다.
 }
 ```
 
@@ -178,10 +184,9 @@ function getMousePosition(event) {
 
 `intersectPlane` 의 두번째 인자에 raycaster로 확인된 좌표가 복사됩니다.
 
-
 > [Vector3 / normalize](https://threejs.org/docs/#api/en/math/Vector3.normalize)
 >
-> [Plane / setFromNormalAndCoplanarPoint](https://threejs.org/docs/#api/en/math/Plane.setFromNormalAndCoplanarPoint) 
+> [Plane / setFromNormalAndCoplanarPoint](https://threejs.org/docs/#api/en/math/Plane.setFromNormalAndCoplanarPoint)
 
 말로서는 조금 복잡하지 몰라도 아래 사진과 같다고 생각하면 편리합니다.
 
@@ -189,26 +194,26 @@ function getMousePosition(event) {
 
 카메라 위치와 앵글이 변해도 plane 역시 카메라를 따라가기 때문에 항상 원하는 x,y,z 값을 구할 수 있습니다.
 
-
 ## 마우스 좌표 저장하는 함수
+
 앞에서 마우스 좌표를 받아왔다면 해당 좌표를 저장하는 함수를 만들겠습니다.
 
 ```js
 function addPosition() {
-    // 현재 그리고 있는 line의 position 속성값
-    const positions = myLines[myLines.length - 1].geometry.getAttribute('position');
+  // 현재 그리고 있는 line의 position 속성값
+  const positions = myLines[myLines.length - 1].geometry.getAttribute("position");
 
-    // 마우스 좌표 추가
-    positions.array[ drawCount ++ ] = point.x;
-    positions.array[ drawCount ++ ] = point.y;
-    positions.array[ drawCount ++ ] = point.z;
+  // 마우스 좌표 추가
+  positions.array[drawCount++] = point.x;
+  positions.array[drawCount++] = point.y;
+  positions.array[drawCount++] = point.z;
 
-    // 최대 배열 크기 안넘어가게 방지
-    drawCount %= MAX_POS_LENGTH;
+  // 최대 배열 크기 안넘어가게 방지
+  drawCount %= MAX_POS_LENGTH;
 
-    // 0 ~ N(마우스가 이동한 좌표들 개수)개 까지 화면에 그림
-    myLines[myLines.length - 1].geometry.setDrawRange( 0, drawCount / 3 );
-    myLines[myLines.length - 1].geometry.getAttribute('position').needsUpdate = true;
+  // 0 ~ N(마우스가 이동한 좌표들 개수)개 까지 화면에 그림
+  myLines[myLines.length - 1].geometry.setDrawRange(0, drawCount / 3);
+  myLines[myLines.length - 1].geometry.getAttribute("position").needsUpdate = true;
 }
 ```
 
@@ -224,58 +229,58 @@ drawCount 는 좌표 x,y,z 마다 증가되기 때문에 N개의 좌표는 drawC
 
 마지막으로 THREE.LINE 의 geometry에서 position 속성에 `needsUpdate` 를 true 로 변경해 주어야 추가된 좌표가 업데이트 되어 그려집니다.
 
-
 ## 마우스 이동 이벤트
+
 앞에서 추가한 mousemouve 이벤트 리스너를 다음과 같이 변경합니다.
 
 isDrawing 은 현재 그림을 그리고자 하는 상황을 의미합니다.
 
-getMousePosition 함수에서 마우스의 좌표값을 받아온 후 point 변수에 저장되고 addPosition 함수에서 해당 좌표를 마우스가 이동한 좌표 배열에 추가하는 방식입니다. 
+getMousePosition 함수에서 마우스의 좌표값을 받아온 후 point 변수에 저장되고 addPosition 함수에서 해당 좌표를 마우스가 이동한 좌표 배열에 추가하는 방식입니다.
 
 ```js
 document.addEventListener("mousemove", event => {
-	getMousePosition(event);
-	if (isDrawing)
-		addPosition();
+  getMousePosition(event);
+  if (isDrawing) addPosition();
 });
 ```
 
 > getMousePosition 을 if문 안으로 넣어도 됩니다. 상황에 따라 변경하시면 되겠습니다.
-
 
 ## 키 입력 이벤트
 
 이번에는 스페이스바 입력과 Ctrl+Z 입력을 위해 keydown 이벤트 리스너를 변경합니다.
 
 ```js
-let keysPressed = {};		// 키 다중 입력 처리용
+let keysPressed = {}; // 키 다중 입력 처리용
 document.addEventListener("keydown", event => {
-	let key = event.key || event.keyCode;
+  let key = event.key || event.keyCode;
 
-	keysPressed[key] = true;
+  keysPressed[key] = true;
 
-	if ((key === ' ' || key === 32) && !isDrawing) {
-		isDrawing = true;
+  if ((key === " " || key === 32) && !isDrawing) {
+    isDrawing = true;
 
-		drawCount = 0;
-		
-		var geometry = new THREE.BufferGeometry();
+    drawCount = 0;
 
-		var positions = new Float32Array( MAX_POS_LENGTH * 3 ); // (x,y,z 총 3개가 담기기 때문에 * 3)
-		geometry.setAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
-		geometry.setDrawRange( 0, drawCount );
+    var geometry = new THREE.BufferGeometry();
 
-		var material = new THREE.LineBasicMaterial( { color: 'white', linewidth: 4 } );
+    var positions = new Float32Array(MAX_POS_LENGTH * 3); // (x,y,z 총 3개가 담기기 때문에 * 3)
+    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    geometry.setDrawRange(0, drawCount);
 
-		myLines.push( new THREE.Line( geometry,  material ) );
+    var material = new THREE.LineBasicMaterial({
+      color: "white",
+      linewidth: 4,
+    });
 
-		scene.add(myLines[myLines.length - 1]);
-	}
-	
-	if (keysPressed['Control'] && event.key == 'z' && !event.repeat) {
-		if (myLines.length)
-			scene.remove(myLines.pop());
-	}
+    myLines.push(new THREE.Line(geometry, material));
+
+    scene.add(myLines[myLines.length - 1]);
+  }
+
+  if (keysPressed["Control"] && event.key == "z" && !event.repeat) {
+    if (myLines.length) scene.remove(myLines.pop());
+  }
 });
 ```
 
@@ -288,46 +293,43 @@ Ctrl+Z 기능을 위해서 키 다중 입력을 처리해야 하는데요.
 
 그려지는 선의 특징을 LineBasicMaterial 에서 변경하면 되겠습니다.
 
-
 ## 키 떼기 이벤트
 
 마지막으로 키 입력에서 손을 떼었을때 즉, 키 입력을 마쳤을때의 keyup 이벤트 리스너를 변경합니다.
 
 ```js
 document.addEventListener("keyup", event => {
-	let key = event.key || event.keyCode;
-    
-	delete keysPressed[key];
+  let key = event.key || event.keyCode;
 
-	if ((key === ' ' || key === 32)) {
-		isDrawing = false;
-	}
+  delete keysPressed[key];
+
+  if (key === " " || key === 32) {
+    isDrawing = false;
+  }
 });
 ```
 
-
-
 ## 코드 전체
+
 <script src="https://gist.github.com/kyechan99/b4edc1c574ac0efe002048eac564db39.js"></script>
 
-
 ## 마치며
+
 여러모로 삽질이 조금 많았습니다.
 마우스 위치를 제대로 받지 못하는 문제부터 좌표를 계속해서 못받아 오면서 선이 끊어 지는 등,
 [MeshLine](https://github.com/spite/THREE.MeshLine) 같은 것도 추가해서 사용해보았지만 위 방법과 같이 마우스 좌표를 계속해서 추가해 주는 것이 제일 깔끔했습니다.
 
-물론 위 방법도 최고의 방법이라고 하기에는 조금 부족함이 있습니다. 
+물론 위 방법도 최고의 방법이라고 하기에는 조금 부족함이 있습니다.
 `MAX_POS_LENGTH` 변수의 값에 따라 선의 길이가 정해진다는 점인데요.
 너무 큰 값으로 설정하자니 짧게 그린 선들에게는 쓸데없이 배열의 크기가 커지는 점이 걸립니다.
 
-일단 가장 간단해 보이는 방법으로는 배열의 크기가 꽉 찼을때 새 선을 생성해주는 점이 좋아보입니다만 
+일단 가장 간단해 보이는 방법으로는 배열의 크기가 꽉 찼을때 새 선을 생성해주는 점이 좋아보입니다만
 뒤로가기 기능에서 나뉘어 지워진다는 점이 조금 아쉽습니다.
 
 만약 동적으로 배열 크기를 조절하는 방법을 찾게 되면 업데이트 하겠습니다.
 
-
-
 ## 추가 +
+
 본문에서 추가합니다.
 
 **THREE.JS 에서 일반적으로 사용하는 Line 을 사용하기보다 THREE.JS/examples에서 제공하는 line2를 사용한다면
@@ -337,7 +339,7 @@ document.addEventListener("keyup", event => {
 
 아래 코드들은 최대한 재사용 가능하게 정리해 놓았으니 필요하다면 참고하시면 좋을것같습니다.
 
-> [scribubble/drawline](https://github.com/scribubble/scribubble/blob/develop/src/util/drawLine.js) 
+> [scribubble/drawline](https://github.com/scribubble/scribubble/blob/develop/src/util/drawLine.js)
 
 본문과 크게 다른 내용은 `Line`이 아닌 `Line2`를 사용했다는 점이며,
 Line2의 geometry 속성의 `_maxInstanceCount` 값을 수동으로 직접 바꿈으로서

@@ -1,9 +1,9 @@
-import MDXLink from "@/components/mdx/MDXLink";
-import MDXImage from "@/components/mdx/MDXImage";
-import MDXCode from "@/components/mdx/MDXCode";
-
-import { useMDXComponent } from "next-contentlayer/hooks";
 import type { MDXComponents } from "mdx/types";
+import { useMDXComponent } from "next-contentlayer/hooks";
+
+import MDXCode from "@/components/mdx/MDXCode";
+import MDXImage from "@/components/mdx/MDXImage";
+import MDXLink from "@/components/mdx/MDXLink";
 
 const mdxComponents: MDXComponents = {
   a: MDXLink,

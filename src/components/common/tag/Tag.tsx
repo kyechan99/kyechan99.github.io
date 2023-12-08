@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+
 import styled from "@emotion/styled";
 
 export type TagProps = {
@@ -29,7 +30,7 @@ const TagLink = styled(Link)`
   font-size: 14px;
   font-weight: normal;
   span {
-    background-color: var(--activeBG); 
+    background-color: var(--activeBG);
     border-radius: 0.125rem;
     margin-left: 0.5rem;
     font-size: 70%;

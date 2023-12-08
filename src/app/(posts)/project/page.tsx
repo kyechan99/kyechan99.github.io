@@ -1,12 +1,18 @@
-import { Layout } from "@/components/layout";
-import { Row } from "@/components/common/grid/Container";
-import { PostFeed } from "@/components/post/PostFeed";
-import Banner from "@/components/Bannder";
-import { allProjectPosts } from "@/constants/posts";
 import { Metadata } from "next";
+
+import Banner from "@/components/Bannder";
+import { Row } from "@/components/common/grid/Container";
+import { Layout } from "@/components/layout";
+import { PostFeed } from "@/components/post/PostFeed";
+
 import { getBaseMetadata } from "@/utils/seo";
 
-export const metadata: Metadata = getBaseMetadata({ title: "프로젝트", path: "/project" });
+import { allProjectPosts } from "@/constants/posts";
+
+export const metadata: Metadata = getBaseMetadata({
+  title: "프로젝트",
+  path: "/project",
+});
 
 export default function PostPage() {
   return (
@@ -17,7 +23,7 @@ export default function PostPage() {
         <br />
         새로운 도전에도 적극적으로 참여하고자 노력하고 있어요.
       </Banner>
-      
+
       <PostFeed posts={allProjectPosts} />
     </Layout>
   );

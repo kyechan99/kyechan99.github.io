@@ -1,5 +1,6 @@
-import { getThemeStorage, setThemeStorage } from "@/utils/storage";
 import { DefaultValue, atom, atomFamily, selector } from "recoil";
+
+import { getThemeStorage, setThemeStorage } from "@/utils/storage";
 
 const themeAtom = atom<string>({
   key: "themeAtom",

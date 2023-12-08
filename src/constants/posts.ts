@@ -1,5 +1,6 @@
-import { PostType } from "@/types/post";
 import { allPosts as allCLPosts } from "contentlayer/generated";
+
+import { PostType } from "@/types/post";
 
 // contentlayer의 allPosts 를 시간순으로 정렬
 export const allPosts: PostType[] = allCLPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

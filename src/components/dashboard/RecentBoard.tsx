@@ -1,11 +1,15 @@
 "use client";
 
 import Link from "next/link";
+
 import styled from "@emotion/styled";
-import PostCard from "../post/PostCard";
-import { allPosts, allTags } from "@/constants/posts";
-import { H2 } from "../common/heading";
+
 import { maxMedia } from "@/libs/media";
+
+import { allPosts } from "@/constants/posts";
+
+import { H2 } from "../common/heading";
+import PostCard from "../post/PostCard";
 
 export default function RecentBoard() {
   return (

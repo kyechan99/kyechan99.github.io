@@ -1,15 +1,47 @@
 /* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
-
 "use client";
 
-import { IconDeviceMobile } from "@tabler/icons-react";
+import Link from "next/link";
 
-import "@/styles/resume.css";
 import styled from "@emotion/styled";
+import { IconDeviceMobile } from "@tabler/icons-react";
 import { IconMail } from "@tabler/icons-react";
 import { IconBrandGithub } from "@tabler/icons-react";
 import { IconPencil } from "@tabler/icons-react";
-import Link from "next/link";
+
+import "@/styles/resume.css";
+
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+
+/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
 
 const Container = styled.div`
   padding-left: 1rem;
@@ -140,7 +172,8 @@ export default function Home() {
                 <p>일일 사용량 45,000 건의 오픈소스를 관리하고 있습니다.</p>
                 <p>
                   기술의 사용법에 능숙해지기보다,
-                  <b className="stress">왜 필요하고 무엇을 해결하는지 근원적 물음을 제기</b>합니다.
+                  <b className="stress">왜 필요하고 무엇을 해결하는지 근원적 물음을 제기</b>
+                  합니다.
                 </p>
                 <p>이를 바탕으로 오픈소스에 관심이 많아 분석해보거나 개발 해보며 다양하게 도전해오고 있습니다.</p>
                 <p>특히 개발자에게 필요한 기능이나 문제를 경험하면서, 직접 개선하고 변화시키는 일이 즐겁습니다.</p>

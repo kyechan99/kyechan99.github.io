@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 
 import { PostLayout } from "@/components/layout";
 import { allPostPosts } from "@/constants/posts";
-
 import { PostType } from "@/types/post";
 import { getArticleMetadata } from "@/utils/seo";
 

@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": true,
+
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  }
+
+  // "pasteImage.defaultName": "YYYY-MM-DD",
+  // "pasteImage.basePath": "${projectRoot}/public/img",
+  // "pasteImage.path": "${projectRoot}/public/img/${currentFileNameWithoutExt}",
+  // "pasteImage.forceUnixStyleSeparator": true,
+  // "pasteImage.insertPattern": "![${imageFileNameWithoutExt}](${imageFilePath})",
+  // "pasteImage.prefix": "/"
+}

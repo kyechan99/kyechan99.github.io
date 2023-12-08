@@ -1,11 +1,14 @@
 "use client";
 
-import { Dispatch, SetStateAction } from "react";
+import { usePathname } from "next/navigation";
+
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { Dispatch, SetStateAction } from "react";
+
 import { maxMedia, minMedia } from "@/libs/media";
+
 import { CATEGORY, POST_CATEGORY, getCategoriesWithAll } from "@/constants/category";
-import { usePathname } from "next/navigation";
 
 type MenuNavProps = {
   menu: string;

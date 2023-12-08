@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+
 import styled from "@emotion/styled";
-import { isExternalLink } from "@/utils/url"; 
+
+import { isExternalLink } from "@/utils/url";
 
 export default function MDXLink({ href, children, className }: React.ComponentProps<"a">) {
   if (isExternalLink(href as string)) {
@@ -36,7 +38,7 @@ const LinkStyled = styled(Link)`
       padding: 0.25rem 0.75rem;
       font-size: 1rem;
       box-shadow: 0px 5px 0px var(--grey);
-      background-color: var(--activeBG); 
+      background-color: var(--activeBG);
     }
     &:hover,
     *:hover > & {

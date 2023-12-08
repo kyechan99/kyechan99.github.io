@@ -1,20 +1,21 @@
+"use client";
+
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+import Image from "next/image";
+import Link from "next/link";
+
+import useFadeIn from "@/hooks/useFadeIn";
+import { boldBorderHoverStyle, boldBorderStyle } from "@/libs/bold";
+import { maxMedia } from "@/libs/media";
+import { PostType } from "@/types/post";
+
+import { Row } from "../common/grid/Container";
+import TagList from "../common/tag/TagList";
+
 /***************************************************
  *        작성글로 이동하는 글 카드
  ***************************************************/
-"use client";
-
-import Link from "next/link";
-import Image from "next/image";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-
-import TagList from "../common/tag/TagList";
-import { Row } from "../common/grid/Container";
-import { boldBorderHoverStyle, boldBorderStyle } from "@/libs/bold";
-import useFadeIn from "@/hooks/useFadeIn";
-import { PostType } from "@/types/post";
-import { maxMedia } from "@/libs/media";
-
 export default function PostCard(post: PostType) {
   const [ref, visible] = useFadeIn();
 
@@ -50,12 +51,15 @@ const PostCardStyled = styled.div<{ $visible: boolean }>`
   /* will-change: opacity, transform; */
   opacity: 0;
   transform: translateY(16px);
-  
+
   transition:
-    margin var(--delay),        // 기존 boldBorderHover hover
-    box-shadow var(--delay),    // 기존 boldBorderHover hover
-    opacity 1s,                 // observe 나타나고 나서  
-    transform 1s;               // observe 나타나고 나서 
+    margin var(--delay),
+    // 기존 boldBorderHover hover
+    box-shadow var(--delay),
+    // 기존 boldBorderHover hover
+    opacity 1s,
+    // observe 나타나고 나서
+    transform 1s; // observe 나타나고 나서
 
   ${props =>
     props.$visible &&

@@ -10,7 +10,6 @@ haveImg: true
 headerImg: 2023-6-1-Desk-It.png
 ---
 
-
 ## 소개
 
 우리는 책상에서 많은 시간을 보냅니다. 하루의 대부분을 책상에서 작업을 하거나 혹은 개인 여가 시간을 보내기도 하죠. 특히 최근부터 개인 공간에 대한 관심도가 올라가면서 자신만의 책상(작업 공간)을 설계하는 데스크 셋업이란 문화가 발전하게 되었습니다.
@@ -24,10 +23,16 @@ headerImg: 2023-6-1-Desk-It.png
 3. 다른 유저의 게시물에서 바로 상품 구매 페이지로 갈 수 있는 접근성
 
 <div class="video-container">
-<iframe src="https://www.youtube.com/embed/3H6TQfn8TNo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe
+    src="https://www.youtube.com/embed/3H6TQfn8TNo"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
 </div>
 
-<br/>
+<br />
 ## 개요
 
 교내 프로젝트로 진행하게 된 데스크 셋업 플랫폼, Desk-It 입니다.
@@ -36,13 +41,11 @@ headerImg: 2023-6-1-Desk-It.png
 
 ![2](/img/2023-6-1-Desk-It/2.png)
 
-
-<br/>
+<br />
 
 ## 고민
 
 아무래도 가장 손이 많이 가게 된 부분은 에디터 부분입니다.
-
 
 일반적으로 단순한 텍스트를 작성할 일이었다면 기존에 여러 공개된 에디터 모듈들을 사용하면 되었을텐데요.
 아무래도 이미지를 첨부할때에 상품 데이터들을 기입하고 편집 할 수 있어야 하는 기능이 필요했기에 일단 에디터를 손봐야 했습니다.
@@ -50,7 +53,9 @@ headerImg: 2023-6-1-Desk-It.png
 가장 까다로웠던 부분들을 정리하면 이렇습니다..
 
 ![1](/img/2023-6-1-Desk-It/1.png)
+
 ### 1. 라인별 커스터마이징
+
 각 라인마다 태그 속성을 변경해야 하는 기능이에요.
 이 부분은 as로 태그 자체만 변경해 주면 단순해 보였는데요..
 `ul` 과 `ol` 들이 사용 될때에 까다로운 일이 발생합니다.
@@ -59,9 +64,10 @@ headerImg: 2023-6-1-Desk-It.png
 내가 처음 `ul`태그로 줄을 작성했다면, 다음 줄을 작성하기 위해 사용자는 엔터키를 입력합니다.
 이때, 다음 줄도 `ul` 속성에 맞추어 작성할 수 있는 경험을 제공해야 해요.
 한줄만 작성할 수 있어서야 이 기능들이 존재할 필요도 없는데 그렇기에는 이 기능은 특히 자주 사용되는 기능들입니다.
-때문에 이때 내가 어떤 줄에 어떤 속성을 사용하고 있는지에 대한 처리가 들어가게 되었고 단순한 as로 인한 태그 변환에서도 예외 처리 등의 작업이 들어가게 되었습니다. 
+때문에 이때 내가 어떤 줄에 어떤 속성을 사용하고 있는지에 대한 처리가 들어가게 되었고 단순한 as로 인한 태그 변환에서도 예외 처리 등의 작업이 들어가게 되었습니다.
 
 ### 2. 드래글로 인한 글 변환
+
 우리가 글을 작성할때에, 글들을 드래그해서 제거한다거나 해당 부분을 수정하기도 합니다.
 이런 부분에서도 또 작업이 들어갑니다..
 `input` 이나 `textarea` 에서도 드래그 후 수정은 기본적으로 지원해주는 일인데요.
@@ -87,6 +93,7 @@ headerImg: 2023-6-1-Desk-It.png
 저희 프로젝트에는 그렇게까지는 불필요하다 생각해서 네이티브한 접근으로 해결하고자 했네요.
 
 ### 3. 기타
+
 그 외에도
 
 - 이미지 첨부
@@ -94,11 +101,9 @@ headerImg: 2023-6-1-Desk-It.png
 - 입력 문자 세부 커스터마이징
 - 키보드 위/아래 입력으로 인한 줄 변경
 
-
 등등 까다로운 일들도 있었습니다만 앞서 얘기한 두 고민들과 비슷하게 해결하여 상세 내용은 생략하겠습니다.
 
-
-<br/>
+<br />
 
 ## 마치며
 

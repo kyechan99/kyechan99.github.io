@@ -1,15 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useRecoilValue } from "recoil";
-import { themeState } from "@/recoil/theme";
+
 import { Layout } from "@/components/layout";
-import Link from "next/link";
 
 export default function Home() {
   return (
     <Layout>
-      <div style={{textAlign: 'center'}}>
+      <div style={{ textAlign: "center" }}>
         <br />
         <br />
         <br />

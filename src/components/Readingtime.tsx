@@ -2,7 +2,6 @@
 
 import styled from "@emotion/styled";
 import { IconHourglassEmpty } from "@tabler/icons-react";
-import { format, parseISO } from "date-fns";
 
 export default function Readingtime({ readingTime }: { readingTime: string }) {
   return (

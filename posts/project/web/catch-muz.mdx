@@ -10,34 +10,30 @@ haveImg: true
 headerImg: 2021-8-1-catchmuz.png
 ---
 
-
-
 <p align="center">
-    <img src="https://github.com/kyechan99/catchmuz/raw/main/src/assets/catchmuz_icon.png" width="150"/>
+  <img src="https://github.com/kyechan99/catchmuz/raw/main/src/assets/catchmuz_icon.png" width="150" />
 </p>
 
-<br/>
+<br />
 
 <p align="center">
-    <strong>노래 맞추기 게임, CatchMuz !</strong>
-    <br/>
-    플레이어들과 경쟁하면서 빠르게 노래 제목을 맞춰보세요
+  <strong>노래 맞추기 게임, CatchMuz !</strong>
+  <br />
+  플레이어들과 경쟁하면서 빠르게 노래 제목을 맞춰보세요
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/github/package-json/v/kyechan99/catchmuz?style=for-the-badge"/>
-    <a href="https://github.com/kyechan99/catchmuz/releases">
-        <img src="https://img.shields.io/badge/DOWNLOAD-HERE-%23f54787?style=for-the-badge"/>
-    </a>
+  <img src="https://img.shields.io/github/package-json/v/kyechan99/catchmuz?style=for-the-badge" />
+  <a href="https://github.com/kyechan99/catchmuz/releases">
+    <img src="https://img.shields.io/badge/DOWNLOAD-HERE-%23f54787?style=for-the-badge" />
+  </a>
 </p>
 
-<br/><br/>
-
-
-
-
+<br />
+<br />
 
 ## 개요
+
 최근 다시 유행(?)이 되가고 있는 스타크래프트라는 게임에서 유즈맵 개념으로 존재하던 게임을 발견했습니다.
 스트리머 한 분이 시청자들과 재밌게 게임을 하는 모습이 눈에 띄여 해당 게임을 주목하게 되더군요.
 
@@ -54,24 +50,19 @@ headerImg: 2021-8-1-catchmuz.png
 이런 치트 문제를 해결하고자 Electron 을 도입하게 되었습니다. 프로그램 형태로 변환되어 배포하게 되면 앞서 얘기된 두 문제를 해결할 수 있었기 때문입니다.
 차후 pip 모드를 막거나 개발자 모드를 이용한 치트 방법을 막을 수 있게 되면 웹 버전으로도 제공될 수 있는 것도 이점인 것 같습니다.
 
-
-
-
-
 ## 링크
+
 - [클라이언트 다운](https://github.com/kyechan99/catchmuz/releases)
 - [클라이언트 repo](https://github.com/kyechan99/catchmuz)
 - [서버 repo](https://github.com/kyechan99/catchmuz-server)
 - [노래 데이터](https://github.com/kyechan99/catchmuz-server/tree/main/song)
 
-<br/>
-
-
-
+<br />
 
 ## 👀 플레이 방법
 
 ### 방 생성하기
+
 ![sample_0](https://github.com/kyechan99/catchmuz/raw/main/SAMPLE/sample_0.png)
 
 `최대 노래 수`는 최대 몇 곡 까지 재생할지 지정합니다. 2곡 ~ 1000곡 까지 선택 가능합니다.
@@ -84,7 +75,7 @@ headerImg: 2021-8-1-catchmuz.png
 
 `커스텀 모드`를 이용해 관련 노래 태그를 직접 선택해서 재생합니다. '남자아이돌', '여자아이돌'을 선택했다면 둘 중 하나라도 포함된 노래가 재생됩니다.
 
-<br/>
+<br />
 
 ### 게임 시작
 
@@ -92,7 +83,7 @@ headerImg: 2021-8-1-catchmuz.png
 
 인원 수가 적당히 충족되었을 때에 방장이 게임을 시작합니다.
 
-<br/>
+<br />
 
 ### 게임 플레이
 
@@ -104,7 +95,7 @@ headerImg: 2021-8-1-catchmuz.png
 
 정답자가 나오거나 50초가 지난 후에는 노래 정보가 나옵니다. 10초 정도의 대기 시간이후 다음 노래가 재생됩니다.
 
-<br/>
+<br />
 
 ### 스킵하기
 
@@ -114,25 +105,24 @@ headerImg: 2021-8-1-catchmuz.png
 
 스킵은 가운데 `스킵 버튼` 이나 `!skip` 혹은 `!스킵` 명령어를 통해 가능합니다.
 
-<br/>
-
+<br />
 
 ## 🎵 노래
+
 모든 노래 데이터는 [catchmuz 서버 데이터](https://github.com/kyechan99/catchmuz-server/tree/main/song) 에 저장하고 관리하고 있습니다.
 
 인게임에서 데이터 추가가 가능한 형태로 개발한다면 노래 추가가 편해질거라 생각되지만
 중복 추가될 수도, 노래 태그 및 정답이 잘못되거나 간혹 유튜브 외부 실행이 불가능한 영상이 있어 수작업으로 작업하고 있습니다.
 (참으로 번거로운 일이 아닐수가..)
 
-
 ## 마치며
+
 개발을 마치고 생각하게 된것이.. 사실 음악 스트리밍 서비스에서 이런 기능을 추가한다면 좋지 않나 생각해봅니다.
 서비스 충성도가 올라가기도, 노래 재생 수도 증가할 것 같기도 하고요.
 무엇보다 캐치 뮤즈의 `태그` 기능과 같은 데이터들을 스트리밍 서비스에서 자체적으로 많이 가지고 있기 때문에 더 탄탄한 서비스를 구현할 수 있을것 같네요.
 
 제작을 맞추고 몇몇 사람들과 게임을 진행했었는데요. 정말 모르는 곡이 나왔을때 힌트 기능은 없는지 문의가 생기더군요.
 
-저도 추가하면 좋겠다 생각은 합니다만.. 현재 약  500 곡 정도의 노래를 추가했는데요. 힌트 데이터를 제공한다고 했을때 500 곡의 데이터에 일일이 입력을 해야 된다는 문제가 너무 슬프더군요.
+저도 추가하면 좋겠다 생각은 합니다만.. 현재 약 500 곡 정도의 노래를 추가했는데요. 힌트 데이터를 제공한다고 했을때 500 곡의 데이터에 일일이 입력을 해야 된다는 문제가 너무 슬프더군요.
 
 한글 단어 에서 초성만 가져올 수 있거나 하는 모듈을 한번 개발해 볼까 생각하는 와중입니다.
-

@@ -1,13 +1,15 @@
-import { Layout } from "@/components/layout";
-import { Row } from "@/components/common/grid/Container";
-import { PostFeed } from "@/components/post/PostFeed";
-import Banner from "@/components/Bannder";
-import { allPostPosts } from "@/constants/posts";
-import { compareDesc } from "date-fns";
 import { Metadata } from "next";
+
+import Banner from "@/components/Bannder";
+import { Layout } from "@/components/layout";
+import { PostFeed } from "@/components/post/PostFeed";
+import { allPostPosts } from "@/constants/posts";
 import { getBaseMetadata } from "@/utils/seo";
 
-export const metadata: Metadata = getBaseMetadata({ title: "포스팅", path: "/post" });
+export const metadata: Metadata = getBaseMetadata({
+  title: "포스팅",
+  path: "/post",
+});
 
 export default function PostPage() {
   return (

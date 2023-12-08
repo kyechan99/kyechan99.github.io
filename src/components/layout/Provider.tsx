@@ -1,9 +1,10 @@
 "use client";
 
+import { Global, ThemeProvider } from "@emotion/react";
 import { RecoilRoot } from "recoil";
-import { ThemeProvider, Global } from "@emotion/react";
 
 import { rootThemeSetting } from "@/utils/dom";
+
 import GlobalStyle from "@/styles/GlobalStyle";
 import baseTheme from "@/styles/theme";
 

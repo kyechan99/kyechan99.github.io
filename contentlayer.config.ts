@@ -1,14 +1,16 @@
-import remarkGfm from "remark-gfm";
-import rehypeSlug from "rehype-slug";
+import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import GithubSlugger from "github-slugger";
+import readingTime from "reading-time";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeCodeTitles from "rehype-code-titles";
 import rehypeImgSize from "rehype-img-size";
 import rehypePrism from "rehype-prism-plus";
-import rehypeCodeTitles from "rehype-code-titles";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import { defineDocumentType, makeSource } from "contentlayer/source-files";
-import readingTime from "reading-time";
-import GithubSlugger from "github-slugger";
-import { Heading } from "@/types/heading";
-import { searchTermOptimization } from "./src/utils/format";    // <-- 직접 경로 지정
+import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
+
+import { searchTermOptimization } from "./src/utils/format";
+
+// <-- 직접 경로 지정
 
 const rehypeImgSizeAny: any = rehypeImgSize;
 
@@ -31,7 +33,7 @@ export const Post = defineDocumentType(() => ({
       resolve: async post => {
         const regXHN = /\n(?<flag>#{1,6})\s+(?<content>.+)/g; //! 일단 1~6 까지
         const ghSlugger = new GithubSlugger();
-        const headings = Array.from(post.body.raw.matchAll(regXHN)).map(({ groups }): Heading => {
+        const headings = Array.from(post.body.raw.matchAll(regXHN)).map(({ groups }: any) => {
           const level = groups?.flag?.length || 0;
           const content = groups?.content || "";
           return {

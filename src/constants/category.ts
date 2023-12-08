@@ -1,14 +1,15 @@
-import React from "react";
 import {
   IconBrandSafari,
   IconBulb,
   IconDeviceGamepad2,
+  IconDots,
   IconLayoutDashboard,
   IconNote,
   IconPencil,
   IconSchool,
   TablerIconsProps,
 } from "@tabler/icons-react";
+import React from "react";
 
 export type CategoryType = {
   name: string;
@@ -21,10 +22,11 @@ const iconMapping: Record<string, (props: TablerIconsProps) => JSX.Element> = {
   All: IconLayoutDashboard,
   Lib: IconBulb,
   Edu: IconSchool,
-  Tech: IconPencil,
+  Think: IconPencil,
   Memo: IconNote,
   Web: IconBrandSafari,
   Game: IconDeviceGamepad2,
+  Etc: IconDots,
 };
 
 interface getCategoriesWithAllProps extends TablerIconsProps {
@@ -41,7 +43,7 @@ export const getCategoriesWithAll = ({ type = "post", ...props }: getCategoriesW
  *                      블로그 포스팅 카테고리
  *
  **********************************************************************/
-export const POST_CATEGORY = ["Lib", "Edu", "Tech", "Memo"]; //! 새로운 카테고리를 만든다면 추가
+export const POST_CATEGORY = ["Lib", "Memo", "Think", "Etc"]; //! 새로운 카테고리를 만든다면 추가
 
 /**********************************************************************
  *

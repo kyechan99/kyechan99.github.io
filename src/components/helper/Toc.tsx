@@ -1,11 +1,13 @@
 "use client";
 
-import clsx from "clsx";
 import Link from "next/link";
+
 import styled from "@emotion/styled";
+import clsx from "clsx";
 import { Post } from "contentlayer/generated";
 
 import useTocHighlight from "@/hooks/useTocHighlight";
+
 import { Heading } from "@/types/heading";
 
 export default function Toc({ post }: { post: Post }) {

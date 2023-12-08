@@ -1,7 +1,8 @@
 "use client";
 
-import { boldBorderStyle, boldBorderHoverStyle } from "@/libs/bold";
 import styled from "@emotion/styled";
+
+import { boldBorderHoverStyle, boldBorderStyle } from "@/libs/bold";
 
 const Button = styled.button`
   ${boldBorderStyle}

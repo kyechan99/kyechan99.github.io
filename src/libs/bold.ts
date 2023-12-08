@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import { Theme } from "@emotion/react";
+
 import { maxMedia, minMedia } from "./media";
 
 export const boldBorderStyle = ({ theme }: { theme: Theme }) => css`
@@ -10,8 +11,8 @@ export const boldBorderStyle = ({ theme }: { theme: Theme }) => css`
   border-radius: 0.5rem;
   /* background-color: var(--white); */
 
-    box-shadow: 0px 5px 0px var(--grey);
- 
+  box-shadow: 0px 5px 0px var(--grey);
+
   /* &::before {
     transition: top 0.3s;
     position: absolute;

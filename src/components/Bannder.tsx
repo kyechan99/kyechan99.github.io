@@ -1,10 +1,13 @@
 "use client";
 
-import { CATEGORY } from "@/constants/category";
-import { maxMedia } from "@/libs/media";
-import styled from "@emotion/styled";
 import Image from "next/image";
+
+import styled from "@emotion/styled";
 import { ComponentProps, PropsWithChildren } from "react";
+
+import { maxMedia } from "@/libs/media";
+
+import { CATEGORY } from "@/constants/category";
 
 interface BannerProps extends React.PropsWithChildren {
   bannerType?: CATEGORY | "cat";
@@ -19,7 +22,7 @@ export default function Banner({ bannerType = "post", children }: BannerProps) {
   );
 }
 
-export const SmallBanner = (props: ComponentProps<'div'>) => {
+export const SmallBanner = (props: ComponentProps<"div">) => {
   return (
     <SmallBannerContainer {...props}>
       <BannerText>{props.children}</BannerText>
@@ -31,11 +34,10 @@ export const SmallBanner = (props: ComponentProps<'div'>) => {
 export const HomeBanner = styled(SmallBanner)`
   margin-top: 9rem;
   margin-bottom: 9rem;
-  ${maxMedia.mobile}{
+  ${maxMedia.mobile} {
     margin-top: 3rem;
     margin-bottom: 3rem;
   }
-
 `;
 
 const BannerContainer = styled.div`

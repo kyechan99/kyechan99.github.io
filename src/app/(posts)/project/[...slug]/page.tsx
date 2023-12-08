@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
 
 import { PostLayout } from "@/components/layout";
-import { allProjectPosts } from "@/constants/posts";
+
+import { getArticleMetadata } from "@/utils/seo";
 
 import { PostType } from "@/types/post";
-import { getArticleMetadata } from "@/utils/seo";
+
+import { allProjectPosts } from "@/constants/posts";
 
 export const generateStaticParams = async () => allProjectPosts.map(post => ({ slug: post.path?.split("/") }));
 

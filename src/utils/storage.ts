@@ -6,7 +6,7 @@ const THEME = "theme" as const;
  */
 export const setThemeStorage = (theme: string) => {
   localStorage.setItem(THEME, theme);
-  document.documentElement.setAttribute('data-theme', theme);
+  document.documentElement.setAttribute("data-theme", theme);
 };
 
 /**
@@ -14,7 +14,7 @@ export const setThemeStorage = (theme: string) => {
  */
 export const clearThemeStorage = () => {
   localStorage.removeItem(THEME);
-  document.documentElement.setAttribute('data-theme', '');
+  document.documentElement.setAttribute("data-theme", "");
 };
 
 /**
@@ -23,7 +23,7 @@ export const clearThemeStorage = () => {
  */
 export const getThemeStorage = (): string => {
   if (typeof window === "undefined") {
-    return '';
+    return "";
   }
-  return localStorage.getItem(THEME) || '';
+  return localStorage.getItem(THEME) || "";
 };

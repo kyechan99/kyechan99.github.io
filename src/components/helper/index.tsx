@@ -1,14 +1,13 @@
 "use client";
 
 import styled from "@emotion/styled";
+import { IconChevronsUp, IconLink } from "@tabler/icons-react";
 import { Post } from "contentlayer/generated";
 
-import Toc from "./Toc";
 import Button from "../common/button";
-import { IconLink, IconChevronsUp } from "@tabler/icons-react";
+import Toc from "./Toc";
 
 export default function Helper({ post }: { post: Post }) {
-
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -31,8 +30,8 @@ export default function Helper({ post }: { post: Post }) {
     <HelperStyled>
       <HelperBar>
         <Toc post={post} />
-      </HelperBar> 
-      
+      </HelperBar>
+
       <HelperFooter>
         <Button onClick={handleCopyUrl}>
           <IconLink width={18} height={18} />

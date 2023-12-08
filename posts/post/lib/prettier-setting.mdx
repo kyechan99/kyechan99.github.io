@@ -1,0 +1,181 @@
+---
+title: Prettier 설정 (feat. 작동 안할때)
+description: 기본적인 Prettier 설정과 작동하지 않을 때 찾아보는 방법
+category: Lib
+date: 2023-12-8
+tags: [Prettier, VSCode]
+keywords: Prettier, VSCode
+headerImg: 2023-12-8-Prettier.png
+---
+
+## 개요
+
+사실 Prettier 설정자체는 어렵지 않습니다.
+
+당장 [Prettier Extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) 만 설치해도 당장 기본적인 스타일을 사용할 수 있기 때문이에요.
+그렇지만 기본 Prettier 설정 외에도 필요한 여러 플러그인을 사용하면 분명한 이점이 있는건 분명합니다. 그리고 보통 에러는 무언갈 추가할 때 생기죠.
+
+무엇보다 개인 프로젝트에서는 기본 설정 만으로 충분할 지 모르지만 협업이나 오픈 소스를 목적으로 하는 경우에는 Prettier 설정 내용을 공유하는게 꽤나 크게 중요한 것 같습니다.
+
+얼마전에 [Capsule-Render](https://github.com/kyechan99/capsule-render) 에 Prettier 를 추가했는데요.
+과거의 제가 준수했던 코드 스타일, 다른 개발자 분이 기여해주면서 생긴 스타일, 최근 저의 스타일 들이 몽땅 짬뽕되어 있었더라고요. 특히 가장 눈에 띄는 tabWidth 설정이 아주 [최악](https://github.com/kyechan99/capsule-render/commit/eb7a004dc1222fd6245336701a4dac180f4bc2e3#diff-3c3d1c37d274c878cd289c26ebfb5150a1dfb067d40c2bf27e2ea9ae61a2da4b)이었습니다.
+
+---
+
+## Formatter 설정
+
+`>settings.json` 을 입력하면 아래와 같이 3가지 설정이 나타납니다.
+
+![33.png](/img/2023-12-8-Prettier/33.png)
+
+보통 Default 를 건드리는 경우는 좋지 않고 저는 User와 Workspace를 설정하는 것을 선호하는 편입니다.
+
+User 의 경우에는 한번 설정하면 이후 다시 건드릴 필요가 없으니 **나에게만 편한 설정** 을 하는 것이 좋고 Workspace 의 경우에는 **다른 사람에게도 강제할 설정** 이라는 의미로 사용합니다.
+
+### Prettier 지정
+
+![33.png](/img/2023-12-8-Prettier/55.png)
+
+VSCode에서 `Ctrl + ,` 로 설정 인터페이스를 띄울 수 있습니다.
+
+여기서 Prettier 를 선택해주면서 Formatter를 설정합니다.
+
+Prettier 가 작동하지 않았을때 가장 먼저 확인해볼만한 내용입니다.
+
+### 코드 저장시 포맷
+
+```json:settings.json {3}
+{
+    ...
+    "editor.formatOnSave": true
+}
+```
+
+이제 열린 파일을 이처럼 설정한다면 앞으로 코드를 저장할 때 마다 포맷을 작동 시킵니다.
+
+settings를 Workspace로 설정한다면 위 처럼 직접 작성해주어야 하고 User 설정의 경우에는 `Ctrl + ,` 로 설정 UI 에서 쉽게 설정 할 수 도 있습니다.
+
+![33.png](/img/2023-12-8-Prettier/44.png)
+
+### 안쓰는 import 제거
+
+추가적인 내용으로 안쓰는 import 를 제거할 때 사용하는 설정입니다.
+
+```json:.vscode/settings.json {3-5}
+{
+    ...
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    }
+}
+```
+
+빠른 개발이나 개인 프로젝트의 경우에는 되려 불편할 때가 많지만,
+앞서 언급했듯 오픈소스 프로젝트 같이 포맷을 **강제** 할때 Workspace 세팅으로 설정하면 이점이 있습니다.
+
+---
+
+## Prettier Log
+
+이제 설정이 잘 작동하는지 확인해 보아야 겠죠?
+
+만약 Prettier 설정 내용이 잘 작동하지 않는다면 Log 를 확인하는 것도 매우 좋은 방법입니다.
+
+VSCode 에서 Prettier 를 설치하면 아래 이미지와 같이 우측 하단에 **Prettier** 항목이 생깁니다.
+
+Prettier가 비활성화 되어있거나 설치가 되어 있지 않다면 항목이 보이지 않구요.
+
+![vscode.png](/img/2023-12-8-Prettier/vscode.png)
+
+이 중 확인해 볼만한게 3가지 있어요.
+
+![vscode.png](/img/2023-12-8-Prettier/vscode2.png)
+
+만약, Prettier 가 정상적으로 작동하고 있다면, 파일을 수정하게 되었을때 Prettier Output 창에는 다음과 같은 로그가 출력될 거에요.
+
+---
+
+### 1. PrettierInstance
+
+`PrettierInstance` 는 현재 어떤 Prettier 가 작동되고 있는지 확인할 수 있습니다.
+
+만약, VSCode 의 Prettier Extension 이 메인으로 작동되고 있다면 위 사진보다 훨-씬 긴 JSON 이 출력 될 겁니다.
+반면에, 프로젝트에 Prettier 를 설치해서 package.json 에 추가된 상태라면 위 이미지와 같이 해당 Prettier 모듈의 버전이 출력될 것이고요.
+
+VSCode 화면 하단의 Prettier 아이콘 좌측의 체크표시가 하나라면 VSCode Extension이, 두개라면 모듈이 작동되고 있다고 생각하면 편할 것 같아요.
+
+<aside>
+두개라서 충돌이 일어나기 보다, 덮어 씌워 사용되고 있다고 생각됩니다.
+
+</aside>
+
+---
+
+### 2. File Info
+
+내용을 보면 알 수 있듯 ignored 상태인 파일인지,
+
+또 어떤 확장자로 Prettier 를 작동 시킬지 파일 정보에 관한거에요.
+
+만약 Prettier 를 작동시킬 파일인데 정보가 일치하지 않으면 문제를 찾을 수 있겠네요.
+
+---
+
+### 3. Prettier Option
+
+보통 Prettier 설정을 건드렸음에도 설정한 내용과 다르게 작동하지 않으면 확인하기 가장 좋은 부분입니다.
+
+내 Prettier 설정이 출력된 로그와 일치하는지 꼭 확인해보세요!
+
+Prettier를 설정하는 파일인 `.prettierrc` 의 경우에는 설정을 변경하면 자동으로 이 Prettier Option이 변경이 되는데요.
+간혹 `.prettierrc.js` 와 같은 파일은 내용을 수정해도 변경이 안되더군요.
+이전 설정 옵션이 캐시로 남아서 계속 수정되지 않는 다는 것 같기도 한데..(추측) VSCode 를 재실행 하면 수정된 옵션으로 변경되어 작동 할 겁니다.
+
+---
+
+## 외전, import 정렬
+
+Prettier 는 전반적인 코드 스타일을 통일화 시켜주는 Formatter 입니다.
+조금 확장해서 import 내용 들을 정렬해주는 기능은 내장되어 있지 않기 때문에 추가적인 모듈 설치가 필요해요.
+
+[@trivago/prettier-plugin-sort-imports](https://github.com/trivago/prettier-plugin-sort-imports) 가 그 역할을 해주는 도구입니다!
+
+```shell
+yarn add --dev @trivago/prettier-plugin-sort-imports
+```
+
+추가로 이러한 설정도 개인 설정보다는 강제하는 설정에 용이 하기 때문에 설치를 해줍니다.
+
+```json:.prettierrc
+{
+  ...
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "^@/recoil/(.*)$",
+    "^@/(components|libs|hooks|utils|types|constants)/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
+}
+
+```
+
+문서에서는 exports 하는 js 형태의 확장자로 작성되어 있지만 json인 `.prettierrc` 로도 설정이 가능합니다.
+
+- importOrderSeparation: 정렬된 기준으로 개행을 줄 것 인지
+- importOrderSortSpecifiers: `import { ... }` 안의 내용들도 정렬할 것 인지
+- plugins: 몇몇 패키지 메니저에서 작동되지 않는 상황이 있으니 이 항목에서 모듈을 지정해줍니다.
+- 그 외에는 설정해도 굳이? 스러운 설정들이긴 합니다.
+
+어찌보면 가장 중요한건 `importOrder` 인데, `<THIRD_PARTY_MODULES>` 는 설정해 주지 않는다면 가장 기본적으로 1순위로 정렬된다고 합니다.
+만약 특정한 것들을 묶어 둔다고 한다면 `( * | * )` 와 같이 설정함으로서 묶어 둘 수 있습니다.
+물론 `importOrderSeparation` 을 비활성화 한다면 굳이 쓸모가 없어요.
+
+![vscode.png](/img/2023-12-8-Prettier/result.png)
+
+<aside>
+이 모듈을 사용한다고 했을때, 파일 가장 첫번째 줄에 주석을 작성한다면 formatter 가 작동될 때마다 해당 주석이 복사가 되는 버그가 있어요.
+
+</aside>

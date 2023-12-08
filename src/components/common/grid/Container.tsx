@@ -1,7 +1,8 @@
 "use client";
 
-import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+
 import { maxMedia, minMedia } from "@/libs/media";
 
 export const Container = styled.div`

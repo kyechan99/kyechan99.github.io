@@ -1,12 +1,13 @@
 "use client";
 
+import styled from "@emotion/styled";
+import { IconSquareRoundedChevronLeft, IconSquareRoundedChevronRight } from "@tabler/icons-react";
+import Link from "next/link";
+
 import { allPostPosts } from "@/constants/posts";
 import { boldBorderHoverStyle, boldBorderStyle } from "@/libs/bold";
 import { maxMedia } from "@/libs/media";
 import { PostType } from "@/types/post";
-import styled from "@emotion/styled";
-import { IconSquareRoundedChevronLeft, IconSquareRoundedChevronRight } from "@tabler/icons-react";
-import Link from "next/link";
 
 export default function PostFooter({ post }: { post: PostType }) {
   const postIndex = allPostPosts.findIndex(v => v.path === post.path);

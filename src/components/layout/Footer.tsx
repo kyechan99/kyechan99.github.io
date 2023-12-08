@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+
 import styled from "@emotion/styled";
+import { IconBrandGithubFilled } from "@tabler/icons-react";
+
+import { maxMedia } from "@/libs/media";
 
 import { Col, Container, Row } from "../common/grid/Container";
-import { IconBrandGithubFilled } from "@tabler/icons-react";
-import { maxMedia } from "@/libs/media";
 
 export default function Footer() {
   return (

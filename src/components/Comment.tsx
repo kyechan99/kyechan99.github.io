@@ -1,8 +1,10 @@
 "use client";
 
-import { themeState } from "@/recoil/theme";
 import Giscus, { type Theme } from "@giscus/react";
 import { useRecoilValue } from "recoil";
+
+import { themeState } from "@/recoil/theme";
+
 // import { useGlobalTheme } from "./layout/Provider";
 
 type DefaultThemeType = Extract<

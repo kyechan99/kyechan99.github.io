@@ -1,8 +1,9 @@
 "use client";
 
+import Image from "next/image";
+
 import styled from "@emotion/styled";
 import { IconCopy } from "@tabler/icons-react";
-import Image from "next/image";
 import { useRef } from "react";
 
 export default function MDXCode({ children, className, title }: React.ComponentProps<"pre">) {

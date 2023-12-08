@@ -2,5 +2,14 @@
   "singleQuote": false,
   "tabWidth": 2,
   "printWidth": 120,
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "^@/recoil/(.*)$",
+    "^@/(components|libs|hooks|utils|types|constants)/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
 }

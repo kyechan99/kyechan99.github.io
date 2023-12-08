@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
-import styled from "@emotion/styled";
 import { css, keyframes } from "@emotion/react";
-import { boldBorderStyle } from "@/libs/bold";
+import styled from "@emotion/styled";
 import clsx from "clsx";
+import React from "react";
+
+import { boldBorderStyle } from "@/libs/bold";
 
 export interface SkeletonProps extends React.ComponentProps<"div"> {
   /**
@@ -40,7 +41,7 @@ export default function Skeleton({
 }: SkeletonProps) {
   return (
     <SkeletonStyled
-      className={clsx('skeleton', className)}
+      className={clsx("skeleton", className)}
       $animation={$animation}
       $variant={$variant}
       $borderRadius={$borderRadius}

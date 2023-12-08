@@ -10,10 +10,9 @@ export const isExternalLink = (url: string) => {
 /**
  * head 이미지 주소 가져오기
  * @param file 이미지 파일 이름
- * @returns 
+ * @returns
  */
 export const headerImgPath = (file?: string) => {
   if (!file) file = `/default.png`;
   return `/img/head-img/${file}`;
 };
-

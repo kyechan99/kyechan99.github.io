@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+
 import { allPosts } from "@/constants/posts";
 
 export default function sitemap(): MetadataRoute.Sitemap {

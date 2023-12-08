@@ -1,17 +1,19 @@
-/***************************************************
- *        글의 상단, 제목 부분을 그려주는 컴포넌트
- ***************************************************/
 "use client";
 
 import styled from "@emotion/styled";
 import { Post } from "contentlayer/generated";
 import Image from "next/image";
-import TagList from "../common/tag/TagList";
-import Date from "../Date";
-import { headerImgPath } from "@/utils/url";
-import Readingtime from "../Readingtime";
-import { maxMedia, minMedia } from "@/libs/media";
 
+import { maxMedia, minMedia } from "@/libs/media";
+import { headerImgPath } from "@/utils/url";
+
+import Date from "../Date";
+import Readingtime from "../Readingtime";
+import TagList from "../common/tag/TagList";
+
+/***************************************************
+ *        글의 상단, 제목 부분을 그려주는 컴포넌트
+ ***************************************************/
 export default function PostHead({ post }: { post: Post | undefined }) {
   if (post === undefined) return <></>;
   return (
@@ -21,7 +23,7 @@ export default function PostHead({ post }: { post: Post | undefined }) {
           src={headerImgPath(post.headerImg)}
           alt={post.title}
           width={0}
-          height={0} 
+          height={0}
           style={{ width: "100%", height: "auto" }}
         />
       )}

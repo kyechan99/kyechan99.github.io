@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import styled from "@emotion/styled";
-import PostCard from "../post/PostCard";
-import { allPosts, allTags } from "@/constants/posts";
-import Tag from "../common/tag/Tag";
+
+import { allTags } from "@/constants/posts";
+
 import { H2 } from "../common/heading";
+import Tag from "../common/tag/Tag";
 
 export default function TagsBoard() {
   return (

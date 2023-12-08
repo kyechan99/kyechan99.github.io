@@ -1,16 +1,20 @@
 "use client";
 
 import styled from "@emotion/styled";
-import { useRecoilState } from "recoil";
+import { IconBrandGithubFilled, IconPencil, IconRocket, IconSearch, IconUserCircle } from "@tabler/icons-react";
 import { ChangeEvent, useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+
+import { boldBorderStyle } from "@/libs/bold";
 import { searchModalState } from "@/recoil/search";
 
-import { SearchItem, StaticItem } from "./SearchItem";
-import { IconBrandGithubFilled, IconPencil, IconSearch, IconRocket, IconUserCircle } from "@tabler/icons-react";
 import { searchTermOptimization } from "@/utils/format";
-import { boldBorderStyle } from "@/libs/bold";
-import { allPosts } from "@/constants/posts";
+
 import { PostType } from "@/types/post";
+
+import { allPosts } from "@/constants/posts";
+
+import { SearchItem, StaticItem } from "./SearchItem";
 
 export default function Search() {
   const [open, setOpen] = useRecoilState(searchModalState);

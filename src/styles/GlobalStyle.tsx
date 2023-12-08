@@ -1,8 +1,10 @@
 "use client";
 
+import { Theme, css } from "@emotion/react";
+
 import { maxMedia } from "@/libs/media";
 import { cssCustomProperties } from "@/utils/format";
-import { Theme, css } from "@emotion/react";
+
 import { darkColors, lightColors } from "./theme";
 
 const GlobalStyle = (theme: Theme) => css`
@@ -134,6 +136,9 @@ const GlobalStyle = (theme: Theme) => css`
     ul {
       margin: 0.25rem 0rem;
     }
+  }
+  ul li {
+    margin-bottom: 0.25rem;
   }
 
   .video-container {

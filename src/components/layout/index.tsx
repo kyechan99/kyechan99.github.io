@@ -1,15 +1,17 @@
-import Mdx from "../mdx";
-import Footer from "./Footer";
-import Header from "./Header";
-import Helper from "../helper";
-import Comments from "../Comment";
-import PostHead from "../post/PostHead";
-import PostArticle from "../post/PostArticle";
+import Comments from "@/components/Comment";
 import { ColMain, ColSub, Container, Row } from "@/components/common/grid/Container";
-import { PostType } from "@/types/post";
+import Helper from "@/components/helper";
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+import Mdx from "@/components/mdx";
+import PostArticle from "@/components/post/PostArticle";
+import PostFooter from "@/components/post/PostFooter";
+import PostHead from "@/components/post/PostHead";
+import Search from "@/components/search/Search";
+
 import { JSONLD } from "@/utils/seo";
-import PostFooter from "../post/PostFooter";
-import Search from "../Search/Search";
+
+import { PostType } from "@/types/post";
 
 export const Layout = (props: React.PropsWithChildren) => {
   return (
@@ -45,7 +47,7 @@ export const PostLayout = ({ post, props }: { post: PostType; props?: React.Prop
         <PostFooter post={post} />
 
         <Comments />
-        
+
         <Search />
       </Container>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSONLD(post) }} />

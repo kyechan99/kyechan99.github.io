@@ -1,12 +1,8 @@
 "use client";
 
-import { allTags } from "@/constants/posts";
-import { boldBorderStyle } from "@/libs/bold";
 import styled from "@emotion/styled";
-import { IconBrandGithubFilled, IconMail, IconUserFilled, IconUserScan } from "@tabler/icons-react";
-import Image from "next/image";
-import Tag from "../common/tag/Tag";
-import { useEffect, useState } from "react";
+import { IconBrandGithubFilled, IconMail, IconUserFilled } from "@tabler/icons-react";
+
 import { maxMedia } from "@/libs/media";
 
 export default function ProfileBoard() {

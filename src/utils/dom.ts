@@ -9,5 +9,7 @@ export function rootThemeSetting() {
     if (themeStorage) {
       root.setAttribute("data-theme", themeStorage);
     }
-  } catch (e) { console.log(e); }
+  } catch (e) {
+    console.log(e);
+  }
 }

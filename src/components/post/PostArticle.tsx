@@ -2,7 +2,8 @@
 
 import styled from "@emotion/styled";
 import { PropsWithChildren } from "react";
-import { SmallBanner } from "../Bannder"; 
+
+import { SmallBanner } from "../Bannder";
 
 export default function PostArticle(props: PropsWithChildren) {
   return (

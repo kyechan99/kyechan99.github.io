@@ -14,7 +14,7 @@ export default function useTocHighlight(init_id: string): [string, React.Dispatc
     };
 
     observer.current = new IntersectionObserver(handleObserver, {
-      rootMargin: "0px 0px -80% 0px",   // 80 ~ 85 가 적당해 보이는
+      rootMargin: "0px 0px -80% 0px", // 80 ~ 85 가 적당해 보이는
       threshold: 1.0,
     });
 

@@ -1,7 +1,8 @@
 "use client";
 
-import { maxMedia } from "@/libs/media";
 import styled from "@emotion/styled";
+
+import { maxMedia } from "@/libs/media";
 
 export const H2 = styled.h2`
   margin-top: 9rem;

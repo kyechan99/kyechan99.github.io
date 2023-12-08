@@ -1,12 +1,15 @@
 "use client";
 
 import styled from "@emotion/styled";
-import Skeleton from "@/components/skeleton";
-import Button from ".";
-import { IconSunHigh, IconMoon } from "@tabler/icons-react";
-import { maxMedia } from "@/libs/media";
+import { IconMoon, IconSunHigh } from "@tabler/icons-react";
 import { useRecoilState } from "recoil";
+
 import { themeState } from "@/recoil/theme";
+
+import Skeleton from "@/components/skeleton";
+import { maxMedia } from "@/libs/media";
+
+import Button from ".";
 
 export default function ThemeButton() {
   const [theme, setTheme] = useRecoilState(themeState);

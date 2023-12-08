@@ -18,8 +18,8 @@ headerImg: 2020-5-22-jekyll-custom-4.jpg
 
 ## 이전글
 
-- [Jekyll Custom 블로그 만들기 - 1](/lib/2018/12/28/jekyll-custom-1)
-- [Jekyll Custom 블로그 만들기 - 2](/lib/2018/12/29/jekyll-custom-2)
+- [Jekyll Custom 블로그 만들기 - 1](/post/lib/jekyll-custom-1)
+- [Jekyll Custom 블로그 만들기 - 2](/post/lib/jekyll-custom-2)
 
 ## 시작에 앞서
 
@@ -71,12 +71,12 @@ categories: 포스트에 해당하는 카테고리 명을 입력해주세요
 ```html
 <h3>Category</h3>
 {.% for category in site.categories %}
-    <h3>{{ category[0] }}</h3>
-    <ul>
-    {.% for post in category[1] %}
-        <li><a href="{.{ post.url }}">{.{ post.title }}</a></li>
-    {.% endfor %}
-    </ul>
+<h3>{{ category[0] }}</h3>
+<ul>
+  {.% for post in category[1] %}
+  <li><a href="{.{ post.url }}">{.{ post.title }}</a></li>
+  {.% endfor %}
+</ul>
 {.% endfor %}
 ```
 
@@ -93,9 +93,9 @@ categories: 포스트에 해당하는 카테고리 명을 입력해주세요
 ```html
 <h4>Games</h4>
 <ul>
-    `{.% for post in site.categories.Games %}`
-    <li><a href="{.{ post.url }}">{.{ post.title }}</a></li>
-    {.% endfor %}
+  `{.% for post in site.categories.Games %}`
+  <li><a href="{.{ post.url }}">{.{ post.title }}</a></li>
+  {.% endfor %}
 </ul>
 ```
 

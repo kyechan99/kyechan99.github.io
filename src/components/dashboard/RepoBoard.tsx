@@ -1,16 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import styled from "@emotion/styled";
-import PostCard from "../post/PostCard";
-import { allPosts, allTags } from "@/constants/posts";
+import { IconGitFork, IconStar } from "@tabler/icons-react";
+import React, { useEffect } from "react";
+
 import { boldBorderHoverStyle, boldBorderStyle } from "@/libs/bold";
-import { IconStar } from "@tabler/icons-react";
-import { IconGitFork } from "@tabler/icons-react";
 import { maxMedia } from "@/libs/media";
+
 import { H2 } from "../common/heading";
-import { useEffect } from "react";
-import React from "react";
 import Skeleton from "../skeleton";
 
 type RepoType = {

@@ -1,17 +1,17 @@
+"use client";
+
+import styled from "@emotion/styled";
+import { useState } from "react";
+
+import { Row } from "@/components/common/grid/Container";
+import MenuNav from "@/components/common/nav/MenuNav";
+import PostCard from "@/components/post/PostCard";
+import { maxMedia } from "@/libs/media";
+import { PostType } from "@/types/post";
+
 /***************************************************
  *        글 목록 Feed 를 보여주는 컴포넌트
  ***************************************************/
-"use client";
-
-import { useState } from "react";
-import styled from "@emotion/styled";
-
-import PostCard from "@/components/post/PostCard";
-import MenuNav from "@/components/common/nav/MenuNav";
-import { Row } from "@/components/common/grid/Container";
-import { PostType } from "@/types/post";
-import { maxMedia } from "@/libs/media";
-
 export function PostFeed({ posts }: { posts: PostType[] }) {
   const [menu, setMenu] = useState<string>("All");
 
@@ -24,7 +24,7 @@ export function PostFeed({ posts }: { posts: PostType[] }) {
   return (
     <FeedRow>
       <MenuNav menu={menu} setMenu={setMenu} />
-      <Row $direction="column" $gap="2rem"  className="posts-row">
+      <Row $direction="column" $gap="2rem" className="posts-row">
         {posts
           .filter(post => isPostCategory(post.category))
           .map((post, idx) => (
@@ -43,7 +43,7 @@ const FeedRow = styled(Row)`
     width: 100%;
     min-height: 100vh;
     ${maxMedia.mobile} {
-      gap: 0rem;
+      gap: 1rem;
     }
   }
 `;

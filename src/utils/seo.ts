@@ -1,6 +1,8 @@
-import { PostType } from "@/types/post";
-import { headerImgPath } from "./url";
 import { Metadata } from "next";
+
+import { PostType } from "@/types/post";
+
+import { headerImgPath } from "./url";
 
 export const siteConfig = {
   url: "https://kyechan99.github.io",

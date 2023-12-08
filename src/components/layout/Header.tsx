@@ -1,10 +1,11 @@
-import Image from "next/image";
 import Dynamic from "next/dynamic";
+import Image from "next/image";
 
-import { Navbar } from "@/components/common/nav/Navbar";
-import SearchButton from "../common/button/SearchButton";
 import { ThemeButtonSkeleton } from "@/components/common/button/ThemeButton";
-import { Nav, NavBrand, NavItem, NavLink, NavCollapse } from "@/components/common/nav/Nav";
+import { Nav, NavBrand, NavCollapse, NavItem, NavLink } from "@/components/common/nav/Nav";
+import { Navbar } from "@/components/common/nav/Navbar";
+
+import SearchButton from "../common/button/SearchButton";
 
 const SuspenseThemeButton = Dynamic(() => import("@/components/common/button/ThemeButton"), {
   ssr: false,
