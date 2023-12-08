@@ -1,8 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
 import styled from "@emotion/styled";
+import { useRouter } from "next/navigation";
 
 import { PostType } from "@/types/post";
 

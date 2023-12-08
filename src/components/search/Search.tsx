@@ -5,14 +5,12 @@ import { IconBrandGithubFilled, IconPencil, IconRocket, IconSearch, IconUserCirc
 import { ChangeEvent, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
-import { boldBorderStyle } from "@/libs/bold";
 import { searchModalState } from "@/recoil/search";
 
-import { searchTermOptimization } from "@/utils/format";
-
-import { PostType } from "@/types/post";
-
 import { allPosts } from "@/constants/posts";
+import { boldBorderStyle } from "@/libs/bold";
+import { PostType } from "@/types/post";
+import { searchTermOptimization } from "@/utils/format";
 
 import { SearchItem, StaticItem } from "./SearchItem";
 
