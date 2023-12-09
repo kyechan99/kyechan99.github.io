@@ -44,6 +44,10 @@ const GlobalStyle = (theme: Theme) => css`
     -webkit-transition: background var(--delay);
     -ms-transition: background var(--delay);
     -o-transition: background var(--delay);
+    &.modal-open {
+      overflow: hidden;
+      padding-right: 1rem;
+    }
   }
 
   a {

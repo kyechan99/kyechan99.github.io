@@ -96,6 +96,7 @@ const SearchModal = styled.div`
   z-index: 2;
   width: 100%;
   max-width: 35rem;
+  max-height: 80vh;
   margin: 0 auto;
   overflow: hidden;
 `;
@@ -107,7 +108,7 @@ const SearchBackground = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: hsla(0, 0%, 30%, 0.3);
-  padding: 15vh 2rem 1rem 1rem;
+  padding: 15vh 1rem 1rem 1rem;
   backdrop-filter: blur(3px);
 `;
 
@@ -120,7 +121,7 @@ const SearchHeader = styled.div`
 `;
 const SearchBody = styled.div`
   padding: 0rem 1.5rem 1rem 1.5rem;
-  max-height: 500px;
+  max-height: calc(80vh - 79px);
   overflow-y: auto;
 `;
 const SearchInput = styled.input`

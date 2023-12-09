@@ -5,7 +5,20 @@ export function rootThemeSetting() {
   try {
     var root = document.documentElement;
     var themeStorage = localStorage.getItem("theme");
-    console.log(themeStorage);
+
+    if (themeStorage) {
+      root.setAttribute("data-theme", themeStorage);
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export function modalOpenPadding() {
+  try {
+    var root = document.documentElement;
+    var themeStorage = localStorage.getItem("theme");
+
     if (themeStorage) {
       root.setAttribute("data-theme", themeStorage);
     }

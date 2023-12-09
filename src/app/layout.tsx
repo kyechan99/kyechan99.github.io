@@ -1,10 +1,9 @@
+import "@/styles/prism.css";
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
 
 import Provider from "@/components/layout/Provider";
 import { getBaseMetadata } from "@/utils/seo";
-
-import "@/styles/prism.css";
 
 const notoSansKr = Noto_Sans_KR({
   subsets: ["latin"],
