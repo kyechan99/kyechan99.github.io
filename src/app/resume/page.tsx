@@ -1,45 +1,9 @@
-/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
 "use client";
 
-import Link from "next/link";
-
-import styled from "@emotion/styled";
-import { IconDeviceMobile } from "@tabler/icons-react";
-import { IconMail } from "@tabler/icons-react";
-import { IconBrandGithub } from "@tabler/icons-react";
-import { IconPencil } from "@tabler/icons-react";
-
 import "@/styles/resume.css";
-
-/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
-
-/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
-
-/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
-
-/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
-
-/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
-
-/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
-
-/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
-
-/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
-
-/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
-
-/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
-
-/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
-
-/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
-
-/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
-
-/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
-
-/* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
+import styled from "@emotion/styled";
+import { IconBrandGithub, IconDeviceMobile, IconMail, IconPencil } from "@tabler/icons-react";
+import Link from "next/link";
 
 /* (구) Jekyll 블로그 파일이라 구림. 추후 개선 */
 
@@ -112,7 +76,7 @@ const Container = styled.div`
   }
 `;
 
-export default function Home() {
+export default function Resume() {
   return (
     <Container className="container container-resume">
       <div className="resume" id="app">
@@ -171,18 +135,17 @@ export default function Home() {
               <div className="intro-block">
                 <p>일일 사용량 45,000 건의 오픈소스를 관리하고 있습니다.</p>
                 <p>
-                  기술의 사용법에 능숙해지기보다,
-                  <b className="stress">왜 필요하고 무엇을 해결하는지 근원적 물음을 제기</b>
+                  기술의 사용법에 능숙해지는 것도 중요하지만,{" "}
+                  <b className="stress">왜 필요하고 무엇을 해결하는지 고민</b>
                   합니다.
                 </p>
                 <p>이를 바탕으로 오픈소스에 관심이 많아 분석해보거나 개발 해보며 다양하게 도전해오고 있습니다.</p>
-                <p>특히 개발자에게 필요한 기능이나 문제를 경험하면서, 직접 개선하고 변화시키는 일이 즐겁습니다.</p>
+                {/* <p>특히 개발자에게 필요한 기능이나 문제를 경험하면서, 직접 개선하고 변화시키는 일이 즐겁습니다.</p> */}
               </div>
             </div>
             <div className="intro-block">
               <p>
-                소프트웨어 개발은 문제를
-                <b className="stress">개선하고 변화시키는 일에 큰 가치</b>가 있다고 느낍니다.
+                소프트웨어 개발은 문제를 <b className="stress">개선하고 변화시키는 일에 큰 가치</b>가 있다고 느낍니다.
               </p>
               <p>이전에 겪었던 실수와 고민을 반복하지 않기 위해 문제 해결을 위한 프로젝트를 진행하거나 공유합니다.</p>
               <p>
@@ -190,6 +153,8 @@ export default function Home() {
               </p>
             </div>
           </div>
+
+          <div className="print-empty-project"></div>
 
           <div className="resume-block resume-project">
             <h2 className="title">PROJECT</h2>
@@ -271,19 +236,23 @@ export default function Home() {
                   <li>
                     React에서 Next로의 마이그레이션
                     <ul className="semi-list origin-ul">
+                      {/* <li>App Router </li> */}
                       <li>
-                        페이지 전환보다 초기 페이지 속도 향상을 위한 Next.js 마이그레이션 작업 -
+                        페이지 전환보다 첫 페이지 입장을 위한 Next.js 마이그레이션 작업 -{" "}
                         <Link href="/post/lib/why-nextjs" target="_blank">
                           포스팅
                         </Link>
                       </li>
-                      <li>증가한 서버측 작업과 비용을 감소시키기 위해 일부 페이지 SSR → SSG 변환</li>
+                      <li>분리된 프로젝트 단순화시키면서 개발 시간과 테스트 감소</li>
+                      {/* <li>프로젝트 증가한 서버측 작업과 비용을 감소시키기 위해 일부 페이지 SSR → SSG 변환</li> */}
+                      {/* <li>증가한 서버측 작업과 비용을 감소시키기 위해 일부 페이지 SSR → SSG 변환</li> */}
                     </ul>
                   </li>
                   <li>
-                    초기 렌더링 속도 개선
+                    렌더링 속도 개선
                     <ul className="semi-list origin-ul">
-                      <li>우선순위에 따라 Streaming 하며 lighthouse FCP 0.7s → 0.4s 로 감소</li>
+                      {/* <li>우선순위에 따라 Streaming 하며 lighthouse FCP 0.7s → 0.4s 로 감소</li> */}
+                      <li>응답 우선순위에 따라 Streaming 하며 첫 컨텐츠 렌더링 시간 단축</li>
                       <li>로딩 중 Skeleton UI를 이용해 화면 일관성과 사용자 경험 개선</li>
                     </ul>
                   </li>
@@ -359,7 +328,7 @@ export default function Home() {
                     <ul className="semi-list origin-ul">
                       <li>서비스 요구사항 대비 불필요한 React 도입 고려</li>
                       <li>
-                        Preact 도입 효과를 정리하고 팀원들과 토론하여 설득 -
+                        Preact 도입 효과를 정리하고 팀원들과 토론하여 설득 -{" "}
                         <Link href="/post/lib/react-preact" target="_blank">
                           포스팅
                         </Link>
@@ -591,7 +560,7 @@ export default function Home() {
 
             <p className="info-log">
               한국게임과학고 프로그래밍과
-              <span className="info-detail left">2015.03 - 2018.02 (졸업)</span>
+              <span className="info-detail left">2015.03 - 2018.02</span>
             </p>
             <p className="info-log">
               국민대학교 소프트웨어학과

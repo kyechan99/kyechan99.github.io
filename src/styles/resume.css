@@ -76,7 +76,7 @@
 .resume .name::after {
   content: ".";
   font-size: 2rem;
-  color: #a296ff;
+  color: var(--resume);
   position: absolute;
   bottom: -0.125rem;
 }
@@ -89,10 +89,17 @@
   border-radius: 8px;
   content: " ";
   white-space: pre;
-  background-color: var(--primary);
+  background-color: var(--resume);
   z-index: -1;
   transform: rotate(-12deg);
+  opacity: 0.3;
 }
+@media print {
+  .resume .name::before {
+    opacity: 0;
+  }
+}
+
 .resume .name .name-en {
   font-size: 1.5rem;
   margin-left: 0.5rem;
@@ -116,12 +123,19 @@
   border-radius: 8px;
   content: " ";
   white-space: pre;
-  background-color: var(--primary);
+  background-color: var(--resume);
   z-index: -1;
   transform: rotate(-12deg);
+  opacity: 0.3;
 }
+@media print {
+  .resume .title::before {
+    opacity: 0;
+  }
+}
+
 .resume .project-row .desc a {
-  color: #a296ff;
+  color: var(--resume);
   /* font-weight: 500; */
   text-decoration: underline;
 }
@@ -142,7 +156,7 @@
   font-weight: 600;
 }
 .resume .project-title a:hover {
-  color: #a296ff;
+  color: var(--resume);
 }
 .resume .url-block {
   border: 1px solid #d9d9d9;
@@ -170,7 +184,7 @@
 .resume .url-block a {
   font-size: 0.875rem;
   word-break: break-all;
-  color: #a296ff;
+  color: var(--resume);
 }
 .resume .project-description {
   margin: 0.75rem 0rem;
@@ -178,7 +192,7 @@
 .resume .semi-title {
   font-size: 14px;
   font-weight: 600;
-  color: #a296ff;
+  color: var(--resume);
   margin-bottom: 0.25rem;
   line-height: 1.2;
 }
@@ -286,12 +300,17 @@
 }
 
 @media print {
+  .print-empty-project {
+    width: 100%;
+    height: 2rem;
+  }
+}
+@media print {
   .print-empty-yuristrap {
     width: 100%;
     margin-top: 14rem;
   }
 }
-
 @media print {
   .print-empty-voicehub {
     width: 100%;
