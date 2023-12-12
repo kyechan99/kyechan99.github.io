@@ -1,0 +1,288 @@
+---
+title: Streaming과 Lazy Loading
+description: Streaming과 Lazy Loading 구분하기
+category: Lib
+date: 2023-12-11
+tags: [Next.js, Next.js13, React]
+keywords: Next.js, Next.js13
+headerImg: 2023-12-11-streaming-splitting.png
+---
+
+## Streaming 이란
+
+SSR 에서는 사용자가 페이지를 보고 interact 하기 위해 필요한 과정이 있습니다.
+
+1. 서버에서 필요한 모든 데이터를 가져온다. (API, fetch)
+2. 서버(Next.js)가 HTML 페이지를 렌더링 한다.
+3. 페이지의 HTML, CSS, JS 가 클라이언트로 전송한다.
+4. non-interactive UI 는 생성된 HTML 및 CSS 를 사용해 표시한다.
+5. UI를 interactive 하게 하기 위해 hydrate 한다.
+
+![steps](https://nextjs.org/_next/image?url=%2Fdocs%2Flight%2Fserver-rendering-without-streaming-chart.png&w=1920&q=75&dpl=dpl_BCKS3KDA6yGytV9yZZjUig8Bkeo8)
+
+결국 모든 데이터를 가져온 후에야 서버가 HTML 페이지를 렌더링 할 수 있는데 이는 곧 사용자가 UI 와 interactive 할 수 없다는 뜻입니다.
+
+**Streaming** 은 페이지의 HTML을 더 작은 chunk로 나누고 이걸 서버에서 클라이언트로 계속해서 보내는 것을 의미합니다.
+
+![streaming](https://nextjs.org/_next/image?url=%2Fdocs%2Flight%2Fserver-rendering-with-streaming.png&w=1920&q=75&dpl=dpl_BCKS3KDA6yGytV9yZZjUig8Bkeo8)
+
+즉, Streaming은 페이지의 일부를 나누어 표시하는 것입니다.
+때문에 전체 UI가 렌더링되기까지 필요한 모든 데이터가 로드될 때까지 기다리지 않고 이를 나누면서 일부 UI를 더 빨리 표시하는 것이죠.
+
+즉 제품 정보, 제목 등 우선 순위가 더 높은 것이나 데이터에 의존하지 않는 레이아웃 등이 첫 UI에 해당하며
+댓글, 관련 제품 등 우선 순위가 낮은 것들이 후순위에 포함시키는 작업입니다. (예시)
+
+![streaming_2](https://nextjs.org/_next/image?url=%2Fdocs%2Flight%2Fserver-rendering-with-streaming-chart.png&w=1920&q=75&dpl=dpl_BCKS3KDA6yGytV9yZZjUig8Bkeo8)
+
+결과적으로 Streaming을 통해서 얻을 수 있는것은 다음과 같습니다.
+
+- TTFB (Time To First Byte)
+  - 긴 데이터 요청으로 인해 페이지 렌더링이 차단되는 시간을 방지
+- FCP (First Contentful Paing)
+  - 첫 컨텐츠가 렌더링 되여 사용자에게 제공되는 시점 감소
+- TTI (Time to Interactive)
+  - 사용자가 페이지와 상호작용 할 수 있을 때까지 걸리는 시간
+
+---
+
+## Streaming SEO
+
+Streaming 되어 나타나는 데이터도 결국 검색 엔진에는 나타나고 합니다.
+
+Next.js Streaming 문서에는 "it does not impact SEO" 라고 나와있는데 SEO 에 영향을 안준다가 아닌,
+Streaming은 서버에서 렌더링되기에 **SEO에 부정적인 영향을 주지 않는다** 라고 해석하는게 맞는 것 같아요.
+
+> 관련 Vercel 의 [입장문](https://vercel.com/guides/does-streaming-affect-seo)
+
+---
+
+## Streaming Test
+
+```js
+const getData = async () => {
+  // 2초 딜레이를 가진 API 호출
+  const res = await fetch("https://hub.dummyapis.com/delay?seconds=2", {
+    cache: "no-store",
+  });
+
+  // API 는 아무 데이터도 없으니 임시 데이터
+  return Array.from({ length: 4 }, (_, index) => ({
+    title: `temp_data_${index}`,
+  }));
+};
+
+export default async function RecommendPost() {
+  const posts = await getData();
+  return (
+    <ul style={{ marginLeft: "2rem" }}>
+      {posts.map(post => (
+        <li>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+예를 들어, 얻고자 하는 데이터가 오래 걸리는 컴포넌트를 만들어 봅니다.
+
+위 코드는 예시로 2초의 딜레이를 가진 API 를 호출했습니다.
+
+---
+
+### Suspense
+
+```js:app/dashboard/page.tsx
+export default function Dashboard() {
+  return (
+    <div>
+      <h1>대시보드</h1>
+      <Suspense fallback={<p>(Suspense 로딩중...)</p>}>
+        <RecommendPost />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+해당 페이지에서 Suspense로 해당 컴포넌트를 감싼다면 아래와 같은 응답을 얻을 수 있습니다.
+
+![st_0](/img/2023-12-11-streaming-splitting/suspense.gif)
+
+RecommendPost 가 완성되기 전까지 Suspense의 fallback 내용을 출력한 이후 교체하는 것이죠.
+
+반면에, Suspense 부분을 제거했을 때에는 dashboard 페이지로 이동되기까지 최소 2초의 시간이 걸립니다.
+
+```html
+<Suspense fallback={<p>(Suspense 로딩중...)</p>}>
+  <RecommendPostDelay2s />
+  <RecommendPostDelay10s />
+</Suspense>
+```
+
+만약, 2초가 걸리는 컴포넌트와 10초가 걸리는 컴포넌트를 같은 Suspense로 감싸두었을때에는 더 오래걸리는 10s 까지 완성이 되어야 두 컴포넌트가 렌더링됩니다.
+Suspense로 각각 나눈다면 당연 컴포넌트 각각에 맞춰지고요. 상황에 맞추어 사용하면 됩니다.
+
+---
+
+### Loading.tsx
+
+App Router 는 기본적으로 Loading, Page 등을 Suspense로 감싸고 있습니다.
+
+때문에 loading.tsx 파일을 만든다면 Suspense 를 사용하지 않아도 임의로 대처할 수는 있습니다.
+
+```js:app/dashboard/loading.tsx
+export default function Loading() {
+  return <p>( loading.tsx 작동중.. )</p>;
+}
+```
+
+그럴때엔 아래와 같이 결과물이 나타납니다.
+
+![st_0](/img/2023-12-11-streaming-splitting/loading.gif)
+
+만약 Loading.tsx와 Suspense를 같이 사용한다면?
+
+그땐 Suspense가 `<RecommendPost />`와 더 밀접하여 Suspense 결과물과 같습니다.
+그렇다고 Loading.tsx 작동되지 않는 것은 아닙니다. Loading.tsx 는 해당 페이지에서 Suspense 를 제외한 부분이 로드 되기까지를 Suspense 하고 있는 것이니까요.
+
+---
+
+![1](/img/2023-12-11-streaming-splitting/1.png)
+
+만약 Loading.tsx를 사용하게 된다면 해당 페이지의 첫 결과물은 Loading 에 해당하게 됩니다.
+
+물론, SEO 에는 영향을 미치지 않습니다. (개발시에만 참고)
+
+---
+
+### Loading.tsx VS Suspense
+
+Loading.tsx 가 분명 사용하기 쉽고 눈에도 띄어 관리하기도 쉬워보입니다만..
+
+Code Splitting은 중요한것, 상호작용 가능해진 것들을 먼저 내보내는 것이라 했는데
+Loading.tsx 같은 경우는 Layout.tsx 를 제외하고 Page.tsx 전체가 나타나기까지를 처리하는 경우입니다.
+반면 Suspense는 Page.tsx 에서 상세하게 나눈다고 보면 되고요.
+
+Loading.tsx는 안좋다가 아니라 **Loading.tsx 로 모든걸 해결하면 안된다**가 맞는 것 같아요.
+
+가급적이면 Suspense로 상세하게 데이터 우선순위나 응답 시간등을 고려하여 작성하는 것이 옳다고 보입니다.
+
+참고로, 같이 사용해도 문제는 없습니다.
+다만, /Home -> /Dashboard 로 이동하다고 했을때 /Home -> (Loading) -> /Dashboard 와 같이 중간에 Loading 페이지가 나타나기 때문에 Flicker 에 신경을 써야할 것으로 보입니다.
+만약에 페이지 이동이 오래 걸리는 경우라면 Loading.tsx가 없는것보다 로딩 상황이라도 알려주는 경우가 좋을때도 있겠습니다.
+
+<div className="video-container">
+  <iframe
+    src="https://codesandbox.io/p/devbox/next-js-code-splitting-6333h8?file=%2Fapp%2Fpage.tsx&embed=1"
+    title="Next.js (Code splitting)"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+  ></iframe>
+</div>
+
+---
+
+## Code Splitting 이란
+
+[Code splitting](https://developer.mozilla.org/ko/docs/Glossary/Code_splitting) 은 언어 그대로 **코드를 분리하는 일**입니다.
+Webpack 과 같은 번들러들이 분할된 코드들을 뭉쳐 번들파일로 만듭니다.
+프로젝트가 복잡해지고 CSS 및 JS 파일 및 번들 크기가 커지면서 한번에
+큰 파일을 다운로드 하지 않도록, 즉 당장에 필요하지 않은 파일들을 다운로드 하지 않도록
+스크립트를 작게 분할 시키는 작업을 이야기합니다.
+
+Next.js 는 기본적으로 서버 컴포넌트들을 Code Splitting 작업을 해줍니다.
+페이지별로 필요한 부분을 로드하도록 해주는 거죠. 이때문에 SSR 특징인 초기 로딩 속도가 빠른다는 것이고요.
+그렇다고 Next.js 에서 Code Splitting 작업을 할 필요가 없어진 것은 아닙니다.
+
+---
+
+## Lazy Loading 이란
+
+필요할 때 필요한 것만 로드하는 과정을 이야기합니다.
+
+외부 모듈이나 컴포넌트 등의 수준에서 로드하는 개념으로 Code splitting 의 한 형태라고 볼 수 있습니다.
+
+Streaming 하는 일이 데이터를 나누어 처리하면서 초기 로딩 시간을 줄이는 것이기에 Lazy Loading 같아 보입니다.
+하지만 Streaming이 Lazy Loading 과는 비슷해보이나 다른 것이,
+**Lazy Loading은 필요한 부분을 필요 시점에 로드하게 하는 점**이라는 것입니다.
+예를 들어 한 페이지에 Modal 로 띄우는 검색창이 존재한다면,
+사용자가 Modal 창을 띄우지 않을 수 있기에 이는 Lazy Loading 작업에 고려 될 수 있습니다.
+당연, Streaming과 Lazy Loading을 같이 사용할 수 있습니다.
+만약 이 Modal 검색창의 연관되는 내용을 도출하는 것이 오래걸린다면 Streaming 해볼 수 있겠죠.
+(극단적인 예시일 뿐입니다. 과도한 분할 작업은 되려 안좋다고 생각해요. 뒤에서 계속)
+
+그러니 요약하면 Lazy Loading은 필요할때 필요한 것을 로드시키기 위한 코드 분할로, 번들을 최적화하고 초기 로딩을 최적화 하는 것에 포커스되어 있고
+Streaming은 서버 사이드에서 모든 것을 로드 완료 되기까지 오래 걸리는 것을 병렬 시킴으로서 초기 로딩시간을 최적화 하는 것에 포커스되어 있다 볼 수 있습니다.
+
+---
+
+### next/dynamic
+
+React 에서는 이 Lazy Loading을 위해서 `React.lazy()` 와 `Suspense` 가 존재합니다.
+Next에서는 이 둘을 합성한 `next/dynamic`이 존재하고요.
+
+```js
+import dynamic from "next/dynamic";
+
+const DynamicServerComponent = dynamic(() => import("@/components/ServerComponent"), {
+  loading: () => <p>Loading...</p>,
+  ssr: false,
+});
+
+//...
+```
+
+- loading: 로딩 중에 띄울 것, Suspense의 fallback
+- ssr: 클라이언트 컴포넌트에서 pre-rendering을 비활성화하려면 false.
+
+---
+
+## Lazy Loading Test
+
+다음과 같은 상황을 만들어 볼게요.
+
+- `/normal` 페이지를 일반적으로 컴포넌트를 import 했을때
+- `/dynamic` 페이지를 dynamic import 했을때
+- `/dynamic_ssr_false` 페이지를 dynamic import 하면서 pre-rendering 비활성화 했을때
+
+그 후 빌드된 결과물은 다음과 같아요.
+
+![1](/img/2023-12-11-streaming-splitting/4.png)
+
+그런데 빌드된 결과물이 의도와는 조금 다릅니다?
+
+분명 번들 크기를 줄이기 위해 Lazy Loading을 하였는데 막상 일반 import 시킨 페이지보다 번들 크기가 더 크게 나왔어요.
+
+![1](/img/2023-12-11-streaming-splitting/2.png)
+
+이는 `next/dynamic` 을 사용하면서 이것 역시 추가로 번들되었기 때문이에요.
+[@next/bundle-analyzer](https://www.npmjs.com/package/@next/bundle-analyzer) 에서 도출된 내용으로 보면
+`next/dynamic` 을 사용하면서 추가된 내용은 164B 정도네요.
+
+다시 계산해보면 실질적으로는 Lazy Loading 한 페이지가 `next/dynamic`을 제외하면 번들 크기가 줄어든 것은 맞습니다.
+
+<aside>
+의미없는 Lazy Loading 은 코드를 복잡하게 할 뿐만 아니라 되려 악성능일 수 있겠네요.
+
+(물론 next/dynamic 보다 작은걸 Code Splitting 할 일은 없겠죠)
+
+</aside>
+
+다음으로 `next/dynamic`의 ssr 설정 차이는 당연 빌드 결과에서 나오는 것이 아닌 페이지 로드 단계에서 나옵니다.
+
+![1](/img/2023-12-11-streaming-splitting/3.png)
+
+`ssr: false` 의 경우에는 페이지에 입장했을때 불러와진 chunk 가 나타납니다.
+반대로 `ssr: true(default)` 의 경우는 페이지가 로드되어 보여지기 이전에, 서버사이드에서 처리되었기 때문에 나타나진 않습니다.
+
+![1](/img/2023-12-11-streaming-splitting/5.png)
+
+---
+
+## 참고
+
+- [Loading UI and Streaming](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming)
+- [Does streaming affect SEO and can streamed content be indexed?](https://vercel.com/guides/does-streaming-affect-seo)
+- [App Router Playground](https://app-router.vercel.app/streaming)
+- [What Are Code Splitting And Lazy Loading?](https://javascript.plainenglish.io/code-splitting-and-lazy-loading-b9cbcd05494d)
+- [Optimizing React Performance with Lazy Loading and Code Splitting](https://www.linkedin.com/pulse/optimizing-react-performance-lazy-loading-code-splitting-alex-lomia)

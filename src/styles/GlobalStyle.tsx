@@ -78,7 +78,7 @@ const GlobalStyle = (theme: Theme) => css`
 
   b,
   strong {
-    font-weight: 500;
+    font-weight: 700;
   }
 
   hr {
@@ -118,7 +118,7 @@ const GlobalStyle = (theme: Theme) => css`
 
   blockquote {
     background-color: var(--blockquoteBG);
-    border-left: var(--primary) 5px solid;
+    border-left: var(--black) 2px solid;
     padding: 5px 0px 2px 14px;
     margin: 1rem 0rem;
     p {

@@ -216,6 +216,6 @@ code.language-css .token.selector > .token.pseudo-element {
 .rehype-code-title {
   color: var(--prism-foreground);
   background-color: black;
-  border-radius: 1rem 1rem 0rem 0rem;
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
   padding: 0.75rem 0rem 0.75rem 1rem;
 }

@@ -1,13 +1,11 @@
 "use client";
 
-import Link from "next/link";
-
 import styled from "@emotion/styled";
 import clsx from "clsx";
 import { Post } from "contentlayer/generated";
+import Link from "next/link";
 
 import useTocHighlight from "@/hooks/useTocHighlight";
-
 import { Heading } from "@/types/heading";
 
 export default function Toc({ post }: { post: Post }) {
@@ -36,6 +34,7 @@ const TocList = styled.ul`
   margin: 0px;
   padding-left: 0px;
   list-style: none;
+  font-size: 14px;
 `;
 
 const TocItemStyled = styled.li`
