@@ -82,9 +82,10 @@ const GlobalStyle = (theme: Theme) => css`
   }
 
   hr {
+    border: none;
     border-top: 1px solid var(--hr);
-    margin-top: 3.5rem;
-    margin-bottom: 3.5rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
   }
 
   h1 {

@@ -1,20 +1,16 @@
-:root {
-  --prism-background: #2b2b2b;
-  --prism-comment: #808080;
-  --prism-foreground: #a9b7c6;
-  --prism-selection: #484848;
-}
-
+/* https://github.com/PrismJS/prism-themes/blob/master/themes/prism-material-dark.css */
 code[class*="language-"],
 pre[class*="language-"] {
-  color: var(--prism-foreground);
-  font-family: Consolas, Monaco, "Andale Mono", monospace;
-  direction: ltr;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  line-height: 1.5;
+  word-wrap: normal;
+  color: #eee;
+  background: #272727;
+  font-family: Consolas, Monaco, "Andale Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5em;
 
   -moz-tab-size: 4;
   -o-tab-size: 4;
@@ -26,196 +22,193 @@ pre[class*="language-"] {
   hyphens: none;
 }
 
-pre[class*="language-"]::-moz-selection,
-pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection,
-code[class*="language-"] ::-moz-selection {
-  color: inherit;
-  background: var(--prism-selection);
+pre[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection,
+pre[class*="language-"] ::-moz-selection {
+  background: #363636;
 }
 
-pre[class*="language-"]::selection,
-pre[class*="language-"] ::selection,
 code[class*="language-"]::selection,
-code[class*="language-"] ::selection {
-  color: inherit;
-  background: var(--prism-selection);
+pre[class*="language-"]::selection,
+code[class*="language-"] ::selection,
+pre[class*="language-"] ::selection {
+  background: #363636;
 }
 
-/* Code blocks */
-pre[class*="language-"] {
-  padding: 1em;
-  margin: 0.5em 0;
-  overflow: auto;
-}
-
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-  background: var(--prism-background);
-}
-
-/* Inline code */
 :not(pre) > code[class*="language-"] {
+  white-space: normal;
+  border-radius: 0.2em;
   padding: 0.1em;
-  border-radius: 0.3em;
 }
 
-.token.comment,
-.token.prolog,
-.token.cdata {
-  color: #808080;
+pre[class*="language-"] {
+  overflow: auto;
+  position: relative;
+  margin: 0.5em 0;
+  padding: 1.25em 1em;
 }
 
-.token.delimiter,
-.token.boolean,
-.token.keyword,
-.token.selector,
-.token.important,
+.language-css > code,
+.language-sass > code,
+.language-scss > code {
+  color: #fd9170;
+}
+
+[class*="language-"] .namespace {
+  opacity: 0.7;
+}
+
 .token.atrule {
-  color: #cc7832;
+  color: #c792ea;
 }
 
-.token.operator,
-.token.punctuation,
 .token.attr-name {
-  color: #a9b7c6;
+  color: #ffcb6b;
 }
 
-.token.tag,
-.token.tag .punctuation,
-.token.doctype,
+.token.attr-value {
+  color: #a5e844;
+}
+
+.token.attribute {
+  color: #a5e844;
+}
+
+.token.boolean {
+  color: #c792ea;
+}
+
 .token.builtin {
-  color: #e8bf6a;
+  color: #ffcb6b;
 }
 
-.token.entity,
-.token.number,
-.token.symbol {
-  color: #6897bb;
+.token.cdata {
+  color: #80cbc4;
 }
 
-.token.property,
-.token.constant,
-.token.variable {
-  color: #9876aa;
-}
-
-.token.string,
 .token.char {
-  color: #6a8759;
+  color: #80cbc4;
 }
 
-.token.attr-value,
-.token.attr-value .punctuation {
-  color: #a5c261;
+.token.class {
+  color: #ffcb6b;
 }
 
-.token.attr-value .punctuation:first-child {
-  color: #a9b7c6;
+.token.class-name {
+  color: #f2ff00;
 }
 
-.token.url {
-  color: #287bde;
-  text-decoration: underline;
+.token.comment {
+  color: #8b8b8b;
 }
 
-.token.function {
-  color: #ffc66d;
-}
-
-.token.regex {
-  background: #364135;
-}
-
-.token.bold {
-  font-weight: bold;
-}
-
-.token.italic {
-  font-style: italic;
-}
-
-.token.inserted {
-  background: #294436;
+.token.constant {
+  color: #c792ea;
 }
 
 .token.deleted {
-  background: #484a4a;
+  color: #ff6666;
 }
 
-code.language-css .token.property,
-code.language-css .token.property + .token.punctuation {
-  color: #a9b7c6;
+.token.doctype {
+  color: #616161;
 }
 
-code.language-css .token.id {
-  color: #ffc66d;
+.token.entity {
+  color: #ff6666;
 }
 
-code.language-css .token.selector > .token.class,
-code.language-css .token.selector > .token.attribute,
-code.language-css .token.selector > .token.pseudo-class,
-code.language-css .token.selector > .token.pseudo-element {
-  color: #ffc66d;
+.token.function {
+  color: #c792ea;
 }
 
-.code-line {
-  color: var(--prism-foreground);
+.token.hexcode {
+  color: #f2ff00;
 }
 
-/* rehype-prism-plus */
-.code-line.inserted,
-.code-line.deleted,
-.code-line.highlight-line {
-  @apply -mx-5 block px-5;
+.token.id {
+  color: #c792ea;
+  font-weight: bold;
 }
 
-.code-line.highlight-line {
-  background-color: var(--prism-selection);
-  border-color: #cc7832;
-  border-left-width: 6px;
-}
-.highlight-line > *:first-of-type {
-  margin-left: -6px;
-}
-.highlight-line.line-number::before {
-  margin-left: -18px;
+.token.important {
+  color: #c792ea;
+  font-weight: bold;
 }
 
-.code-line.highlight-line::selection,
-.code-line.highlight-line *::selection {
-  background-color: var(--prism-selection);
+.token.inserted {
+  color: #80cbc4;
 }
 
-.code-line.inserted {
-  background-color: rgba(16, 185, 129, 0.2);
-}
-.code-line.deleted {
-  background-color: rgba(239, 68, 68, 0.2);
+.token.keyword {
+  color: #c792ea;
 }
 
-.code-line.inserted > *:first-child {
-  user-select: none;
+.token.number {
+  color: #fd9170;
 }
 
-.line-number::before {
-  display: inline-block;
-  width: 1rem;
-  text-align: right;
-  margin-right: 16px;
-  margin-left: -12px;
-  color: var(--prism-comment);
-  content: attr(line);
+.token.operator {
+  color: #89ddff;
 }
 
-.prose pre {
-  color: var(--prism-foreground);
-  background-color: var(--prism-background);
+.token.prolog {
+  color: #616161;
+}
+
+.token.property {
+  color: #80cbc4;
+}
+
+.token.pseudo-class {
+  color: #a5e844;
+}
+
+.token.pseudo-element {
+  color: #a5e844;
+}
+
+.token.punctuation {
+  color: #89ddff;
+}
+
+.token.regex {
+  color: #f2ff00;
+}
+
+.token.selector {
+  color: #ff6666;
+}
+
+.token.string {
+  color: #a5e844;
+}
+
+.token.symbol {
+  color: #c792ea;
+}
+
+.token.tag {
+  color: #ff6666;
+}
+
+.token.unit {
+  color: #fd9170;
+}
+
+.token.url {
+  color: #ff6666;
+}
+
+.token.variable {
+  color: #ff6666;
 }
 
 .rehype-code-title {
-  color: var(--prism-foreground);
-  background-color: black;
+  color: #d5d5d5;
+  background-color: #272727;
+  font-size: 12px;
   border-radius: 0.5rem 0.5rem 0rem 0rem;
   padding: 0.75rem 0rem 0.75rem 1rem;
 }

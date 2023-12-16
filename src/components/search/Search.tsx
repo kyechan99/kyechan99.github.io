@@ -9,6 +9,7 @@ import { searchModalState } from "@/recoil/search";
 
 import { allPosts } from "@/constants/posts";
 import { boldBorderStyle } from "@/libs/bold";
+import { maxMedia } from "@/libs/media";
 import { PostType } from "@/types/post";
 import { searchTermOptimization } from "@/utils/format";
 
@@ -110,6 +111,9 @@ const SearchBackground = styled.div`
   background-color: hsla(0, 0%, 30%, 0.3);
   padding: 15vh 1rem 1rem 1rem;
   backdrop-filter: blur(3px);
+  ${maxMedia.mobile} {
+    padding-top: 5vh;
+  }
 `;
 
 const SearchHeader = styled.div`
