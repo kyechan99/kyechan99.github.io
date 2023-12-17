@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { Post } from "contentlayer/generated";
 import Image from "next/image";
 
-import { maxMedia, minMedia } from "@/libs/media";
+import { maxMedia } from "@/libs/media";
 import { headerImgPath } from "@/utils/url";
 
 import Date from "../Date";
@@ -46,18 +46,12 @@ const PostTitle = styled.h1`
   ${maxMedia.tablet} {
     line-height: 2.5rem;
   }
-  ${minMedia.tablet} {
-    &::before {
-      content: " ";
-      display: block;
-      width: calc(100% + 2rem);
-      height: 0.5rem;
-      background-color: var(--primary);
-      position: absolute;
-      z-index: -1;
-      bottom: 0%;
-      left: -1rem;
-    }
+  &::after {
+    content: ".";
+    font-size: 2rem;
+    color: var(--secondary);
+    position: absolute;
+    bottom: -0.25rem;
   }
 `;
 const Description = styled.p`
