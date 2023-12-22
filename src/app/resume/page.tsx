@@ -70,10 +70,6 @@ const Container = styled.div`
   hr {
     margin-top: 10px;
   }
-
-  .resume-project {
-    margin-bottom: 3rem;
-  }
 `;
 
 export default function Resume() {
@@ -97,20 +93,20 @@ export default function Resume() {
                 <li className="info">
                   <span className="info-icon">
                     {" "}
-                    <IconDeviceMobile />{" "}
+                    <IconDeviceMobile stroke={1.25} />{" "}
                   </span>
                   010-5236-7457
                 </li>
                 <li className="info">
                   <span className="info-icon">
-                    <IconMail />
+                    <IconMail stroke={1.25} />
                   </span>
                   kyechan99@gmail.com
                 </li>
 
                 <li className="info">
                   <span className="info-icon">
-                    <IconBrandGithub />
+                    <IconBrandGithub stroke={1.25} />
                   </span>
                   <a href="https://github.com/kyechan99" target="_blank">
                     github.com/kyechan99
@@ -118,9 +114,9 @@ export default function Resume() {
                 </li>
                 <li className="info">
                   <span className="info-icon">
-                    <IconPencil />
+                    <IconPencil stroke={1.25} />
                   </span>
-                  <Link href="/" target="_blank">
+                  <Link href="https://kyechan99.github.io" target="_blank">
                     kyechan99.github.io
                   </Link>
                 </li>
@@ -134,24 +130,33 @@ export default function Resume() {
             <div className=" ">
               <div className="intro-block">
                 <p>일일 사용량 45,000 건의 오픈소스를 관리하고 있습니다.</p>
+
                 <p>
-                  기술의 사용법에 능숙해지는 것도 중요하지만,{" "}
-                  <b className="stress">왜 필요하고 무엇을 해결하는지 고민</b>
-                  합니다.
+                  {/* 소프트웨어 개발은 문제를 개선하고 변화시키는 일에 큰 가치가 있다고 생각해요.  */}
+                  개발자로서 무엇을 해결하는지를 넘어 <b className="stress">근본적인 문제와 창의적인 해결책</b>에
+                  고민합니다.
+                  <br /> 이를 바탕으로 오픈소스에 관심이 많아 개발하면서 도전과 성장을 즐기고 있습니다.
                 </p>
-                <p>이를 바탕으로 오픈소스에 관심이 많아 분석해보거나 개발 해보며 다양하게 도전해오고 있습니다.</p>
-                {/* <p>특히 개발자에게 필요한 기능이나 문제를 경험하면서, 직접 개선하고 변화시키는 일이 즐겁습니다.</p> */}
+                {/* <p>소프트웨어 개발은 문제를 개선하고 변화시키는 일에 큰 가치가 있다고 느낍니다.</p>
+                <p>
+                  개발자로서 무엇을 해결하는지를 넘어 <b className="stress">'근본적인 문제와 창의적인 해결책'</b>에
+                  고민합니다.
+                </p>
+                <p>이를 바탕으로 오픈소스에 관심이 많아 분석하고 개발하며 도전과 성장을 즐기고 있습니다.</p> */}
+                <p>
+                  겪었던 실수를 반복하지 않기 위해 <b className="stress">지속적인 학습과 공유에 적극적</b>입니다. 특히
+                  협업은 고민하고 나누는 환경에서 힘이 나온다고 생각합니다. 능동적으로 소통에 참여해 서비스 발전과
+                  가치를 창출하는 코드를 위해 노력합니다.
+                </p>
               </div>
             </div>
-            <div className="intro-block">
+            {/* <div className="intro-block">
               <p>
-                소프트웨어 개발은 문제를 <b className="stress">개선하고 변화시키는 일에 큰 가치</b>가 있다고 느낍니다.
+                겪었던 실수를 반복하지 않기 위해 <b className="stress">지속적인 학습과 공유에 적극적</b>입니다. 특히
+                협업은 문제를 고민하고 나누는 환경에서 힘이 나온다고 생각합니다. 능동적으로 소통에 참여해 서비스 발전과
+                가치를 창출하는 코드를 위해 노력합니다.
               </p>
-              <p>이전에 겪었던 실수와 고민을 반복하지 않기 위해 문제 해결을 위한 프로젝트를 진행하거나 공유합니다.</p>
-              <p>
-                소통과 협업은 문제를 공유하는 상황에서 힘이 나온다고 생각하며, 귀 기울이며 수용하고 배우고자 노력합니다.
-              </p>
-            </div>
+            </div> */}
           </div>
 
           <div className="print-empty-project"></div>
@@ -185,7 +190,7 @@ export default function Resume() {
                 <h4 className="semi-title">Challenge & Experience</h4>
                 <ul className="semi-list origin-ul">
                   <li>API Query 값으로 SVG를 활용해 동적인 이미지 응답</li>
-                  <li>하루 평균 45,000건 요청 (35,000~55,000)</li>
+                  <li>하루 평균 45,000건 이상 요청</li>
                   <li>오픈 소스 사용 방법 및 예외 사항 등을 명시한 문서 제공</li>
                   <li>
                     <img
@@ -238,8 +243,8 @@ export default function Resume() {
                     <ul className="semi-list origin-ul">
                       {/* <li>App Router </li> */}
                       <li>
-                        페이지 전환보다 첫 페이지 입장을 위한 Next.js 마이그레이션 작업 -{" "}
-                        <Link href="/post/lib/why-nextjs" target="_blank">
+                        페이지 전환보다 첫 페이지 입장을 위한 마이그레이션 작업 -{" "}
+                        <Link href="https://kyechan99.github.io/post/lib/why-nextjs" target="_blank">
                           포스팅
                         </Link>
                       </li>
@@ -252,20 +257,11 @@ export default function Resume() {
                     렌더링 속도 개선
                     <ul className="semi-list origin-ul">
                       {/* <li>우선순위에 따라 Streaming 하며 lighthouse FCP 0.7s → 0.4s 로 감소</li> */}
-                      <li>응답 우선순위에 따라 Streaming 하며 첫 컨텐츠 렌더링 시간 단축</li>
+                      <li>우선순위에 따라 Streaming 하며 첫 컨텐츠 렌더링 시간 0.9s → 0.3s 단축</li>
                       <li>로딩 중 Skeleton UI를 이용해 화면 일관성과 사용자 경험 개선</li>
                     </ul>
                   </li>
-                  <div className="print-empty-voicehub"></div>
-                  <li>
-                    오디오 플레이어 상태 유지
-                    <ul className="semi-list origin-ul">
-                      <li>
-                        Recoil로 다양한 오디오 재생 컴포넌트들과 상태를 공유하면서 불필요한 재렌더링을 방지하고 페이지
-                        이동에도 재생 유지
-                      </li>
-                    </ul>
-                  </li>
+                  {/* <div className="print-empty-voicehub"></div> */}
                   <li>
                     컴포넌트 복잡도 개선
                     <ul className="semi-list origin-ul">
@@ -273,6 +269,15 @@ export default function Resume() {
                 <li>동적 스타일링을 위한 CSS-IN-JS로 styled-component 도입</li>  */}
                       <li>컴포넌트 단위로 개발하면서 재사용성을 높이고 반복 작업 최소화</li>
                       <li>Storybook을 이용해 문서화하며 컴포넌트 종류 시각화</li>
+                    </ul>
+                  </li>
+                  <li>
+                    오디오 플레이어 상태 유지
+                    <ul className="semi-list origin-ul">
+                      <li>
+                        다양한 오디오 재생 컴포넌트들과 상태를 공유하면서 불필요한 재렌더링을 방지하고 페이지 이동에도
+                        재생 유지
+                      </li>
                     </ul>
                   </li>
                 </ul>
@@ -329,7 +334,7 @@ export default function Resume() {
                       <li>서비스 요구사항 대비 불필요한 React 도입 고려</li>
                       <li>
                         Preact 도입 효과를 정리하고 팀원들과 토론하여 설득 -{" "}
-                        <Link href="/post/lib/react-preact" target="_blank">
+                        <Link href="https://kyechan99.github.io/post/lib/react-preact" target="_blank">
                           포스팅
                         </Link>
                       </li>
@@ -352,7 +357,7 @@ export default function Resume() {
                       <li>
                         Three.js 의 공식 Line 객체가 모든 브라우저에 호환되지 못하는 문제로, 라이브러리의 샘플 단계
                         Line2 와의 비교 분석을 통해 프로젝트에 도입하면서 브라우저 호환 -
-                        <Link href="/post/lib/threejs-draw" target="_blank">
+                        <Link href="https://kyechan99.github.io/post/lib/threejs-draw" target="_blank">
                           포스팅
                         </Link>
                       </li>
@@ -412,13 +417,13 @@ export default function Resume() {
                     <ul className="semi-list origin-ul">
                       <li>각 줄마다 스타일링을 지정할 수 있게 블럭 기반의 에디터를 개발</li>
                       <li>변경되는 내부 html 내용을 스택의 깊이 확인을 통해 재검사</li>
-                      <li>분리된 블럭 컴포넌트간의 작용을 위해 Redux 상태 관리</li>
+                      {/* <li>분리된 블럭 컴포넌트간의 작용을 위해 Redux 상태 관리</li> */}
                       <li>환경에 따라 변하는 이미지 비율에 맞추어 데이터 위치 재조정</li>
                     </ul>
                   </li>
                   <li>
                     부분 색상 및 두께 조절등의 기능을 위한{" "}
-                    <Link href="/dragond" target="_blank">
+                    <Link href="https://kyechan99.github.io/dragond" target="_blank">
                       컴포넌트
                     </Link>{" "}
                     개발
@@ -428,7 +433,7 @@ export default function Resume() {
             </div>
             <hr className="divider" />
 
-            <div className="print-empty-yuristrap"></div>
+            {/* <div className="print-empty-yuristrap"></div> */}
 
             <div className="project-row row">
               <div className="col-md-4">
@@ -516,7 +521,7 @@ export default function Resume() {
                   <li>평균 동시접속자 35명과 1745명의 사용자 가입</li>
                   <li>
                     순수한 개발 즐거움에 몰두하기도 하며 새로운 도전에도 적극적으로 참여 -
-                    <Link href="/project/games/loswak" target="_blank">
+                    <Link href="https://kyechan99.github.io/project/games/loswak" target="_blank">
                       포스팅
                     </Link>
                   </li>
@@ -524,6 +529,8 @@ export default function Resume() {
               </div>
             </div>
           </div>
+
+          <div className="print-empty-project"></div>
 
           <div className="resume-block resume-education">
             <h2 className="title">Act</h2>
@@ -555,23 +562,27 @@ export default function Resume() {
             </div>
           </div>
 
+          <div className="print-empty-project"></div>
+
           <div className="resume-block resume-education">
             <h2 className="title">EDUCATION</h2>
 
             <p className="info-log">
-              한국게임과학고 프로그래밍과
-              <span className="info-detail left">2015.03 - 2018.02</span>
-            </p>
-            <p className="info-log">
               국민대학교 소프트웨어학과
               <span className="info-detail left">2018.03 - 2024.02 (졸업예정)</span>
             </p>
+            <p className="info-log">
+              한국게임과학고 프로그래밍과
+              <span className="info-detail left">2015.03 - 2018.02</span>
+            </p>
           </div>
+
+          <div className="print-empty-project"></div>
 
           <div className="resume-block resume-education">
             <h2 className="title">Award</h2>
 
-            <p className="info-log">코딩 스터디 J2KB 5th - 대상</p>
+            {/* <p className="info-log">코딩 스터디 J2KB 5th - 대상</p> */}
             <p className="info-log">제33회 한국정보올림피아드 경시부문 지역대회 - 동상</p>
             <p className="info-log">글로벌 인디 게임 제작 경진대회 - 장려상</p>
             <p className="info-log">미래상상 기술 경진대회 - 동상</p>

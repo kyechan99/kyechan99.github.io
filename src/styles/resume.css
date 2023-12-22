@@ -63,7 +63,7 @@
 }
 @media print {
   .resume .resume-block {
-    margin-bottom: 3.5rem;
+    margin-bottom: 2.25rem;
   }
 }
 .resume .name {
@@ -95,6 +95,9 @@
   opacity: 0.3;
 }
 @media print {
+  .resume .name {
+    line-height: 1.25;
+  }
   .resume .name::before {
     opacity: 0;
   }
@@ -251,8 +254,24 @@
   }
 }
 @media print {
+  .resume-profile .col-md-4 {
+    width: 240px;
+    flex: 0 0 26%;
+    max-width: 26%;
+    display: flex;
+    justify-content: flex-start;
+  }
+}
+@media print {
   .resume-profile .profile-img {
+    margin-left: 0px;
     margin-bottom: 0rem;
+    height: 200px;
+  }
+}
+@media print {
+  .resume-introduce .intro-block p {
+    font-size: 19px;
   }
 }
 .resume-profile .info-list {
@@ -270,6 +289,16 @@
   font-weight: 400;
   text-decoration: underline;
   color: var(--black);
+}
+@media print {
+  .resume-profile .info-list {
+    margin-top: 1rem;
+  }
+}
+@media print {
+  .resume-profile .info-list .info {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .resume-education .info-detail {
