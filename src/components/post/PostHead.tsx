@@ -2,7 +2,6 @@
 
 import styled from "@emotion/styled";
 import { Post } from "contentlayer/generated";
-import Image from "next/image";
 
 import { maxMedia } from "@/libs/media";
 import { headerImgPath } from "@/utils/url";
@@ -22,9 +21,9 @@ export default function PostHead({ post }: { post: Post | undefined }) {
         <PostThumbnail
           src={headerImgPath(post.headerImg)}
           alt={post.title}
-          width={0}
-          height={0}
-          style={{ width: "100%", height: "auto" }}
+          // width={0}
+          // height={0}
+          // style={{ width: "100%", height: "auto" }}
         />
       )}
       <PostTitle>{post.title}</PostTitle>
@@ -64,9 +63,10 @@ const Detail = styled.div`
   gap: 2rem;
   margin: 1rem 0rem 1.5rem 0rem;
 `;
-const PostThumbnail = styled(Image)`
+const PostThumbnail = styled.img`
   border-radius: 0.5rem;
   margin: 0rem 0rem 2rem 0rem;
+  width: 100%;
   ${maxMedia.tablet} {
     margin-bottom: 1rem;
   }

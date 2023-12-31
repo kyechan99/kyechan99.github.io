@@ -15,7 +15,7 @@ export const metadata: Metadata = getBaseMetadata({ title: "kyechan99" });
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html data-theme="">
+    <html data-theme="" lang="kr">
       <head>
         <meta name="google-site-verification" content="CPBHSXOcqx3RLJ-Pn1Vr34l30UqV46HXj7Et7LsCM7U" />
         <meta name="naver-site-verification" content="32b3ee031edf2f6c12c44c12006d46b903de6110" />
