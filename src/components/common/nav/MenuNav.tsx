@@ -1,14 +1,12 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { usePathname } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 
+import { CATEGORY, POST_CATEGORY, PROJECT_CATEGORY, getCategoriesWithAll } from "@/constants/category";
 import { maxMedia, minMedia } from "@/libs/media";
-
-import { CATEGORY, POST_CATEGORY, getCategoriesWithAll } from "@/constants/category";
 
 type MenuNavProps = {
   menu: string;
@@ -24,7 +22,7 @@ export default function MenuNav({ menu, setMenu }: MenuNavProps) {
   const isPostCategory = (category: string, compareCategory?: string) => {
     if (category === "All" && (compareCategory === "" || compareCategory === "All")) return true;
 
-    if (POST_CATEGORY.includes(category)) {
+    if ([...POST_CATEGORY, ...PROJECT_CATEGORY].includes(category)) {
       return category === compareCategory;
     }
 

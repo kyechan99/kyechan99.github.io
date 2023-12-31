@@ -4,16 +4,19 @@ import styled from "@emotion/styled";
 import { IconSquareRoundedChevronLeft, IconSquareRoundedChevronRight } from "@tabler/icons-react";
 import Link from "next/link";
 
-import { allPostPosts } from "@/constants/posts";
+import { allPostPosts, allProjectPosts } from "@/constants/posts";
 import { boldBorderHoverStyle, boldBorderStyle } from "@/libs/bold";
 import { maxMedia } from "@/libs/media";
 import { PostType } from "@/types/post";
 
 export default function PostFooter({ post }: { post: PostType }) {
-  const postIndex = allPostPosts.findIndex(v => v.path === post.path);
+  const posts = post.postType === "post" ? allPostPosts : allProjectPosts;
+  const postIndex = posts.findIndex(v => v.path === post.path);
 
-  const prevPost = allPostPosts.at(postIndex + 1) ?? null;
-  const nextPost = allPostPosts.at(postIndex - 1) ?? null;
+  // const prevPost = posts.at(postIndex + 1) ?? null;
+  // const nextPost = posts.at(postIndex - 1) ?? null;
+  const prevPost = postIndex < posts.length - 1 ? posts.at(postIndex + 1) : null;
+  const nextPost = postIndex > 0 ? posts.at(postIndex - 1) : null;
 
   return (
     <PostFooterStyled>
@@ -23,7 +26,7 @@ export default function PostFooter({ post }: { post: PostType }) {
         </RelatedPost>
       )}
       {nextPost && (
-        <RelatedPost href={nextPost.url}>
+        <RelatedPost href={nextPost.url} style={{ marginLeft: "auto" }}>
           <span>{nextPost.title}</span> <IconSquareRoundedChevronRight />
         </RelatedPost>
       )}

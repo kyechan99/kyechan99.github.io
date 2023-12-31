@@ -135,6 +135,7 @@ const Repo = styled.a`
   flex-direction: column;
   justify-content: space-between;
   color: var(--black);
+  transition: all var(--delay);
   p {
     margin: 0px;
   }

@@ -54,5 +54,6 @@ const TocItemStyled = styled.li`
   }
   a.highlight {
     font-weight: 500;
+    color: var(--secondary);
   }
 `;

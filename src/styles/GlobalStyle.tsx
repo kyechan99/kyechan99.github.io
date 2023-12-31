@@ -75,6 +75,14 @@ const GlobalStyle = (theme: Theme) => css`
       margin: 0rem 0.125rem;
     }
   }
+  li code {
+    font-family: var(--Noto-Sans-KR);
+    background-color: var(--asideBG);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.5rem;
+    font-size: 80%;
+    margin: 0rem 0.125rem;
+  }
 
   b,
   strong {

@@ -17,7 +17,6 @@ export function PostFeed({ posts }: { posts: PostType[] }) {
 
   const isPostCategory = (category: string) => {
     if (menu === "All" || menu === "") return true;
-
     return menu === category;
   };
 

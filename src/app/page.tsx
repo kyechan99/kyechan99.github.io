@@ -11,7 +11,7 @@ export default function Home() {
       <ProfileBoard />
       <RecentBoard />
       <RepoBoard />
-      <HomeBanner>안녕하세요!</HomeBanner>
+      <HomeBanner>Actively recruiting..</HomeBanner>
       <TagsBoard />
     </Layout>
   );
