@@ -5,7 +5,7 @@ import { Theme, css } from "@emotion/react";
 import { maxMedia } from "@/libs/media";
 import { cssCustomProperties } from "@/utils/format";
 
-import { darkColors, lightColors } from "./theme";
+import { darkColors, lightColors } from "@/styles/theme";
 
 const GlobalStyle = (theme: Theme) => css`
   *,
@@ -71,7 +71,7 @@ const GlobalStyle = (theme: Theme) => css`
       background-color: var(--asideBG);
       padding: 0.125rem 0.375rem;
       border-radius: 0.5rem;
-      font-size: 100%;
+      font-size: 90%;
       margin: 0rem 0.125rem;
     }
   }
@@ -150,15 +150,39 @@ const GlobalStyle = (theme: Theme) => css`
       margin: 0.25rem 0rem;
     }
   }
+
+  ol li,
   ul li {
-    margin-bottom: 0.25rem;
+    font-size: ${theme.fontSizes.p};
+    margin-bottom: 0.5rem;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+    margin: 2rem 0rem;
+  }
+  th,
+  td {
+    padding: 10px;
+    border: 1px solid var(--hr);
+  }
+  th {
+    background-color: var(--blockquoteBG);
+    font-weight: 400;
+  }
+  td {
+    color: var(--black);
+    opacity: 0.7;
   }
 
   .video-container {
     position: relative;
     margin: 2rem 0rem;
     padding-bottom: 56.25%;
-    height: 0;
+    width: 100%;
+    height: 445.5px;
     overflow: hidden;
     iframe,
     object,

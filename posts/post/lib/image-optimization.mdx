@@ -1,0 +1,217 @@
+---
+layout: post
+title: Image Lazy Loading
+date: 2023-12-31
+category: Lib
+description: 성능 최적화 방법을 위한 이미지 지연로딩에 대해
+tags: [Image, Optimization, SEO]
+keywords: Image, Optimization
+haveImg: true
+headerImg: 2024-1-1-imageop.jpg
+---
+
+## 개요
+
+웹 페이지에서 이미지는 정말 많이 사용됩니다.
+
+![report](/img/2024-1-1-imageop/report.jpg)
+
+> [State of Image](https://httparchive.org/reports/state-of-images?start=2022_07_01&end=2023_10_01&view=list)
+
+사용되는 이미지 크기들은 또 늘어나고 있어요.
+인터넷 속도도 그만큼 빨라졌다지만 그렇지 못한 환경을 어김없이 고려해보아야 합니다.
+지연 로딩 사용 통계가 늘어나는 이유가 이에 유의미합니다.
+
+---
+
+## Image Lazy Loading
+
+Lazy Loading은 리소스를 필요할때 비동기로 로드하는 전략입니다.
+
+그리고 이는 CRP (Critical Rendering Path) 의 길이를 줄여 페이지 로드 시간을 줄이는 방법이기도 합니다.
+
+(CRP: 브라우저가 서버로부터 응답을 받아 화면을 그리기 위해 실행하는 과정)
+
+재미있는 것은 이런 Lazy Loading을 이미지에도 적용할 수 있단 것입니다.
+
+```jsx
+<img  loading="lazy"  ... />
+```
+
+- `lazy` : 뷰포트에 위치하게 되었을 때 load 시작
+- `eager` : 위치 상관없이 즉시 load 시작 (화면 밖이어도 로드를 지연시키지 않고 평소와 같이 로드하는 명령어. 다른 이미지보다 더 빨리 로드된다는 의미가 아님)
+- `auto` : 브라우저 결정 (비표준)
+
+다만, 모든 Lazy Loading이 그렇듯
+
+첫 뷰포트에 위치해 있을 이미지의 경우, 특히 LCP 이미지에는 설정해서는 안됩니다.
+
+> [너무 많은 지연 로드가 성능에 미치는 영향](https://web.dev/articles/lcp-lazy-loading?hl=ko)
+
+![reload_0](/img/2024-1-1-imageop/threshold.png)
+
+재미있는 이야기이기도 한데, 인터넷 속도가 발전함에 따라 뷰 포트로부터의 threshold 를 조정하기도 합니다. 속도가 빨라지니 인식하는 속도를 앞당길 필요가 줄어드는 것이죠. 어찌보면 당연한 얘기이기도 한데 브라우저 자체가 이런 수치를 조절하는 건 정말 많은 분석을 통해 도출 되었을 걸 생각하면 신기하기도 합니다.
+
+---
+
+### CLS
+
+이미지가 가장 일반적으로 성능을 저하시키는 원인 중 하나는 이미지가 로드될 때에 다른 요소들을 밀어내는, 소위 `layout shift` 때문입니다.
+그리고 이는 사용자로 하여금 불편함을 야기하기도 하며 뿐만 아니라 `Cumulative Layout Shift (CLS)` 점수를 올립니다.
+
+일반적으로 좋은 [CLS](https://web.dev/articles/cls?hl=ko) 점수를 0.1 이하라고 측정하는데,
+역시 이러한 점수가 좋게 측정되지 못한다면 검색 엔진으로 부터 패널티를 얻게 된다 볼 수 있습니다.
+Skeleton UI 를 구성하는 이유도 여기에 있죠.
+
+|     | 빠름       | 개선이 필요 | 느림       |
+| --- | ---------- | ----------- | ---------- |
+| LCP | 2.5 이하   | 4s 이하     | 4s 초과    |
+| FID | 100ms 이하 | 300ms 이하  | 300ms 이하 |
+| CLS | 0.1s 이하  | 0.25s 이하  | 0.25s 초과 |
+
+---
+
+### 크기 속성
+
+여튼, Lazy Loading을 사용하는 방법이 있는 것은 알았으니 Layout Shift 를 신경써야 합니다.
+
+브라우저는 이미지를 로드할때 이미지의 크기를 즉시 알 수 없다는 문제가 있어요.
+때문에 `width` 와 `height` 속성에 값을 입력해주어 이미지의 크기를 미리 파악해 배치할 수 있게 해주어야 합니다.
+
+```html
+<img width="100" height="100" ... />
+```
+
+꼭 `width` 와 `height` 입력이 아니더라도 비율 설정으로도 해결 될 수도 있습니다.
+
+```css
+img {
+  aspect-ratio: 16 / 9;
+}
+```
+
+크기를 입력하지 않아도 Lazy Loading은 이루어집니다.
+다만 처음에는 이미지의 크기가 0x0 이 되어 그려지게 됩니다.
+그리고 이는 브라우저가 모든 이미지들이 뷰 포트내에 들어왔다고 판단하게 만들 수 있어요.
+쉽게 얘기해 실제로는 화면 밖에 위치해 있어 스크롤 이후에 Lazy Loading이 발생하게 되어야 하나 앞의 이미지들 크기에 밀려나지 않아 뷰포트 안에 있다고 인식해버린거죠.
+
+즉, 의도한 Lazy Loading 과는 다르게 작동하게 될 수 있습니다.
+하지만 이것보다 더 안타까운 것은 레이아웃 변경의 위험이 커지는 점, 스크롤을 하면 할 수록 스크롤 바의 크기가 변경된다는 점이에요.
+
+```css
+img {
+  max-width: 100%;
+  height: auto;
+}
+```
+
+보통 이러한 방법으로 이미지 크기를 반응형으로 조절하죠.
+
+다만, 이는 이미지 크기가 정해지고 난 이후의 비율을 조절할 뿐입니다.
+
+이미지의 크기를 미리 알려주었다면 아래와 같이 이미지 공간을 미리 배치해두어 아래 요소들이 밀려나지 않습니다.
+
+![reload_0](/img/2024-1-1-imageop/reload_0.gif)
+
+반면에 `height: auto` 를 주었다고 해서 해당 공간을 미리 배치해주는 것은 아닙니다.
+인터넷 속도가 빨라져 얼핏보면 큰 차이를 못느낄 수 있으나 Fast 3G 나 캐시 비활성화로 조절해보면 확인해 볼 수 있습니다.
+
+![reload_1](/img/2024-1-1-imageop/reload_1.gif)
+
+<aside>
+모든 Layout Shift 를 해결해야 하는가?
+
+레이아웃 변경은 사용자가 예상치 못한 경우에만 좋지 않습니다.
+즉, 사용자 상호작용에 의한 레이아웃 변경은 문제가 되지 않다는 것입니다.
+그래서 사용자 입력의 500ms 내에 발생하는 레이아웃 변경은 CLS 에 포함되지 않습니다.
+
+</aside>
+
+---
+
+## 저화질 이미지(LQIP) 전략
+
+img 의 lazy 속성을 사용하는 방법 외에도 `IntersectionObserver` 를 사용해 **직접 지연 로딩을 시키는 방법**이 존재합니다.
+그리고 이미지의 크기를 알려줌으로서 해당 공간을 할당 시키는 일에 대해 알아보았었는데 임시 이미지를 먼저 배치시켜
+(완전 동일하진 못하나) 레이아웃 변경을 최소화하는 방법도 존재합니다. 이를 placeholder 라고 칭합니다.
+
+요약하면, 저화질 이미지를 먼저 나타나게 하고 나중에 원본 이미지로 교체하게 하는 식으로도 사용할 수 있습니다.
+
+---
+
+### 저화질 이미지 → 고화질 이미지
+
+![blur_1](/img/2024-1-1-imageop/blur_1.png)
+
+단순하고 명료한 방법이에요.
+
+저화질 이미지와 고화질 이미지의 크기가 같아 크기 변경에 신경을 줄일 수 있습니다.
+
+다만, 고화질인 이미지와 큰 차이가 나는지 확인해야해요.
+만약 큰 차이가 없다면 되려 불필요한 코드나 탐지 등으로 불편하거나 안좋은 퍼포먼스로 향할 수 있습니다.
+
+---
+
+### 강제로 크기에 맞춘 작은 이미지(저화질) → 고화질 이미지
+
+![blur_0](/img/2024-1-1-imageop/blur_0.png)
+
+1번과는 달리 저화질이면서도 크기 자체도 줄였기에 고화질 이미지와 차이가 날 수 있어요.
+
+하지만 이미지 크기에 신경을 좀 더 신경써야합니다.
+결국은 이미지를 같게 만들어야 하니까요.
+
+무엇보다 이러한 작은 용량의 이미지들을 하나 더 만들어야 하는 점이 불편할 수 있는데요.
+[Cloudinary](https://cloudinary.com/cookbook/resize_an_image) 나 [Imagekit](https://docs.imagekit.io/features/image-transformations/resize-crop-and-other-transformations) 과 같이
+이미지 리사이즈를 지원해주는 서비스를 사용한다면 이러한 방식을 사용하기 매우 유용해집니다.
+
+![blur_0](/img/2024-1-1-imageop/pinterest.PNG)
+
+강제로 늘려 Blur된 이미지가 아니라 Pinterest 와 같이 단일 색상으로 보여지는 기능을 픽셀 1x1 인 이미지를 늘림으로 구현해 볼 수도 있을 것 같습니다.
+물론 주요 색상으로 추출하기 위해선 별도의 섬세한 작업이 들어가겠지만요.
+
+---
+
+### 구현
+
+경험해보기로는 교체 방법이 이렇게 크게 두 가지가 있다 느꼈습니다.
+
+<div className="video-container">
+  <iframe
+    loading="lazy"
+    src="https://codesandbox.io/p/devbox/lively-hill-y22z6w?embed=1&file=%2Fsrc%2Findex.mjs"
+    title="image-optimization-2"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+  ></iframe>
+</div>
+
+코드에서는 두번째인 강제로 이미지를 늘리는 방법을 사용했어요.
+
+```html
+<img src="저화질.jpg" data-src="고화질.png" ... />
+```
+
+간단하게 구현 될 수 있긴한데 이제 추가로 이미지가 고화질로 변경되는 모습을,
+혹은 blur가 깔끔해지는 모습등을 보여주게 하려면 background를 활용하는 방법도 존재합니다.
+
+```html
+<div class="blurred-img" style="background-image: url(저화질.jpg);">
+  <img data-src="고화질.png" ... />
+</div>
+```
+
+---
+
+## 번외
+
+앞의 지연 로딩 만이 아니라 이미지 최적화를 위해 srcset 과 sizes 를 설정하는 방법도 존재합니다.
+모바일과 같은 환경에서는 데스크탑과의 해상도, 뷰포트 크기 등이 다르기에 큰 사이즈의 이미지를 모바일 환경에 맞추어 작은 이미지로 변경해준다면 더 좋은 퍼포먼스를 낼 수 있습니다.
+Lighthouse를 측정할 때, desktop 모드가 아니라 mobile 환경으로 변경해보면 수많은 경고들이 이를 위해서라고 볼 수 있을 것 같아요.
+
+그런데 이미지 리사이즈 작업을 도와주는 클라우드 서비스를 이용하는게 아니면 결국 수동으로 하거나 FFmpeg 를 사용하거나..
+아무튼 손이 많이 가는 작업이라 경험해 본다는 게 쉬운일은 아닌 것 같습니다.
+
+- [imagekit.io](https://imagekit.io/website-analyzer/?taskId=1704110902908&device=desktop) 에서 이미지 최적화 가능성을 측정해 줍니다.
+
+- [HTTP Archive](https://httparchive.org/reports/state-of-images) 에서 이미지 용량, lazy loading 사용 되는 평균 등을 확인해 볼 수 있습니다.

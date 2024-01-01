@@ -5,8 +5,7 @@ import Image from "next/image";
 
 export default function MDXImage({ src, alt, width = 1, height = 1, ...props }: React.ComponentProps<"img">) {
   if (!src || !alt) return <></>;
-  // return <img src={src} alt={alt} {...props} />;
-  // if (!src || !alt || !width || !height) return <></>;
+
   if (src.startsWith("https://") || src.startsWith("http://")) return <Img src={src} alt={alt} className="img" />;
   return <ImageStyled className="img" src={src} alt={alt} width={+width} height={+height} />;
 }

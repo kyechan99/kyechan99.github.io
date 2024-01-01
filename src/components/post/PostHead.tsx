@@ -16,13 +16,17 @@ import TagList from "../common/tag/TagList";
 export default function PostHead({ post }: { post: Post | undefined }) {
   if (post === undefined) return <></>;
   return (
-    <>
+    <PostHeadContainer>
       {post.headerImg && (
         <PostThumbnail
+          className="post-thumbnail"
           src={headerImgPath(post.headerImg)}
           alt={post.title}
+          // layout="fill"
           // width={0}
           // height={0}
+          // objectFit="contain"
+          // placeholder="blur"
           // style={{ width: "100%", height: "auto" }}
         />
       )}
@@ -34,9 +38,17 @@ export default function PostHead({ post }: { post: Post | undefined }) {
       </Detail>
       <TagList tags={post.tags} />
       <Divder />
-    </>
+    </PostHeadContainer>
   );
 }
+
+const PostHeadContainer = styled.div`
+  position: relative;
+  .post-thumbnail {
+    /* height: auto;
+    object-fit: contain; */
+  }
+`;
 
 const PostTitle = styled.h1`
   position: relative;
@@ -67,6 +79,7 @@ const PostThumbnail = styled.img`
   border-radius: 0.5rem;
   margin: 0rem 0rem 2rem 0rem;
   width: 100%;
+  height: auto;
   ${maxMedia.tablet} {
     margin-bottom: 1rem;
   }

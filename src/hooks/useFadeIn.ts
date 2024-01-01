@@ -20,7 +20,6 @@ export default function useFadeIn(threshold = 0.4): [MutableRefObject<HTMLDivEle
     }
 
     return () => {
-      console.log("dis");
       observer.disconnect();
     };
   }, [threshold]);

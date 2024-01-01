@@ -34,11 +34,11 @@ const TocList = styled.ul`
   margin: 0px;
   padding-left: 0px;
   list-style: none;
-  font-size: 14px;
 `;
 
 const TocItemStyled = styled.li`
   margin: 0.5rem 0rem;
+  font-size: 14px;
   &[data-level="2"] {
     padding-left: 0rem;
   }
