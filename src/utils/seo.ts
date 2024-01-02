@@ -7,7 +7,7 @@ import { headerImgPath } from "./url";
 export const siteConfig = {
   url: "https://kyechan99.github.io",
   title: "kyechan99",
-  description: "개발자는 참치다. 멈춰있으면 죽는다.",
+  description: "kyechan99",
   copyright: "kyechan99 © All rights reserved.",
   since: 2023,
   googleAnalyticsId: "",
