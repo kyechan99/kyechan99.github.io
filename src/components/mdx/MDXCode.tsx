@@ -33,7 +33,7 @@ export default function MDXCode({ children, className, title }: React.ComponentP
 
 const CodeBlock = styled.div`
   border-radius: 0.5rem;
-  margin: 1rem 0rem;
+  margin: 2rem 0rem;
   overflow: hidden;
   position: relative;
   pre {

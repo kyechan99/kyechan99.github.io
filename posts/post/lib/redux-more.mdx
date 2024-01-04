@@ -1,0 +1,512 @@
+---
+layout: post
+title: Redux의 좀 더
+date: 2024-1-3
+category: Lib
+description: Redux, Flux, Redux-toolkit, Redux-thunk, Redux-saga..
+tags: [React, Redux]
+keywords: React, Redux
+haveImg: true
+headerImg: 2024-1-3-redux-more.jpg
+---
+
+## Trend
+
+![trends](/img/2024-1-3-redux-more/trends.jpg)
+
+우아콘 2023 - [프론트엔드 상태관리 실전 편](https://www.youtube.com/watch?v=nkXIpGjVxWU) 에서 Zustand 사용기를 보고 관심이 생겨 [npm trends](https://npmtrends.com/) 를 찾아 보았는데요. Zustand 가 확실히 편하고 코드가 간결해 지겠다 생각이 들었는데 그러한 탓인지 정말 빠르게 도입되어지고 있는 것 같습니다. 그럼에도! 여전히 Redux는 강력한 도구임을 나타내고 있습니다. 아무래도 규모 있는 프로젝트나 기존에 도입되어 사용하고 있는 많은 프로젝트로 인해 무시할 수 없는 존재가 되어버린 탓이겠죠. Zustand 와 같은 후발대도 결국 Redux에서 영감을 받아 나타나게 되었으니까요. 그래서 일단 Redux를 한번 정리해보고 다음 단계로 넘어가야겠다는 생각이 들어 작성합니다.
+
+---
+
+## Flux 패턴
+
+Redux를 사용하기 이전에 Flux 패턴을 인지하고 넘어간다면 코드를 이해하기 쉬워집니다.
+
+React 를 사용하다 보면 겪는 문제, 상태를 하위 컴포넌트로 계속해서 전달해야 하는 Props drilling 문제가 나타납니다.
+이를 해결하기 위해 전역 상태관리가 고안되었다고도 볼 수 있습니다.
+
+페이스북은 이전
+MVC 패턴에서의 Model 과 View 양방향 데이터 흐름이라는 특성이
+서비스/기능을 확장하면서 복잡해지고 예측 불가능한 버그들로 인해 Flux 라는 패턴을 도입하게 되었다고 말합니다.
+그래서 Flux 패턴은 **단방향 데이터 흐름을 유지**한다는 특성을 가지고 있어요.
+단방향 흐름은 이벤트에 따라 상태 변경하면서 예측 가능하거나 불변성을 유지하게 합니다다.
+무엇보다 복잡성을 낮추는 효과가 가장 크다고 생각합니다.
+
+![flux](/img/2024-1-3-redux-more/flux.jpg)
+
+- Action: 사용자 입력을 정의
+- Dispatcher: 액션을 받아 데이터 흐름을 관리
+- Store: 모든 상태를 가지고 관리
+- View(View-Controller): 유저에게 보여주기 위한 처리 및 하위 뷰에게 상태 및 Dispatcher를 제공
+
+React 에서의 View는 일반적인 ‘보여지는’ 역할 만이 아니라 이벤트를 중개할 수 있는 상위 뷰, View-Controller 의 의미도 포함됩니다.
+
+---
+
+## Redux
+
+```shell
+yarn add redux react-redux
+```
+
+Redux 자체는 상태 관리 기능을 하는 코어와 같고 이를 React 에서 효과적으로 사용하기 위해 react-redux 도 같이 설치합니다.
+
+### Action 정의
+
+```tsx
+export const INCREASE_COUNT = "count/INCREASE" as const;
+export const RESET_COUNT = "count/RESET" as const;
+
+export const increseCount = (payload: number) => ({
+  type: INCREASE_COUNT,
+  payload: payload,
+});
+export const resetCount = () => ({ type: RESET_COUNT });
+
+type CountAction = ReturnType<typeof increseCount> | ReturnType<typeof resetCount>;
+```
+
+```tsx
+type CountState = {
+  count: number;
+};
+
+const initalState: CountState = {
+  count: 0,
+};
+
+const counter = (state: CountState = initalState, action: CountAction): CountState => {
+  switch (action.type) {
+    case INCREASE_COUNT:
+      return {
+        ...state,
+        count: action.payload,
+      };
+    case RESET_COUNT:
+      return {
+        ...initalState,
+      };
+    default:
+      return state;
+  }
+};
+export default counter;
+```
+
+### Root Reducer 정의
+
+```tsx
+import { combineReducers } from "redux";
+
+import counter from "./counter";
+
+const rootReducer = combineReducers({
+  counter,
+});
+export default rootReducer;
+
+export type RootState = ReturnType<typeof rootReducer>;
+```
+
+```tsx
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+
+import rootReducer from "./store";
+
+const store = createStore(rootReducer);
+
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>,
+);
+```
+
+### Dispatch
+
+```tsx
+import { useDispatch, useSelector } from "react-redux";
+
+import { RootState } from "./store";
+import { increseCount } from "./store/counter";
+
+function App() {
+  const dispatch = useDispatch();
+  const { count } = useSelector((state: RootState) => state.counter);
+
+  const increseHandler = () => {
+    dispatch(increseCount(1));
+  };
+
+  return (
+    <div className="App">
+      {count}
+      <button onClick={increseHandler}>증가</button>
+    </div>
+  );
+}
+```
+
+---
+
+## Redux-toolkit
+
+```shell
+yarn add @reduxjs/toolkit
+```
+
+너무 복잡한 Redux의 환경 설정 및 코드들을 더 쉽게 사용하기 위해서 Redux-toolkit 이 등장합니다.
+
+```shell
+import { createStore } from "redux";
+
+'createStore' is deprecated.ts(6385)
+redux.d.ts(327, 4): The declaration was marked as deprecated here.
+```
+
+동시에 Redux-toolkit 을 사용하라며 기존 Redux에서 `createStore`를 deprecated 시켰어요.
+물론, deprecated 되었다 해서 Redux-toolkit이 강제가 되지는 않습니다.
+
+---
+
+### configureStore
+
+```tsx
+// import { createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
+
+// const store = createStore(rootReducer);
+const store = configureStore({ reducer: rootReducer });
+```
+
+Redux-toolkit 에는 추가로 Redux의 복잡한 환경 설정을 쉽게 만들기 위해서 설치해서 사용해야 했던 미들웨어도 추가되었습니다.
+위처럼 선언된다면 `redux-thunk` 미들웨어가 추가되며 개발 환경에서 Redux DevTools Extension 을 활성화 시켜줍니다.
+
+```tsx
+import { configureStore } from "@reduxjs/toolkit";
+
+import { counter } from "./counter";
+
+export const store = configureStore({
+  reducer: {
+    counter,
+  },
+  preloadedState: {
+    counter: {
+      count: 0,
+      status: "",
+    },
+  },
+  devTools: process.env.NODE_ENV !== "production",
+});
+export default store;
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+```
+
+configureStore 의 설정은 다음과 같이 작업할 수 있습니다.
+
+- `reducer`: 단일 함수를 root reducer로, 혹은 슬라이스 리듀서들로 구성된 객체를 root reducer로 생성함. 내부적으로 redux의 `combineReducers`를 사용하는 거와 같음
+- `middleware`: 특별히 설정하지 않으면 `getDefaultMiddleware`를 사용함
+- `devTools`: 개발자 도구 사용 여부
+- `preloadedState`: 스토어 초기값 설정
+- `enhancers:` 배열or콜백함수로 사용. store enhancers 를 사용 `[reduxBatch, …defaultEnhancers]` 로 미들웨어 적용 순서 보다 앞당길 수도 있음
+
+enhancers 는 배열로 정의 된다면 [Redux compose function](https://redux-toolkit.js.org/api/configureStore#enhancers) 으로,
+콜백 함수로 정의된다면 `applyMiddleware` 보다 앞에 추가 할 수 있습니다.
+즉, middleware 적용 순서보다 앞서 추가하고자 할 때 사용합니다.
+예로 오프라인 관리 [redux-offline](https://github.com/redux-offline/redux-offline) 을 `(gDE) => gDE().concat(offline(offlineConfig))` 와 같이 enhancer를 추가 할 수 있습니다.
+
+<br />
+
+```tsx
+import { store } from "./store";
+
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>,
+);
+```
+
+Provider 설정은 Redux와 동일합니다.
+
+---
+
+### Reducer
+
+`createSlice` 로, action type, action creator, init, reducer를 한 번에 생성합니다.
+따라서 action type 을 따로 정의하거나, switch-case 문을 사용하여 reducer 를 작성할 필요가 없습니다.
+
+```tsx
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+
+import { RootState } from ".";
+
+type CountState = {
+  count: number;
+};
+
+const initialState: CountState = {
+  count: 0,
+};
+
+export const counterSlice = createSlice({
+  name: "counter",
+  initialState,
+  reducers: {
+    increseCount: (state, action: PayloadAction<number>) => {
+      state.count += action.payload;
+    },
+    resetCount: state => {
+      state = initialState;
+    },
+  },
+});
+
+export const { increseCount, resetCount } = counterSlice.actions;
+export const selectCount = (state: RootState) => state.counter.count;
+
+export default counterSlice.reducer;
+```
+
+---
+
+### Middleware
+
+![middlewares](/img/2024-1-3-redux-more/middlewares.jpg)
+
+미들웨어는 dispatch된 액션이 Reducer에 도달하기전에 수행 되는 일입니다.
+중간 영역에서 목적에 맞게 기능을 확장 할 수 있게 도와주어 유용하게 사용할 수 있습니다.
+
+액션을 dispatch 했을 때, store에 존재하는 state 값의 전/후를 확인할 수 있는 간단한 미들웨어를 다음과 같이 만들 수 있습니다.
+
+```tsx
+const loggerMiddleware = (store: any) => (next: Dispatch<any>) => (action: any) => {
+  console.log("Before", store.getState());
+  const result = next(action);
+  console.log("After", store.getState());
+  return result;
+};
+
+export const store = configureStore({
+  //...
+  middleware: gDM => gDM().concat(loggerMiddleware),
+});
+```
+
+앞서 Redux-toolkit은 Redux-thunk 같은 미들웨어를 가지고 있다라고 잠깐 언급했는데
+[Default Middleware](https://redux-toolkit.js.org/api/getDefaultMiddleware#development)
+에서 자세히 확인해 볼 수 있습니다.
+
+```typescript
+const middleware = [actionCreatorInvariant, immutableStateInvariant, thunk, serializableStateInvariant];
+```
+
+---
+
+## Redux-logger
+
+앞서 state 의 변경 내용을 확인해보는 커스텀 미들웨어를 정말 간단하게 만들어 보았는데요.
+보다 편하고 더 확장된 기능이 존재하는 미들웨어가 존재합니다.
+
+```tsx:Redux
+import logger from "redux-logger";
+
+const store = createStore(rootReducer, applyMiddleware(logger));
+```
+
+```tsx:Redux-toolkit {1,5}
+import logger from "redux-logger";
+
+export const store = configureStore({
+  //...
+  middleware: gDM => gDM().concat(logger),
+});
+```
+
+---
+
+## Redux-thunk
+
+Redux 는 기본적으로 동기(Synchronous)로 작동됩니다.
+
+이를 비동기(Asynchronous)로 작동시키기 위한 미들웨어로 Redux-saga 와 Redux-thunk 가 존재합니다.
+Redux-thunk는 action **객체가 아닌 (thunk)함수를 디스패치 할 수 있게** 해주면서 비동기 동작을 가능하게합니다.
+Redux는 action 객체를 dispatch하여 특정 action을 reducer에 전달하여 동기로 작동되는 원리지만
+Redux-thunk 미들웨어를 사용하면 action 객체 뿐만 아니라, thunk 함수를 만들어서 dispatch 할 수 있게하는 거죠.
+말이 복잡하지, thunk 미들웨어에서는 action 안에 type과 payload 뿐만 아니라 API 요청이나 비동기 처리 로직도 들어갈 수 있는 거에요.
+
+앞서 Redux-toolkit을 사용한다면 기본적으로 redux-thunk 미들웨어를 지원해주기 때문에 별도의 설치와 설정이 필요하지 않습니다.
+
+```tsx
+const initialState: CountState = {
+  //...
+  status: "",
+};
+
+export const counterSlice = createSlice({
+  // ...
+  extraReducers: builder => {
+    // Fetching 대기
+    builder.addCase(asyncFetch.pending, (state, action) => {
+      state.status = "loading";
+    });
+    // Fetching 완료
+    builder.addCase(asyncFetch.fulfilled, (state, action) => {
+      state.status = "success";
+      state.count = action.payload;
+    });
+    // Fetching 오류
+    builder.addCase(asyncFetch.rejected, (state, action) => {
+      state.status = "fail";
+    });
+  },
+});
+```
+
+```tsx
+export const asyncFetch = createAsyncThunk("counter/asyncFetch", async () => {
+  const res = await fetch("https://tempapi.proj.me/api/BIxAmPOxd");
+  const data = await res.json();
+  return data.value; // payload 로 자동 전달됨
+});
+```
+
+```tsx
+function App() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { count, status } = useSelector((state: RootState) => state.counter);
+
+  const increseHandler = () => {
+    dispatch(increseCount(1));
+  };
+  const fetchHandler = () => {
+    dispatch(asyncFetch());
+  };
+
+  return (
+    <div className="App">
+      {count}
+      <button onClick={increseHandler}>증가</button>
+      <button onClick={fetchHandler}>랜덤</button>
+    </div>
+  );
+}
+```
+
+---
+
+## Redux-saga
+
+**제너레이터** 문법을 기반으로 비동기 작업을 관리합니다.
+dispatch하는 action을 모니터링해서 그에 따라 필요한 작업을 따로 수행하는 방식입니다.
+
+```tsx
+import createSagaMiddleware from "redux-saga";
+
+import rootSaga from "./root-saga";
+
+const sagaMiddleware = createSagaMiddleware();
+export const store = configureStore({
+  // ...
+  middleware: gDM => gDM().concat(sagaMiddleware),
+});
+sagaMiddleware.run(rootSaga);
+```
+
+- run: 미들웨어를 시작. root saga 를 실행하는데 사용
+
+```tsx
+function* incrementSaga({ payload }: PayloadAction<number>) {
+  try {
+    yield delay(1000);
+
+    yield put(increseCount(payload));
+    yield put(statusSuccess("200"));
+
+    yield put(resetCount());
+  } catch (err) {
+    yield put(statusFail("400"));
+  }
+}
+```
+
+- put: 새 액션을 dispatch 하기 위해 사용(store에 인수로 들어온 action을 dispatch)
+- call: 비동기 함수를 호출해 결과를 받아오기 위한 호출 (주어진 함수를 호출)
+- all: generator 함수를 병렬 방식으로 실행. 전부 완료 될때까지 기다림
+- fork: 함수의 비동기 호출
+
+```tsx
+export function* watchIncrement() {
+  yield takeLatest(increseAsyncCount, incrementSaga); // 가장 마지막 increseCount 처리
+  // yield takeEvery(increseAsyncCount, incrementSaga);  // 모든 increseCount 처리
+}
+```
+
+- takeEvery: 들어오는 모든 액션을 실행
+- takeLatest: 여러 액션이 실행 될때 가장 마지막 액션만 실행
+
+`takeLatest`는 이전에 진행 중인 작업을 모두 취소하고 최신 작업만 실행합니다.
+그러니까, 해당 디스패치를 계속해서 호출했을때 최종적으로 `incrementSaga` 가 완수되는 일은 한번입니다.
+반대로 `takeEvery` 는 호출한 모든 디스패치마다 작업을 실행합니다.
+
+```tsx
+export const counterSlice = createSlice({
+  name: "counter",
+  initialState,
+  reducers: {
+    increseCount: (state, { payload }: PayloadAction<number>) => {
+      state.count += payload;
+    },
+    resetCount: () => initialState,
+    increseAsyncCount: (state, { payload }: PayloadAction<number>) => {
+      state.status = `loading...`;
+    },
+    statusSuccess: (state, { payload }: PayloadAction<string>) => {
+      state.status = `success : ${payload}`;
+    },
+    statusFail: (state, action: PayloadAction<string>) => {
+      state.status = `fail : ${action}`;
+    },
+  },
+});
+```
+
+```tsx
+function App() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { count, status } = useSelector((state: RootState) => state.counter);
+
+  const increseHandler = () => {
+    dispatch(increseAsyncCount(1));
+  };
+
+  return (
+    <div className="App">
+      {count} - {status}
+      <button onClick={increseHandler}>비동기 증가</button>
+    </div>
+  );
+}
+```
+
+---
+
+## Redux-thunk vs Redux-saga
+
+**Redux-thunk**
+
+store에 던져진 액션을 가로채서 비동기 로직을 수행한 후 액션을 발생
+
+**Redux-saga**
+
+제너레이터 함수를 기반으로 특정 action을 모니터링해 그에 따라 필요한 작업을 따로 수행

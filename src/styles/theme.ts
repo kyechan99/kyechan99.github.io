@@ -14,7 +14,7 @@ export const baseColors = {
  */
 export const lightColors = {
   black: "#222",
-  white: "#fCfCff",
+  white: "#fefeff",
   primary: "#a296ff", // "#EAEF92",
   secondary: "#7700ff",
   grey: "#d9d9d9",

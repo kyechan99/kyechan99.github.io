@@ -9,7 +9,7 @@ pre[class*="language-"] {
   color: #f5f5f5;
   background: #272727;
   font-family: Consolas, Monaco, "Andale Mono", monospace;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.375em;
 
   -moz-tab-size: 4;
@@ -59,27 +59,27 @@ pre[class*="language-"] {
 }
 
 .token.atrule {
-  color: #8c8bd3;
+  color: #bfbff5;
 }
 
 .token.attr-name {
-  color: #ffcb6b;
+  color: #fbfff5;
 }
 
 .token.attr-value {
-  color: #9294f3;
+  color: #b3b5ff;
 }
 
 .token.attribute {
-  color: #9294f3;
+  color: #b3b5ff;
 }
 
 .token.boolean {
-  color: #8c8bd3;
+  color: #bfbff5;
 }
 
 .token.builtin {
-  color: #ffcb6b;
+  color: #fbfff5;
 }
 
 .token.cdata {
@@ -91,11 +91,11 @@ pre[class*="language-"] {
 }
 
 .token.class {
-  color: #ffcb6b;
+  color: #fbfff5;
 }
 
 .token.class-name {
-  color: #d9b87a;
+  color: #ffe2ad;
 }
 
 .token.comment {
@@ -103,11 +103,11 @@ pre[class*="language-"] {
 }
 
 .token.constant {
-  color: #8c8bd3;
+  color: #bfbff5;
 }
 
 .token.deleted {
-  color: #ff6666;
+  color: #ff9c9c;
 }
 
 .token.doctype {
@@ -115,24 +115,24 @@ pre[class*="language-"] {
 }
 
 .token.entity {
-  color: #ff6666;
+  color: #ff9c9c;
 }
 
 .token.function {
-  color: #d9b87a;
+  color: #ffe2ad;
 }
 
 .token.hexcode {
-  color: #d9b87a;
+  color: #ffe2ad;
 }
 
 .token.id {
-  color: #8c8bd3;
+  color: #bfbff5;
   font-weight: bold;
 }
 
 .token.important {
-  color: #8c8bd3;
+  color: #bfbff5;
   font-weight: bold;
 }
 
@@ -141,7 +141,7 @@ pre[class*="language-"] {
 }
 
 .token.keyword {
-  color: #8c8bd3;
+  color: #bfbff5;
 }
 
 .token.number {
@@ -161,11 +161,11 @@ pre[class*="language-"] {
 }
 
 .token.pseudo-class {
-  color: #9294f3;
+  color: #b3b5ff;
 }
 
 .token.pseudo-element {
-  color: #9294f3;
+  color: #b3b5ff;
 }
 
 .token.punctuation {
@@ -173,23 +173,23 @@ pre[class*="language-"] {
 }
 
 .token.regex {
-  color: #d9b87a;
+  color: #ffe2ad;
 }
 
 .token.selector {
-  color: #ff6666;
+  color: #ff9c9c;
 }
 
 .token.string {
-  color: #9294f3;
+  color: #b3b5ff;
 }
 
 .token.symbol {
-  color: #8c8bd3;
+  color: #bfbff5;
 }
 
 .token.tag {
-  color: #ff6666;
+  color: #ff9c9c;
 }
 
 .token.unit {
@@ -197,11 +197,11 @@ pre[class*="language-"] {
 }
 
 .token.url {
-  color: #ff6666;
+  color: #ff9c9c;
 }
 
 .token.variable {
-  color: #ff6666;
+  color: #ff9c9c;
 }
 
 .rehype-code-title {
