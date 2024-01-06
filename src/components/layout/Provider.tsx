@@ -1,7 +1,7 @@
 "use client";
 
 import { Global, ThemeProvider } from "@emotion/react";
-import Script from "next/script";
+import { useEffect } from "react";
 import { RecoilRoot } from "recoil";
 
 import { rootThemeSetting } from "@/utils/dom";
@@ -13,10 +13,14 @@ export const ScriptDom = () => {
   const stringifyFn = String(rootThemeSetting);
   const fnToRunOnClient = `(${stringifyFn})()`;
 
-  return <Script dangerouslySetInnerHTML={{ __html: fnToRunOnClient }} />;
+  return <script dangerouslySetInnerHTML={{ __html: fnToRunOnClient }} />;
 };
 
 export default function Provider(props: React.PropsWithChildren) {
+  useEffect(() => {
+    document.body.style.transition = "background var(--delay)";
+  }, []);
+
   return (
     <ThemeProvider theme={baseTheme}>
       <Global styles={GlobalStyle(baseTheme)} />

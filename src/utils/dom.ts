@@ -16,12 +16,6 @@ export function rootThemeSetting() {
 
 export function modalOpenPadding() {
   try {
-    var root = document.documentElement;
-    var themeStorage = localStorage.getItem("theme");
-
-    if (themeStorage) {
-      root.setAttribute("data-theme", themeStorage);
-    }
   } catch (e) {
     console.log(e);
   }

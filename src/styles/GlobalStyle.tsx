@@ -39,11 +39,6 @@ const GlobalStyle = (theme: Theme) => css`
   body {
     color: var(--black);
     background-color: var(--white);
-    transition: background var(--delay);
-    -moz-transition: background var(--delay);
-    -webkit-transition: background var(--delay);
-    -ms-transition: background var(--delay);
-    -o-transition: background var(--delay);
     &.modal-open {
       overflow: hidden;
       padding-right: 1rem;
