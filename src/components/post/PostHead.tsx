@@ -80,6 +80,7 @@ const PostThumbnail = styled.img`
   margin: 0rem 0rem 2rem 0rem;
   width: 100%;
   height: auto;
+  aspect-ratio: 8 / 4;
   ${maxMedia.tablet} {
     margin-bottom: 1rem;
   }

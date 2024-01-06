@@ -1,6 +1,7 @@
 "use client";
 
 import { Global, ThemeProvider } from "@emotion/react";
+import Script from "next/script";
 import { RecoilRoot } from "recoil";
 
 import { rootThemeSetting } from "@/utils/dom";
@@ -12,7 +13,7 @@ export const ScriptDom = () => {
   const stringifyFn = String(rootThemeSetting);
   const fnToRunOnClient = `(${stringifyFn})()`;
 
-  return <script dangerouslySetInnerHTML={{ __html: fnToRunOnClient }} />;
+  return <Script dangerouslySetInnerHTML={{ __html: fnToRunOnClient }} />;
 };
 
 export default function Provider(props: React.PropsWithChildren) {

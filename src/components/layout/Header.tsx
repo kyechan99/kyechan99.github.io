@@ -1,11 +1,11 @@
+import Logo from "@/public/logo.png";
 import Dynamic from "next/dynamic";
 import Image from "next/image";
 
+import SearchButton from "@/components/common/button/SearchButton";
 import { ThemeButtonSkeleton } from "@/components/common/button/ThemeButton";
 import { Nav, NavBrand, NavCollapse, NavItem, NavLink } from "@/components/common/nav/Nav";
 import { Navbar } from "@/components/common/nav/Navbar";
-
-import SearchButton from "../common/button/SearchButton";
 
 const SuspenseThemeButton = Dynamic(() => import("@/components/common/button/ThemeButton"), {
   ssr: false,
@@ -18,7 +18,7 @@ export default function Header() {
       <Nav>
         <NavItem>
           <NavBrand href="/">
-            <Image src="/logo_0.png" alt="logo_0" width={32} height={32} />
+            <Image src={Logo} alt="logo_0" width={32} height={32} />
           </NavBrand>
         </NavItem>
         <NavItem>
