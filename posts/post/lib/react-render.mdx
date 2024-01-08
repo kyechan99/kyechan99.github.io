@@ -1,0 +1,452 @@
+---
+layout: post
+title: React 렌더링에 묻거든 이럽게 답하라
+date: 2024-1-8
+category: Lib
+description: React 렌더링에 대한 간략 정리
+tags: [React, DOM]
+keywords: React
+haveImg: true
+headerImg: 2024-1-8-react-render.jpg
+---
+
+## DOM
+
+![dom_tree](/img/2024-1-8-react-render/dom_tree.jpg)
+
+웹 문서 (HTML, SVG, XML 등)을 브라우저가
+이해할 수 있는 형태를 DOM(Document Object Model)이라 일컫습니다.
+그리고 이 DOM은 구조를 브라우저가 이해하기 쉽게,
+가급적 빠르게 제어할 수 있게 트리 형태로 각 요소들을 구성했다 하여 DOM 트리라고 부릅니다.
+이 트리에서의 시작이 Document 인 것처럼, DOM을 조작하기 위해 사용하는 `document.**` 같은 DOM API의 이름이 그런 이유다 라고 생각하면 쉬운 것 같습니다.
+
+---
+
+## Virtual DOM
+
+Virtual DOM(가상 돔)은 실제 돔의 복사본입니다.
+말그대로 실제 DOM 은 아니고 JS 의 객체 형태로 메모리 어딘가에 저장되어 있습니다.
+가상 돔은 실제 돔과 다르게 브라우저에 직접적인 접근이 불가능합니다.
+때문에 화면에 보여지는 내용을 직접 수정하는 권한이 없습니다.
+
+즉, 가상돔은 화면에 보이는 UI를 조작할 수 있는 API를 제공하지 않습니다.
+실제 돔의 `element.setAttribute(..)` 같은 기능을요.
+가상 돔은 실제 돔과 같은 복사본이지만 메모리에 존재할 뿐인 객체에 불과하기 때문입니다.
+하지만 이 때문에 가상 돔이 생성되고 이에 접근하는 작업들이 가볍고 빠릅니다.
+
+React는 두개의 가상 돔을 가지고 있습니다.
+
+1. 렌더링 이전 구조를 지닌 가상 돔
+2. 렌더링 이후 변경된 구조를 지닌 가상 돔
+
+React의 state가 변경되어 재렌더링 발생 상황에 놓이면 변경된 내용을 담은 새 가상돔을 만듭니다.
+그 다음 렌더링 이전의 가상 돔과 변경사항이 담긴 렌더링의 가상 돔을 서로 비교(Diffing)합니다.
+React가 바뀐 element 를 파악해 해당 부분만(Reconciliation, 재조정) 적용시키고요.
+
+```tsx
+{
+  arr.map(item => <li key={item.id}>{item}</li>);
+}
+```
+
+React에서 배열을 그려낼때 key를 작성하는 이유가 그렇습니다.
+React는 key를 통해 기존 트리와 이후 트리가 일치하는지 확인해 효율적인 재조정작업을 권장합니다.
+
+React 재조정 과정에는 Batch Update 라는게 있습니다.
+변경된 element들이 한번에 많을때에, 이를 집단으로 한번에 적용시키는 일을 일컫습니다.
+만약 N개의 항목이 바뀌었다면 N번 적용시키는 것이 아닌 한번에 적용시키는거죠.
+DOM 조작에 가장 비용이 많이 드는 작업이 화면에 그려주는 일인 만큼 효과적이다라고 합니다.
+
+```tsx
+<A>
+  <B>
+    {" "}
+    // rerender!
+    <C>
+      <D />
+    </C>
+  </B>
+</A>
+```
+
+컴포넌트가 A > B > C > D 단계로 구성되어 있다고 가정해보겠습니다.
+B 내부에 setState 같은 작업으로 재렌더링이 이루어 진다고 하였을떄,
+B 의 리렌더링을 렌더링 큐에 넣습니다.
+React는 트리 최상단에서 렌더 패스를 시작합니다.
+A 에서는 업데이트 불필요를 확인하고 넘어가며, B 에서 업데이트 필요 여부를 확인한 후 렌더링 합니다.
+그 다음 B 가 C를 반환하면서 C 는 업데이트 필요를 나타내지는 않았지만 부모 B 에 의해 같이 렌더링하게 됩니다.
+D 역시 동일하고요.
+
+```tsx
+const onClick = async () => {
+  setCounter(0);
+  setCounter(1);
+
+  const data = await fetchData();
+
+  setCounter(2);
+  setCounter(3);
+};
+```
+
+React 17 이전에는 `onClick` 콜백과 같은 React의 이벤트 핸들러에서만 Batch Update를 수행했습니다.
+때문에 `setTimeout`, `await` 나 일반 자바스크립트의 자체 이벤트 핸들러에서는 작업 큐에 추가되지 않아 각각 별도의 리렌더링이 발생합니다.
+
+React 17 이전을 사용한다면 위 이벤트를 통해 3번의 렌더링이 발생합니다.
+`0과 1 일괄 작업` , `2`, `3` 을 통해서요.
+이는 2 와 3이 await 이후에 작업되게 되면서 0과 1의 Call Stack 과 완전히 분리된 Call Stack 에서 실행되게 되었기 때문입니다.
+해서 같은 Batch 대상으로 인식되지 못하게 되었습니다.
+
+반면, React 18 부터는 2번의 렌더링이 발생합니다.
+단일 이벤트 루프에서 대기중인 모든 업데이트들을 Batch Update하게 됩니다.
+이전에 비해 [더 적은 렌더링을 일괄 작업](https://github.com/reactwg/react-18/discussions/21)하게 되었습니다.
+
+이를 이해하기 위해 잠시 Call Stack 과 이벤트 루프를 간단히 짚고 넘어가겠습니다.
+
+![callstack](/img/2024-1-8-react-render/callstack.jpg)
+
+Call stack이란, JS 코드가 실행되면서 생성되는 실행컨텍스트(Execution Context)를 저장하는 자료구조입니다.
+
+1. 함수 호출시 실행 컨텍스트 생성 -> 콜 스택에 추가 -> 함수 수행
+2. 함수 안에서 호출되는 내부 함수를 콜 스택에 추가
+3. 함수 종료시 해당 실행 콘텍스트를 콜 스택에서 제거 후 중단 시점부터 재시작
+
+이렇게 자바스크립트는 Call back 을 이용해 작업을 동기적으로 수행합니다.
+하지만 브라우저에서 수많은 작업들을 동시에 작업가능하기 위한 비동기 처리가 필요했고
+이를 브라우저와 Node.js 가 지니고 있는 Libuv 라이브러리의 **이벤트 루프**를 이용해 해결하고 있습니다.
+단일 스레드임에도 불구하고 동시에 많은 작업을 (비동기적으로) 수행할 수 있는 이유이기도 합니다.
+이벤트 루프는 Call Stack과 Queue들을 감시하고 있다가 Call Stack 이 비었을때 우선순위에 따라 Queue 에서 꺼내 Call Stack 에 추가합니다.
+
+다시 돌아와서, React 17 이전에는 await 작업이 이루어 지고 난 이후 다른 Call back 으로 인식되게 되어 그 이후의 작업들이 Batch 대상이 아니게 되었다면
+React 18 부터 [createRoot](https://github.com/reactwg/react-18/discussions/5) 로 렌더 교체 방식을 변경하면서
+Promise나 기본 이벤트 핸들러들이 React 이벤트 내부 업데이트와 동일하게 일괄 처리 할 수 있게 변경된 것입니다.
+때문에 위 코드와 같이 await 같은 작업이 이루어 진 다음의 작업들을 같은 이벤트 루프에 두고 Batch 할 수 있게 가능해진 거죠.
+
+<aside>
+복습하면서도 처음 알게된 내용이라 정리가 미흡할 수 있는데
+[React-18 #21](https://github.com/reactwg/react-18/discussions/21) 의 내용만 읽어도 충분한 것 같습니다.
+
+</aside>
+
+```tsx
+import { flushSync } from "react-dom";
+
+function handleClick() {
+  flushSync(() => {
+    setCounter(c => c + 1);
+  });
+  // React has updated the DOM by now
+  flushSync(() => {
+    setFlag(f => !f);
+  });
+  // React has updated the DOM by now
+}
+```
+
+만약 Batch 를 원치 않을때에는 `flushSync` 를 사용할 수 있습니다.
+물론 흔한 경우도 아니고 일반적인 상황도 아니긴 합니다.
+
+--
+
+## React Fiber
+
+React 16 전에 스택을 통해 트리를 비교했습니다.
+브라우저가 한번에 모든 작업을 처리하기 때문에
+복잡한 컴포넌트 트리 형태를 띄우고 있거나 긴 작업 실행이 존재할 경우 이를 처리하기 까지 다른 행동을 할 수 없는 상황을 야기했습니다.
+
+여기서 React Fiber 가 등장합니다.
+
+작업을 작은 조각으로 나누고 우선순위에 따라 조절하는 방식으로요.
+
+React Fiber 의 기능
+
+- 더 나은 오류 처리 및 복구 기능
+- 하위 트리를 DOM 노드 컨테이너로 렌더링
+- 새로운 렌더링 반환 유형 지원
+- 렌더링 함수에서 여러 요소 반환
+
+Fiber가 우선순위를 제공하고 노드 또는 작업을 단위로 나누면서 React가 구성 요소를 처리할 때에 일시 중지, 재개, 재실행을 가능하게 합니다.
+
+Call Stack 이 비어질때까지 다른 작업을 할 수 없었던 문제를 위해서
+React 는 스택 프레임을 메모리에 저장하고 원할 때 실행할 수 있게 스택을 재구현했습니다.
+스택 프레임을 수동으로 제어할 수 있게 되면서
+원할 때 Call Stack 에 interrupt 를 걸거나 재사용할 수 있는 등의 조정이 가능해졌는데요.
+이 덕분에 오류 처리나 복구 등의 기능이 추가되어졌다고도 볼 수 있습니다.
+
+각각의 React 엘리먼트가 속으로는 [Fiber](https://github.com/facebook/react/blob/v18.0.0/packages/react-reconciler/src/ReactInternalTypes.js#L64-L193)로 표현됩니다.
+React가 내용을 비교할떄 이런 Fiber 타입을 이용해 확인합니다.
+
+```tsx
+export type Fiber = {
+  // 고유 식별자로, 동일 유형의 형제 Element를 구별하는데 사용합니다.
+  key: null | string;
+
+  // 함수 컴포넌트라면 type은 해당 함수 자체로,
+  // HTML 태그라면 태그 이름이 문자열로 들어가게 됩니다.
+  type: any;
+
+  // 업데이트 되기 전 적용되어야 하는 props
+  pendingProps: any;
+  // 출력을 생성하는 데 사용되는 props, 재렌더링 발생할때
+  memoizedProps: any;
+
+  // 출력을 생성하는 데 사용된 State
+  memoizedState: any;
+
+  //...
+};
+```
+
+---
+
+## 함수형 컴포넌트
+
+```tsx
+function Component() {
+  const val = getData();
+  return <p>{val}</p>;
+}
+```
+
+함수형 컴포넌트가 렌더링 된다는 것은, 함수가 호출된다는 것인데,
+
+함수는 호출될때마다 함수 내에 정의 되어 있는 모든 변수들이 초기화 됩니다.
+
+---
+
+## useMemo
+
+React의 함수형 컴포넌트에서 state가 변경되면 재렌더링이 빈곤하게 일어나기 때문에
+큰 비용이 드는 작업이 있을때 매번 작업시키는 일은 효과적이지 못할 수 있습니다.
+그러한 때를 위해 결과값을 메모리에 저장해서, 컴포넌트가 반복적으로 재렌더링이 되어도
+다시 호출 하지 않고 메모리에서 꺼내와 재사용할 수 있습니다.
+
+```tsx
+useMemo(콜백함수, [deps, 의존성배열]);
+```
+
+앞서 언급되었듯 useMemo 는 재렌더링으로 인해 재실행되는 작업이 클 경우에 유용합니다.
+게다가 함수형 컴포넌트는 렌더링 될때에 정의 되어 있는 것들이 초기화 되기 떄문에,
+만약 작은 작업을 위해 재렌더링 하게 되었을때 큰 작업으로 인해 동일하게 영향을 받게 됩니다.
+
+```tsx
+const [hardNum, setHardNum] = useState(0);
+const [easyNum, setEasydNum] = useState(0);
+
+const 큰계산된수 = 매우큰작업(hardNum);
+const 작은계산된수 = 매우작은작업(easyNum);
+
+// easyNum state가 변경이 되어 재렌더링을 하게 되었을때
+// 매우작은작업 뿐만 아니라 매우큰작업도 같이 동작하게 된다.
+```
+
+---
+
+## Javascript 타입
+
+Javascript에는 두 개의 [데이터 타입](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)이 존재합니다.
+
+- 원시 (Primitive) 타입
+
+  - Null, Undefined, Boolean, Number, BigInt, String, Symbol
+
+- 객체 (Object) 타입
+
+  - Object, Array, Dates, Maps, Sets 등등 …
+
+`const val = "asdf"` 의 경우 val 변수에 원시 타입의 값이 입력되어 이 값이 변수에 바로 저장되지만,
+`const val = { msg: "asdf" }` 와 같이 객체 타입의 값이 입력된다면
+해당 객체가 메모리 상에 할당되어 변수는 해당 메모리의 주소가 할당됩니다.
+
+때문에
+
+```tsx
+const valA = "temp";
+const valB = "temp";
+valA === valB; // true
+
+const objA = { val: "temp" };
+const objB = { val: "temp" };
+objA === objB; // false
+```
+
+객체가 같은 구성을 하고 있음에도 다른 주소를 비교하는 것이기 때문에 false 가 됩니다.
+
+이러한 자바스크립트의 타입 성격 탓에
+전혀 다른 state 가 변경이 되어 함수형 컴포넌트가 재렌더링을 하게 되었을떄
+객체 타입의 값은 변경이 되지 않았음에도 이전과 다르다고 판단하게 됩니다.
+
+```tsx
+const [count, setCount] = useState(0);
+const [isKorean, setIsKorean] = useState(true);
+const layoutCalc = isKorean ? "계산기" : "Calculator";
+
+useEffect(() => {
+  console.log("layoutCalc 호출");
+}, [layoutCalc]);
+```
+
+`layoutCalc`의 값은 `isKorean` state에 따라서 변화가 생기는 원시 타입의 변수입니다.
+
+만약 여기서 `layoutCalc` 와는 전혀 관계가 없는 `count` 의 값이 변경이 되더라도,
+`useEffect`에서 `layoutCalc`의 변화를 감지하지 않습니다.
+
+```tsx
+const [count, setCount] = useState(0);
+const [isKorean, setIsKorean] = useState(true);
+const layout = {
+  calc: isKorean ? "계산기" : "Calculator",
+  language: isKorean ? "한국인인가요?" : "Are you Korean?",
+};
+
+useEffect(() => {
+  console.log("layout 호출");
+}, [layout]);
+```
+
+하지만 `layout` 과 같이 객체 타입의 변수의 경우에,
+
+앞과 마찬가지로 `count` 의 상태만 변경이 되었는데 `useEffect`에서 `layout`의 변화를 감지하는 차이가 발생합니다.
+이는 자바스크립트 객체 타입의 성격 때문에 `layout` 값이 변경되었다고 판단한 것이기 때문입니다.
+값이 변하였는지 비교(Diffing)하는 상황에서, 객체 타입은 원시 타입과 다르게 메모리 주소를 가지고 있기때문에 의도했던 정확한 값 비교가 아니기 때문이에요.
+
+```tsx
+const layout = useMemo(() => {
+  return {
+    calc: isKorean ? "계산기" : "Calculator",
+    language: isKorean ? "한국인인가요?" : "Are you Korean?",
+  };
+}, [isKorean]);
+```
+
+useMemo가 큰 작업을 빈곤하게 일어나지 않게 메모이제이션 해주는 것처럼, 이를 응용할 수 있습니다.
+위처럼 의존성 배열에 따라 `layout` 변경을 확인하게 함으로서
+의도치 않던 useEffect 호출을 최적화할 수 있습니다.
+
+이렇듯, React가 가상돔을 이용해 똑똑하게 변경 사항만 다시 그려준다고 하여도
+자바스크립트가 가지는 특성때문에 의도치 않았던 작업이 일어날 수도 있습니다.
+
+다음에 나올 내용들도 그렇지만,
+단순히 이러한 것들을 인지하고 있어야 에러 상황에도 대처할 수 있다 일 뿐이지
+위처럼 간단한 작업에 사소하게 memoization하는 일은 정말 좋지 못한 일입니다.
+
+<div className="video-container">
+  <iframe
+    src="https://codesandbox.io/p/devbox/usememo-2t9w2m?embed=1&file=%2Fsrc%2FApp.tsx&showConsole=true"
+    title="useMemo"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+    loading="lazy"
+  ></iframe>
+</div>
+
+---
+
+## useCallback
+
+useMemo와 항상 같이 언급되는 짝궁 useCallback 도 그렇습니다
+
+```tsx
+const checkFunc = useCallback(() => {
+  console.log(count);
+  return;
+}, [count]);
+
+useEffect(() => {
+  console.log("call checkFunc");
+}, [checkFunc]);
+```
+
+함수도 결국 객체 타입이라, 함수 컴포넌트가 재렌더링이 이루어질때 이를 메모리 주소로 비교하기 때문에 영향을 받습니다.
+
+함수가 객체 타입이라고?
+
+```tsx
+typeof []; // 'object'
+typeof {}; // 'object'
+typeof new Date(); // 'object'
+typeof function () {}; // 'function'
+```
+
+막상 타입을 찍어보면 함수는 다른 값을 내놓는데요.
+
+자바스크립트에서 [함수](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions)는 [First Class Function](https://developer.mozilla.org/ko/docs/Glossary/First-class_Function) 로 취급해
+다른 함수로 전달 및 반환하거나 변수와 속성을 할당받을 수 있게 하기 위해서 객체 특성이 부여되어 있습니다.
+typeof로는 function이라 출력되는 이유는 객체에서 함수 고유의 '호출 가능한(다른 코드에서 호출 될 수 있는)' 기능이 추가되어 특별 취급(일급 객체)을 하고 있기 때문입니다.
+
+자바스크립트가 프로토타입 기반 언어(Prototype-based) 라고 불리는 만큼 모든 객체들이 상속받기 위한 프로토타입 객체를 가지고 있습니다.
+함수 역시 프로토타입 객체를 상속받아 만들어기때문에 Prototype을 거슬러 올라가면 객체를 가리키게 됩니다.
+해서 프로토타입 속성이 프로토타입 체인(Prototype Chain) 어딘가에 존재하는지 확인할 수 있는 `instanceof`를 통해 객체 타입임을 확인할 수 있습니다.
+
+```JavaScript
+function func() {}
+
+console.log(func instanceof Function);      // true
+console.log(func instanceof Object);        // true
+```
+
+---
+
+## React.memo
+
+```tsx
+const Parent = () => {
+  //...
+  return (
+    <>
+      <Child name={"이름"} />
+      ...
+    </>
+  );
+};
+```
+
+Child 에 전달해줄 값이 변경되지 않았음에도 Parent 가 재렌더링이 이루어지면 Child 역시 작업되게 됩니다.
+
+고차 컴포넌트 (HOC) 인 React.memo를 통해서 이를 해결해 볼 수 있는데요.
+
+HOC은 어떤 컴포넌트를 인자로 받아서 새로운 컴포넌트로 반환하는 함수를 일컫습니다.
+
+React.memo로 Child 를 memoization 하면서 재렌더링이 일어날때 prop check를 하게 됩니다.
+
+Child의 prop 이 변경되지 않아 재렌더링을 막아줍니다.
+
+```tsx
+const Parent = () => {
+	//...
+
+	const profile = useMemo(() => {
+		return {
+			name: '',
+			age: 0,
+		}
+	}
+
+	const sayHi = useCallback(() => {
+		console.log('Say Hi !');
+	}, []);
+
+	return (<>
+		<Child profile={{...}} sayHi={sayHi} />
+		...
+	</>);
+}
+```
+
+---
+
+## 참고
+
+- [A (Mostly) Complete Guide to React Rendering Behavior](https://blog.isquaredsoftware.com/2020/05/blogged-answers-a-mostly-complete-guide-to-react-rendering-behavior/)
+- [React Hooks ](https://www.youtube.com/watch?v=e-CnI8Q5RY4&list=PLZ5oZ2KmQEYjwhSxjB_74PoU6pmFzgVMO&index=6)
+- [Introduction to React Fiber](https://flexiple.com/react/react-fiber)
+- [React Fiber Architecture](https://github.com/acdlite/react-fiber-architecture)
+
+---
+
+<aside>
+제목만 거추장 스러울뿐 복습 시리즈 정리 중 하나입니다.
+
+면접 대비한다고 공부하는데 React Fiber 는 깊이 파고들수록 더 어려운 내용인 것 같아요.
+
+</aside>
