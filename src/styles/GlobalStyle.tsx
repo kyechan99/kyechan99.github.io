@@ -43,13 +43,15 @@ const GlobalStyle = (theme: Theme) => css`
       overflow: hidden;
       padding-right: 1rem;
     }
+    @media print {
+      background-color: transparent;
+    }
   }
 
   a {
     text-decoration: inherit;
     font-weight: 500;
     color: var(--secondary);
-    word-wrap: break-word;
   }
 
   p {
