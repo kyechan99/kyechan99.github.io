@@ -16,9 +16,9 @@ export default function PostPage() {
     <Layout>
       <h1>포스팅</h1>
       <Banner>
-        연구하거나 배운것을 기록하는 공간이에요.
+        연구하거나 공부한 것을 기록하는 공간입니다.
         <br />
-        이전에 겪었던 실수와 고민을 반복하지 않기 위해 노력하고 있어요.
+        배움은 나눌수록 커지잖아요
       </Banner>
 
       <PostFeed posts={allPostPosts} />
