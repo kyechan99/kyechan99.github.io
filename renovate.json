@@ -1,6 +1,21 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "labels": ["dependency"],
   "extends": [
     "config:recommended"
+  ],
+  "prConcurrentLimit" : 5,
+  "packageRules": [
+    { 
+      "groupName": "rehype",
+      "packagePatterns": ["^rehype-"],
+      "labels": ["dependency"]
+    },
+    { 
+      "groupName": "lints",
+      "packageNames": ["eslint", "prettier"],
+      "packagePatterns": ["^eslint-", "^prettier-"],
+      "labels": ["dependency"]
+    }
   ]
 }
