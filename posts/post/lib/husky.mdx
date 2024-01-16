@@ -1,0 +1,211 @@
+---
+layout: post
+title: Git Hooks로 테스트와 Lint 관리하기 (Husky)
+date: 2024-1-16
+category: Lib
+description: Husky, Commitlint, Git Hooks, lint-staged 사용하기
+tags: [Git, Hook, Lint, JS]
+keywords: Git, Hook, Lint
+haveImg: true
+headerImg: 2024-1-16-husky.jpg
+---
+
+## 개요
+
+최근에는 개인 커밋 메세지 컨벤션이 정리가 되어 비슷한 형태를 띄우고는 있습니다만
+과거 프로젝트들을 살펴보면 규칙이 계속해서 바꾸어온게 눈에 띕니다.
+더 이해하기 좋은 메세지란 무엇인가 고민해온 흔적이라고도 볼 수 있겠지만
+또 귀찮다고 대충 작성한 메세지도 발견해 올 수 있었습니다.
+
+PR 받아온 내용들을 보면, 커밋 메세지의 형태가 일정한 프로젝트 였을 경우
+PR 을 보내주시는 분들도 유사한 형태로 작성하여 보내주시는데요.
+형태가 불규칙해 보였을 경우 PR을 보내주시는 분이 컨벤션을 유추하기 힘들어지는 것이 당연한 것 같습니다.
+
+팀 협업이거나 오픈소스 프로젝트일 경우 그만큼 컨벤션의 정리가 필요합니다.
+나 이외의 다른 사람들이 이 규칙을 지키고 있는가에 대해 확인이 필요한거죠.
+그렇다고 Owner, Maintainer 가 올라오는 커밋 메세지 규칙을 보고 수정을 요청하기도 하는 작업은
+담당자에게도 작업자에게도 번거로운 작업일 수 있습니다.
+
+---
+
+## husky
+
+개요에서 작성한 컨벤션을 위한 작업을 하기 이전에 먼저 husky에 대해 시작하겠습니다.
+
+Husky는 커밋하거나 푸시할 때 커밋 메시지나 코드를 lint하고 테스트를 실행하는 등의 작업에 사용할 수 있는 대표적인 도구입니다.
+우리가 작업을 완료하고 git 을 사용할때 작성한 테스트 코드를 실행해 문제가 없는지, ESLint나 Prettier 등의 코드 스타일에 문제가 없는지, 커밋 메세지 내용이 지정한 컨벤션을
+지키고 있는지를 검사하는 등의 지정한 행동을 취하게 하는 거죠.
+
+husky 는 어떻게 이런 작업들을 도와주는 걸까요?
+
+이는 husky가 Git Hooks 를 이용하고 사용하기 쉽게 만드는 도구이기 때문입니다.
+
+---
+
+## Git Hooks
+
+Git Hooks 는 어떤 이벤트가 생겼을 때 자동으로 특정 스크립트를 실행하도록 돕습니다.
+
+![githooks](/img/2024-1-16-husky/githooks.jpg)
+
+[Git Hooks](https://git-scm.com/book/ko/v2/Git%EB%A7%9E%EC%B6%A4-Git-Hooks)는 클라이언트 훅(Local)과 서버 훅(Remote)으로 나뉩니다.
+
+<br />
+
+**클라이언트 훅 (Local 작업)**
+
+- `pre-commit`: 가장 먼저 호출되는 훅, 커밋 메시지 작성 전 호출
+- `prepare-commit-msg`: 커밋 메시지 생성 후 편집기 실행 전 실행, 프로그램으로 손보고 싶을 때
+- `commit-msg`: 최종적으로 커밋이 완료되기 전에 프로젝트 상태나 커밋 메시지를 검증
+- `post-commit`: 커밋 완료
+
+외에도 `pre-rebase`, `post-rewrite`, `post-merge`, `pre-push` 등 이름에 맞는 역할을 하는 훅이 존재합니다.
+
+<br />
+
+**서버 훅 (Remote 작업)**
+
+- `pre-receive`: Push 하면 가장 처음 실행되는 훅
+- `update`: 한 번에 여러 브랜치를 Push 하면 `pre-receive` 는 딱 한 번만, `update`는 브랜치마다 실행
+- `post-receive`: Push 한 후에 Repo가 업데이트 될 때 실행
+
+<br />
+
+(장황한 글보단 위 사진 하나가 훅이 사용되는 순서를 알기 가장 이해하기 쉽습니다.)
+
+다시 돌아와서, husky는 이런 Git Hooks 를 통해 우리가 Git을 사용할때 특정한 행동을 쉽게 취할 수 있게 도와주는 것입니다.
+
+---
+
+## 사용하기
+
+```shell
+// Using npm
+npx husky-init && npm install
+
+// Using yarn
+yarn dlx husky-init --yarn2 && yarn
+
+// Using pnpm
+pnpm dlx husky-init && pnpm install
+```
+
+husky-init 을 사용해 husky를 자동 설정합니다.
+
+```json:package.json {3}
+"scripts": {
+	//...
+	"prepare": "husky install",
+}
+```
+
+이후에 `.husky` 라는 폴더가 생성되며 Packing 되기 전에 실행되는 스크립트로 prepare가 설정됩니다. (e.g. npm publish, npm pack, npm install)
+
+---
+
+## ESLint / Prettier
+
+만약 ESLint 혹은 Prettier 를 사용하고 있다면 Lint를 진행시키는 것도 좋은 방법일 수 있습니다.
+
+```shell
+npm install --save-dev lint-staged
+```
+
+코드를 커밋하기 전에 Lint 작업을 수행하기 위해 `lint-staged` 를 설정합니다.
+
+```json:package.json
+"lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+        "eslint --cache --fix",
+        "prettier --cache --write"
+    ]
+}
+```
+
+검사할 파일을 지정하고 상황에 맞게 설정합니다.
+
+```shell
+npx husky add .husky/pre-commit 'npx lint-staged'
+```
+
+`pre-commit` 훅 단계에서 lint-staged 를 사용하기 위해 작성합니다.
+
+```json:.husky/pre-commit {5}
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+// lint
+npx lint-staged
+```
+
+![lint-staged](/img/2024-1-16-husky/lint.jpg)
+
+---
+
+## 테스트
+
+같은 원리로, 만약 테스트 코드를 작성하여 사용하고 있다면 git 사용시 테스트 검사를 실행시킬 수 있습니다.
+
+```json:.husky/pre-commit {5}
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+// test
+yarn run test
+```
+
+---
+
+## Commitlint
+
+처음 언급한 커밋 메세지를 위한 lint 작업을 위해 [commitlint](https://github.com/conventional-changelog/commitlint) 를 사용할 수 있습니다.
+
+```shell
+// Install commitlint cli and conventional config
+npm install --save-dev @commitlint/{config-conventional,cli}
+// For Windows:
+npm install --save-dev @commitlint/config-conventional @commitlint/cli
+```
+
+commitlint 를 설정할 내용을 작성합니다.
+
+```javascript:commitlint.config.js
+module.exports = {
+    extends: ['@commitlint/config-conventional'],
+    rules: {
+        // 규칙을 작성합니다.
+        // e.g.
+		'type-case': [2, 'always', 'lower-case'],
+    }
+};
+```
+
+조절할 내용은 [commitlint Docs](https://github.com/conventional-changelog/commitlint/blob/master/docs/reference-rules.md) 와 [default](https://github.com/conventional-changelog/commitlint/blob/master/@commitlint/config-conventional/index.js) 를 보고 선택하시면 되겠습니다.
+
+```shell
+<type><optional scope>: <subject>
+
+<body>
+
+<footer>
+```
+
+Git 커밋 메세지는 크게 다음과 같은 구조로 이루어 집니다.
+
+위의 `type-case` 규칙을 적용한 코드를 예로 들면
+**type은 2: 강제로, always: 항상, lower-case** 여야 한다는 의미로 작성됩니다.
+
+0: 비활성화
+1: 경고(warning)
+2: 에러가 있으면 커밋을 차단
+
+always: 항상
+never: 반대
+
+```shell
+npx husky add .husky/commit-msg  'npx --no -- commitlint --edit ${1}
+```
+
+마지막으로 `commit-msg` 훅 단계에 commitlint를 실행하여 커밋 메세지를 검사하기 위해 husky 단계를 추가합니다.
+
+![githooks](/img/2024-1-16-husky/result.jpg)
