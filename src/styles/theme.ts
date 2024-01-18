@@ -14,7 +14,7 @@ export const baseColors = {
  */
 export const lightColors = {
   black: "#222",
-  white: "#fefeff",
+  white: "#ffffff",
   primary: "#a296ff", // "#EAEF92",
   secondary: "#7700ff",
   grey: "#d9d9d9",
@@ -47,7 +47,7 @@ export const darkColors = {
  * Dark 테마
  */
 export const fontSizes = {
-  p: "17px",
+  p: "18px",
   mobile_p: "16px",
 
   desc: "1.25rem",

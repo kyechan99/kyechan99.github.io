@@ -83,11 +83,11 @@ pre[class*="language-"] {
 }
 
 .token.cdata {
-  color: #80b2cb;
+  color: #c78282;
 }
 
 .token.char {
-  color: #80b2cb;
+  color: #c78282;
 }
 
 .token.class {
@@ -95,7 +95,7 @@ pre[class*="language-"] {
 }
 
 .token.class-name {
-  color: #ffe2ad;
+  color: #d0d1ff;
 }
 
 .token.comment {
@@ -119,11 +119,11 @@ pre[class*="language-"] {
 }
 
 .token.function {
-  color: #ffe2ad;
+  color: #d0d1ff;
 }
 
 .token.hexcode {
-  color: #ffe2ad;
+  color: #d0d1ff;
 }
 
 .token.id {
@@ -137,7 +137,7 @@ pre[class*="language-"] {
 }
 
 .token.inserted {
-  color: #80b2cb;
+  color: #c78282;
 }
 
 .token.keyword {
@@ -157,7 +157,7 @@ pre[class*="language-"] {
 }
 
 .token.property {
-  color: #80b2cb;
+  color: #c78282;
 }
 
 .token.pseudo-class {
@@ -173,7 +173,7 @@ pre[class*="language-"] {
 }
 
 .token.regex {
-  color: #ffe2ad;
+  color: #d0d1ff;
 }
 
 .token.selector {
