@@ -1,0 +1,310 @@
+---
+layout: post
+title: React NPM 배포 연대기 - 2
+date: 2024-1-19
+category: Lib
+description: React Component NPM 배포하기 - 문서 관리편
+tags: [React, NPM, Rollup, JS, Component]
+keywords: React, NPM, Rollup, JS, Component
+haveImg: true
+headerImg: 2024-1-18-npm.jpg
+---
+
+## 개요
+
+이번에는 관리편입니다!
+
+Storybook 을 Github Pages 에 배포하기, README에 주로 작성되는 내용, 기타 관리용 도구들을 정리합니다.
+
+---
+
+## Storybook
+
+Storybook 을 사용하면서 별도의 페이지나 프로젝트를 사용해 개발할 고생도 줄어들고
+parameter 나 데이터 타입등을 관찰하며 개발할 수 있다는 장점이 생겼습니다.
+여기서 아주 등골까지 빨아먹기 위해
+Storybook 페이지까지 추출해서 사용자가 해당 페이지를 보고 쉽게 사용하는 가이드 문서로도 활용해 보겠습니다.
+
+```json:package.json {3}
+"scripts": {
+  "storybook": "storybook dev -p 6006",
+  "build-storybook": "storybook build",
+},
+```
+
+storybook 을 자동 설정했다면 `build-storybook` 이 설정되어 있을텐데
+이를 Github Action 이 실행하게 하고 Github Pages 에 등록되게 할겁니다.
+
+`.github/workflows` 폴더를 생성하고 추가할 워크플로우 파일 `***.yml` 을 생성합니다.
+
+```yml:.github/workflows/deploy.yml
+name: Storybook
+
+on:
+  push:
+    branches: main    # master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}
+      cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          cache: 'yarn'
+          cache-dependency-path: ./yarn.lock
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile # == npm ci
+        if: steps.cache.outputs.cache-hit != 'true'
+
+      - name: Build
+        run: |
+          yarn build-storybook
+          mkdir ./build
+          mv ./storybook-static ./build/storybook
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+```
+
+현재 코드에서는 `main` 브랜치에 push 시 작동되도록 하였습니다.
+만약 브랜치 이름이 다르거나 pr 상황에도 작동되게 의도하고자 한다면 수정합니다.
+
+storybook에서 빌드된 결과물은 storybook-static 에 도출되고 이를 build 로 옮겨서 gh-pages 브랜치에 저장되게 합니다.
+이때 build 라는 폴더를 사용하고 있는데 이 폴더 이름이 dist 나 사용하고 있는 파일이 되면 문제가 생길 수 있습니다.
+
+해당 코드에서는 yarn 을 사용하지만 npm 사용시 cache 부분이나 ci (clean install) 부분을 변경합니다.
+
+workflow 를 작성하고 repo 에 적용하고 나면 Action 이 실행됩니다.
+
+![ghpages](/img/2024-1-18-npm/ghpages.jpg)
+
+Github Pages 를 설정해 주는데요.
+Storybook의 build 결과물이 gh-pages 에 저장되어 있기때문에 이를 설정해줍니다.
+
+참고로 GH Pages 는 public repository 여야만 작동됩니다.
+
+정상적으로 모든 작업이 끝났다면 빌드된 결과물의 주소는 다음과 같을 것입니다.
+
+```shell
+https://{:github-id}.github.io/{:repository}/storybook
+```
+
+주소 뒤에 `/storybook` 이 설정되어 있는데 이를 변경하거나 제거하려면 다시 한번 workflow 를 수정하면 됩니다.
+
+```yml
+public_dir: ./build/storybook
+```
+
+으로 설정해 시작 주소를 변경하면서 제거할 수 있고요.
+
+```yml
+run: |
+  ...
+  mv ./storybook-static ./build/docs
+```
+
+저장될 파일 이름을 변경하면서 설정할 수 도 있습니다.
+
+![mdx](/img/2024-1-18-npm/mdx.jpg)
+
+겸사 겸사, Storybook 에는 stories 뿐만 아니라 mdx 같은 파일을 활용해 작성할 수 있기 때문에
+
+시연 공간이나 사용법 등을 넣어 활용하면
+사용자에게 **첫 페이지 입장에 대해 좋은 경험**을 줄 수 있습니다.
+
+---
+
+## README
+
+README 중요성은 언급할 필요도 없죠.
+
+대체로 오픈소스들은 README 에 어떤 것들을 포함하고 있는지 정리했으니
+상황에 맞게 선택하시면 될 것 같습니다.
+
+README 도 사실 종류가 많습니다.
+
+<br />
+
+### CODE_OF_CONDUCT.md
+
+사용자, 커뮤니티의 행동 강령을 뜻합니다.
+
+쉽게 이야기하면 이 프로젝트에서 이루어지고 있는 여러 커뮤니티 활동들에 대해 언어적, 성별, 국가 등에 대해
+문제가 될 수 있는 상황에 대해 금지하고 신고받겠다 라는 식의 의미를 담고 있습니다.
+
+'착한 캠페인' 같은 의미로 볼 수 있겠네요.
+
+LICENSE 와 같이 Github 내에서 `CODE_OF_CONDUCT.md` 라는 이름의 파일을 생성하면 template 을 띄워줍니다.
+혹은 [Contributor-Convenant](https://www.contributor-covenant.org/translations/) 에서 받아 낼 수 있습니다.
+
+<br />
+
+### CONTRIBUTING.md
+
+단순히 기여자가 어떻게 기여할 수 있는지 가이드라인을 제시하는 내용입니다.
+
+<br />
+
+### SECURITY.md
+
+보안 취약점 신고 방법이나 정책 혹은 관련 보상 등을 적습니다.
+
+SECURITY.md 를 만들거나 Github repository 에서 Security 창을 통해 만들 수 있어요.
+
+---
+
+### package 파일 크기
+
+[packagephobia](https://packagephobia.com) 에서 패키지 크기를 알려줍니다.
+
+패키지를 추가하고자 할 때, 설치된 파일 크기는 어느 정도인지, 빌드시 실 사용될 크기는 어느 정도인지 가늠하기에 좋습니다.
+
+![install size](https://packagephobia.com/badge?p=dragond-react)
+
+```html
+<a href="https://packagephobia.now.sh/result?p=dragond-react">
+  <img src="https://packagephobia.now.sh/badge?p=dragond-react" alt="install size" />
+</a>
+```
+
+---
+
+### Code coverage
+
+코드가 어느정도까지 단위테스트 하고 있는가,
+즉 얼마나 안정되게 관리되고 있는가를 알려주기 위해 coverage 값을 알려줄 수도 있습니다.
+
+[codecov.io](https://app.codecov.io/) 를 통해 이를 측정하고 사용합니다.
+
+![code_coverage](/img/2024-1-18-npm/code_coverage.jpg)
+![Tests Coverage](https://codecov.io/gh/kyechan99/capsule-render/graph/badge.svg)
+
+```html
+<a href="https://codecov.io/gh/{:id}/{:repo}">
+  <img alt="Tests Coverage" src="https://codecov.io/gh/{:id}/{:repo}/graph/badge.svg" />
+</a>
+```
+
+---
+
+### Sponsor
+
+유명 오픈소스들은 꼭 sponsor 가 존재하죠.
+
+[Github Sponsors](https://github.com/sponsors) 를 사용할 수 있고 [Open Collective](https://opencollective.com/) 를 사용하기도 합니다.
+
+```html
+<a href="#sponsors" alt="Sponsors on Github Sponsors">
+  <img src="https://img.shields.io/github/sponsors/:user" alt="backers" />
+</a>
+```
+
+```html
+<a href="#sponsors" alt="Sponsors on Open Collective">
+  <img src="https://opencollective.com/rollup/backers/badge.svg" alt="backers" />
+</a>
+<a href="#sponsors" alt="Sponsors on Open Collective">
+  <img src="https://opencollective.com/rollup/sponsors/badge.svg" alt="sponsors" />
+</a>
+```
+
+---
+
+### License
+
+안빠지면 서운한데 또 빠져서는 안되는 LICENSE 입니다.
+
+![license](https://img.shields.io/npm/l/dragond-react)
+
+```html
+<a href="https://github.com/{:github_id}/{:repo}/blob/master/LICENSE.md">
+  <img src="https://img.shields.io/npm/l/{:npm package name}" alt="license" />
+</a>
+```
+
+---
+
+### Peer Dependencies
+
+의존하고 있는, peerDependencies를 알려주는 일도 필요한 경우가 있습니다.
+
+![npm version](https://img.shields.io/npm/dependency-version/dragond-react/peer/react)
+
+```html
+<a href="https://www.npmjs.com/package/{:npm package name}">
+  <img
+    src="https://img.shields.io/npm/dependency-version/{:npm package name}/peer/{:peer package npm}"
+    alt="npm version"
+  />
+</a>
+```
+
+---
+
+### Workflow 통과 여부
+
+이를 테면 테스트 workflow 가 정상적으로 처리되어 현재 프로젝트가 안정적인지를 확인하기 위한 passing 여부도 존재합니다.
+
+![Build Passing](https://img.shields.io/github/actions/workflow/status/kyechan99/capsule-render/test.yml)
+
+```html
+<a href="https://github.com/{:id}/{:repo}/tree/master/.github/workflows">
+  <img src="https://img.shields.io/github/actions/workflow/status/{:id}/{:repo}/{:workflow}.yml" alt="Build Passing" />
+</a>
+```
+
+---
+
+### Security
+
+![openssf](https://securityscorecards.dev/_nuxt/img/openssf.5a1095b.svg)
+
+[OpenSSF Scorecard](https://github.com/ossf/scorecard) 를 통해 오픈 소스의 보안 위험을 평가합니다.
+
+Scorecard 는 코드 리뷰, 의존성, 테스트 등을 복합적으로 측정해 보안 신뢰성 점수를 도출합니다.
+
+측정 근거는 [Checks](https://securityscorecards.dev/#the-checks) 에서 확인이 가능합니다.
+
+---
+
+## Github Action
+
+Github Action 도 참 종류가 많아서 모두 소개하기는 힘들고
+주로 사용되는 두 개만 가져왔습니다.
+
+### Contributor
+
+![allcontributors](https://avatars.githubusercontent.com/u/46410174?s=200&v=4)
+
+[All Contributor](https://allcontributors.org/) 에서 README 에 기여자 목록을 작성합니다.
+
+사용해본적은 없지만, 동기뷰여를 제공해 준다는 점에서 자주 사용되는 것 같습니다.
+
+---
+
+### Renovate
+
+![renovate](https://docs.renovatebot.com/assets/external/app.renovatebot.com/images/whitesource_renovate_660_220.jpg)
+
+[Renovate](https://docs.renovatebot.com/) 사용되는 package 를 분석해 새로운 버전이 나왔을때 PR 을 남겨줍니다.
+
+양날의 검이라고도 생각되는데 잘 사용하면 의존하고 있는 패키지들이 업데이트 되어도 호환하고
+오류(취약점)들이 해결된 타 패키지를 쉽게 업데이트 할 수 있는점에서 이득은 있는데요.
+
+그만큼 PR 이 자주 일어나는 만큼 테스트 코드와 같이 검증할 수 있는 방법이 존재하는 것이 아니라면
+매우 의미없는 알림들이 되어버린다고 생각합니다.
+모든 PR 을 직접 테스트 해볼 수 는 없는 노릇이며 renovate의 auto merge 를 활용하기에도 리스크가 커져버리니까요.
