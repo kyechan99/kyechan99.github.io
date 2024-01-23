@@ -75,7 +75,7 @@ export default function Resume() {
                 <p>이를 바탕으로 오픈소스에 관심이 많아 분석하고 개발하며 도전과 성장을 즐기고 있습니다.</p> */}
                 <p>
                   가치를 창출하는 코드를 위해 <b className="stress">지속적인 학습과 실천에 적극적</b>입니다. <br />
-                  생각을 행동으로 거침없이 옮기면서 현재는 활성 사용자 4000명 이상의 프로그램을 서비스하고 있습니다.
+                  생각을 행동으로 거침없이 옮기면서 현재는 활성 사용자 5000명 이상의 프로그램을 서비스하고 있습니다.
                 </p>
               </div>
             </div>
@@ -105,6 +105,7 @@ export default function Resume() {
                   <span className="badge badge-light tag-badge">Vercel</span>
                   <span className="badge badge-light tag-badge">React</span>
                   <span className="badge badge-light tag-badge">Jest</span>
+                  <span className="badge badge-light tag-badge">Husky</span>
                 </div>
                 <div className="url-block github">
                   <a href="https://github.com/kyechan99/capsule-render" target="_blank">
@@ -115,7 +116,10 @@ export default function Resume() {
               <div className="col-md-8 desc">
                 <h4 className="semi-title">Introduction</h4>
                 <ul className="semi-list">
-                  <li>이미지 동적 생성 오픈소스</li>
+                  <li style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                    이미지 동적 생성 오픈소스{" "}
+                    <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/kyechan99/capsule-render" />
+                  </li>
                 </ul>
                 <h4 className="semi-title">Role</h4>
                 <p>Owner & Maintainer</p>
@@ -584,7 +588,7 @@ export default function Resume() {
               </h3>
               <ul className="semi-list origin-ul">
                 <li>
-                  [직접 개발] : 서비스 20일 만에 <b>활성 자용자수 4000 명 도달</b> -{" "}
+                  [직접 개발] : 서비스 20일 만에 <b>활성 자용자수 5000 명 도달</b> -{" "}
                   <a href="https://github.com/kyechan99/chzzk-plus">확장 프로그램</a>
                 </li>
                 <li>
