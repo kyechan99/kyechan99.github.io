@@ -60,7 +60,7 @@ export default function Resume() {
             <div className=" ">
               <div className="intro-block">
                 <p>
-                  일일 평균 45,000 요청량의 오픈소스를 관리하고 있습니다.
+                  일일 평균 70,000 요청량 이상의 오픈소스를 관리하고 있습니다.
                   <br />
                   {/* 소프트웨어 개발은 문제를 개선하고 변화시키는 일에 큰 가치가 있다고 생각해요.  */}
                   개발자로서 무엇을 해결하는지를 넘어 <b className="stress">근본적인 문제와 창의적인 해결책</b>에
@@ -75,7 +75,7 @@ export default function Resume() {
                 <p>이를 바탕으로 오픈소스에 관심이 많아 분석하고 개발하며 도전과 성장을 즐기고 있습니다.</p> */}
                 <p>
                   가치를 창출하는 코드를 위해 <b className="stress">지속적인 학습과 실천에 적극적</b>입니다. <br />
-                  생각을 행동으로 거침없이 옮기면서 현재는 활성 사용자 5000명 이상의 프로그램을 서비스하고 있습니다.
+                  생각을 행동으로 거침없이 옮기면서 현재는 활성 사용자 8000명 이상의 프로그램을 서비스하고 있습니다.
                 </p>
               </div>
             </div>
@@ -126,7 +126,7 @@ export default function Resume() {
                 <h4 className="semi-title">Challenge & Experience</h4>
                 <ul className="semi-list origin-ul">
                   <li>API Query 값으로 SVG를 활용해 동적인 이미지 응답</li>
-                  <li>하루 평균 45,000건 이상 요청 (최다 85,000건)</li>
+                  <li>하루 평균 70,000건 이상 요청 (최다 85,000건)</li>
                   <li>오픈 소스 사용 방법 및 예외 사항 등을 명시한 문서 제공</li>
                   <li>
                     <a href="https://github.com/kyechan99/capsule-render/discussions/15" target="__blank">
@@ -588,8 +588,8 @@ export default function Resume() {
               </h3>
               <ul className="semi-list origin-ul">
                 <li>
-                  [직접 개발] : 서비스 20일 만에 <b>활성 자용자수 5000 명 도달</b> -{" "}
-                  <a href="https://github.com/kyechan99/chzzk-plus">확장 프로그램</a>
+                  [직접 개발] : 브라우저 확장 프로그램 활성 자용자수 8,000 명 도달 -{" "}
+                  <a href="https://github.com/kyechan99/chzzk-plus">chzzk-plus</a>
                 </li>
                 <li>
                   [직접 개발] : 드래그시 도우미를 띄워주는 Vue.js 컴포넌트 배포 -{" "}
@@ -658,8 +658,8 @@ export default function Resume() {
               <ul className="semi-list origin-ul">
                 <li>확장프로그램, Discord 봇, Electron을 사용한 데스크톱 앱 등 필요한 SW를 직접 만들어 사용합니다.</li>
                 <li>Node.js/Express.js 를 사용해 간단한 REST API를 구축해 프로젝트를 진행해보기도 합니다.</li>
-                <li>Git 컨벤션을 정리해 협업을 진행하며 Github Action을 사용해 관리한 경험이 있습니다.</li>
-                <li>취미로 C#, Unity를 이용해 게임을 만들어 보기도 합니다.</li>
+                <li>Git 컨벤션을 정리해 협업을 진행하며 Github Action을 사용해 관리합니다.</li>
+                <li>취미로 C#, Unity를 이용해 게임을 만듭니다.</li>
                 <li>스스로 학습하고 해결하는 것을 즐기면서도 동료나 스승이 있음을 잊지 않습니다</li>
               </ul>
             </div>
@@ -672,17 +672,15 @@ export default function Resume() {
 
             <p className="info-log">
               국민대학교 소프트웨어학과
-              <span className="info-detail left">2018.03 - 2024.02 (졸업예정)</span>
+              <span className="info-detail left">2018.03 - 2024.02 (졸업)</span>
             </p>
             <p className="info-log">
               한국게임과학고 프로그래밍과
-              <span className="info-detail left">2015.03 - 2018.02</span>
+              <span className="info-detail left">2015.03 - 2018.02 (졸업)</span>
             </p>
           </div>
 
-          {/* <PrintDivider />
-
-          <div className="resume-block resume-education">
+          <div className="resume-block resume-education hide-on-print">
             <h2 className="title">Award</h2>
 
             <ul className="semi-list origin-ul">
@@ -706,8 +704,8 @@ export default function Resume() {
                 제 1회 전북 초중고 창업아이디어 및 창업아이템 경진대회 - 장려상
                 <span className="info-detail left">2015</span>
               </li>
-            </ul> 
-          </div> */}
+            </ul>
+          </div>
         </div>
       </div>
     </Container>
@@ -960,6 +958,9 @@ const Container = styled.div`
   .resume-introduce {
     .intro-block {
       margin-bottom: 2rem;
+      p + p {
+        margin-top: 1rem;
+      }
       p {
         margin-bottom: 0.25rem;
       }
@@ -1049,6 +1050,9 @@ const Container = styled.div`
     }
   }
   @media print {
+    .hide-on-print {
+      display: none;
+    }
     .resume {
       margin-top: 1rem;
       .col-md-4 {
