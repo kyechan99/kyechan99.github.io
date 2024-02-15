@@ -2,7 +2,7 @@
 
 import styled from "@emotion/styled";
 import { IconBrandGithubFilled, IconPencil, IconRocket, IconSearch, IconUserCircle } from "@tabler/icons-react";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 
 import { searchModalState } from "@/recoil/search";
@@ -19,6 +19,7 @@ export default function Search() {
   const [open, setOpen] = useRecoilState(searchModalState);
   const [searchWord, setSearchWord] = useState<string>("");
   const [posts, setPosts] = useState<PostType[]>(allPosts.slice(0, 3));
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     document.addEventListener("keydown", keyDownListener);
@@ -26,18 +27,26 @@ export default function Search() {
     return () => document.removeEventListener("keydown", keyDownListener);
   }, []);
 
+  useEffect(() => {
+    if (open) inputRef.current?.focus();
+  }, [open]);
+
   const keyDownListener = (e: KeyboardEvent) => {
     const keyCode = e.keyCode || e.which || e.key;
     if (keyCode === 191 || keyCode === "/") {
       setOpen(prev => !prev);
+      e.preventDefault();
     }
   };
 
   const search = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    setSearchWord(e.target.value);
 
-    const searchTerm = searchTermOptimization(e.target.value);
+    const inputValue = e.target.value;
+
+    setSearchWord(inputValue);
+
+    const searchTerm = searchTermOptimization(inputValue);
 
     if (searchTerm.length === 0) return;
     setPosts(allPosts.filter(post => post.searchTxt?.includes(searchTerm)));
@@ -55,6 +64,7 @@ export default function Search() {
                 </label>
                 <SearchInput
                   id="search-input"
+                  ref={inputRef}
                   value={searchWord}
                   onChange={search}
                   placeholder="Search"
