@@ -1,0 +1,286 @@
+---
+layout: post
+title: Mock Service Worker 사용하기 (MSW 2.0)
+date: 2024-02-17
+category: Lib
+description: Mock Service Worker 사용 정리
+tags: [msw, React]
+keywords: msw, React
+haveImg: true
+headerImg: 2024-2-17-msw.png
+---
+
+## 개요
+
+말해 뭐해, 서비스 워커로 API를 모킹하는 이유는 확실하죠. 프론트엔드 측에서 백엔드 API 를 기다릴 필요가 없다는 것,
+테스트 코드에 더 집중할 수 있다는 것에 의미가 있습니다.
+얼마전 기업 과제를 하면서 모킹을 적용하면 좀 더 좋지 않았을까 싶었는데 당시에 개념도 시간도 부족해서 사용하지 못한게 아쉬움에 남네요.
+진행중인 프로젝트에서라도 충분히 도입해볼 여지가 있어 이번차례에 간단하게 정리해 보면서 사용해볼 계획입니다.
+
+사실 정리라도 그럴게 [mswjs](https://mswjs.io/) 에 잘 정리된 것을 가져오는 것에서도 끝날 정도로 사용하기 쉬워서요.
+사용은 쉽게 사용하되, 설계를 어떻게 유연하게 해볼까가 남은 숙제인 것 같습니다.
+
+---
+
+## msw 설치
+
+먼저 msw 를 설치합니다.
+
+```shell
+npm install msw --save-dev
+```
+
+Browser 환경에서 API 요청을 가로채기 위한 설정이 필요한데요.
+public 경로를 지정해 정적 파일위치를 설정합니다.
+
+```shell
+npx msw init ./public --save
+```
+
+정상적으로 설정이 되었을떄, 설정한 경로에 `mockServiceWorker.js` 가 생성되게 됩니다.
+`http://localhost:\*/mockServiceWorker.js` 주소에 접근하였을때 스크립트 내용이 표시된다면 정상적으로 설정이 완료되었습니다.
+
+---
+
+## Handler
+
+설정하는 API 경로를 사용할때 Mockup 데이터가 사용될 수 있게 경로와 데이터를 매핑해 주어야 합니다.
+
+이를 처리하는 것을 handler 라고 말합니다.
+
+```typescript:src/mocks/handlers.ts
+export const handlers = [
+  http.get('/pets', petsResolver),
+  http.post('https://api.github.com/repo', repoResolver),
+]
+```
+
+api 경로는 다양하게 설정이 가능합니다.
+
+```typescript
+// - GET /user
+// - GET /user/abc-123
+// - GET /user/abc-123/settings
+http.get("/user/*", userResolver);
+
+// - DELETE /settings/sessions
+// - DELETE /settings/messages
+http.delete(/\/settings\/(sessions|messages)/, resolver);
+```
+
+---
+
+## Resolver
+
+앞의 Handler에서, 실질적인 서비스 로직을 resolver 라고 말합니다.
+
+```typescript:src/mocks/handlers.ts
+import { rest } from 'msw'
+import { mockUserDetail } from './resolvers'
+
+export const handlers = [
+  rest.get('/user/:user_id', mockUserDetail),
+]
+```
+
+```typescript:src/mocks/resolvers.ts
+export const mockUserDetail = ({ request, params, cookies }) => {
+  const data = await request.json();
+  const { user_id } = params;
+  const { session } = cookies;
+
+  return HttpResponse.json({
+    user_id,
+    user_name: 'User Name',
+  })
+}
+```
+
+---
+
+## 설정
+
+만든 handler 들을 설정해 주어야 합니다.
+
+```typescript:src/mocks/browser.ts
+import { setupWorker } from 'msw/browser'
+import { handlers } from './handlers'
+
+export const worker = setupWorker(...handlers)
+```
+
+개발중에만 사용하고, 서비스워커를 생성 후 활성화 시키기 위해 `worker.start()` 를 호출해야 합니다.
+등록작업이 비동기로 진행되기 때문에 렌더 작업을 등록까지 대기하도록 설정이 필요합니다.
+
+```typescript:src/main.ts
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { App } from './App';
+
+async function enableMocking() {
+  // if (!import.meta.env.DEV) {
+  if (process.env.NODE_ENV !== 'development') {
+    return;
+  }
+
+  const { worker } = await import('./mocks/browser');
+
+  return worker.start();
+}
+
+enableMocking().then(() => {
+  ReactDOM.createRoot(document.getElementById('root')!).render(<App/>)
+})
+```
+
+```shell
+[MSW] Mocking enabled.
+```
+
+---
+
+## Mocking Response
+
+```typescript
+http.get('/resource', () => {
+    return new Response('Hello world!')
+}),
+```
+
+모킹처리한 응답을 하기 위해서 `Response` 를 사용할 수 있습니다.
+Node.js (v17+) 버전부터 `Response` 클래스는 브라우저 안의 글로벌 Fetch API 에 포함되었기 때문에 별도의 import 가 필요하지 않게 되었습니다.
+
+![response.jpg](/img/2024-2-17-msw/1.jpg)
+
+다만, Response 클래스보다 `HttpResponse` 를 사용하는 것을 추천되어지고 있습니다.
+
+```javascript
+class HttpResponse {
+  constructor(
+    body:
+      | Blob
+      | ArrayBuffer
+      | TypedArray
+      | DateView
+      | FormData
+      | ReadableStream
+      | URLSearchParams
+      | string
+      | null
+      | undefined
+    options?: {
+      status?: number
+      statusText?: string
+      headers?: HeadersInit
+    }
+  )
+}
+```
+
+이는 `.json()`, `.xml()`, `.formData()` 등의 응답 유형들을 선언하는데에 단축시킬 수 있으며
+기본 Response 와 달리 mocked response 에 `Set-Cookie` 헤더 설정을 지원하기 때문입니다.
+
+```typescript:src/mocks/handlers.ts
+import { http, HttpResponse } from 'msw'
+
+export const handlers = [
+  http.get('/apples', () => {
+    return new HttpResponse(null, {
+      headers: {
+        'Set-Cookie': 'mySecret=abc-123',
+        'X-Custom-Header': 'yes',
+      },
+      status: 404,
+      statusText: 'Out Of Apples',
+    })
+  }),
+]
+```
+
+---
+
+## Typescript
+
+Typescript 를 사용하면서, `param`, `request`, `response` 에 각각 type 을 지정할 수 있습니다.
+
+```typescript:src/mocks/handlers.ts
+type GetPostDetailParams = {
+  post_id: string;
+};
+
+type GetPostDetailRequestBody = {
+  title: string;
+  author: string;
+};
+
+type GetPostDetailResponseBody = {
+  post_id: string;
+  post_title: string;
+  post_author: string;
+};
+
+http.get<GetPostDetailParams, GetPostDetailRequestBody, GetPostDetailResponseBody, '/post/:post_id'>(
+  '/post/:post_id',
+  async ({ params, request }) => {
+    const { post_id } = params;
+
+    const postData = await request.json();
+    return HttpResponse.json({
+      post_id,
+      post_title: postData.title,
+      post_author: postData.author,
+    });
+  },
+);
+```
+
+귀찮기도, 코드량이 늘어나기도 하지만 그만큼 정확하기도 합니다.
+
+아예 타입을 정의하지 않거나 never 를 이용해 꼭 필요한 부분에만 사용하는 경우도 많은 것 같습니다.
+
+```typescript:src/mocks/handlers.ts {1}
+http.get<never, GetPostDetailRequestBody, '/post/:post_id'>(
+  '/post/:post_id',
+  async ({ params, request }) => {
+    // ...
+);
+```
+
+---
+
+## Node.js
+
+Node 환경에서 Mock Service Worker를 설정하는 방법 역시 유사합니다.
+
+```javascript:src/mocks/node.js
+import { setupServer } from 'msw/node'
+import { handlers } from './handlers'
+
+export const server = setupServer(...handlers)
+```
+
+```javascript:src/index.js
+import { server } from './mocks/node'
+
+server.listen()
+```
+
+## Test
+
+Node 환경에서의 Test 를 작동시키게 하기 위한 설정
+
+```javascript:setupTests.js
+import { beforeAll, afterEach, afterAll } from 'vitest'
+import { server } from './src/mocks/node'
+
+beforeAll(() => server.listen())
+afterEach(() => server.resetHandlers())
+afterAll(() => server.close())
+```
+
+```javascript:*.config.js
+module.exports = {
+  setupFilesAfterEnv: ['./src/setupTests.js'],
+  ...
+}
+```
