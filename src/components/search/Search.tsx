@@ -2,6 +2,7 @@
 
 import styled from "@emotion/styled";
 import { IconBrandGithubFilled, IconPencil, IconRocket, IconSearch, IconUserCircle } from "@tabler/icons-react";
+import { usePathname } from "next/navigation";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 
@@ -16,6 +17,7 @@ import { searchTermOptimization } from "@/utils/format";
 import { SearchItem, StaticItem } from "./SearchItem";
 
 export default function Search() {
+  const pathname = usePathname();
   const [open, setOpen] = useRecoilState(searchModalState);
   const [searchWord, setSearchWord] = useState<string>("");
   const [posts, setPosts] = useState<PostType[]>(allPosts.slice(0, 3));
@@ -24,12 +26,18 @@ export default function Search() {
   useEffect(() => {
     document.addEventListener("keydown", keyDownListener);
 
-    return () => document.removeEventListener("keydown", keyDownListener);
+    return () => {
+      document.removeEventListener("keydown", keyDownListener);
+    };
   }, []);
 
   useEffect(() => {
     if (open) inputRef.current?.focus();
   }, [open]);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   const keyDownListener = (e: KeyboardEvent) => {
     const keyCode = e.keyCode || e.which || e.key;
