@@ -54,17 +54,17 @@ export default function Search() {
 
   const focus = (key: "next" | "prev"): void => {
     const { activeElement } = document;
-    const focusableElements = Array.from(document.querySelectorAll<HTMLElement>('[role="listitem"]'));
+    const listItems = Array.from(document.querySelectorAll<HTMLElement>('[role="listitem"]'));
 
     if (activeElement instanceof HTMLElement) {
-      const currentIdx = focusableElements.indexOf(activeElement);
+      const currentIdx = listItems.indexOf(activeElement);
       let nextIdx = 0;
       if (key === "next") {
-        nextIdx = (currentIdx + 1) % focusableElements.length;
+        nextIdx = (currentIdx + 1) % listItems.length;
       } else {
-        nextIdx = (currentIdx - 1 + focusableElements.length) % focusableElements.length;
+        nextIdx = (currentIdx - 1 + listItems.length) % listItems.length;
       }
-      const nextElement = focusableElements[nextIdx] as HTMLElement;
+      const nextElement = listItems[nextIdx] as HTMLElement;
 
       if (nextElement) {
         nextElement.focus();
@@ -81,11 +81,6 @@ export default function Search() {
   const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (Object.keys(ACTIONS).includes(e.key)) {
       const handler = ACTIONS[e.key];
-
-      // input 태그에서 enter 시 다음으로 이동시키지만, 아니라면 enter가 작동하게
-      if (!(e.target instanceof HTMLInputElement)) {
-        return;
-      }
 
       if (handler) {
         e.preventDefault();

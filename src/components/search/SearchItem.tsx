@@ -18,7 +18,10 @@ export const SearchItem = ({ post, ...props }: SearchItemProps) => {
   };
 
   const onKeyEnter = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "Enter") router.push(post.url);
+    if (e.key === "Enter") {
+      router.push(post.url);
+      e.stopPropagation();
+    }
   };
 
   return (
@@ -41,8 +44,15 @@ export const StaticItem = ({ href, children, ...props }: StaticItemProps) => {
     router.push(href);
   };
 
+  const onKeyEnter = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter") {
+      router.push(href);
+      e.stopPropagation();
+    }
+  };
+
   return (
-    <SearchItemLink onClick={onClickHandler} tabIndex={0} {...props}>
+    <SearchItemLink onClick={onClickHandler} tabIndex={0} onKeyDown={onKeyEnter} {...props}>
       <ItemWithIcon>{children}</ItemWithIcon>
     </SearchItemLink>
   );
