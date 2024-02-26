@@ -32,7 +32,12 @@ export default function MenuNav({ menu, setMenu }: MenuNavProps) {
   return (
     <MenuNavStyled className="scroll scroll-min">
       {getCategoriesWithAll({ type: category, stroke: 2 }).map(category => (
-        <Menu key={category.name} onClick={() => setMenu(category.name)} $active={isPostCategory(category.name, menu)}>
+        <Menu
+          key={category.name}
+          onClick={() => setMenu(category.name)}
+          $active={isPostCategory(category.name, menu)}
+          tabIndex={0}
+        >
           {category.icon}
           <span>{category.name}</span>
         </Menu>

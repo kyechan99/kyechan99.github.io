@@ -5,7 +5,11 @@ import { useRouter } from "next/navigation";
 
 import { PostType } from "@/types/post";
 
-export const SearchItem = ({ post }: { post: PostType }) => {
+interface SearchItemProps extends Omit<React.ComponentProps<"div">, "tabIndex"> {
+  post: PostType;
+}
+
+export const SearchItem = ({ post, ...props }: SearchItemProps) => {
   const router = useRouter();
 
   const onClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -13,14 +17,23 @@ export const SearchItem = ({ post }: { post: PostType }) => {
     router.push(post.url);
   };
 
+  const onKeyEnter = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter") router.push(post.url);
+  };
+
   return (
-    <SearchItemLink onClick={onClickHandler}>
+    <SearchItemLink onClick={onClickHandler} tabIndex={0} onKeyDown={onKeyEnter} {...props}>
       <SearchItemLinkCategory>/ {post.category}</SearchItemLinkCategory>
       <SearchItemLinkTitle>{post.title}</SearchItemLinkTitle>
     </SearchItemLink>
   );
 };
-export const StaticItem = ({ href, children }: { href: string; children?: React.ReactNode }) => {
+
+interface StaticItemProps extends Omit<React.ComponentProps<"div">, "tabIndex"> {
+  href: string;
+}
+
+export const StaticItem = ({ href, children, ...props }: StaticItemProps) => {
   const router = useRouter();
 
   const onClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -29,7 +42,7 @@ export const StaticItem = ({ href, children }: { href: string; children?: React.
   };
 
   return (
-    <SearchItemLink onClick={onClickHandler}>
+    <SearchItemLink onClick={onClickHandler} tabIndex={0} {...props}>
       <ItemWithIcon>{children}</ItemWithIcon>
     </SearchItemLink>
   );
@@ -40,12 +53,15 @@ const SearchItemLink = styled.div`
   border-radius: 0.5rem;
   display: block;
   margin-bottom: 0.5rem;
-  transition: background var(--delay);
+  transition: background-color var(--delay);
   cursor: pointer;
   background-color: var(--asideBG);
   &:hover {
     background-color: var(--activeBG);
     color: var(--secondary);
+  }
+  &:focus {
+    box-shadow: 0 0px 3px black;
   }
 `;
 const SearchItemLinkTitle = styled.p`

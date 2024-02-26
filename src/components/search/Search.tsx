@@ -52,12 +52,54 @@ export default function Search() {
     setPosts(allPosts.filter(post => post.searchTxt?.includes(searchTerm)));
   };
 
+  const focus = (key: "next" | "prev"): void => {
+    const { activeElement } = document;
+    const focusableElements = Array.from(document.querySelectorAll<HTMLElement>('[role="listitem"]'));
+
+    if (activeElement instanceof HTMLElement) {
+      const currentIdx = focusableElements.indexOf(activeElement);
+      let nextIdx = 0;
+      if (key === "next") {
+        nextIdx = (currentIdx + 1) % focusableElements.length;
+      } else {
+        nextIdx = (currentIdx - 1 + focusableElements.length) % focusableElements.length;
+      }
+      const nextElement = focusableElements[nextIdx] as HTMLElement;
+
+      if (nextElement) {
+        nextElement.focus();
+      }
+    }
+  };
+
+  const ACTIONS: Record<string, () => void> = {
+    ArrowDown: () => focus("next"),
+    ArrowUp: () => focus("prev"),
+    Enter: () => focus("next"),
+  };
+
+  const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (Object.keys(ACTIONS).includes(e.key)) {
+      const handler = ACTIONS[e.key];
+
+      // input 태그에서 enter 시 다음으로 이동시키지만, 아니라면 enter가 작동하게
+      if (!(e.target instanceof HTMLInputElement)) {
+        return;
+      }
+
+      if (handler) {
+        e.preventDefault();
+        handler();
+      }
+    }
+  };
+
   return (
     <>
       {open && (
         <div>
           <SearchBackground onClick={() => setOpen(false)}>
-            <SearchModal onClick={e => e.stopPropagation()}>
+            <SearchModal onClick={e => e.stopPropagation()} onKeyDown={onKeyDownHandler}>
               <SearchHeader>
                 <label htmlFor="search-input">
                   <IconSearch />
@@ -71,24 +113,24 @@ export default function Search() {
                   spellCheck="false"
                 />
               </SearchHeader>
-              <SearchBody className="scroll">
+              <SearchBody className="scroll" role="list">
                 {posts.length > 0 && <Classify>Results</Classify>}
                 {posts.slice(0, 10).map((post, idx) => (
-                  <SearchItem key={idx} post={post} />
+                  <SearchItem key={idx} post={post} role="listitem" />
                 ))}
                 {posts.length >= 10 && <Warning>결과물이 너무 많아요 ! (최대 10개)</Warning>}
 
                 <Classify>Recommends</Classify>
-                <StaticItem href="https://github.com/kyechan99">
+                <StaticItem href="https://github.com/kyechan99" role="listitem">
                   <IconBrandGithubFilled /> Github
                 </StaticItem>
-                <StaticItem href="/post">
+                <StaticItem href="/post" role="listitem">
                   <IconPencil /> Post
                 </StaticItem>
-                <StaticItem href="/project">
+                <StaticItem href="/project" role="listitem">
                   <IconRocket /> Project
                 </StaticItem>
-                <StaticItem href="/resume">
+                <StaticItem href="/resume" role="listitem">
                   <IconUserCircle /> About
                 </StaticItem>
               </SearchBody>

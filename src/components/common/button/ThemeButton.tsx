@@ -36,6 +36,9 @@ export const ThemeButtonSkeleton = () => {
 };
 
 const ThemeButtonStyled = styled(Button)`
+  &:focus-visible {
+    box-shadow: 0 0px 3px var(--black);
+  }
   ${maxMedia.mobile} {
     padding: 0.5rem 0.5rem;
   }
