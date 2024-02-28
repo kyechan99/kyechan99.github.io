@@ -15,7 +15,11 @@ export default function MDXLink({ href, children, className }: React.ComponentPr
   }
 
   return (
-    <LinkStyled href={href as string} className={className}>
+    <LinkStyled
+      href={href as string}
+      className={className}
+      tabIndex={className?.split(" ").includes("anchor") ? -1 : 0}
+    >
       {children}
     </LinkStyled>
   );
