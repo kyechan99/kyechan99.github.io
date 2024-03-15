@@ -62,30 +62,16 @@ export default function Resume() {
                 <p>
                   일일 평균 70,000 요청량 이상의 오픈소스를 관리하고 있습니다.
                   <br />
-                  {/* 소프트웨어 개발은 문제를 개선하고 변화시키는 일에 큰 가치가 있다고 생각해요.  */}
                   개발자로서 무엇을 해결하는지를 넘어 <b className="stress">근본적인 문제와 창의적인 해결책</b>에
                   고민합니다.
                   <br /> 이를 바탕으로 오픈소스에 관심이 많아 개발하면서 도전과 성장을 즐기고 있습니다.
                 </p>
-                {/* <p>소프트웨어 개발은 문제를 개선하고 변화시키는 일에 큰 가치가 있다고 느낍니다.</p>
-                <p>
-                  개발자로서 무엇을 해결하는지를 넘어 <b className="stress">'근본적인 문제와 창의적인 해결책'</b>에
-                  고민합니다.
-                </p>
-                <p>이를 바탕으로 오픈소스에 관심이 많아 분석하고 개발하며 도전과 성장을 즐기고 있습니다.</p> */}
                 <p>
                   가치를 창출하는 코드를 위해 <b className="stress">지속적인 학습과 실천에 적극적</b>입니다. <br />
-                  생각을 행동으로 거침없이 옮기면서 현재는 활성 사용자 8000명 이상의 프로그램을 서비스하고 있습니다.
+                  생각을 행동으로 거침없이 옮기면서 현재는 활성 사용자 15,000명 이상의 프로그램을 서비스하고 있습니다.
                 </p>
               </div>
             </div>
-            {/* <div className="intro-block">
-              <p>
-                겪었던 실수를 반복하지 않기 위해 <b className="stress">지속적인 학습과 공유에 적극적</b>입니다. 특히
-                협업은 문제를 고민하고 나누는 환경에서 힘이 나온다고 생각합니다. 능동적으로 소통에 참여해 서비스 발전과
-                가치를 창출하는 코드를 위해 노력합니다.
-              </p>
-            </div> */}
           </div>
 
           <PrintDivider />
@@ -199,11 +185,8 @@ export default function Resume() {
                       마이그레이션
                     </Link>
                     <ul className="semi-list origin-ul">
-                      {/* <li>App Router </li> */}
                       <li>페이지 전환보다 첫 페이지 입장을 위한 마이그레이션 작업</li>
                       <li>분리된 프로젝트 단순화시키면서 개발 시간과 테스트 감소</li>
-                      {/* <li>프로젝트 증가한 서버측 작업과 비용을 감소시키기 위해 일부 페이지 SSR → SSG 변환</li> */}
-                      {/* <li>증가한 서버측 작업과 비용을 감소시키기 위해 일부 페이지 SSR → SSG 변환</li> */}
                     </ul>
                   </li>
                   <li>
@@ -213,12 +196,9 @@ export default function Resume() {
                       <li>로딩 중 Skeleton UI를 만들어 CLS 와 사용자 경험 개선</li>
                     </ul>
                   </li>
-                  {/* <div className="print-empty-voicehub"></div> */}
                   <li>
                     컴포넌트 복잡도 개선
                     <ul className="semi-list origin-ul">
-                      {/* <li>Media Query를 이용한 반응형 웹 사이트 작업</li>
-                <li>동적 스타일링을 위한 CSS-IN-JS로 styled-component 도입</li>  */}
                       <li>컴포넌트 단위로 개발하면서 재사용성을 높이고 반복 작업 최소화</li>
                       <li>Storybook을 이용해 문서화하며 컴포넌트 종류 시각화</li>
                     </ul>
@@ -260,13 +240,6 @@ export default function Resume() {
                     https://buly.kr/9t7YCdV
                   </a>
                 </div>
-                {/* <div className="url-block service">
-            <a
-              href="https://github.com/kyechan99/capsule-render"
-              target="_blank"
-              >https://github.com/kyechan99/capsule-render</a
-            >
-          </div> */}
               </div>
               <div className="col-md-8 desc">
                 <h4 className="semi-title">Introduction</h4>
@@ -588,7 +561,7 @@ export default function Resume() {
               </h3>
               <ul className="semi-list origin-ul">
                 <li>
-                  [직접 개발] : 브라우저 확장 프로그램 활성 자용자수 8,000 명 도달 -{" "}
+                  [직접 개발] : 브라우저 확장 프로그램 활성 자용자수 15,000 명 도달 -{" "}
                   <a href="https://github.com/kyechan99/chzzk-plus">chzzk-plus</a>
                 </li>
                 <li>
