@@ -618,8 +618,8 @@ export default function Resume() {
                 <span className="info-detail left"></span>
               </h3>
               <ul className="semi-list origin-ul">
+                <li>크거나 작은 규모의 웹 프로그램에서 다양하게 설계합니다.</li>
                 <li>CSR과 SSR에 대해 고민하며 개발합니다.</li>
-                <li>Flux 패턴을 이해하고 Redux 및 Recoil 을 사용합니다.</li>
                 <li>작은 단위로 개발해 상향적 조립에 노력하며 Storybook을 도입해본 경험이 있습니다.</li>
               </ul>
             </div>
