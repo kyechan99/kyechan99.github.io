@@ -60,7 +60,7 @@ export default function Resume() {
             <div className=" ">
               <div className="intro-block">
                 <p>
-                  일일 평균 70,000 요청량 이상의 오픈소스를 관리하고 있습니다.
+                  일일 평균 100,000 요청량 이상의 오픈소스를 관리하고 있습니다.
                   <br />
                   개발자로서 무엇을 해결하는지를 넘어 <b className="stress">근본적인 문제와 창의적인 해결책</b>에
                   고민합니다.
@@ -68,7 +68,7 @@ export default function Resume() {
                 </p>
                 <p>
                   가치를 창출하는 코드를 위해 <b className="stress">지속적인 학습과 실천에 적극적</b>입니다. <br />
-                  생각을 행동으로 거침없이 옮기면서 현재는 활성 사용자 15,000명 이상의 프로그램을 서비스하고 있습니다.
+                  생각을 행동으로 거침없이 옮기면서 현재는 활성 사용자 18,000명 이상의 프로그램을 서비스하고 있습니다.
                 </p>
               </div>
             </div>
@@ -112,7 +112,7 @@ export default function Resume() {
                 <h4 className="semi-title">Challenge & Experience</h4>
                 <ul className="semi-list origin-ul">
                   <li>API Query 값으로 SVG를 활용해 동적인 이미지 응답</li>
-                  <li>하루 평균 70,000건 이상 요청 (최다 85,000건)</li>
+                  <li>하루 평균 100,000건 이상 요청</li>
                   <li>오픈 소스 사용 방법 및 예외 사항 등을 명시한 문서 제공</li>
                   <li>
                     <a href="https://github.com/kyechan99/capsule-render/discussions/15" target="__blank">
@@ -561,7 +561,7 @@ export default function Resume() {
               </h3>
               <ul className="semi-list origin-ul">
                 <li>
-                  [직접 개발] : 브라우저 확장 프로그램 활성 자용자수 15,000 명 도달 -{" "}
+                  [직접 개발] : 브라우저 확장 프로그램 활성 자용자수 18,000 명 도달 -{" "}
                   <a href="https://github.com/kyechan99/chzzk-plus">chzzk-plus</a>
                 </li>
                 <li>
