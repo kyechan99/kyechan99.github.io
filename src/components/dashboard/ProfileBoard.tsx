@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "@emotion/styled";
-import { IconBrandGithubFilled, IconMail, IconUserFilled } from "@tabler/icons-react";
+import { IconBrandGithubFilled, IconMail } from "@tabler/icons-react";
 
 import { maxMedia } from "@/libs/media";
 
@@ -21,9 +21,9 @@ export default function ProfileBoard() {
         <OutLink href="https://github.com/kyechan99">
           <IconBrandGithubFilled /> GitHub
         </OutLink>
-        <OutLink href="/resume" style={{ paddingRight: "1.25rem" }}>
+        {/* <OutLink href="/resume" style={{ paddingRight: "1.25rem" }}>
           <IconUserFilled /> About
-        </OutLink>
+        </OutLink> */}
       </div>
     </Card>
   );

@@ -23,7 +23,7 @@ export const lightColors = {
   asideBG: "#ededed",
   activeBG: "#f6f3f9", // primary 와 같이 사용할때 사용
   header: "#222", //! h1 와 같이 강력히 강조해야할 헤더는 테마가 바뀌어도 강조해야함
-  resume: "#59439d",
+  resume: "#f17226",
 };
 
 /**
@@ -40,7 +40,7 @@ export const darkColors = {
   asideBG: "#272727",
   activeBG: "#323035", // primary 와 같이 사용할때 사용
   header: "#fdfdfd", //! h1 와 같이 강력히 강조해야할 헤더는 테마가 바뀌어도 강조해야함
-  resume: "#59439d",
+  resume: "#ae6f4a",
 };
 
 /**

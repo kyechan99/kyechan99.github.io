@@ -68,7 +68,7 @@ export default function Resume() {
                 </p>
                 <p>
                   가치를 창출하는 코드를 위해 <b className="stress">지속적인 학습과 실천에 적극적</b>입니다. <br />
-                  생각을 행동으로 거침없이 옮기면서 현재는 활성 사용자 18,000명 이상의 프로그램을 서비스하고 있습니다.
+                  생각을 행동으로 거침없이 옮기면서 현재는 활성 사용자 20,000명 이상의 프로그램을 서비스하고 있습니다.
                 </p>
               </div>
             </div>
@@ -107,8 +107,8 @@ export default function Resume() {
                     <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/kyechan99/capsule-render" />
                   </li>
                 </ul>
-                <h4 className="semi-title">Role</h4>
-                <p>Owner & Maintainer</p>
+                {/* <h4 className="semi-title">Role</h4>
+                <p>Owner & Maintainer</p> */}
                 <h4 className="semi-title">Challenge & Experience</h4>
                 <ul className="semi-list origin-ul">
                   <li>API Query 값으로 SVG를 활용해 동적인 이미지 응답</li>
@@ -138,8 +138,90 @@ export default function Resume() {
                     </ul>
                   </li>
                 </ul>
+                <h4 className="semi-title">Growth</h4>
+                <ul className="semi-list origin-ul">
+                  <li>
+                    추가적인 기능에 대해 Issue나 Discussion 등을 받아 의논해보고 혼자서는 발견하지 못했을 문제를
+                    개선시키는 경험 을 얻을 수 있었습니다.
+                  </li>
+                  <li>
+                    실수로 라이브 API에서 기능을 작동시키지 못하는 문제도 겪어보게 되면서 이를 계기로 테스트 코드의
+                    중요성을 직접 깨닫고 프로젝트에 적용시켰습니다.
+                  </li>
+                  <li>
+                    husky를 이용해 Git 커밋 컨벤션을 일관되게 하고 Prettier Lint를 작동시킨 후 적용될 수 있게
+                    노력했습니다.
+                  </li>
+                </ul>
               </div>
             </div>
+            <hr className="divider" />
+
+            <div className="project-row row">
+              <div className="col-md-4">
+                <h3 className="project-title">
+                  <a href="https://kyechan99.github.io/" target="_blank">
+                    BMates
+                  </a>
+                </h3>
+                <div className="tags">
+                  <span className="badge badge-light tag-badge">Typescript</span>
+                  <span className="badge badge-light tag-badge">Canvas API</span>
+                  <span className="badge badge-light tag-badge">Web Audio</span>
+                  <span className="badge badge-light tag-badge">React</span>
+                  <span className="badge badge-light tag-badge">Next</span>
+                  <span className="badge badge-light tag-badge">Monorepo</span>
+                </div>
+                <div className="url-block github">
+                  <a href="https://github.com/kyechan99/kyechan99.github.io" target="_blank">
+                    https://github.com/Bandmators/bmates
+                  </a>
+                </div>
+                <div className="url-block service">
+                  <a href="https://bandmators.github.io/bmates/" target="_blank">
+                    https://bandmators.github.io/bmates/
+                  </a>
+                </div>
+              </div>
+              <div className="col-md-8 desc">
+                <h4 className="semi-title">Introduction</h4>
+                <p>웹 오디오 에디터 오픈소스</p>
+                <h4 className="semi-title">Challenge & Experience</h4>
+                <ul className="semi-list origin-ul">
+                  <li>모노레포 구성</li>
+                  <ul className="semi-list origin-ul">
+                    <li>다양한 프레임워크 및 라이브러리 개발 효율성 극대화</li>
+                    <li>
+                      Canvas{" "}
+                      <a href="https://www.npmjs.com/package/@bmates/renderer" target="_blank">
+                        렌더러 엔진
+                      </a>{" "}
+                      구축
+                    </li>
+                    <li>
+                      Web Audio API를 활용해 실시간 오디오 편집 및 재생{" "}
+                      <a href="https://www.npmjs.com/package/@bmates/editor" target="_blank">
+                        라이브러리
+                      </a>
+                    </li>
+                    <li>
+                      다양한 프레임워크 지원을 위한{" "}
+                      <a href="https://www.npmjs.com/package/@bmates/studio" target="_blank">
+                        스튜디오
+                      </a>{" "}
+                      패키지
+                    </li>
+                  </ul>
+                  <li>객체지향 설계</li>
+                  <ul className="semi-list origin-ul">
+                    <li>코드의 모듈화와 유지보수성을 향상</li>
+                    <li>독립적인 컴포넌트로 분리하여 재사용성</li>
+                  </ul>
+                  <li>demo 및 문서화를 위한 docs 사이트 개발</li>
+                </ul>
+              </div>
+            </div>
+
             <hr className="divider" />
 
             <div className="project-row row">
@@ -175,8 +257,8 @@ export default function Resume() {
                 <ul className="semi-list">
                   <li>성우 포트폴리오 관리 및 커뮤니티 플랫폼</li>
                 </ul>
-                <h4 className="semi-title">Role</h4>
-                <p>Owner & Maintainer</p>
+                {/* <h4 className="semi-title">Role</h4>
+                <p>Owner & Maintainer</p> */}
                 <h4 className="semi-title">Challenge & Experience</h4>
                 <ul className="semi-list origin-ul">
                   <li>
@@ -301,6 +383,7 @@ export default function Resume() {
                 </ul>
               </div>
             </div>
+
             <hr className="divider" />
 
             <div className="project-row row">
@@ -338,8 +421,6 @@ export default function Resume() {
                     <li>이미지, 코드, 주소 등을 최적화 된 컴포넌트로 재구성</li>
                     <li>각 Heading을 정리한 TOC 생성과 Observer 처리</li>
                   </ul>
-                  <li>GitHub Action으로 자동 빌드 Workflow 구성</li>
-                  <li>다크모드 구현</li>
                 </ul>
               </div>
             </div>
@@ -561,7 +642,7 @@ export default function Resume() {
               </h3>
               <ul className="semi-list origin-ul">
                 <li>
-                  [직접 개발] : 브라우저 확장 프로그램 활성 자용자수 18,000 명 도달 -{" "}
+                  [직접 개발] : 브라우저 확장 프로그램 활성 자용자수 20,000 명 도달 -{" "}
                   <a href="https://github.com/kyechan99/chzzk-plus">chzzk-plus</a>
                 </li>
                 <li>
@@ -572,17 +653,18 @@ export default function Resume() {
                   [직접 개발] : 평소 자주 사용하는 최소한의 디자인 및 기능 프레임워크 -{" "}
                   <a href="https://yuristrap.github.io/v1.0/introduction/customize">DOCS</a>
                 </li>
-                <li>
+                {/* <li>
                   [Merge] : devhints의 sass 치트시트 내용 추가 -{" "}
                   <a href="https://github.com/rstacruz/cheatsheets/pull/1481">#1481</a>
-                </li>
+                </li> */}
                 <li>
-                  [Merge] : naver/fe-news 11월 경로 수정 - <a href="https://github.com/naver/fe-news/pull/35">#35</a>
+                  [직접 개발] : React UI 컴포넌트 디자인 시스템 -{" "}
+                  <a href="https://github.com/Bandmators/bmates-ui">bmates-ui</a>
                 </li>
-                <li>
+                {/* <li>
                   [Open] : graphql-kr 한국 문서 수정 -{" "}
                   <a href="https://github.com/graphql-kr/graphql-kr.github.io/pull/4">#4</a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
@@ -914,7 +996,7 @@ const Container = styled.div`
     }
     .desc {
       p {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem;
       }
     }
     h4 {
