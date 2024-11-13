@@ -2,6 +2,9 @@
 
 import styled from "@emotion/styled";
 import { useRouter } from "next/navigation";
+import { useRecoilState } from "recoil";
+
+import { searchModalState } from "@/recoil/search";
 
 import { PostType } from "@/types/post";
 
@@ -38,14 +41,17 @@ interface StaticItemProps extends Omit<React.ComponentProps<"div">, "tabIndex"> 
 
 export const StaticItem = ({ href, children, ...props }: StaticItemProps) => {
   const router = useRouter();
+  const [open, setOpen] = useRecoilState(searchModalState);
 
   const onClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
+    setOpen(false);
     router.push(href);
   };
 
   const onKeyEnter = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Enter") {
+      setOpen(false);
       router.push(href);
       e.stopPropagation();
     }
