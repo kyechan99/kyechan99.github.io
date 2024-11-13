@@ -173,7 +173,7 @@ export default function Resume() {
                   <span className="badge badge-light tag-badge">Monorepo</span>
                 </div>
                 <div className="url-block github">
-                  <a href="https://github.com/kyechan99/kyechan99.github.io" target="_blank">
+                  <a href="https://github.com/Bandmators/bmates" target="_blank">
                     https://github.com/Bandmators/bmates
                   </a>
                 </div>
